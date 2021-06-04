@@ -8,6 +8,7 @@
                 [flagUsers]="flagUsers"
                 (formUserOut)="formUser=$event"
                 (displayOut)="userDialog=$event"
+                (usersOut)="setUsers($event)"
                 (paginatorOut)="getUsers($event)">
             </app-user-list>
         </p-tabPanel>
