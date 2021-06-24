@@ -18,24 +18,27 @@ export class UserListComponent implements OnInit {
 
   @Input() flagUsers: boolean;
   @Input() usersIn: User[];
-  @Input() paginatorIn: Paginator;
+  @Input() rolesIn: Role[];
+  @Input() paginatorUserIn: Paginator;
   @Input() formUserIn: FormGroup;
   @Input() displayIn: boolean;
   @Output() usersOut = new EventEmitter<User[]>();
   @Output() formUserOut = new EventEmitter<FormGroup>();
   @Output() displayOut = new EventEmitter<boolean>();
-  @Output() paginatorOut = new EventEmitter<Paginator>();
+  @Output() displayEditOut = new EventEmitter<boolean>();
+  @Output() paginatorUserOut = new EventEmitter<Paginator>();
   @Output() rolesOut = new EventEmitter<Role[]>();
   @Output() userRoleOut = new EventEmitter<String>();
 
 
   selectedUsers: any[];
   selectedUser: User;
-  roles: Role[];
+  rolesUser: Role[];
   colsUser: Col[];
   dialogViewRoles: boolean;
   paginatorRoles: Paginator;
-  userRole: String;
+  userName: String;
+  userId: String;
 
   constructor(private messageService: MessageService,
     private spinnerService: NgxSpinnerService,
@@ -56,15 +59,14 @@ export class UserListComponent implements OnInit {
   }
 
   paginateUser(event) {
-    console.log(event);
-    this.paginatorIn.current_page = event.page + 1;
-    this.paginatorOut.emit(this.paginatorIn);
+    this.paginatorUserIn.current_page = event.page + 1;
+    this.paginatorUserOut.emit(this.paginatorUserIn);
     
   }
 
-resetPaginatorUsers() {
-  this.paginatorIn = {current_page: 1, per_page: 5};
-}
+  resetPaginatorUsers() {
+    this.paginatorUserIn = {current_page: 1, per_page: 5};
+  }
   
   searchUsers(event, search) {
     if (event.type === 'click' || event.keyCode === 13 || search.length === 0) {
@@ -83,15 +85,17 @@ resetPaginatorUsers() {
   sendUsers() {
     this.usersOut.emit(this.usersIn);
   }
-  openNewFormUser() {
+
+  openNewUserForm() {
     this.formUserIn.reset();
     this.formUserOut.emit(this.formUserIn);
     this.displayOut.emit(true);
   }
-  openEditFormUser(user: User) {
+
+  openEditUserForm(user: User) {
     this.formUserIn.patchValue(user);
     this.formUserOut.emit(this.formUserIn);
-    this.displayOut.emit(true);
+    this.displayEditOut.emit(true);
   }
 
   deleteUsers(user = null) {
@@ -102,7 +106,6 @@ resetPaginatorUsers() {
                     this.selectedUsers = [];
                     this.selectedUsers.push(user);
                 }
-
                 const ids = this.selectedUsers.map(element => element.id);
                 this.spinnerService.show();
                 this.userAdministrationService.delete('user-admin/delete', ids)
@@ -132,21 +135,22 @@ selectUser(user: User) {
 }
 
 openViewRoles() {
-  this.getRoles();
+  this.getRolesUser();
 }
 
-getRoles(paginator: Paginator = null) {
+getRolesUser() {
   let params = new HttpParams().append('id', this.selectedUser.id.toString());
-  this.userRole = this.selectedUser.partial_name;
+  this.userName = this.selectedUser.partial_name;
+  this.userId = this.selectedUser.id.toString();
   this.spinnerService.show();
-  this.userAdministrationService.get('auth/roles', params).subscribe(response => {
+  this.userAdministrationService.get('user-admin/rolesUser', params).subscribe(response => {
       this.spinnerService.hide();
-      this.roles = response['data'];
+      this.rolesUser = response['data'];
       this.paginatorRoles = response as Paginator;
       this.dialogViewRoles = true;
   }, error => {
       this.spinnerService.hide();
-      this.roles = [];
+      this.rolesUser = [];
       this.dialogViewRoles = true;
       this.messageService.error(error);
   });

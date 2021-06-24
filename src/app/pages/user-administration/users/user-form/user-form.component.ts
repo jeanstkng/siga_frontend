@@ -1,11 +1,11 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormGroup} from '@angular/forms';
 import { MessageService } from '../../../shared/services/message.service';
+import { HttpParams } from '@angular/common/http';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { User } from '../../../../models/auth/user';
 import { UserAdministrationService } from '../../../../services/auth/user-administration.service';
-import { AppService } from '../../../../services/app/app.service';
-import { PasswordModule } from 'primeng/password';
+import { Role } from 'src/app/models/auth/role';
 
 
 @Component({
@@ -17,16 +17,17 @@ export class UserFormComponent implements OnInit {
 
   @Input() formUserIn: FormGroup;
   @Input() usersIn: User[];
-
+  @Input() rolesIn: Role[];
   @Output() usersOut = new EventEmitter<User[]>();
   @Output() displayOut = new EventEmitter<boolean>();
 
+  selectedRoles: any[];
 
-  constructor(private formBuilder: FormBuilder,
+  constructor(
     private messageService: MessageService,
     private spinnerService: NgxSpinnerService,
-    private appHttpService: AppService,
-    private userAdministrationService: UserAdministrationService) { }
+    private userAdministrationService: UserAdministrationService) { 
+    }
 
   ngOnInit(): void {
   }
@@ -34,17 +35,11 @@ export class UserFormComponent implements OnInit {
   get idField() {
     return this.formUserIn.get('id');
   }
-  get usernameField() {
-    return this.formUserIn.get('username');
-  }
   get identificationField() {
     return this.formUserIn.get('identification');
   }
   get firstNameField() {
-    return this.formUserIn.get('first_name');
-  }
-  get secondNameField() {
-    return this.formUserIn.get('second_name');
+    return this.formUserIn.get('names');
   }
   get firstLastnameField() {
     return this.formUserIn.get('first_lastname');
@@ -55,23 +50,16 @@ export class UserFormComponent implements OnInit {
   get emailField() {
     return this.formUserIn.get('email');
   }
-  get passwordField() {
-    return this.formUserIn.get('password');
-  }
-  get phoneField() {
-    return this.formUserIn.get('phone');
-  }
-  get personalEmailField() {
-    return this.formUserIn.get('personal_email');
+
+  get rolesField() {
+    return this.formUserIn.get('roles');
   }
 
-  // Save in backend
   storeUser(user: User, flag = false) {
     this.spinnerService.show();
     this.userAdministrationService.store('user-admins', { user }).subscribe(response => {
       this.spinnerService.hide();
       this.messageService.success(response);
-      this.saveUser(response['data']);
       if (flag) {
         this.formUserIn.reset();
       } else {
@@ -84,43 +72,27 @@ export class UserFormComponent implements OnInit {
     });
   }
 
-  // Submit Form
   onSubmit(event: Event, flag = false) {
     event.preventDefault();
     if (this.formUserIn.valid) {
-      if (this.idField.value) {
-        this.updateUser(this.formUserIn.value);
-      } else {
         this.storeUser(this.formUserIn.value, flag);
-      }
     } else {
       this.formUserIn.markAllAsTouched();
     }
   }
 
-  // Save in backend
-  updateUser(user: User) {
-    this.spinnerService.show();
-    this.userAdministrationService.update('user-admins/' + user.id, { user })
-      .subscribe(response => {
-        this.spinnerService.hide();
-        this.messageService.success(response);
-        this.saveUser(response['data']);
-        this.displayOut.emit(false);
-      }, error => {
-        this.spinnerService.hide();
-        this.messageService.error(error);
-      });
-  }
-
-  // Save in frontend
-  saveUser(user: User) {
-    const index = this.usersIn.findIndex(element => element.id === user.id);
-    if (index === -1) {
-      this.usersIn.push(user);
-    } else {
-      this.usersIn[index] = user;
+  saveRoles(role = null) {
+    if (role) {
+      this.selectedRoles = [];
+      this.selectedRoles.push(role);
     }
-    this.usersOut.emit(this.usersIn);
+    const ids = this.selectedRoles;
+    this.userAdministrationService.add('user-admin/addRoles', ids)
+    .subscribe(response => {
+      this.messageService.success(response);
+      this.selectedRoles = [];
+     }, error => {
+      this.messageService.error(error);
+    });
   }
 }
