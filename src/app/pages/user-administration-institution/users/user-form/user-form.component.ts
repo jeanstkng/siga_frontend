@@ -57,7 +57,7 @@ export class UserFormComponent implements OnInit {
 
   storeUser(user: User, flag = false) {
     this.spinnerService.show();
-    this.userAdministrationService.store('user-admins', { user }).subscribe(response => {
+    this.userAdministrationService.store('user-admins-institution', { user }).subscribe(response => {
       this.spinnerService.hide();
       this.messageService.success(response);
       if (flag) {
@@ -87,7 +87,7 @@ export class UserFormComponent implements OnInit {
       this.selectedRoles.push(role);
     }
     const ids = this.selectedRoles;
-    this.userAdministrationService.add('user-admin/addRoles', ids)
+    this.userAdministrationService.add('user-admin-institution/addRoles', ids)
       .subscribe(response => {
         this.messageService.success(response);
         this.selectedRoles = [];

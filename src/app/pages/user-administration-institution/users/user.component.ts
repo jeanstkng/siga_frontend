@@ -87,7 +87,7 @@ export class UserComponent implements OnInit {
             .append('per_page', paginator.per_page.toString());
 
         this.flagUsers = true;
-        this.userAdministrationService.get('user-admins', params).subscribe(
+        this.userAdministrationService.get('user-admins-institution', params).subscribe(
             response => {
                 this.flagUsers = false;
                 this.users = response['data'];
@@ -104,7 +104,7 @@ export class UserComponent implements OnInit {
             .append('per_page', paginator.per_page.toString());
 
         this.flagRoles = true;
-        this.userAdministrationService.get('user-admin/rolesP', params).subscribe(
+        this.userAdministrationService.get('user-admin-institution/rolesP', params).subscribe(
             response => {
                 this.flagRoles = false;
                 this.rolesP = response['data'];
@@ -117,7 +117,7 @@ export class UserComponent implements OnInit {
 
     getRoles() {
         const params = new HttpParams()
-        this.userAdministrationService.get('user-admin/roles', params).subscribe(
+        this.userAdministrationService.get('user-admin-institution/roles', params).subscribe(
             response => {
                 this.roles = response['data'];
             }, error => {
@@ -127,7 +127,7 @@ export class UserComponent implements OnInit {
     
     getPermissions() {
         const params = new HttpParams()
-        this.userAdministrationService.get('user-admin/permissions', params).subscribe(
+        this.userAdministrationService.get('user-admin-institution/permissions', params).subscribe(
             response => {
                 this.permissions = response['data'];
             }, error => {

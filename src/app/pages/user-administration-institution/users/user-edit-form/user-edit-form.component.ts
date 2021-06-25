@@ -61,7 +61,7 @@ export class UserEditFormComponent implements OnInit {
   // Save in backend
   updateUser(user: User) {
     this.spinnerService.show();
-    this.userAdministrationService.update('user-admins/' + user.id, { user })
+    this.userAdministrationService.update('user-admins-institution/' + user.id, { user })
       .subscribe(response => {
         this.spinnerService.hide();
         this.messageService.success(response);

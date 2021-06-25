@@ -72,7 +72,7 @@ export class UserListComponent implements OnInit {
     if (event.type === 'click' || event.keyCode === 13 || search.length === 0) {
       const params = search.length > 0 ? new HttpParams().append('search', search) : null;
       this.spinnerService.show();
-      this.userAdministrationService.get('user-admins', params).subscribe(response => {
+      this.userAdministrationService.get('user-admins-institution', params).subscribe(response => {
         this.usersIn = response['data'],
           this.spinnerService.hide();
       }, error => {
@@ -108,7 +108,7 @@ export class UserListComponent implements OnInit {
           }
           const ids = this.selectedUsers.map(element => element.id);
           this.spinnerService.show();
-          this.userAdministrationService.delete('user-admin/delete', ids)
+          this.userAdministrationService.delete('user-admin-institution/delete', ids)
             .subscribe(response => {
               this.spinnerService.hide();
               this.messageService.success(response);
@@ -143,7 +143,7 @@ export class UserListComponent implements OnInit {
     this.userName = this.selectedUser.partial_name;
     this.userId = this.selectedUser.id.toString();
     this.spinnerService.show();
-    this.userAdministrationService.get('user-admin/rolesUser', params).subscribe(response => {
+    this.userAdministrationService.get('user-admin-institution/rolesUser', params).subscribe(response => {
       this.spinnerService.hide();
       this.rolesUser = response['data'];
       this.paginatorRoles = response as Paginator;

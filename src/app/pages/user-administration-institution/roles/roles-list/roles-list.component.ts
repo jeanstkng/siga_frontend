@@ -70,7 +70,7 @@ export class RolesListComponent implements OnInit {
     if (event.type === 'click' || event.keyCode === 13 || search.length === 0) {
         const params = search.length > 0 ? new HttpParams().append('search', search) : null;
         this.spinnerService.show();
-        this.userAdministrationService.get('user-admin/rolesP', params).subscribe(response => {
+        this.userAdministrationService.get('user-admin-institution/rolesP', params).subscribe(response => {
             this.rolesIn = response['data'],
                 this.spinnerService.hide();
         }, error => {
@@ -104,7 +104,7 @@ export class RolesListComponent implements OnInit {
         }
         const ids = this.selectedRoles.map(element => element.id);
         this.spinnerService.show();
-        this.userAdministrationService.delete('user-admin/deleteRoles', ids)
+        this.userAdministrationService.delete('user-admin-institution/deleteRoles', ids)
         .subscribe(response => {
           this.spinnerService.hide();
           this.messageService.success(response);
@@ -138,7 +138,7 @@ export class RolesListComponent implements OnInit {
     this.roleName = this.selectedRole.name;
     this.roleId = this.selectedRole.id.toString();
     this.spinnerService.show();
-    this.userAdministrationService.get('user-admin/permissionsRole', params).subscribe(response => {
+    this.userAdministrationService.get('user-admin-institution/permissionsRole', params).subscribe(response => {
         this.spinnerService.hide();
         this.permissionsRole = response['data'];
         this.paginatorRoles = response as Paginator;
