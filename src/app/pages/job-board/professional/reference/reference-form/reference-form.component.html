@@ -1,16 +1,18 @@
  {{formReferenceIn.value|json}} 
-<div class="p-fluid">
-    <form [formGroup]="formReferenceIn" (ngSubmit)="onSubmit($event)">
-    
-        <div class="p-field">
+<p-card>
+ <div class="p-fluid">
+    <form [formGroup]="formReferenceIn" (ngSubmit)="onSubmit()">  
+  <div class="p-field">
             <label for="institution">
                 <i class="p-error">*</i> Institución:
                 <i *ngIf="institutionField.valid" class="pi pi-check-circle icon-valid"></i>
                 <i *ngIf="institutionField.invalid && (institutionField.touched || institutionField.dirty)"
                     class="pi pi-times-circle icon-invalid"></i>
             </label>
-            <p-autoComplete id="institution" name="institution" formControlName="institution"
-                [suggestions]="filteredInstitutions" (completeMethod)="filterInstitution($event)" field="name"
+            <p-autoComplete id="institution"  formControlName="institution"
+                [suggestions]="filteredInstitutions"
+                 (completeMethod)="filterInstitution($event)" 
+                 field="name"
                 [dropdown]="true">
                 <ng-template let-institution pTemplate="institution">
                     <div class="country-institution">
@@ -19,7 +21,8 @@
                 </ng-template>
             </p-autoComplete>
             <div *ngIf="institutionField.invalid && (institutionField.touched || institutionField.dirty)">
-                <small *ngIf="institutionField.errors?.required" id="institution-help-1" class="p-error">
+                <small *ngIf="institutionField.errors?.required" 
+                id="institution-help-1" class="p-error">
                     {{messageService.fieldRequired}}
                 </small>
             </div>
@@ -74,14 +77,20 @@
             </div>
         </div>
         <div class="p-formgrid p-grid">
-            <div class="p-field p-col">
-                <button type="submit" pButton pRipple label="Guardar y Salir" icon="pi pi-save"
-                    class="p-button-success p-button-raised"></button>
+            <div class="p-field p-xl-6 p-lg-6 p-md-12 p-sm-12">
+                <button pButton pRipple type="submit" id="btnSaveLeave"
+                        label="Guardar y Salir"
+                        class="p-button-success p-button-raised"
+                        icon="pi pi-save"></button>
             </div>
-            <div *ngIf="!idField.value" class="p-field p-col">
-                <button type="button" pButton pRipple label="Guardar" icon="pi pi-arrow-right" class="p-button-raised"
-                    (click)="onSubmit($event,true)"></button>
+            <div *ngIf="!idField.value" class="p-field p-xl-6 p-lg-6 p-md-12 p-sm-12">
+                <button pButton pRipple type="button" id="btnSave"
+                        label="Guardar"
+                        class="p-button-raised"
+                        icon="pi pi-arrow-right"
+                        (click)="onSubmit(true)"></button>
             </div>
         </div>
     </form>
 </div>
+</p-card>

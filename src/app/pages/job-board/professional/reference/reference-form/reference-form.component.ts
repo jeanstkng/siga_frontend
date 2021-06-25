@@ -21,11 +21,9 @@ export class ReferenceFormComponent implements OnInit {
     @Input() referencesIn: Reference[];
     @Output() referencesOut = new EventEmitter<Reference[]>();
     @Output() displayOut = new EventEmitter<boolean>();
-    filteredTypes: any[];
-    types: Catalogue[];
+    @Output() paginatorAdd = new EventEmitter<number>();
     filteredInstitutions: any[];
     institutions: Catalogue[];
-
 
     constructor(private formBuilder: FormBuilder,
         private messageService: MessageService,
@@ -37,16 +35,16 @@ export class ReferenceFormComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.getTypes();
         this.getInstitution();
-
     }
 
     // Fields of Form
-    get professionalfield() {
-        return this.formReferenceIn.get('professional');
+    
+    get idField() {
+        return this.formReferenceIn.get('id');
     }
 
+  
     get institutionField() {
         return this.formReferenceIn.get('institution');
     }
@@ -67,9 +65,6 @@ export class ReferenceFormComponent implements OnInit {
         return this.formReferenceIn.get('contact_email');
     }
 
-    get idField() {
-        return this.formReferenceIn.get('id');
-    }
 
     // Submit Form
     onSubmit(flag = false) {
@@ -83,29 +78,8 @@ export class ReferenceFormComponent implements OnInit {
             this.markAllAsTouchedFormReference();
         }
     }
-   /* onSubmit(event: Event, flag = false) {
-        event.preventDefault();
-        if (this.formReferenceIn.valid) {
-            if (this.idField.value) {
-                this.updateReference(this.formReferenceIn.value);
-            } else {
-                this.storeReference(this.formReferenceIn.value, flag);
-            }
-        } else {
-            this.formReferenceIn.markAllAsTouched();
-        }
-    }*/
-
-    // Types of catalogues
-    getTypes() {
-        const params = new HttpParams().append('type', 'SKILL_TYPE');
-        this.appHttpService.getCatalogues(params).subscribe(response => {
-            this.types = response['data'];
-        }, error => {
-            this.messageService.error(error);
-        });
-    }
-
+  
+    // catalogues
     getInstitution() {
         const params = new HttpParams().append('type', 'REFERENCE_INSTITUTION');
         this.appHttpService.getCatalogues(params).subscribe(response => {
@@ -118,15 +92,14 @@ export class ReferenceFormComponent implements OnInit {
     // Save in backend
     storeReference(reference: Reference, flag = false) {
         this.spinnerService.show();
-        this.jobBoardHttpService.store('references', { reference }).subscribe(response => {
+        this.jobBoardHttpService.store('references', {reference}).subscribe(response => {
             this.spinnerService.hide();
             this.messageService.success(response);
             this.saveReference(response['data']);
-            if (flag) {
-                this.formReferenceIn.reset();
-            } else {
+            if (!flag) {
                 this.displayOut.emit(false);
             }
+            this.resetFormReference();
 
         }, error => {
             this.spinnerService.hide();
@@ -134,10 +107,11 @@ export class ReferenceFormComponent implements OnInit {
         });
     }
 
+
     // Save in backend
     updateReference(reference: Reference) {
         this.spinnerService.show();
-        this.jobBoardHttpService.update('references/' + reference.id, { reference })
+        this.jobBoardHttpService.update('references/' + reference.id, {reference})
             .subscribe(response => {
                 this.spinnerService.hide();
                 this.messageService.success(response);
@@ -154,24 +128,14 @@ export class ReferenceFormComponent implements OnInit {
         const index = this.referencesIn.findIndex(element => element.id === reference.id);
         if (index === -1) {
             this.referencesIn.push(reference);
+            this.paginatorAdd.emit(1);
         } else {
             this.referencesIn[index] = reference;
         }
         this.referencesOut.emit(this.referencesIn);
     }
 
-    // Filter type of references
-    filterType(event) {
-        const filtered: any[] = [];
-        const query = event.query;
-        for (const type of this.types) {
-            if (type.name.toLowerCase().indexOf(query.toLowerCase()) === 0) {
-                filtered.push(type);
-            }
-        }
-        this.filteredTypes = filtered;
-    }
-  
+    // Filter 
     filterInstitution(event) {
         const filtered: any[] = [];
         const query = event.query;
@@ -193,16 +157,13 @@ export class ReferenceFormComponent implements OnInit {
         this.filteredInstitutions = filtered;
     }
 
-    test(event) {
-        event.markAllAsTouched();
-    }
-
-    resetFormReference() {
+     // Reset Forms
+     resetFormReference() {
         this.formReferenceIn.reset();
     }
 
+    // Mark as touched
     markAllAsTouchedFormReference() {
         this.formReferenceIn.markAllAsTouched();
     }
-    
 }

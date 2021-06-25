@@ -2,17 +2,6 @@
 <div class="p-fluid">
     <form [formGroup]="formLanguageIn" (ngSubmit)="onSubmit($event)">
        
-        <div class="p-formgrid p-grid">
-            <div class="p-field p-col">
-                <label for="professional">Profesional:</label>
-                <input id="professional" name="professional" pInputText formControlName="professional" />
-                <div *ngIf="professionalField.errors && professionalField.touched">
-                    <small *ngIf="professionalField.hasError('required')" id="professional-help-1" class="p-error">
-                        {{messageService.fieldRequired}}
-                    </small>
-                </div>
-            </div>
-        </div>
         <div class="p-field">
             <label for="idiom">
                 <i class="p-error">*</i> Idioma:

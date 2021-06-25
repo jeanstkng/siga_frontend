@@ -44,7 +44,7 @@ export class CourseComponent implements OnInit {
     buildFormCourse() {
         this.formCourse = this.formBuilder.group({
             id: [null],
-            professional: [null, Validators.required],
+        //    professional: [null, Validators.required],
             type: [null, Validators.required],
             institution: [null, Validators.required],
             certification_type: [null, Validators.required],

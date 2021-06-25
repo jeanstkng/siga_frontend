@@ -3,7 +3,7 @@ import { Catalogue } from '../app/catalogue';
 
 export interface Reference {
     id?: number;
-    professional?: Professional;
+   professional?: Professional;
     institution?: Catalogue;
     position?: string;
     contact_name?: string;

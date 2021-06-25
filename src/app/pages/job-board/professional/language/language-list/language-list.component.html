@@ -60,10 +60,6 @@
                 <th style="width: 3rem">
                     <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
                 </th>
-                <th pSortableColumn="professional">
-                    profesional
-                    <p-sortIcon field="professional"></p-sortIcon>
-                </th>
                 <th pSortableColumn="idiom">
                     Idioma
                     <p-sortIcon field="idiom"></p-sortIcon>
@@ -88,9 +84,8 @@
                 <td>
                     <p-tableCheckbox [value]="language"></p-tableCheckbox>
                 </td>
-                <td>
-                    {{language.professional}}
-                </td>
+
+                
                 <td>
                     {{language.idiom}}
                 </td>
@@ -107,7 +102,7 @@
                     <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-warning"
                             (click)="openEditFormLanguage(language)"></button>
                     <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger p-ml-2"
-                            (click)="deleteSLanguages(language)"></button>
+                            (click)="deleteLanguages(language)"></button>
                     <button pButton pRipple icon="pi pi-paperclip" class="p-button-rounded p-ml-2"
                             (click)="selectLanguage(language);openViewFilesLanguage()"></button>
                 </td>

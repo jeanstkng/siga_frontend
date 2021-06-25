@@ -3,7 +3,7 @@ import { Catalogue } from '../app/catalogue';
 
 export interface Course {
     id?: number;
-    professional?: Professional;
+   // professional?: Professional;
     type?: Catalogue;
     institution?: Catalogue;
     certification_type?: Catalogue;
