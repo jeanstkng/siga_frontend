@@ -63,7 +63,7 @@
                     <i *ngIf="emailField.invalid && (emailField.touched || emailField.dirty)"
                       class="pi pi-times-circle icon-invalid"></i>
                   </label>
-                  <input id="email" formControlName="email" pInputText>
+                  <input id="email" formControlName="email"  placeholder="ej. apm.arias@yavirac.edu.ec" pInputText>
                   <div *ngIf="emailField.errors && (emailField.touched || emailField.dirty)">
                     <small *ngIf="emailField.errors?.required" id="email-help-1" class="p-error">
                       {{messageService.fieldRequired}}
@@ -106,11 +106,17 @@
                     <i *ngIf="passwordField.invalid && (passwordField.touched || passwordField.dirty)"
                       class="pi pi-times-circle icon-invalid"></i>
                   </label>
-                  <p-password id="password" formControlName="password" [feedback]="false" [toggleMask]="true">
+                  <p-password id="password" formControlName="password" placeholder="contraseña" [feedback]="false" [toggleMask]="true">
                   </p-password>
                   <div *ngIf="passwordField.errors && (passwordField.touched || passwordField.dirty)">
                     <small *ngIf="passwordField.errors?.required" id="password-help-1" class="p-error">
                       {{messageService.fieldRequired}}
+                    </small>
+                    <small *ngIf="passwordField.errors?.minLength" id="password-help-1" class="p-error">
+                      {{messageService.fieldMinLength}}
+                    </small>
+                     <small *ngIf="passwordField.errors?.maxLength" id="password-help-1" class="p-error">
+                      {{messageService.fieldMaxLength}}
                     </small>
                     <small *ngIf="passwordField.errors?.noPasswordMatch" id="password-help-1" class="p-error">
                       {{messageService.fieldNoPasswordMatch}}
@@ -221,7 +227,7 @@
                   <i *ngIf="tradeNameField.invalid && (tradeNameField.touched || tradeNameField.dirty)"
                     class="pi pi-times-circle icon-invalid"></i>
                 </label>
-                <input id="tradename" formControlName="trade_name" pInputText>
+                <input id="tradename" formControlName="trade_name" placeholder="ej. Editorial Planeta" pInputText>
                 <div *ngIf="tradeNameField.errors && (tradeNameField.touched || tradeNameField.dirty)">
                   <small *ngIf="tradeNameField.errors?.required" id="tradename-help-1" class="p-error">
                     {{messageService.fieldRequired}}
@@ -235,7 +241,7 @@
                   <i *ngIf="prefixField.invalid && (prefixField.touched || prefixField.dirty)"
                     class="pi pi-times-circle icon-invalid"></i>
                 </label>
-                <input id="prefix" formControlName="prefix" pInputText>
+                <input id="prefix" formControlName="prefix" placeholder="ej. E.P" pInputText>
                 <div *ngIf="prefixField.errors && (prefixField.touched ||prefixField.dirty)">
                   <small *ngIf="prefixField.errors?.required" id="prefix-help-1" class="p-error">
                     {{messageService.fieldRequired}}
@@ -250,7 +256,7 @@
                 <i *ngIf="webField.invalid && (webField.touched || webField.dirty)"
                   class="pi pi-times-circle icon-invalid"></i>
               </label>
-              <input id="web" formControlName="web" pInputText>
+              <input id="web" formControlName="web" placeholder="ej. EditorialPlaneta.com" pInputText>
               <div *ngIf="webField.errors && (webField.touched || webField.dirty)">
                 <small *ngIf="webField.errors?.required" id="web-help-1" class="p-error">
                   {{messageService.fieldRequired}}
