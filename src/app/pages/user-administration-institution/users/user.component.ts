@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserAdministrationService } from '../../../services/auth/user-administration.service';
@@ -10,6 +10,7 @@ import { BreadcrumbService } from '../../../shared/services/breadcrumb.service';
 import { MessageService } from '../../shared/services/message.service';
 import { Role } from 'src/app/models/auth/role';
 import { Permission } from 'src/app/models/auth/permission';
+import { Institution } from 'src/app/models/app/institution';
 
 @Component({
     selector: 'app-users',
@@ -19,6 +20,7 @@ import { Permission } from 'src/app/models/auth/permission';
 
 export class UserComponent implements OnInit {
 
+    @Input() institutionIn: Institution[];
     paginatorUser: Paginator;
     paginatorRole: Paginator;
     users: User[];
@@ -83,6 +85,7 @@ export class UserComponent implements OnInit {
 
     getUsers(paginator: Paginator) {
         const params = new HttpParams()
+            .append('institution', this.institutionIn['id'])
             .append('page', paginator.current_page.toString())
             .append('per_page', paginator.per_page.toString());
 
@@ -100,6 +103,7 @@ export class UserComponent implements OnInit {
 
     getRolesP(paginator: Paginator) {
         const params = new HttpParams()
+            .append('institution', this.institutionIn['id'])
             .append('page', paginator.current_page.toString())
             .append('per_page', paginator.per_page.toString());
 
@@ -116,7 +120,7 @@ export class UserComponent implements OnInit {
     }
 
     getRoles() {
-        const params = new HttpParams()
+        const params = new HttpParams().append('institution', this.institutionIn['id']);
         this.userAdministrationService.get('user-admin-institution/roles', params).subscribe(
             response => {
                 this.roles = response['data'];
@@ -124,7 +128,7 @@ export class UserComponent implements OnInit {
                 this.messageService.error(error);
             });
     }
-    
+
     getPermissions() {
         const params = new HttpParams()
         this.userAdministrationService.get('user-admin-institution/permissions', params).subscribe(
@@ -133,5 +137,5 @@ export class UserComponent implements OnInit {
             }, error => {
                 this.messageService.error(error);
             });
-      } 
+    }
 }

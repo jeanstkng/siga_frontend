@@ -46,6 +46,7 @@ import { UserFormComponent } from './users/user-form/user-form.component';
 import { UserEditFormComponent } from './users/user-edit-form/user-edit-form.component';
 import { RolesListComponent } from './roles/roles-list/roles-list.component';
 import { RolesEditFormComponent } from './roles/roles-edit-form/roles-edit-form.component';
+import { InstitutionListComponent } from './users/institution-list/institution-list.component';
 
 
 @NgModule({
@@ -95,6 +96,7 @@ import { RolesEditFormComponent } from './roles/roles-edit-form/roles-edit-form.
         UserEditFormComponent,
         RolesListComponent,
         RolesEditFormComponent,
+        InstitutionListComponent,
     ],
     providers: []
 })

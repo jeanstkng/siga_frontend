@@ -8,6 +8,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { UserAdministrationService } from '../../../../services/auth/user-administration.service';
 import { HttpParams } from '@angular/common/http';
 import { Role } from 'src/app/models/auth/role';
+import { Institution } from 'src/app/models/app/institution';
 
 @Component({
   selector: 'app-user-list',
@@ -29,7 +30,7 @@ export class UserListComponent implements OnInit {
   @Output() paginatorUserOut = new EventEmitter<Paginator>();
   @Output() rolesOut = new EventEmitter<Role[]>();
   @Output() userRoleOut = new EventEmitter<String>();
-
+  @Input() institutionIn: Institution[];
 
   selectedUsers: any[];
   selectedUser: User;
@@ -70,7 +71,8 @@ export class UserListComponent implements OnInit {
 
   searchUsers(event, search) {
     if (event.type === 'click' || event.keyCode === 13 || search.length === 0) {
-      const params = search.length > 0 ? new HttpParams().append('search', search) : null;
+      const params = search.length > 0 ? new HttpParams().append('search', search)
+        .append('institution', this.institutionIn['id']) : null;
       this.spinnerService.show();
       this.userAdministrationService.get('user-admins-institution', params).subscribe(response => {
         this.usersIn = response['data'],
@@ -139,7 +141,9 @@ export class UserListComponent implements OnInit {
   }
 
   getRolesUser() {
-    let params = new HttpParams().append('id', this.selectedUser.id.toString());
+    let params = new HttpParams()
+      .append('institution', this.institutionIn['id'])
+      .append('id', this.selectedUser.id.toString());
     this.userName = this.selectedUser.partial_name;
     this.userId = this.selectedUser.id.toString();
     this.spinnerService.show();

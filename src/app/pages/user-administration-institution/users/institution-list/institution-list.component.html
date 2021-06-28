@@ -1,0 +1,5 @@
+<p-tabView [(activeIndex)]="index" (onChange)="handleChange($event)">
+    <p-tabPanel *ngFor="let inst of institutions;index as i" header="{{inst.short_name}}">
+        <app-users [institutionIn]="inst" *ngIf="activeTab === i" ></app-users>
+    </p-tabPanel>
+</p-tabView>
