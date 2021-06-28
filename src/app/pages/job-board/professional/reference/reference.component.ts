@@ -51,6 +51,7 @@ export class  ReferenceComponent implements OnInit {
     // references of backend
     getReferences(paginator: Paginator) {
         const params = new HttpParams()
+        .append('professional_id', "1")
             .append('page', paginator.current_page.toString())
             .append('per_page', paginator.per_page.toString());
 
@@ -59,6 +60,7 @@ export class  ReferenceComponent implements OnInit {
             response => {
                 this.flagReferences = false;
                 this.references = response['data'];
+                console.log(this.references)
                 this.paginator = response as Paginator;
             }, error => {
                 this.flagReferences = false;

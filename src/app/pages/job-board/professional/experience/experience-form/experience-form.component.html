@@ -95,7 +95,7 @@
                 </div>
             </div>
         </div>
-        <div class="p-formgrid p-grid">
+         <!-- <div class="p-formgrid p-grid">
             <div class="p-field p-col">
                 <label for="isWorking">Esta trabajando:</label>
                 <input id="isWorking" name="isWorking" pInputText formControlName="isWorking" />
@@ -105,20 +105,19 @@
                     </small>
                 </div>
             </div>
-        </div>
+        </div>-->
       
       
       
-     <!--   <div class="p-field">
+      <div class="p-field">
             <label for="isWorking">
                 <i class="p-error">*</i> Está Trabajando:
                 <i *ngIf="isWorkingField.valid" class="pi pi-check-circle icon-valid"></i>
                 <i *ngIf="isWorkingField.invalid && (isWorkingField.touched || isWorkingField.dirty)"
                     class="pi pi-times-circle icon-invalid"></i>
             </label>
-
-             <p:selectBooleanCheckbox value="#{selectBooleanView.value1}" itemLabel="Basic"/> 
-        </div>-->
+            <p-checkbox name="isWorking" [(ngModel)]="isWorking" binary="true"></p-checkbox>
+        </div>
         <div class="p-formgrid p-grid">
             <div class="p-field p-col">
                 <button type="submit" pButton pRipple label="Guardar y Salir" icon="pi pi-save"

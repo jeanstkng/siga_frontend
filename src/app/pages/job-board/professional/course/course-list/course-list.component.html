@@ -1,6 +1,6 @@
 <app-skeleton *ngIf="flagCourses" [type]="'table'"></app-skeleton>
 
-<!-- <p-dialog [(visible)]="dialogUploadFiles" [style]="{width: '75%'}" header="Subir archivos" [modal]="true"
+ <p-dialog [(visible)]="dialogUploadFiles" [style]="{width: '75%'}" header="Subir archivos" [modal]="true"
           styleClass="p-fluid" (onHide)="dialogUploadFiles=false">
     <app-upload-files (files)="upload($event,selectedCourse.id)"></app-upload-files>
 </p-dialog>
@@ -13,8 +13,7 @@
             (searchOut)="searchFiles($event)"
             [paginatorIn]="paginatorFiles"
             (paginatorOut)="getFiles($event)"></app-view-files>
-</p-dialog> -->
-
+</p-dialog> 
 <div class="card" [hidden]="flagCourses">
     <p-toolbar styleClass="p-mb-4">
         <ng-template pTemplate="left">
@@ -29,10 +28,17 @@
                 (click)="paginatorOut.emit(paginatorIn)"></button>
         </ng-template>
     </p-toolbar>
-    <p-paginator [rows]="paginatorIn.per_page" [totalRecords]="paginatorIn.total" (onPageChange)="pageChange($event)">
-    </p-paginator>
-    <p-table #dt [value]="coursesIn" [columns]="colsCourse" [paginator]="false" [(selection)]="selectedCourses"
-        [rowHover]="true" [responsive]="true" dataKey="id" styleClass="p-datatable-customers"
+    <p-paginator [rows]="paginatorIn.per_page" [totalRecords]="paginatorIn.total" 
+    (onPageChange)="pageChange($event)"> </p-paginator>
+    <p-table #dt
+     [value]="coursesIn" 
+     [columns]="colsCourse"
+      [paginator]="false" 
+      [(selection)]="selectedCourses"
+        [rowHover]="true" 
+        [responsive]="true"
+         dataKey="id" 
+        styleClass="p-datatable-customers"
         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
         <ng-template pTemplate="caption">
             <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header">
@@ -49,16 +55,12 @@
                 <th style="width: 3rem">
                     <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
                 </th>
-                <th pSortableColumn=" professional">
-                    Profesional
-                    <p-sortIcon field=" professional"></p-sortIcon>
-                </th>
                 <th pSortableColumn="type">
                     Tipo
                     <p-sortIcon field="type"></p-sortIcon>
                 </th>
                 <th pSortableColumn=" institution">
-                    institucion
+                    Institución
                     <p-sortIcon field=" institution"></p-sortIcon>
                 </th>
                 <th pSortableColumn="certification_type">
@@ -99,18 +101,16 @@
                     <p-tableCheckbox [value]="course"></p-tableCheckbox>
                 </td>
                 <td>
-                    {{course.professional}}
-                </td>
-                <td>
                     {{course.type.name}}
                 </td>
                 <td>
-                    {{course.institution}}
-                </td>  <td>
-                    {{course. certification_type}}
+                    {{course.institution.name}}
+                </td>  
+                <td>
+                    {{course.certification_type.name}}
                 </td>
                 <td>
-                    {{course. area}}
+                    {{course.area.name}}
                 </td>
                 <td>
                     {{course.name}}

@@ -64,12 +64,12 @@
                     Idioma
                     <p-sortIcon field="idiom"></p-sortIcon>
                 </th>
-                <th pSortableColumn="written_leve">
+                <th pSortableColumn="written_level">
                     Nivel de lectura
-                    <p-sortIcon field="written_leve"></p-sortIcon>
+                    <p-sortIcon field="written_level"></p-sortIcon>
                 </th>
                 <th pSortableColumn="spoken_level">
-                    nivel escrito
+                    Nivel escrito
                     <p-sortIcon field="spoken_level"></p-sortIcon>
                 </th>
                 <th pSortableColumn="read_level">
@@ -83,14 +83,12 @@
             <tr>
                 <td>
                     <p-tableCheckbox [value]="language"></p-tableCheckbox>
-                </td>
-
-                
+                </td>  
                 <td>
-                    {{language.idiom}}
+                    {{language.idiom.name}}
                 </td>
                 <td>
-                    {{language.written_level}}
+                    {{language.written_Level}}
                 </td>
                 <td>
                     {{language.spoken_level}}

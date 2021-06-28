@@ -32,8 +32,7 @@ export class LanguageFormComponent implements OnInit {
     spokenLevels: Catalogue[];
     filteredReadLevels: any[];
     readLevels: Catalogue[];
-    filteredProfessionals: any[];
-    professionals: Professional[];
+
 
     constructor(private formBuilder: FormBuilder,
                 private messageService: MessageService,
@@ -49,7 +48,7 @@ export class LanguageFormComponent implements OnInit {
         this.getWrittenLevels();
         this.getSpokenLevels();
         this.getReadLevels();
-        this.getProfessionals();
+     
 
     }
 
@@ -97,15 +96,6 @@ export class LanguageFormComponent implements OnInit {
         const params = new HttpParams().append('type', 'LANGUAGE_IDIOM');
         this.appHttpService.getCatalogues(params).subscribe(response => {
             this.idioms = response['data'];
-        }, error => {
-            this.messageService.error(error);
-        });
-    }
-
-    getProfessionals() {
-        const params = new HttpParams().append('type', 'LANGUAGE_PROFESSIONAL');
-        this.appHttpService.getCatalogues(params).subscribe(response => {
-            this.professionals = response['data'];
         }, error => {
             this.messageService.error(error);
         });
@@ -235,9 +225,9 @@ getReadLevels() {
 filterSpokenLevel(event) {
     const filtered: any[] = [];
     const query = event.query;
-    for (const spoken_level of this.spokenLevels) {
-        if (spoken_level.name.toLowerCase().indexOf(query.toLowerCase()) === 0) {
-            filtered.push(spoken_level);
+    for (const spokenLevel of this.spokenLevels) {
+        if (spokenLevel.name.toLowerCase().indexOf(query.toLowerCase()) === 0) {
+            filtered.push(spokenLevel);
         }
     }
     if (filtered.length === 0) {
@@ -257,9 +247,9 @@ filterSpokenLevel(event) {
 filterReadLevel(event) {
     const filtered: any[] = [];
     const query = event.query;
-    for (const read_level of this.readLevels) {
-        if (read_level.name.toLowerCase().indexOf(query.toLowerCase()) === 0) {
-            filtered.push(read_level);
+    for (const readLevel of this.readLevels) {
+        if (readLevel.name.toLowerCase().indexOf(query.toLowerCase()) === 0) {
+            filtered.push(readLevel);
         }
     }
     if (filtered.length === 0) {

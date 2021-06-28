@@ -51,8 +51,8 @@ export class CourseComponent implements OnInit {
             area: [null, Validators.required],
             name: [null, Validators.required],
             description: [null, [Validators.required, Validators.minLength(10)]],
-            start_date: [null, Validators.required, DateValidators.valid],
-            end_date: [null, Validators.required, DateValidators.valid],
+            start_date: [null, Validators.required],
+            end_date: [null, Validators.required],
             hours: [null, Validators.required],
         });
     }
@@ -71,6 +71,7 @@ export class CourseComponent implements OnInit {
                 // this.spinnerService.hide();
                 this.flagCourses = false;
                 this.courses = response['data'];
+                   console.log(this.courses)
                 this.paginator = response as Paginator;
             }, error => {
                 // this.spinnerService.hide();

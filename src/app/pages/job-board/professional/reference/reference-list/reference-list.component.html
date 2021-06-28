@@ -60,12 +60,12 @@
                 <th style="width: 3rem">
                     <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
                 </th>
-                <th pSortableColumn="institution">
-                    Institucion
-                    <p-sortIcon field="institution"></p-sortIcon>
+                <th pSortableColumn=" institution">
+                    Institución
+                    <p-sortIcon field=" institution"></p-sortIcon>
                 </th>
                 <th pSortableColumn="position">
-                    posición 
+                    Posición 
                     <p-sortIcon field="position"></p-sortIcon>
                 </th>
                 <th pSortableColumn="contact_name">
@@ -89,8 +89,8 @@
                     <p-tableCheckbox [value]="reference"></p-tableCheckbox>
                 </td>
                 <td>
-                    {{reference.institution}}
-                </td>
+                    {{reference.institution.name}}
+                </td> 
                 <td>
                     {{reference.position}}
                 </td>
