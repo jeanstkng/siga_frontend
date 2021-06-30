@@ -47,8 +47,8 @@ export class OfferComponent implements OnInit {
       aditional_information: [null],
       contact_name: [null, Validators.required],
       contact_email: [null, [Validators.required, Validators.email]],
-      contact_phone: [null, Validators.required],
-      contact_cellphone: [null, Validators.required],
+      contact_phone: [null],
+      contact_cellphone: [null],
       remuneration: [null, Validators.required],
       contract_type: [null, Validators.required],
       position: [null, Validators.required],
@@ -57,7 +57,7 @@ export class OfferComponent implements OnInit {
       experience_time: [null],
       training_hours: [null, Validators.required],
       location: [null],
-      status: [null],
+      status: [null, Validators.required],
       start_date: [null, Validators.required],
       end_date: [{ value: null, disabled: true }],
       activities: this.formBuilder.array([this.formBuilder.control(null, Validators.required)]),
@@ -80,5 +80,4 @@ export class OfferComponent implements OnInit {
         this.messageService.error(error);
       });
   }
-
 }

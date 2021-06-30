@@ -76,6 +76,7 @@ export class SkillFormComponent implements OnInit {
 
     // Save in backend
     storeSkill(skill: Skill, flag = false) {
+        console.log('hoa');
         this.spinnerService.show();
         this.jobBoardHttpService.store('skills', {skill}).subscribe(
             response => {

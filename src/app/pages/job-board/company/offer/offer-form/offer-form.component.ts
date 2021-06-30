@@ -9,7 +9,8 @@ import {AppHttpService} from '../../../../../services/app/app-http.service';
 import {HttpParams} from '@angular/common/http';
 import {Catalogue} from '../../../../../models/app/catalogue';
 import { Offer } from 'src/app/models/job-board/offer';
-import { Location } from 'src/app/models/app/location';
+import { Status } from 'src/app/models/app/Status';
+import { add, format } from 'date-fns';
 
 @Component({
     selector: 'app-offer-form',
@@ -34,8 +35,8 @@ export class OfferFormComponent implements OnInit {
     experienceTimes: Catalogue[];
     filteredTrainingHours: any[];
     trainingHours: Catalogue[];
-    filteredlocations: any[];
-    locations: Location[];
+    filteredStatus: any[];
+    status: Status[];
 
     // BORRAR 
     ofertaEjemplo: Offer;
@@ -46,7 +47,6 @@ export class OfferFormComponent implements OnInit {
                 private appHttpService: AppHttpService,
                 private jobBoardHttpService: JobBoardHttpService,
                 private messagePnService: MessagePnService) {
-                    //this.ofertaEjemplo =   
     }
 
     ngOnInit(): void {
@@ -56,7 +56,7 @@ export class OfferFormComponent implements OnInit {
         this.getWorkingDay();
         this.getExperienceTime();
         this.getTrainingHours();
-        this.getLocation();
+        this.getStatus();
     }
 
     // Fields of Form
@@ -117,6 +117,9 @@ export class OfferFormComponent implements OnInit {
     get endDateField() {
         return this.formOfferIn.get('end_date');
     }
+    get statusField() {
+        return this.formOfferIn.get('status');
+    }
 
     addActivities(){
         this.activitiesField.push(this.formBuilder.control(null, Validators.required));
@@ -131,19 +134,8 @@ export class OfferFormComponent implements OnInit {
         this.requirementsField.removeAt(requirement);
     }
 
-    // Submit Form
-    /**
-     * codigo mandar con la empresa (de donde saco?)
-     * actividades y requerimientos sin arrays de strings como deberia llenar el uuario?
-     * campo remuneration debe validaarse como numerico en html?
-     * campo email como le valido el email
-     * 
-     * 
-     * 
-     */
     onSubmit(event: Event, flag = false) {
         event.preventDefault();
-        console.log(this.formOfferIn.valid);
         if (this.formOfferIn.valid) {
             if (this.idField.value) {
                 this.updateOffer(this.formOfferIn.value);
@@ -204,10 +196,12 @@ export class OfferFormComponent implements OnInit {
             this.messageService.error(error);
         });
     }
-    getLocation() {
-        const params = new HttpParams().append('type', 'LOCATION');
-        this.appHttpService.getCatalogues(params).subscribe(response => {
-            this.locations = response['data'];
+
+    getStatus() {
+        const params = new HttpParams()
+            .append('uri', '/job-board/company');
+        this.jobBoardHttpService.get('offer/status', params).subscribe(response => {
+            this.status = response['data'];
         }, error => {
             this.messageService.error(error);
         });
@@ -386,12 +380,12 @@ export class OfferFormComponent implements OnInit {
         this.filteredTrainingHours = filtered;
     }
 
-    filterLocation(event) {
+    filterStatus(event) {
         const filtered: any[] = [];
         const query = event.query;
-        for (const location of this.locations) {
-            if (location.name.toLowerCase().indexOf(query.toLowerCase()) === 0) {
-                filtered.push(location);
+        for (const status of this.status) {
+            if (status.name.toLowerCase().indexOf(query.toLowerCase()) === 0) {
+                filtered.push(status);
             }
         }
         if (filtered.length === 0) {
@@ -402,8 +396,17 @@ export class OfferFormComponent implements OnInit {
                 detail: 'En el caso de no existir comuníquese con el administrador!',
                 life: 5000
             });
-            this.locationField.setValue(null);
+            this.statusField.setValue(null);
         }
-        this.filteredlocations = filtered;
+        this.filteredStatus = filtered;
+    }
+
+
+
+    calculateEndDate(){
+        if(this.startDateField.valid){
+            const date = add(new Date(this.startDateField.value), {months:1, days:1});
+            this.endDateField.patchValue(format(date, 'yyyy-MM-dd'));
+        }
     }
 }

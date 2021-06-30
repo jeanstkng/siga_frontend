@@ -10,6 +10,7 @@ import {MessageService} from '../../pages/shared/services/message.service';
 })
 
 export class JobBoardHttpService {
+
     API_URL_JOB_BOARD: string = environment.API_URL_JOB_BOARD;
 
     constructor(private httpClient: HttpClient,
