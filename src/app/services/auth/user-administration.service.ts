@@ -29,7 +29,22 @@ export class UserAdministrationService {
         return this.httpClient.put(url, data['user'], {params});
     }
 
+    updateRole(url: string, data: any, params = new HttpParams()) {
+        url = this.API_URL_AUTHENTICATION + url;
+        return this.httpClient.put(url, data['role'], {params});
+    }
+
     delete(url: string, ids, params = new HttpParams()) {
+        url = this.API_URL_AUTHENTICATION + url;
+        return this.httpClient.put(url, {ids}, {params});
+    }
+
+    add(url: string, ids, params = new HttpParams()) {
+        url = this.API_URL_AUTHENTICATION + url;
+        return this.httpClient.post(url, {ids}, {params});
+    }
+
+    set(url: string, ids, params = new HttpParams()) {
         url = this.API_URL_AUTHENTICATION + url;
         return this.httpClient.put(url, {ids}, {params});
     }

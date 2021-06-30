@@ -14,6 +14,7 @@ import {MessageModule} from 'primeng/message';
 import {DropdownModule} from 'primeng/dropdown';
 import {ConfirmationService, MessageService} from 'primeng/api';
 import {SkeletonModule} from 'primeng/skeleton';
+import {MultiSelectModule} from 'primeng/multiselect';
 
 // My Components
 import {TooltipModule} from 'primeng/tooltip';
@@ -42,6 +43,9 @@ import {UserAdministrationComponent} from './user-administration.component';
 import {UserComponent} from './users/user.component';
 import { UserListComponent } from './users/user-list/user-list.component';
 import { UserFormComponent } from './users/user-form/user-form.component';
+import { UserEditFormComponent } from './users/user-edit-form/user-edit-form.component';
+import { RolesListComponent } from './roles/roles-list/roles-list.component';
+import { RolesEditFormComponent } from './roles/roles-edit-form/roles-edit-form.component';
 
 
 @NgModule({
@@ -81,12 +85,16 @@ import { UserFormComponent } from './users/user-form/user-form.component';
         SkeletonModule,
         DividerModule,
         ListboxModule,
+        MultiSelectModule,
     ],
     declarations: [
         UserAdministrationComponent,
         UserComponent,
         UserListComponent,
-        UserFormComponent
+        UserFormComponent,
+        UserEditFormComponent,
+        RolesListComponent,
+        RolesEditFormComponent,
     ],
     providers: []
 })
