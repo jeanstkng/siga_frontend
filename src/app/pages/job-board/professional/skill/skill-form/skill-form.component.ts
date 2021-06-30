@@ -77,9 +77,11 @@ export class SkillFormComponent implements OnInit {
     // Save in backend
     storeSkill(skill: Skill, flag = false) {
         this.spinnerService.show();
-        this.jobBoardHttpService.store('skills', {skill}).subscribe(response => {
+        this.jobBoardHttpService.store('skills', {skill}).subscribe(
+            response => {
             this.spinnerService.hide();
-            this.messageService.success(response); 
+            this.messageService.success(response);
+
             this.saveSkill(response['data']);
             if (!flag) {
                 this.displayOut.emit(false);

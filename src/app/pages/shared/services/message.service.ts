@@ -72,7 +72,7 @@ export class MessageService {
     }
 
     get fieldEmail(): string {
-        return 'El campo debe tener un fomato de correo valido.';
+        return 'El campo debe tener un fomato de correo válido.';
     }
 
     fieldMinLength(field) {

@@ -5,8 +5,6 @@ import {Router} from '@angular/router';
 
 import {MessageService} from '../../pages/shared/services/message.service';
 
-
-
 @Injectable({
     providedIn: 'root'
 })
@@ -76,6 +74,11 @@ export class JobBoardHttpService {
 
     getFiles(url, params = new HttpParams()) {
         url = this.API_URL_JOB_BOARD + url;
+        return this.httpClient.get(url, {params});
+    }
+
+    getCourses(params = new HttpParams()) {
+        const url = this.API_URL_JOB_BOARD + 'courses';
         return this.httpClient.get(url, {params});
     }
 }

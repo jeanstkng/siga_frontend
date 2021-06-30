@@ -1,6 +1,6 @@
 <!-- {{formCompanyIn.value|json}} -->
 <div class="p-fluid">
-  <form [formGroup]="formCompanyIn" (ngSubmit)="onSubmit($event)">
+  <form [formGroup]="formCompanyIn" (ngSubmit)="onSubmit()">
     <div formGroupName="user">
       <p-card header="Datos de Usuario">
         <div class="p-formgrid p-grid">
@@ -183,9 +183,9 @@
       </div>
       <div formArrayName="comercial_activities">
         <div *ngFor="let comercial_activity of comercialActivitiesField.controls; let i = index;">
-          <div class="p-fluid p-formgrid p-grid">
+          <div class="p-formgrid p-grid">
             <div class="p-field p-xl-11 p-lg-11 p-md-6 p-sm-12">
-              <input id="comercialActivities" [formControlName]="i" pInputText>
+              <input [id]="'comercial_activity'+i" [formControlName]="i" pInputText>
             </div>
             <div class="p-field p-xl-1 p-lg-1 p-md-1 p-sm-12">
               <button pButton pRipple type="button" (click)="removeComercialActivity(i)" iconPos="right"
@@ -202,7 +202,7 @@
       </div>
     </p-card>
     <div class="p-formgrid p-grid">
-      <div class="p-field p-col">
+      <div class="p-field">
         <button type="submit" pButton pRipple label="Guardar y Salir" icon="pi pi-save"
           class="p-button-success p-button-raised"></button>
       </div>

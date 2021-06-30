@@ -225,7 +225,7 @@ export class LocationComponent implements OnInit, ControlValueAccessor {
         if (this.formLocation.valid && field.value?.id) {
             this.value = {id: field.value.id};
             this.onChange(this.value);
-            // this.formLocationOut.emit(this.formLocation);
+            this.formLocationOut.emit(this.formLocation);
         }
     }
 

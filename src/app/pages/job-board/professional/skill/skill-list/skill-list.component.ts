@@ -15,7 +15,7 @@ import {File} from '../../../../../models/app/file';
     styleUrls: ['./skill-list.component.scss']
 })
 export class SkillListComponent implements OnInit {
-    @Input() flagSkills: boolean;
+    @Input() flagSkeletonListSkills: boolean;
     @Input() skillsIn: Skill[];
     @Input() paginatorIn: Paginator;
     @Input() formSkillIn: FormGroup;
@@ -81,10 +81,6 @@ export class SkillListComponent implements OnInit {
         this.displayOut.emit(true);
     }
 
-    openUploadFilesSkill() {
-        this.dialogUploadFiles = true;
-    }
-
     selectSkill(skill: Skill) {
         this.selectedSkill = skill;
     }
@@ -125,7 +121,6 @@ export class SkillListComponent implements OnInit {
                         this.selectedSkills = [];
                         this.selectedSkills.push(skill);
                     }
-
                     const ids = this.selectedSkills.map(element => element.id);
                     this.spinnerService.show();
                     this.jobBoardHttpService.delete('skill/delete', ids)
@@ -140,7 +135,6 @@ export class SkillListComponent implements OnInit {
                         });
                 }
             });
-
     }
 
     removeSkills(ids) {

@@ -8,7 +8,7 @@ export const WEB = 'http://127.0.0.1:8000/';
 
 export const environment = {
     production: false,
-    STORAGE_URL: 'http://siga_backend.test/storage/',
+    STORAGE_URL: URL + 'storage/',
     WEB,
     API_URL_AUTHENTICATION: URL_API + 'authentication/',
     API_URL_APP: URL_API + 'app/',

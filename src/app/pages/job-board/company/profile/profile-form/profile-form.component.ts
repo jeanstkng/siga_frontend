@@ -3,7 +3,7 @@ import { Company } from 'src/app/models/job-board/company';
 import {MessageService} from '../../../../shared/services/message.service'; 
 import {NgxSpinnerService} from 'ngx-spinner';
 import {JobBoardHttpService} from '../../../../../services/job-board/job-board-http.service';
-import {FormArray,FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {HttpParams} from '@angular/common/http';
 import {Catalogue} from '../../../../../models/app/catalogue';
 import {MessageService as MessagePnService} from 'primeng/api';
@@ -11,6 +11,7 @@ import {SharedService} from '../../../../shared/services/shared.service';
 import {AppHttpService} from '../../../../../services/app/app-http.service';
 import { User } from 'src/app/models/auth/user';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import {isAsciiHexDigit} from 'codelyzer/angular/styles/chars';
 
 @Component({
   selector: 'app-profile-form',
@@ -75,7 +76,7 @@ export class ProfileFormComponent implements OnInit {
     return this.formCompanyIn.get('prefix');
   }
   get comercialActivitiesField() {
-    return this.formCompanyIn.get('comercial_activities')as FormArray;
+    return this.formCompanyIn.get('comercial_activities') as FormArray;
   }
 
   addComercialActivity(){
@@ -101,12 +102,11 @@ export class ProfileFormComponent implements OnInit {
       return this.formCompanyIn.get('person_type');
   }
 
-  onSubmit(flag = false) {
-   
+  onSubmit() {
     if (this.formCompanyIn.valid) {
         this.updateCompany(this.formCompanyIn.value);
     } else {
-        this.markAllAsTouchedFormCompany();
+        this.formCompanyIn.markAllAsTouched();
     }
 }
   updateCompany(company: Company) {
@@ -128,7 +128,6 @@ export class ProfileFormComponent implements OnInit {
     this.jobBoardHttpService.get('company/show')
         .subscribe(response => {
             this.spinnerService.hide();
-            this.messageService.success(response);
             this.formCompanyIn.patchValue(response['data']);
         }, error => {
             this.spinnerService.hide();

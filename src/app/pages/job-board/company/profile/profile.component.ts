@@ -5,7 +5,6 @@ import { Company } from 'src/app/models/job-board/company';
 import { Paginator } from '../../../../models/setting/paginator';
 import { HttpParams } from '@angular/common/http';
 import { NgxSpinnerService } from 'ngx-spinner';
-import {MessageService} from '../../../shared/services/message.service'
 import { User } from 'src/app/models/auth/user';
 
 
@@ -25,9 +24,7 @@ export class ProfileComponent implements OnInit {
   companyDialog: boolean;
   user: User;
 
-  constructor(
-    private formBuilder: FormBuilder,
-  ) {
+  constructor(private formBuilder: FormBuilder) {
     this.paginator = { current_page: 1, per_page: 3 };
     this.professionals = [];
   }
@@ -41,12 +38,12 @@ export class ProfileComponent implements OnInit {
       user: this.formBuilder.group({
         identification: [null, Validators.required],
         email: [null, Validators.required],
-        phone:[null, Validators.required],
+        phone: [null, Validators.required],
         address: [null],
-        identification_type: [null, Validators.required],   
+        identification_type: [null, Validators.required],
       }),
       trade_name: [null, Validators.required],
-      prefix:[null,Validators.required],
+      prefix: [null,Validators.required],
       comercial_activities: this.formBuilder.array([
         this.formBuilder.control(null, Validators.required)
       ]),

@@ -1,6 +1,6 @@
-<app-skeleton *ngIf="flagSkills" [type]="'table'"></app-skeleton>
+<app-skeleton *ngIf="flagSkeletonListSkills" [type]="'table'"></app-skeleton>
 
-<div class="card" [hidden]="flagSkills">
+<div class="card" [hidden]="flagSkeletonListSkills">
     <p-toolbar styleClass="p-mb-4">
         <ng-template pTemplate="left">
             <button pButton pRipple type="button" id="btnOpenFormSkill"

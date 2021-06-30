@@ -9,8 +9,6 @@ import {Router} from '@angular/router';
 import {Observable, throwError} from 'rxjs';
 import {catchError} from 'rxjs/operators';
 import {AuthService} from '../services/auth/auth.service';
-import {System, Token} from '../models/auth/models.index';
-import {getToken} from 'codelyzer/angular/styles/cssLexer';
 import {MessageService} from '../pages/shared/services/message.service';
 
 @Injectable({
