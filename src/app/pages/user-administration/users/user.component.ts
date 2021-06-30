@@ -64,10 +64,8 @@ export class UserComponent implements OnInit {
     buildFormUser() {
         this.formUser = this.formBuilder.group({
             id: [null],
-            username: [null, [Validators.required, Validators.minLength(7)]],
             identification: [null, [Validators.required]],
-            first_name: [null, [Validators.required]],
-            second_name: [null, [Validators.required]],
+            names: [null, [Validators.required]],
             first_lastname: [null, [Validators.required]],
             second_lastname: [null, [Validators.required]],
             email: [null, [Validators.email, Validators.required]],

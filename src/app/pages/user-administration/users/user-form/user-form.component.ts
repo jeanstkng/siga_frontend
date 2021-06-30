@@ -41,11 +41,8 @@ export class UserFormComponent implements OnInit {
   get identificationField() {
     return this.formUserIn.get('identification');
   }
-  get firstNameField() {
-    return this.formUserIn.get('first_name');
-  }
-  get secondNameField() {
-    return this.formUserIn.get('second_name');
+  get namesField() {
+    return this.formUserIn.get('names');
   }
   get firstLastnameField() {
     return this.formUserIn.get('first_lastname');
@@ -96,18 +93,4 @@ export class UserFormComponent implements OnInit {
     }
   }
 
-  saveRoles(role = null) {
-    if (role) {
-      this.selectedRoles = [];
-      this.selectedRoles.push(role);
-    }
-    const ids = this.selectedRoles;
-    this.userAdministrationService.add('user-admin/addRoles', ids)
-    .subscribe(response => {
-      this.messageService.success(response);
-      this.selectedRoles = [];
-     }, error => {
-      this.messageService.error(error);
-    });
-  }
 }
