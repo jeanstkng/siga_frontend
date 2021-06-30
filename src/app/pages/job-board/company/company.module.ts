@@ -39,6 +39,12 @@ import {OfferFormComponent} from "./offer/offer-form/offer-form.component";
 import {OfferListComponent} from "./offer/offer-list/offer-list.component";
 import {OfferProfessionalsComponent} from "./offer/offer-professionals/offer-professionals.component";
 import {CalendarModule} from 'primeng/calendar';
+import { ProfileComponent } from './profile/profile.component';
+import { ProfileFormComponent } from './profile/profile-form/profile-form.component';
+import { ProfessionalComponent } from '../professional/professional.component';
+import { ProfessionalListComponent } from './professional/professional-list/professional-list.component';
+import { RegisterComponent } from './register/register.component';
+import { RegisterFormComponent } from './register/register-form/register-form.component';
 
 @NgModule({
     imports: [
