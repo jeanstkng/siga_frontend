@@ -2,17 +2,6 @@
 <div class="p-fluid">
     <form [formGroup]="formLanguageIn" (ngSubmit)="onSubmit($event)">
        
-        <div class="p-formgrid p-grid">
-            <div class="p-field p-col">
-                <label for="professional">Profesional:</label>
-                <input id="professional" name="professional" pInputText formControlName="professional" />
-                <div *ngIf="professionalField.errors && professionalField.touched">
-                    <small *ngIf="professionalField.hasError('required')" id="professional-help-1" class="p-error">
-                        {{messageService.fieldRequired}}
-                    </small>
-                </div>
-            </div>
-        </div>
         <div class="p-field">
             <label for="idiom">
                 <i class="p-error">*</i> Idioma:
@@ -36,7 +25,7 @@
             </div>
         </div>
 
-        <div class="p-field">
+       <!-- <div class="p-field">
             <label for="writtenLevel">
                 <i class="p-error">*</i> Nivel escrito:
                 <i *ngIf="writtenLevelField.valid" class="pi pi-check-circle icon-valid"></i>
@@ -48,7 +37,7 @@
                 [dropdown]="true">
                 <ng-template let-writtenLevel pTemplate="item">
                     <div class="country-item">
-                        <div>{{writtenLevel.name}}</div>
+                        <div>{{writte_level.name}}</div>
                     </div>
                 </ng-template>
             </p-autoComplete>
@@ -57,20 +46,46 @@
                     {{messageService.fieldRequired}}
                 </small>
             </div>
+        </div>-->
+        <div class="p-field">
+            <label for="written_level">
+                <i class="p-error">*</i> Nivel escrito:
+                <i *ngIf="writtenLevelField.valid" class="pi pi-check-circle icon-valid"></i>
+                <i *ngIf="writtenLevelField.invalid && (writtenLevelField.touched || writtenLevelField.dirty)"
+                    class="pi pi-times-circle icon-invalid"></i>
+            </label>
+            <p-autoComplete id="written_level" formControlName="written_level"  
+                            [suggestions]="filteredWrittenLevels"
+                            (completeMethod)="filterWrittenLevel($event)" 
+                            field="name" 
+                            [dropdown]="true">
+                <ng-template let-written_level pTemplate="item">
+                    <div class="country-item">
+                        <div>{{written_level.name}}</div>
+                    </div>
+                </ng-template>
+            </p-autoComplete>
+            <div *ngIf="writtenLevelField.invalid && (writtenLevelField.touched || writtenLevelField.dirty)">
+                <small *ngIf="writtenLevelField.errors?.required" 
+                        id="written-level-help-1" 
+                        class="p-error">
+                    {{messageService.fieldRequired}}
+                </small>
+            </div>
         </div>
         <div class="p-field">
-            <label for="spokenLevel">
+            <label for="spoken_level">
                 <i class="p-error">*</i>  Nivel hablado:
                 <i *ngIf="spokenLevelField.valid" class="pi pi-check-circle icon-valid"></i>
                 <i *ngIf="spokenLevelField.invalid && (spokenLevelField.touched || spokenLevelField.dirty)"
                     class="pi pi-times-circle icon-invalid"></i>
             </label>
-            <p-autoComplete id="spokenLevel" name="spokenLevel" formControlName="spoken_level"
+            <p-autoComplete id="spoken_level" name="spokenLevel" formControlName="spoken_level"
                 [suggestions]="filteredSpokenLevels" (completeMethod)="filterSpokenLevel($event)" field="name"
                 [dropdown]="true">
-                <ng-template let-spokenLevel pTemplate="item">
+                <ng-template let-spoken_level pTemplate="item">
                     <div class="country-item">
-                        <div>{{spokenLevel.name}}</div>
+                        <div>{{spoken_level.name}}</div>
                     </div>
                 </ng-template>
             </p-autoComplete>
@@ -94,7 +109,7 @@
                 [dropdown]="true">
                 <ng-template let-readLevel pTemplate="item">
                     <div class="country-item">
-                        <div>{{readLevel.name}}</div>
+                        <div>{{read_Level.name}}</div>
                     </div>
                 </ng-template>
             </p-autoComplete>

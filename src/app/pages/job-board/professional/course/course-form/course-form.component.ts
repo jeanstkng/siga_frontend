@@ -9,6 +9,7 @@ import { HttpParams } from '@angular/common/http';
 import { Catalogue } from '../../../../../models/app/catalogue';
 import { MessageService as MessagePnService } from 'primeng/api';
 import { SharedService } from '../../../../shared/services/shared.service';
+import { add, format } from 'date-fns';
 
 @Component({
     selector: 'app-course-form',
@@ -21,8 +22,6 @@ export class CourseFormComponent implements OnInit {
     @Input() coursesIn: Course[];
     @Output() coursesOut = new EventEmitter<Course[]>();
     @Output() displayOut = new EventEmitter<boolean>();
-    // filteredProfessionals: any[];
-    // professionals: Catalogue[];
     filteredTypes: any[];
     types: Catalogue[];
     filteredInstitutions: any[];
@@ -47,6 +46,7 @@ export class CourseFormComponent implements OnInit {
         this.getInstitution();
         this.getCertificationTypes();
         this.getAreas();
+  
     }
 
     // Fields of Form
@@ -110,7 +110,7 @@ export class CourseFormComponent implements OnInit {
 
     // Types of catalogues
     getTypes() {
-        const params = new HttpParams().append('type', 'SKILL_TYPE');
+        const params = new HttpParams().append('type', 'COURSE_TYPE');
         this.appHttpService.getCatalogues(params).subscribe(response => {
             this.types = response['data'];
         }, error => {
@@ -141,7 +141,6 @@ export class CourseFormComponent implements OnInit {
             this.messageService.error(error);
         });
     }
-
     // Save in backend
     storeCourse(course: Course, flag = false) {
         this.spinnerService.show();
@@ -270,6 +269,7 @@ export class CourseFormComponent implements OnInit {
      }
     this.filteredAreas = filtered;
 }
+
     test(event) {
         event.markAllAsTouched();
     }
@@ -280,5 +280,11 @@ export class CourseFormComponent implements OnInit {
 
     markAllAsTouchedFormCourse() {
         this.formCourseIn.markAllAsTouched();
+    }
+    calculateEndDate(){
+        if(this.startDateField.valid){
+            const date = add(new Date(this.startDateField.value), {months:1, days:1});
+            this.endDateField.patchValue(format(date, 'yyyy-MM-dd'));
+        }
     }
 }

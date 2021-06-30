@@ -60,20 +60,16 @@
                 <th style="width: 3rem">
                     <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
                 </th>
-                <th pSortableColumn="professional">
-                    profesional
-                    <p-sortIcon field="professional"></p-sortIcon>
-                </th>
                 <th pSortableColumn="idiom">
                     Idioma
                     <p-sortIcon field="idiom"></p-sortIcon>
                 </th>
-                <th pSortableColumn="written_leve">
+                <th pSortableColumn="written_level">
                     Nivel de lectura
-                    <p-sortIcon field="written_leve"></p-sortIcon>
+                    <p-sortIcon field="written_level"></p-sortIcon>
                 </th>
                 <th pSortableColumn="spoken_level">
-                    nivel escrito
+                    Nivel escrito
                     <p-sortIcon field="spoken_level"></p-sortIcon>
                 </th>
                 <th pSortableColumn="read_level">
@@ -87,15 +83,12 @@
             <tr>
                 <td>
                     <p-tableCheckbox [value]="language"></p-tableCheckbox>
+                </td>  
+                <td>
+                    {{language.idiom.name}}
                 </td>
                 <td>
-                    {{language.professional}}
-                </td>
-                <td>
-                    {{language.idiom}}
-                </td>
-                <td>
-                    {{language.written_level}}
+                    {{language.written_Level}}
                 </td>
                 <td>
                     {{language.spoken_level}}
@@ -107,7 +100,7 @@
                     <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-warning"
                             (click)="openEditFormLanguage(language)"></button>
                     <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger p-ml-2"
-                            (click)="deleteSLanguages(language)"></button>
+                            (click)="deleteLanguages(language)"></button>
                     <button pButton pRipple icon="pi pi-paperclip" class="p-button-rounded p-ml-2"
                             (click)="selectLanguage(language);openViewFilesLanguage()"></button>
                 </td>

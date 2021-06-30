@@ -1,7 +1,7 @@
  {{formReferenceIn.value|json}} 
-<div class="p-fluid">
-    <form [formGroup]="formReferenceIn" (ngSubmit)="onSubmit($event)">
-    
+<p-card>
+ <div class="p-fluid">
+    <form [formGroup]="formReferenceIn" (ngSubmit)="onSubmit()">  
         <div class="p-field">
             <label for="institution">
                 <i class="p-error">*</i> Institución:
@@ -12,8 +12,8 @@
             <p-autoComplete id="institution" name="institution" formControlName="institution"
                 [suggestions]="filteredInstitutions" (completeMethod)="filterInstitution($event)" field="name"
                 [dropdown]="true">
-                <ng-template let-institution pTemplate="institution">
-                    <div class="country-institution">
+                <ng-template let-institution pTemplate="item">
+                    <div class="country-item">
                         <div>{{institution.name}}</div>
                     </div>
                 </ng-template>
@@ -74,14 +74,20 @@
             </div>
         </div>
         <div class="p-formgrid p-grid">
-            <div class="p-field p-col">
-                <button type="submit" pButton pRipple label="Guardar y Salir" icon="pi pi-save"
-                    class="p-button-success p-button-raised"></button>
+            <div class="p-field p-xl-6 p-lg-6 p-md-12 p-sm-12">
+                <button pButton pRipple type="submit" id="btnSaveLeave"
+                        label="Guardar y Salir"
+                        class="p-button-success p-button-raised"
+                        icon="pi pi-save"></button>
             </div>
-            <div *ngIf="!idField.value" class="p-field p-col">
-                <button type="button" pButton pRipple label="Guardar" icon="pi pi-arrow-right" class="p-button-raised"
-                    (click)="onSubmit($event,true)"></button>
+            <div *ngIf="!idField.value" class="p-field p-xl-6 p-lg-6 p-md-12 p-sm-12">
+                <button pButton pRipple type="button" id="btnSave"
+                        label="Guardar"
+                        class="p-button-raised"
+                        icon="pi pi-arrow-right"
+                        (click)="onSubmit(true)"></button>
             </div>
         </div>
     </form>
 </div>
+</p-card>

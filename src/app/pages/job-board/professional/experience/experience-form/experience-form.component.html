@@ -104,15 +104,28 @@
                 </div>
             </div>
         </div>
-        <div class="p-field">
-            <label for="activities">
+         <!-- <div class="p-formgrid p-grid">
+            <div class="p-field p-col">
+                <label for="isWorking">Esta trabajando:</label>
+                <input id="isWorking" name="isWorking" pInputText formControlName="isWorking" />
+                <div *ngIf="isWorkingField.errors && isWorkingField.touched">
+                    <small *ngIf="isWorkingField.hasError('required')" id="isWorking-help-1" class="p-error">
+                        {{messageService.fieldRequired}}
+                    </small>
+                </div>
+            </div>
+        </div>-->
+      
+      
+      
+      <div class="p-field">
+            <label for="isWorking">
                 <i class="p-error">*</i> Está Trabajando:
-                <i *ngIf="activitiesField.valid" class="pi pi-check-circle icon-valid"></i>
-                <i *ngIf="activitiesField.invalid && (activitiesField.touched || activitiesField.dirty)"
+                <i *ngIf="isWorkingField.valid" class="pi pi-check-circle icon-valid"></i>
+                <i *ngIf="isWorkingField.invalid && (isWorkingField.touched || isWorkingField.dirty)"
                     class="pi pi-times-circle icon-invalid"></i>
             </label>
-
-            <!-- <p:selectBooleanCheckbox value="#{selectBooleanView.value1}" itemLabel="Basic"/> -->
+            <p-checkbox name="isWorking" [(ngModel)]="isWorking" binary="true"></p-checkbox>
         </div>
         <div class="p-formgrid p-grid">
             <div class="p-field p-col">

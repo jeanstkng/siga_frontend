@@ -42,7 +42,7 @@ export class ExperienceComponent implements OnInit {
   buildFormExperience() {
     this.formExperience = this.formBuilder.group({
       id: [null],
-      professional: [null, Validators.required],
+    //  professional: [null, Validators.required],
       area: [null, Validators.required],
       employer: [null, Validators.required],
       position: [null, [Validators.required, Validators.minLength(10)]],

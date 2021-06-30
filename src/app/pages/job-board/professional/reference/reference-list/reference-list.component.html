@@ -1,5 +1,3 @@
-
-
 <app-skeleton *ngIf="flagReferences"></app-skeleton>
 <p-dialog [(visible)]="dialogUploadFiles" [style]="{width: '75%'}" header="Subir archivos" [modal]="true"
           styleClass="p-fluid" (onHide)="dialogUploadFiles=false">
@@ -62,16 +60,12 @@
                 <th style="width: 3rem">
                     <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
                 </th>
-                <th pSortableColumn="professional">
-                    Profesional
-                    <p-sortIcon field="professional"></p-sortIcon>
-                </th>
-                <th pSortableColumn="institution">
-                    Institucion
-                    <p-sortIcon field="institution"></p-sortIcon>
+                <th pSortableColumn=" institution">
+                    Institución
+                    <p-sortIcon field=" institution"></p-sortIcon>
                 </th>
                 <th pSortableColumn="position">
-                    posición 
+                    Posición 
                     <p-sortIcon field="position"></p-sortIcon>
                 </th>
                 <th pSortableColumn="contact_name">
@@ -95,11 +89,8 @@
                     <p-tableCheckbox [value]="reference"></p-tableCheckbox>
                 </td>
                 <td>
-                    {{reference.professional}}
-                </td>
-                <td>
-                    {{reference.institution}}
-                </td>
+                    {{reference.institution.name}}
+                </td> 
                 <td>
                     {{reference.position}}
                 </td>

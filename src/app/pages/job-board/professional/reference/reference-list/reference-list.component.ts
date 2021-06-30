@@ -115,7 +115,9 @@ export class ReferenceListComponent implements OnInit {
         this.paginatorOut.emit(this.paginatorIn);
     }
 
-    delete7References(reference = null) {
+   
+   
+    deleteReferences(reference = null) {
         this.messageService.questionDelete({})
             .then((result) => {
                 if (result.isConfirmed) {
