@@ -1,35 +1,49 @@
-<!-- {{formReferenceIn.value|json}} -->
+ {{formReferenceIn.value|json}} 
 <div class="p-fluid">
     <form [formGroup]="formReferenceIn" (ngSubmit)="onSubmit($event)">
-       
-        <div class="p-formgrid p-grid">
-            <div class="p-field p-col">
-                <label for="institution">Institucion:</label>
-                <input id="institution" name="institution" pInputText formControlName="institution" />
-                <div *ngIf="institutionField.errors && institutionField.touched">
-                    <small *ngIf="institutionField.hasError('required')" id="institution-help-1" class="p-error">
-                        {{messageService.fieldRequired}}
-                    </small>
-                </div>
+    
+        <div class="p-field">
+            <label for="institution">
+                <i class="p-error">*</i> Institución:
+                <i *ngIf="institutionField.valid" class="pi pi-check-circle icon-valid"></i>
+                <i *ngIf="institutionField.invalid && (institutionField.touched || institutionField.dirty)"
+                    class="pi pi-times-circle icon-invalid"></i>
+            </label>
+            <p-autoComplete id="institution" name="institution" formControlName="institution"
+                [suggestions]="filteredInstitutions" (completeMethod)="filterInstitution($event)" field="name"
+                [dropdown]="true">
+                <ng-template let-institution pTemplate="institution">
+                    <div class="country-institution">
+                        <div>{{institution.name}}</div>
+                    </div>
+                </ng-template>
+            </p-autoComplete>
+            <div *ngIf="institutionField.invalid && (institutionField.touched || institutionField.dirty)">
+                <small *ngIf="institutionField.errors?.required" id="institution-help-1" class="p-error">
+                    {{messageService.fieldRequired}}
+                </small>
             </div>
         </div>
-        <div class="p-formgrid p-grid">
+
+         <div class="p-formgrid p-grid">
             <div class="p-field p-col">
                 <label for="position">Posición:</label>
                 <input id="position" name="position" pInputText formControlName="position" />
                 <div *ngIf="positionField.errors && positionField.touched">
-                    <small *ngIf="positionField.hasError('required')" id="position-help-1" class="p-error">
+                    <small *ngIf="positionField.hasError('required')" 
+                    id="position-help-1" class="p-error">
                         {{messageService.fieldRequired}}
                     </small>
                 </div>
             </div>
         </div>
-        <div class="p-formgrid p-grid">
+         <div class="p-formgrid p-grid">
             <div class="p-field p-col">
                 <label for="contactName">Nombre de contacto:</label>
-                <input id="contactName" name="contactName" pInputText formControlName="contactName" />
+                <input id="contactName" name="contactName" pInputText formControlName="contact_name" />
                 <div *ngIf="contactNameField.errors && contactNameField.touched">
-                    <small *ngIf="contactNameField.hasError('required')" id="contactName-help-1" class="p-error">
+                    <small *ngIf="contactNameField.hasError('required')" 
+                    id="contact_name-help-1" class="p-error">
                         {{messageService.fieldRequired}}
                     </small>
                 </div>
@@ -38,9 +52,10 @@
         <div class="p-formgrid p-grid">
             <div class="p-field p-col">
                 <label for="contactPhone">Número de contacto:</label>
-                <input id="contactPhone" name="contactPhone" pInputText formControlName="contactPhone" />
+                <input id="contactPhone" name="contactPhone" pInputText formControlName="contact_phone" />
                 <div *ngIf="contactPhoneField.errors && contactPhoneField.touched">
-                    <small *ngIf="contactPhoneField.hasError('required')" id="contactPhone-help-1" class="p-error">
+                    <small *ngIf="contactPhoneField.hasError('required')" 
+                    id="contact_phone-help-1" class="p-error">
                         {{messageService.fieldRequired}}
                     </small>
                 </div>
@@ -49,31 +64,23 @@
         <div class="p-formgrid p-grid">
             <div class="p-field p-col">
                 <label for="contactEmail">Email de contacto:</label>
-                <input id="contactEmail" name="contactEmail" pInputText formControlName="contactEmail" />
+                <input id="contactEmail" name="contactEmail" pInputText formControlName="contact_email" />
                 <div *ngIf="contactEmailField.errors && contactEmailField.touched">
-                    <small *ngIf="contactEmailField.hasError('required')" id="contactEmail-help-1" class="p-error">
+                    <small *ngIf="contactEmailField.hasError('required')" 
+                    id="contact_email-help-1" class="p-error">
                         {{messageService.fieldRequired}}
                     </small>
                 </div>
             </div>
         </div>
-
-        
-        
-  
-
         <div class="p-formgrid p-grid">
             <div class="p-field p-col">
                 <button type="submit" pButton pRipple label="Guardar y Salir" icon="pi pi-save"
-                        class="p-button-success p-button-raised"></button>
+                    class="p-button-success p-button-raised"></button>
             </div>
             <div *ngIf="!idField.value" class="p-field p-col">
-                <button type="button" pButton pRipple
-                        label="Guardar"
-                        icon="pi pi-arrow-right"
-                        class="p-button-raised"
-                        (click)="onSubmit($event,true)"
-                ></button>
+                <button type="button" pButton pRipple label="Guardar" icon="pi pi-arrow-right" class="p-button-raised"
+                    (click)="onSubmit($event,true)"></button>
             </div>
         </div>
     </form>

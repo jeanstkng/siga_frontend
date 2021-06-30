@@ -8,6 +8,10 @@ import {JobBoardHttpService} from '../../../../../services/job-board/job-board-h
 import {AppHttpService} from '../../../../../services/app/app-http.service';
 import {HttpParams} from '@angular/common/http';
 import {Catalogue} from '../../../../../models/app/catalogue';
+import { SharedService } from '../../../../shared/services/shared.service';
+import { Professional } from 'src/app/models/job-board/professional';
+
+
 
 @Component({
     selector: 'app-language-form',
@@ -21,20 +25,22 @@ export class LanguageFormComponent implements OnInit {
     @Output()languagesOut = new EventEmitter<Language[]>();
     @Output() displayOut = new EventEmitter<boolean>();
     filteredIdioms: any[];
-    filteredWrittenLevels: any[];
-    filteredSpokenLevels: any[];
-    filteredReadLevels: any[];
-  
     idioms: Catalogue[];
+    filteredWrittenLevels: any[];
     writtenLevels: Catalogue[];
+    filteredSpokenLevels: any[];
     spokenLevels: Catalogue[];
+    filteredReadLevels: any[];
     readLevels: Catalogue[];
+    filteredProfessionals: any[];
+    professionals: Professional[];
 
     constructor(private formBuilder: FormBuilder,
                 private messageService: MessageService,
                 private messagePnService: MessagePnService,
                 private spinnerService: NgxSpinnerService,
                 private appHttpService: AppHttpService,
+                private sharedService: SharedService,
                 private jobBoardHttpService: JobBoardHttpService) {
     }
 
@@ -43,6 +49,8 @@ export class LanguageFormComponent implements OnInit {
         this.getWrittenLevels();
         this.getSpokenLevels();
         this.getReadLevels();
+        this.getProfessionals();
+
     }
 
     // Fields of Form
@@ -86,37 +94,46 @@ export class LanguageFormComponent implements OnInit {
 
     // Idiom of catalogues
     getIdioms() {
-        const params = new HttpParams().append('idiom', 'LANGUAGE_IDIOM');
+        const params = new HttpParams().append('type', 'LANGUAGE_IDIOM');
         this.appHttpService.getCatalogues(params).subscribe(response => {
             this.idioms = response['data'];
         }, error => {
             this.messageService.error(error);
         });
     }
+
+    getProfessionals() {
+        const params = new HttpParams().append('type', 'LANGUAGE_PROFESSIONAL');
+        this.appHttpService.getCatalogues(params).subscribe(response => {
+            this.professionals = response['data'];
+        }, error => {
+            this.messageService.error(error);
+        });
+    }
+        // Types of catalogues
+    getWrittenLevels() {
+        const params = new HttpParams().append('type', 'LANGUAGE_WRITTEN_LEVEL');
+        this.appHttpService.getCatalogues(params).subscribe(response => {
+            this.writtenLevels = response['data'];
+        }, error => {
+            this.messageService.error(error);
+        });
+    }
     // Types of catalogues
-getWrittenLevels() {
-    const params = new HttpParams().append('writtenLevel', 'LANGUAGE_WRITTENLEVEL');
-    this.appHttpService.getCatalogues(params).subscribe(response => {
-        this.writtenLevels = response['data'];
-    }, error => {
-        this.messageService.error(error);
-    });
-}
-  // Types of catalogues
-  getSpokenLevels() {
-    const params = new HttpParams().append('spokenLevel', 'LANGUAGE_SPOKENLEVEL');
-    this.appHttpService.getCatalogues(params).subscribe(response => {
-        this.spokenLevels = response['data'];
-    }, error => {
-        this.messageService.error(error);
-    });
-}
+    getSpokenLevels() {
+        const params = new HttpParams().append('type', 'LANGUAGE_SPOKEN_LEVEL');
+        this.appHttpService.getCatalogues(params).subscribe(response => {
+            this.spokenLevels = response['data'];
+        }, error => {
+            this.messageService.error(error);
+        });
+    }
 
 
 
 // Types of catalogues
 getReadLevels() {
-    const params = new HttpParams().append('readLevel', 'LANGUAGE_READLEVEL');
+    const params = new HttpParams().append('type', 'LANGUAGE_READ_LEVEL');
     this.appHttpService.getCatalogues(params).subscribe(response => {
         this.readLevels = response['data'];
     }, error => {
@@ -168,6 +185,8 @@ getReadLevels() {
         this.languagesOut.emit(this.languagesIn);
     }
 
+   
+
     // Filter idiom of languages
     filterIdiom(event) {
         const filtered: any[] = [];
@@ -191,7 +210,7 @@ getReadLevels() {
     }
 
 
- // Filter writtenLevel of languages
+ // Filter written Level of languages
  filterWrittenLevel(event) {
     const filtered: any[] = [];
     const query = event.query;
@@ -212,14 +231,35 @@ getReadLevels() {
     }
     this.filteredWrittenLevels = filtered;
 }
+//filtro
+filterSpokenLevel(event) {
+    const filtered: any[] = [];
+    const query = event.query;
+    for (const spoken_level of this.spokenLevels) {
+        if (spoken_level.name.toLowerCase().indexOf(query.toLowerCase()) === 0) {
+            filtered.push(spoken_level);
+        }
+    }
+    if (filtered.length === 0) {
+        this.messagePnService.clear();
+        this.messagePnService.add({
+            severity: 'error',
+            summary: 'Por favor seleccione un tipo del listado',
+            detail: 'En el caso de no existir comuníquese con el administrador!',
+            life: 5000
+        });
+        this.spokenLevelField.setValue(null);
+    }
+    this.filteredSpokenLevels = filtered;
+}
  
 // Filter type of skills
 filterReadLevel(event) {
     const filtered: any[] = [];
     const query = event.query;
-    for (const readLevel of this.readLevels) {
-        if (readLevel.name.toLowerCase().indexOf(query.toLowerCase()) === 0) {
-            filtered.push(readLevel);
+    for (const read_level of this.readLevels) {
+        if (read_level.name.toLowerCase().indexOf(query.toLowerCase()) === 0) {
+            filtered.push(read_level);
         }
     }
     if (filtered.length === 0) {
@@ -233,6 +273,17 @@ filterReadLevel(event) {
         this.readLevelField.setValue(null);
     }
     this.filteredReadLevels = filtered;
+}
+test(event) {
+    event.markAllAsTouched();
+}
+
+resetFormLanguage() {
+    this.formLanguageIn.reset();
+}
+
+markAllAsTouchedFormLanguage() {
+    this.formLanguageIn.markAllAsTouched();
 }
 
 

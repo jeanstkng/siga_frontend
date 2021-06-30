@@ -75,6 +75,10 @@ export class MessageService {
         return 'El campo debe tener un fomato de correo válido.';
     }
 
+    get fieldNumber(): string {
+        return 'El campo solo debe contener numeros.';
+    }
+
     fieldMinLength(field) {
         return `Mínimo de caracteres es ${field.errors.minlength.requiredLength}.`;
     }
