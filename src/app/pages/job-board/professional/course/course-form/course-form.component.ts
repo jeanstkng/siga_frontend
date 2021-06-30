@@ -109,6 +109,7 @@ export class CourseFormComponent implements OnInit {
     }
 
     // Types of catalogues
+
     getTypes() {
         const params = new HttpParams().append('type', 'COURSE_TYPE');
         this.appHttpService.getCatalogues(params).subscribe(response => {
