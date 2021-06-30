@@ -81,7 +81,6 @@ export class SkillFormComponent implements OnInit {
             response => {
             this.spinnerService.hide();
             this.messageService.success(response);
-
             this.saveSkill(response['data']);
             if (!flag) {
                 this.displayOut.emit(false);
