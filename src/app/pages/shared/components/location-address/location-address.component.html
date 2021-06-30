@@ -1,8 +1,9 @@
 <p-toast></p-toast>
 <div class="p-fluid">
     <form [formGroup]="formAddress">
-        <app-location [option]="option" [header]="headerLocation" id="location" formControlName="infoLocationOut"
-                      (formLocationOut)="emitFormLocation($event)"></app-location>
+        <app-location [option]="option" [header]="headerLocation" id="location" formControlName="location"
+                      (formLocationOut)="emitFormLocation($event)"
+                      (click)="updateValue()"></app-location>
         <br>
         <p-card [header]="headerAddress+':  '">
             <div class="p-field">
@@ -16,7 +17,8 @@
                         <div class="p-field p-col">
                             <p-radioButton name="sector" [value]="sector"
                                            [label]="sector.name"
-                                           formControlName="sector"></p-radioButton>
+                                           formControlName="sector"
+                                           (click)="updateValue()"></p-radioButton>
                         </div>
                     </div>
                 </div>

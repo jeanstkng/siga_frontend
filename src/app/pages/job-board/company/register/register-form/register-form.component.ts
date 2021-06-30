@@ -77,7 +77,8 @@ export class RegisterFormComponent implements OnInit {
     }
 
     get identificationTypeField() {
-        return this.formRegisterIn['controls']['user'].get('identificationType');
+        return this.formRegisterIn['controls']['user'].get('identification_type');
+    
     }
 
     get tradeNameField() {
@@ -104,19 +105,21 @@ export class RegisterFormComponent implements OnInit {
     }
 
     get activityTypeField() {
-        return this.formRegisterIn.get('activityType');
+
+        return this.formRegisterIn.get('activity_type');
     }
 
     get personTypeField() {
-        return this.formRegisterIn.get('personType');
+        return this.formRegisterIn.get('person_type');
+
     }
 
-    get dateField() {
-        return this.formRegisterIn['controls']['user'].get('date');
+    get prefixField() {
+        return this.formRegisterIn.get('prefix');
     }
 
 
-  register(company: Company, flag = false) {
+  register(company: Company) {
     this.spinnerService.show();
     this.jobBoardHttpService.store('company/register', {company}).subscribe(response => {
         this.spinnerService.hide();
@@ -130,11 +133,11 @@ export class RegisterFormComponent implements OnInit {
 } 
 
 onSubmit(flag = false) {
-    //if (this.formRegisterIn.valid) {
-         this.register(this.formRegisterIn.value, flag);
-      //  }else {
-          //  this.formRegisterIn.markAllAsTouched();
-       // }
+    if (this.formRegisterIn.valid) {
+         this.register(this.formRegisterIn.value);
+        }else {
+            this.formRegisterIn.markAllAsTouched();
+        }
    
     }
         // Types of catalogues
@@ -213,6 +216,11 @@ onSubmit(flag = false) {
         }
         this.filteredactivityType = filtered;
     }
+    markAllAsTouchedFormRegister() {
+        this.formRegisterIn.markAllAsTouched();
+        this.formLocation.markAllAsTouched();
+        this.formAddress.markAllAsTouched();
+      }
 
     setFormLocation(event) {
         this.formLocation = event;

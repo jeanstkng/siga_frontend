@@ -1,11 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../../../../models/auth/user';
 import { Company } from '../../../../models/job-board/company';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import { DateValidators } from 'src/app/pages/shared/validators/date.validators';
 import {Validations} from './utils/validations';
-import { HttpParams } from '@angular/common/http';
-import {MessageService} from '../../../shared/services/message.service'; 
 import {JobBoardHttpService} from '../../../../services/job-board/job-board-http.service';
 import { CustomValidators } from 'src/app/pages/shared/validators/custom-validators';
 
@@ -17,12 +13,11 @@ import { CustomValidators } from 'src/app/pages/shared/validators/custom-validat
 export class RegisterComponent implements OnInit {
   formRegister: FormGroup;
   company: Company;
-  registerDialog: boolean;
-
+  
   constructor(
     private formBuilder: FormBuilder,
     private jobBoardHttpService: JobBoardHttpService,
-    private messageService: MessageService,
+
   ) { }
 
   ngOnInit(): void{
@@ -30,29 +25,28 @@ export class RegisterComponent implements OnInit {
   }
 
   buildFormRegister() {
-
     this.formRegister = this.formBuilder.group({
-
       user: this.formBuilder.group({
-        username: [null, Validators.required],
+        username: [null, [Validators.required,Validators.minLength(10),Validators.maxLength(15)]],
         identification: [null, Validators.required,Validations.validateIdentification(this.jobBoardHttpService)],
-        email: [null, Validators.required],
-        password: [null, Validators.required],
-        password_confirmation: [null, Validators.required],
-        address: [null, Validators.required],
-        status: [null, Validators.required],
-        identificationType: [null, Validators.required],
-      },{validator:CustomValidators.passwordMatchValidator}),
+        email: [null, [Validators.required,Validators.email]],
+        password: [null,[Validators.required,Validators.minLength(5),Validators.maxLength(15)]],
+        password_confirmation: [null,[Validators.required,Validators.minLength(5),Validators.maxLength(15)]],
+        address: [null],
+        identification_type: [null, Validators.required],
+      },{validator:[CustomValidators.passwordMatchValidator,Validations.identificationMatchValidator]}),
       trade_name: [null, Validators.required],
+      prefix:[null,Validators.required],
       comercial_activities: this.formBuilder.array([
         this.formBuilder.control(null, Validators.required)
       ]),
       web: [null, Validators.required],
       type: [null, Validators.required],
-      activityType: [null, Validators.required],
-      personType: [null, Validators.required],
+      activity_type: [null, Validators.required],
+      person_type: [null, Validators.required],
+
 
     });
     console.log(this.formRegister['controls']['user']);
-  }
+  } 
 }

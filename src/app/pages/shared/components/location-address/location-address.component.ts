@@ -86,6 +86,8 @@ export class LocationAddressComponent implements OnInit, ControlValueAccessor {
     }
 
     updateValue(): void {
+        console.log(this.formAddress.valid);
+        console.log(this.formAddress.value);
         if (this.formAddress.valid) {
             this.formAddressOut.emit(this.formAddress);
             this.value = this.formAddress.value;

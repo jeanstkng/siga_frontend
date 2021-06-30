@@ -11,7 +11,8 @@ export interface Company {
     prefix?:string;
     comercial_activities?:string[];
     web?:string;
-    professionals?: Professional[];
+    professionals?: Professional;
+    pivot?: Pivot;
     type?: Catalogue;
     identification_type?:Catalogue;
     activityType?:Catalogue;
@@ -19,4 +20,11 @@ export interface Company {
     address?:Address;
     status?:Status;
     user?:User;
+}
+export interface Pivot {
+    company_id: number;
+    professional_id: number;
+    created_at: string;
+    updated_at: string;
+
 }
