@@ -34,7 +34,7 @@ export class UserEditFormComponent implements OnInit {
   get identificationField() {
     return this.formUserIn.get('identification');
   }
-  get firstNameField() {
+  get namesField() {
     return this.formUserIn.get('names');
   }
   get firstLastnameField() {

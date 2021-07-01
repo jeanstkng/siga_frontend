@@ -38,7 +38,7 @@ export class UserFormComponent implements OnInit {
   get identificationField() {
     return this.formUserIn.get('identification');
   }
-  get firstNameField() {
+  get namesField() {
     return this.formUserIn.get('names');
   }
   get firstLastnameField() {
@@ -79,20 +79,5 @@ export class UserFormComponent implements OnInit {
     } else {
       this.formUserIn.markAllAsTouched();
     }
-  }
-
-  saveRoles(role = null) {
-    if (role) {
-      this.selectedRoles = [];
-      this.selectedRoles.push(role);
-    }
-    const ids = this.selectedRoles;
-    this.userAdministrationService.add('user-admin-institution/addRoles', ids)
-      .subscribe(response => {
-        this.messageService.success(response);
-        this.selectedRoles = [];
-      }, error => {
-        this.messageService.error(error);
-      });
   }
 }
