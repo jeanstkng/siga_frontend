@@ -1,11 +1,7 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "cli": {
-<<<<<<< HEAD
-    "analytics": "c3478739-d549-45b7-80e9-368f729d0ba7"
-=======
-    "analytics": "bfff4062-396a-483d-b4ab-3de0e8839641"
->>>>>>> origin/u_10_quinaluisa-david
+
   },
   "version": 1,
   "newProjectRoot": "projects",
@@ -59,7 +55,7 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              //"extractCss": false,
+              "extractCss": false,
               "namedChunks": false,
               "aot": true,
               "extractLicenses": true,
