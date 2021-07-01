@@ -12,7 +12,7 @@
     <ng-template let-offer pTemplate="listItem">
         <div class="p-col-12">
             <app-data-view-list-item [offer]="offer"
-                                     (idOffer)="applyOffer($event)"
+                                     (idOffer)="applyOffer($event, 'sweet')"
                                      (displayModalMoreInformation)="showModalMoreInformation($event)">
             </app-data-view-list-item>
         </div>
@@ -21,7 +21,7 @@
         <div class="p-col-12 p-md-4">
             <div class="offer-grid-item card">
                 <app-data-view-grid-item [offer]="offer"
-                                         (idOffer)="applyOffer($event)"
+                                         (idOffer)="applyOffer($event, 'sweet')"
                                          (displayModalMoreInformation)="showModalMoreInformation($event)">
                 </app-data-view-grid-item>
             </div>
@@ -34,6 +34,7 @@
           [header]="moreInformation.position.name" [modal]="true" [style]="{width: '50vh'}"
           [maximizable]="true" [baseZIndex]="10000" [draggable]="false" [resizable]="false">
     <div class="card">
+        <p-toast position="top-center" key="ap"></p-toast>
         <p-tabView>
             <p-tabPanel header="Oferta" leftIcon="pi pi-briefcase" tooltip="">
                 <p><strong>Código:</strong> {{ moreInformation.code }}</p>
@@ -68,8 +69,10 @@
     </div>
     <ng-template pTemplate="footer">
         <p-button *ngIf="displayButtonApply" icon="pi pi-check"
-                  (click)="applyOffer(moreInformation.id.toString())" label="Aplicar"
+                  (click)="applyOffer(moreInformation.id.toString(), 'toast')" label="Aplicar"
                   class="p-button-text"></p-button>
+<!--        <p-button *ngIf="!displayButtonApply" icon="pi pi-info-circle" label="Aplicar"-->
+<!--                  (click)="redirectToLogin();" ></p-button>-->
         <p-button icon="pi pi-times" styleClass="p-button-secondary"
                   (click)="closeModalMoreInformation()" label="Cerrar"></p-button>
     </ng-template>

@@ -98,6 +98,7 @@ import {FilterComponent} from './web-professional/filter/filter.component';
         OfferDataViewComponent,
         DataViewGridItemComponent,
         DataViewListItemComponent,
+
     ],
     providers: []
 })

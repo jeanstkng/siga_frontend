@@ -16,7 +16,7 @@
     <p-button *ngIf="displayButtonApply" label="Aplicar" icon="pi pi-check" styleClass="p-col-12"
               (click)="sendIdOffer(offer.id);"></p-button>
     <p-button *ngIf="!displayButtonApply" icon="pi pi-info-circle" label="Aplicar" styleClass="p-col-12"
-              (click)="redirectToLogin();" [style]="{'width': '100%'}"></p-button>
+              (click)="redirectToLogin();"></p-button>
     <p-button label="Ver más" icon="pi pi-eye" (click)="moreInformation(offer)"
               styleClass="p-button-secondary p-col-12"></p-button>
 </div>

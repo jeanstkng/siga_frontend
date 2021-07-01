@@ -26,12 +26,25 @@ export class DataViewListItemComponent implements OnInit {
 
     constructor(private authService: AuthService,
                 private router: Router) {
-        this.auth = authService.getAuth();
+        this.auth = this.getRol(authService.getAuth());
         this.auth ? this.displayButtonApply = true : this.displayButtonApply = false;
     }
 
     ngOnInit(): void {
 
+    }
+
+    getRol(user): User {
+        if (user != null) {
+            for (const rol of user.roles) {
+                if (rol.code === 'PROFESSIONAL') {
+                    return user;
+                }
+            }
+        }
+        if (user === null || undefined) {
+            return user;
+        }
     }
 
     sendIdOffer(id: number) {
