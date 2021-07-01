@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {MenuItem} from 'primeng/api';
-import {TreeNode} from 'primeng/api';
 
 // servicios
 import {NgxSpinnerService} from 'ngx-spinner';
@@ -15,7 +14,7 @@ import {Offer, Category, SearchParams} from '../../../../models/job-board/models
 import {User} from '../../../../models/auth/user';
 import {AuthService} from '../../../../services/auth/auth.service';
 import Swal from 'sweetalert2';
-import {Location} from '../../../../models/app/location';
+
 
 @Component({
     selector: 'app-web-offer',

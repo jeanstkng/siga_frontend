@@ -1,11 +1,13 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Offer} from '../../../../../../models/job-board/offer';
-import {HttpParams} from '@angular/common/http';
+
+// services
 import {AuthService} from '../../../../../../services/auth/auth.service';
-import {User} from '../../../../../../models/auth/user';
-import {FormGroup} from '@angular/forms';
 import {Router} from '@angular/router';
 import Swal from 'sweetalert2';
+
+// models
+import {User} from '../../../../../../models/auth/user';
+import {Offer} from '../../../../../../models/job-board/offer';
 
 @Component({
     selector: 'app-data-view-grid-item',

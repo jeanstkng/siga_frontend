@@ -1,13 +1,17 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Offer} from '../../../../../models/job-board/offer';
-import {Paginator} from '../../../../../models/setting/paginator';
-import {JobBoardHttpService} from '../../../../../services/job-board/job-board-http.service';
-import {HttpParams} from '@angular/common/http';
+
+// services
 import {NgxSpinnerService} from 'ngx-spinner';
-import {MessageService} from '../../../../shared/services/message.service';
-import {User} from '../../../../../models/auth/user';
-import {AuthService} from '../../../../../services/auth/auth.service';
 import {MessageService as MessagePnService} from 'primeng/api';
+import {MessageService} from '../../../../shared/services/message.service';
+import {JobBoardHttpService} from '../../../../../services/job-board/job-board-http.service';
+import {AuthService} from '../../../../../services/auth/auth.service';
+
+// models
+import {User} from '../../../../../models/auth/user';
+import {Offer} from '../../../../../models/job-board/offer';
+import {HttpParams} from '@angular/common/http';
+import {Paginator} from '../../../../../models/setting/paginator';
 
 @Component({
     selector: 'app-offer-data-view',
