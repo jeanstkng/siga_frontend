@@ -1,3 +1,4 @@
+{{formSkillIn.value|json}} 
 <p-toast></p-toast>
 <p-card>
     <div class="p-fluid">
@@ -49,18 +50,13 @@
                 </div>
             </div>
             <div class="p-formgrid p-grid">
-                <div class="p-field p-xl-6 p-lg-6 p-md-12 p-sm-12">
-                    <button pButton pRipple type="submit" id="btnSaveLeave"
-                            label="Guardar y Salir"
-                            class="p-button-success p-button-raised"
-                            icon="pi pi-save"></button>
+                <div class="p-field p-col">
+                    <button type="submit" pButton pRipple label="Guardar y Salir" icon="pi pi-save"
+                        class="p-button-success p-button-raised"></button>
                 </div>
-                <div *ngIf="!idField.value" class="p-field p-xl-6 p-lg-6 p-md-12 p-sm-12">
-                    <button pButton pRipple type="button" id="btnSave"
-                            label="Guardar"
-                            class="p-button-raised"
-                            icon="pi pi-arrow-right"
-                            (click)="onSubmit(true)"></button>
+                <div *ngIf="!idField.value" class="p-field p-col">
+                    <button type="button" pButton pRipple label="Guardar" icon="pi pi-arrow-right" class="p-button-raised"
+                        (click)="onSubmit($event,true)"></button>
                 </div>
             </div>
         </form>

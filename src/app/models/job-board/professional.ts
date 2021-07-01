@@ -1,4 +1,5 @@
 import { User } from '../auth/user';
+
 export interface Professional {
     id?: number;
     user?: User;

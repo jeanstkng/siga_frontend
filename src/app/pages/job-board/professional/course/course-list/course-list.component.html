@@ -1,6 +1,6 @@
 <app-skeleton *ngIf="flagCourses" [type]="'table'"></app-skeleton>
 
-<!-- <p-dialog [(visible)]="dialogUploadFiles" [style]="{width: '75%'}" header="Subir archivos" [modal]="true"
+ <p-dialog [(visible)]="dialogUploadFiles" [style]="{width: '75%'}" header="Subir archivos" [modal]="true"
           styleClass="p-fluid" (onHide)="dialogUploadFiles=false">
     <app-upload-files (files)="upload($event,selectedCourse.id)"></app-upload-files>
 </p-dialog>
@@ -13,8 +13,7 @@
             (searchOut)="searchFiles($event)"
             [paginatorIn]="paginatorFiles"
             (paginatorOut)="getFiles($event)"></app-view-files>
-</p-dialog> -->
-
+</p-dialog> 
 <div class="card" [hidden]="flagCourses">
     <p-toolbar styleClass="p-mb-4">
         <ng-template pTemplate="left">
@@ -29,10 +28,17 @@
                 (click)="paginatorOut.emit(paginatorIn)"></button>
         </ng-template>
     </p-toolbar>
-    <p-paginator [rows]="paginatorIn.per_page" [totalRecords]="paginatorIn.total" (onPageChange)="pageChange($event)">
-    </p-paginator>
-    <p-table #dt [value]="coursesIn" [columns]="colsCourse" [paginator]="false" [(selection)]="selectedCourses"
-        [rowHover]="true" [responsive]="true" dataKey="id" styleClass="p-datatable-customers"
+    <p-paginator [rows]="paginatorIn.per_page" [totalRecords]="paginatorIn.total" 
+    (onPageChange)="pageChange($event)"> </p-paginator>
+    <p-table #dt
+     [value]="coursesIn" 
+     [columns]="colsCourse"
+      [paginator]="false" 
+      [(selection)]="selectedCourses"
+        [rowHover]="true" 
+        [responsive]="true"
+         dataKey="id" 
+        styleClass="p-datatable-customers"
         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
         <ng-template pTemplate="caption">
             <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header">
@@ -53,9 +59,38 @@
                     Tipo
                     <p-sortIcon field="type"></p-sortIcon>
                 </th>
+                <th pSortableColumn=" institution">
+                    Institución
+                    <p-sortIcon field=" institution"></p-sortIcon>
+                </th>
+                <th pSortableColumn="certification_type">
+                    tipo de 
+                    certificado
+                    <p-sortIcon field="certification_type"></p-sortIcon>
+                </th>
+                <th pSortableColumn="area">
+                    Area
+                    <p-sortIcon field="area"></p-sortIcon>
+                </th>
+                <th pSortableColumn="name">
+                    Nombre
+                    <p-sortIcon field="name"></p-sortIcon>
+                </th>
                 <th pSortableColumn="description">
-                    Descripción
+                    descripcion
                     <p-sortIcon field="description"></p-sortIcon>
+                </th>
+                <th pSortableColumn="start_date">
+                    fecha de inicio 
+                    <p-sortIcon field="start_date"></p-sortIcon>
+                </th>
+                <th pSortableColumn="end_date">
+                    fecha de fin
+                    <p-sortIcon field="end_date"></p-sortIcon>
+                </th>
+                <th pSortableColumn="hours">
+                    horas
+                    <p-sortIcon field="hours"></p-sortIcon>
                 </th>
                 <th></th>
             </tr>
@@ -69,8 +104,30 @@
                     {{course.type.name}}
                 </td>
                 <td>
+                    {{course.institution.name}}
+                </td>  
+                <td>
+                    {{course.certification_type.name}}
+                </td>
+                <td>
+                    {{course.area.name}}
+                </td>
+                <td>
+                    {{course.name}}
+                </td>
+                <td>
                     {{course.description}}
                 </td>
+                <td>
+                    {{course.start_date}}
+                </td>
+                <td>
+                    {{course.end_date}}
+                </td>
+                <td>
+                    {{course.hours}}
+                </td>
+
                 <td>
                     <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-warning"
                         (click)="openEditFormCourse(course)"></button>

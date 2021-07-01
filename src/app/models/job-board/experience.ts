@@ -1,9 +1,9 @@
-import { Professional } from './professional';
+//import { Professional } from './professional';
 import { Catalogue } from '../app/catalogue';
 
 export interface Experience {
     id?: number;
-    professional?: Professional;
+  //  professional?: Professional;
     area?: Catalogue;
     employer?: string;
     position?: string;
@@ -11,5 +11,5 @@ export interface Experience {
     end_date?: string;
     activities?: string;
     reason_leave?: string;
-    is_working?: string;
+    is_working?: boolean;
 }

@@ -38,8 +38,8 @@ export class ProfessionalListComponent implements OnInit {
 
   professionalAplied(professional: Professional): void {
     const user = this.authService.getAuth();
-    
-    if (user) {
+
+    if (user.role.name == 'EMPRESA') {
       this.spinnerService.show();
       this.jobBoardHttpService.applyProfessional(professional.id).subscribe(
         response => {
@@ -53,8 +53,9 @@ export class ProfessionalListComponent implements OnInit {
           this.messageService.error(error);
         }
       );
-    } else {
-      console.error('Primero necesitas iniciar sesión');
+    }
+    else {
+      alert('Sólo las empresas pueden contactar con los profesionales');
     }
   }
 

@@ -1,0 +1,81 @@
+
+.card{
+  margin: 0 2em 0 auto;
+  margin-left: 20px;
+  margin-top: 17px;
+  float: left;
+  background: #fdfdfd;
+  color: #3e3f3f;
+  border-radius: 5px;
+  width: 290px;
+  text-align: center;
+  //box-shadow: 10px 10px 15px 0 rgba(0,0,0,0.3);
+  box-shadow: 2px 10px 20px 2px rgba(0,0,0,.75);
+}
+.cover-photo{
+  background: url(https://www.republicainmobiliaria.com/wp-content/uploads/2020/10/proxyclick-visitor-management-system-FHGVoOlwGaI.jpg);
+  height: 160px;
+  width: 100%;
+  border-radius: 5px 5px 0 0;
+}
+.profile{
+  height: 120px;
+  width: 120px;
+  border-radius: 50%;
+  margin: 70px 0 0 auto;
+  border: 1px solid#ffffff;
+  padding: 7px;
+  background: #fac784;
+}
+.profile-name{
+  font-size: 25px;
+  font-weight: bold;
+  margin: 30px 0 0 auto;
+}
+.cedula{
+  font-size: 15px;
+  margin-top: 2px;
+  line-height: 21px;
+}
+.telefono{
+  font-size: 15px;
+  margin-top: 2px;
+  line-height: 21px;
+}
+.correo{
+  font-size: 15px;
+  margin-top: 2px;
+  line-height: 21px;
+}
+.about{
+  margin-top: 2px;
+  line-height: 21px;
+  font-weight: bold;
+}
+button{
+  margin: 10px 0 40px 0;
+}
+
+.msg-btn, .follow-btn{
+  background: #696969;
+  border: 2px solid #535353;
+  padding: 10px 25px;
+  color: #7c7c7c;
+  border-radius: 3px;
+  font-family: Montserrat, sans-serif;
+  cursor: pointer;
+}
+
+.msg-btn, .follow-btn{
+  margin-left: 10px;
+  background: transparent;
+  color: #5a5a5a;
+}
+.follow-btn:hover{
+  color: #ffffff;
+  background: #8f0000;
+}
+.msg-btn:hover{
+  color: #ffffff;
+  background: #0364bf;
+}

@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import { Company } from 'src/app/models/job-board/company';
+import { Professional,Company } from 'src/app/models/job-board/models.index';
+
 import {Paginator} from '../../../../../models/setting/paginator';
 import {MessageService} from '../../../../shared/services/message.service'; 
 import {NgxSpinnerService} from 'ngx-spinner';
@@ -13,6 +14,7 @@ import {HttpParams} from '@angular/common/http';
   styleUrls: ['./professional-list.component.scss']
 })
 export class ProfessionalListComponent implements OnInit {
+  @Input() flagProfessionals:boolean;
   @Input() professionalsIn: Company[];
   @Input() paginatorIn: Paginator;
   @Input() formProfessionalIn: FormGroup;
@@ -20,7 +22,9 @@ export class ProfessionalListComponent implements OnInit {
   @Output() formProfessionalOut = new EventEmitter<FormGroup>();
   @Output() displayOut = new EventEmitter<boolean>();
   @Output() paginatorOut = new EventEmitter<Paginator>();
-  selectedProfessionals: any[];
+
+  Professionals: any[];
+
   selectedProfessional: Company;
   dialogUploadFiles: boolean;
   paginatorFiles: Paginator;
@@ -29,7 +33,11 @@ export class ProfessionalListComponent implements OnInit {
     private messageService: MessageService,
     private spinnerService: NgxSpinnerService,
     private jobBoardHttpService: JobBoardHttpService
-  ) { }
+
+  ) { 
+
+  }
+
 
   ngOnInit() {
   }
@@ -39,10 +47,27 @@ export class ProfessionalListComponent implements OnInit {
     this.paginatorOut.emit(this.paginatorIn);
   }
 
-  selectProfessional(professional: Company) {
-    this.selectedProfessional = professional;
-    console.log(this.selectedProfessional);
+  deleteProfessional(id:string) {
+    this.messageService.questionDelete({})
+            .then((result) => {
+              if(result.isConfirmed){
+                let params = new HttpParams().append('professional_id', id);
+                this.jobBoardHttpService.get('company/detach', params).subscribe(response => {
+                  this.remove(id);
+                  this.spinnerService.hide();
+                }, error => {
+                  this.spinnerService.hide();
+                  this.messageService.error(error);
+                });
+              }
+            });
+
   }
-  deleteProfessional(){
-  }
+
+  remove(id) {
+   
+        this.professionalsIn = this.professionalsIn.filter(element => element.id !== id);
+        this.professionalsOut.emit(this.professionalsIn);
+}
+
 }

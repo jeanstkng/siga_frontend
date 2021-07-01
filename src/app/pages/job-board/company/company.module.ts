@@ -1,16 +1,16 @@
 // Angular Modules
-import {NgModule} from '@angular/core';
-import {RouterModule} from '@angular/router';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {CommonModule} from '@angular/common';
-import {CompanyRouting} from './company.routing';
+import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { CompanyRouting } from './company.routing';
 
 // PrimeNG Modules
-import {PasswordModule} from 'primeng/password';
-import {ButtonModule} from 'primeng/button';
-import {InputTextModule} from 'primeng/inputtext';
-import {DropdownModule} from 'primeng/dropdown';
-import {SkeletonModule} from 'primeng/skeleton';
+import { PasswordModule } from 'primeng/password';
+import { ButtonModule } from 'primeng/button';
+import { InputTextModule } from 'primeng/inputtext';
+import { DropdownModule } from 'primeng/dropdown';
+import { SkeletonModule } from 'primeng/skeleton';
 
 // My Components
 import {TooltipModule} from 'primeng/tooltip';
@@ -35,14 +35,16 @@ import {SharedModule} from '../../shared/shared.module';
 import {RippleModule} from 'primeng/ripple';
 import {CompanyComponent} from './company.component';
 import {OfferComponent} from "./offer/offer.component";
-import {ProfileComponent} from './profile/profile.component';
-import {ProfessionalComponent} from './professional/professional.component';
-import {RegisterComponent} from './register/register.component';
-import {RegisterFormComponent} from './register/register-form/register-form.component';
-import {ProfileFormComponent} from './profile/profile-form/profile-form.component';
-import {ProfessionalListComponent} from './professional/professional-list/professional-list.component';
-import {OfferListComponent} from './offer/offer-list/offer-list.component';
-import {OfferFormComponent} from './offer/offer-form/offer-form.component';
+import {OfferFormComponent} from "./offer/offer-form/offer-form.component";
+import {OfferListComponent} from "./offer/offer-list/offer-list.component";
+import {OfferProfessionalsComponent} from "./offer/offer-professionals/offer-professionals.component";
+import {CalendarModule} from 'primeng/calendar';
+import { ProfileComponent } from './profile/profile.component';
+import { ProfileFormComponent } from './profile/profile-form/profile-form.component';
+import { ProfessionalComponent } from '../professional/professional.component';
+import { ProfessionalListComponent } from './professional/professional-list/professional-list.component';
+import { RegisterComponent } from './register/register.component';
+import { RegisterFormComponent } from './register/register-form/register-form.component';
 
 @NgModule({
     imports: [
@@ -77,6 +79,7 @@ import {OfferFormComponent} from './offer/offer-form/offer-form.component';
         CardModule,
         SkeletonModule,
         RippleModule,
+        CalendarModule,
     ],
     declarations: [
         CompanyComponent,

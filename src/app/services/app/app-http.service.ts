@@ -29,16 +29,15 @@ export class AppHttpService {
         return this.httpClient.put(url, data, {headers: this.headers});
     }
 
-    delete(url: string) {
+    delete(url: string, data:any) {
         url = environment.API_URL_APP + url;
-        return this.httpClient.delete(url, {headers: this.headers});
+        return this.httpClient.put(url, data,{headers: this.headers});
     }
 
     updateFile(file: File, params = new HttpParams()) {
         const url = environment.API_URL_APP + 'file/update/' + file.id;
         return this.httpClient.put(url, file, {params});
     }
-
 
     downloadFiles(params = new HttpParams()) {
         const url = environment.API_URL_APP + 'file/download';
@@ -55,8 +54,9 @@ export class AppHttpService {
         return this.httpClient.post(url, data, {params});
     }
 
-    getCatalogues(params = new HttpParams()) {
+    getCatalogues(type: any) {
         const url = environment.API_URL_APP + 'catalogues';
+        const params = new HttpParams().append('type', type);
         return this.httpClient.get(url, {params});
     }
 

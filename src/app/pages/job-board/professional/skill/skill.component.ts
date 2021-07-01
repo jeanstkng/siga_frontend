@@ -7,6 +7,7 @@ import { HttpParams } from '@angular/common/http';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { MessageService } from '../../../shared/services/message.service';
 import { DateValidators } from '../../../shared/validators/date.validators';
+import {AppHttpService} from '../../../../services/app/app-http.service';
 
 @Component({
     selector: 'app-skill',
@@ -19,14 +20,14 @@ export class SkillComponent implements OnInit {
     skills: Skill[];
     formSkill: FormGroup;
     skillDialog: boolean;
-    flagSkills: boolean;
+    flagSkeletonListSkills: boolean;
 
     constructor(
         private spinnerService: NgxSpinnerService,
-        private messageService: MessageService,
+        public messageService: MessageService,
         private formBuilder: FormBuilder,
+        private appHttpService: AppHttpService,
         private jobBoardHttpService: JobBoardHttpService) {
-
         this.paginator = { current_page: 1, per_page: 2 };
         this.skills = [];
     }
@@ -51,14 +52,14 @@ export class SkillComponent implements OnInit {
             .append('page', paginator.current_page.toString())
             .append('per_page', paginator.per_page.toString());
 
-        this.flagSkills = true;
+        this.flagSkeletonListSkills = true;
         this.jobBoardHttpService.get('skills', params).subscribe(
             response => {
-                this.flagSkills = false;
+                this.flagSkeletonListSkills = false;
                 this.skills = response['data'];
                 this.paginator = response as Paginator;
             }, error => {
-                this.flagSkills = false;
+                this.flagSkeletonListSkills = false;
                 this.messageService.error(error);
             });
     }

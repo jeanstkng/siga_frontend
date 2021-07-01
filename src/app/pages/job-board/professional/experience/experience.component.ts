@@ -7,6 +7,7 @@ import { HttpParams } from '@angular/common/http';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { MessageService } from '../../../shared/services/message.service';
 import { DateValidators } from '../../../shared/validators/date.validators';
+import { BreadcrumbService } from '../../../../shared/services/breadcrumb.service';
 
 @Component({
   selector: 'app-experience',
@@ -41,7 +42,7 @@ export class ExperienceComponent implements OnInit {
   buildFormExperience() {
     this.formExperience = this.formBuilder.group({
       id: [null],
-      professional: [null, Validators.required],
+    //  professional: [null, Validators.required],
       area: [null, Validators.required],
       employer: [null, Validators.required],
       position: [null, [Validators.required, Validators.minLength(10)]],

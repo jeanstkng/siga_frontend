@@ -8,25 +8,29 @@
 
 <div class="card" [hidden]="flagProfessionals">
     <div class="p-grid">
-        <div class="p-col-4" *ngFor="let professional of professionalsIn">
+        <div class="p-xl-4 p-lg-6 p-md-12 p-sm-12 p-col-12" *ngFor="let professional of professionalsIn">
             <p-card>
                 <ng-template pTemplate="title" *ngFor="let academicFormation of professional.academic_formations">
                     {{academicFormation.professional_degree.name}}
                 </ng-template>
                 {{professional.about_me}}
                 <ng-template pTemplate="footer" *ngIf="loggedIn()">
-                    <button pButton type="button"
+                    <button pButton pRipple
+                            type="button"
                             label="Más Información"
                             class="p-button-info"
                             icon="pi pi-info-circle"
-                            iconPos="left"></button>
-                    
-                    <button pButton type="button"
+                            iconPos="left">
+                    </button>
+                    <br><br>
+                    <button pButton pRipple
+                            type="button"
                             label="Contactar"
                             class="p-button-success"
                             icon="pi pi-envelope"
                             iconPos="left"
-                            (click)="professionalAplied(professional)"></button>
+                            (click)="professionalAplied(professional)">
+                    </button>
                 </ng-template>
             </p-card>
         </div>
