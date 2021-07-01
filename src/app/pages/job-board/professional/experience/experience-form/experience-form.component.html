@@ -53,22 +53,29 @@
             </div>
         </div>
         <div class="p-field">
-            <label for="startDate">Fecha de inicio</label>
-            <app-date id="startDate" name="startDate" formControlName="start_date"></app-date>
+            <label for="start_date">
+                <i class="p-error">*</i> Fecha de Inicio:
+                <i *ngIf="startDateField.valid" class="pi pi-check-circle icon-valid"></i>
+                <i *ngIf="startDateField.invalid && (startDateField.touched || startDateField.dirty)"
+                    class="pi pi-times-circle icon-invalid"></i>
+            </label>
+            <app-date formControlName="start_date"
+                    id="start_date"
+                    (click)="calculateEndDate()"> 
+            </app-date>
             <div *ngIf="startDateField.errors && (startDateField.touched || startDateField.dirty)">
-                <small *ngIf="startDateField.hasError('required')" id="start-date-help-1" class="p-error">
-                    El campo es obligatorio.
+                <small *ngIf="startDateField.errors?.required" 
+                        id="start_date-help-1" 
+                        class="p-error">
+                    {{messageService.fieldRequired}}
                 </small>
             </div>
         </div>
         <div class="p-field">
-            <label for="endDate">Fecha final</label>
-            <app-date id="endDate" name="endDate" formControlName="end_date"></app-date>
-            <div *ngIf="endDateField.errors && (endDateField.touched || endDateField.dirty)">
-                <small *ngIf="endDateField.hasError('required')" id="end-date-help-1" class="p-error">
-                    El campo es obligatorio.
-                </small>
-            </div>
+            <label for="end_date">Fecha Fin: </label>
+            <app-date formControlName="end_date"
+                    id="end_date"> 
+            </app-date>
         </div>
         <div formArrayName="activities">
             <div>
@@ -105,19 +112,44 @@
                     </small>
                 </div>
             </div>
-        </div>-->
-      
-      
-      
+        </div>
       <div class="p-field">
             <label for="isWorking">
                 <i class="p-error">*</i> Está Trabajando:
                 <i *ngIf="isWorkingField.valid" class="pi pi-check-circle icon-valid"></i>
                 <i *ngIf="isWorkingField.invalid && (isWorkingField.touched || isWorkingField.dirty)"
-                    class="pi pi-times-circle icon-invalid"></i>
-            </label>
-            <p-checkbox name="isWorking" [(ngModel)]="isWorking" binary="true"></p-checkbox>
+                    class="pi pi-times-circle icon-invalid"></i> 
+                </label>
+                <p-checkbox name="groupname" value="val1" [(ngModel)]="selectedValues"></p-checkbox>
+                <p-checkbox name="groupname" value="val2" [(ngModel)]="selectedValues"></p-checkbox>  
+            </div>-->
+       
+      
+                <div class="p-field p-col">
+                    <label for="reasonLeave">Razón que se fue:</label>
+                    <input id="reason_leave" name="reasonLeave" pInputText formControlName="reason_eave" />
+                    <div *ngIf="reasonLeaveField.errors && reasonLeaveField.touched">
+                        <small *ngIf="reasonLeaveField.hasError('required')" id="reason_leave-help-1" class="p-error">
+                            {{messageService.fieldRequired}}
+                        </small>
+                    </div>
+                </div>
+            
+
+            <div class="p-field">
+                        <label for="isWorking">   
+                    <i class="p-error">*</i> Está Trabajando:    
+        <div class="p-field-checkbox">
+            <p-checkbox name="isWorking" value="si" formControlName="is_working" [(ngModel)]="selectedIsWorking" inputId="isWorking"></p-checkbox>
+            <label for="ny">SI</label>
         </div>
+        <div class="p-field-checkbox">
+            <p-checkbox name="isWorking" value="no" formControlName="is_working" [(ngModel)]="selectedIsWorking" inputId="isWorkingField"></p-checkbox>
+            <label for="sf">NO</label>
+        </div>
+    </label>
+        </div>
+
         <div class="p-formgrid p-grid">
             <div class="p-field p-col">
                 <button type="submit" pButton pRipple label="Guardar y Salir" icon="pi pi-save"

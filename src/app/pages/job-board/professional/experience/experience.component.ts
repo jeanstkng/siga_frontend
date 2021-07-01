@@ -42,16 +42,18 @@ export class ExperienceComponent implements OnInit {
   buildFormExperience() {
     this.formExperience = this.formBuilder.group({
       id: [null],
-    //  professional: [null, Validators.required],
       area: [null, Validators.required],
       employer: [null, Validators.required],
       position: [null, [Validators.required, Validators.minLength(10)]],
-      start_date: [null, Validators.required, DateValidators.valid],
-      end_date: [null, Validators.required, DateValidators.valid],
+      start_date: [null, Validators.required],
+      end_date: [null, Validators.required],
+      reason_leave: [null, Validators.required],
       activities: this.formBuilder.array([this.formBuilder.control(null, Validators.required)]),
       is_working: [null, Validators.required],
     });
   }
+
+  
 
   // experiences of backend
   getExperiences(paginator: Paginator) {
@@ -74,4 +76,5 @@ export class ExperienceComponent implements OnInit {
         this.messageService.error(error);
       });
   }
+  
 }

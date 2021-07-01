@@ -10,6 +10,8 @@ import { Catalogue } from '../../../../../models/app/catalogue';
 import { MessageService as MessagePnService } from 'primeng/api';
 import { SharedService } from '../../../../shared/services/shared.service';
 
+import { add, format } from 'date-fns';
+
 @Component({
     selector: 'app-experience-form',
     templateUrl: './experience-form.component.html',
@@ -27,6 +29,8 @@ export class ExperienceFormComponent implements OnInit {
     areas: Catalogue[];
    // filteredIsWorkings: any[];
     isWorking: boolean;
+    selectedValues: string[] = [];
+    value: boolean;
 
     constructor(private formBuilder: FormBuilder,
         private messageService: MessageService,
@@ -134,22 +138,41 @@ export class ExperienceFormComponent implements OnInit {
     // }
 
     // Save in backend
+    // storeExperience(experience: Experience, flag = false) {
+    //     this.spinnerService.show();
+    //     this.jobBoardHttpService.store('experiences', { experience }).subscribe(response => {
+    //         this.spinnerService.hide();
+    //         this.messageService.success(response);
+    //         this.saveExperience(response['data']);
+    //         if (!flag) {
+    //             this.displayOut.emit(false);
+    //         }
+    //         this.resetFormExperience();
+
+    //     }, error => {
+    //         this.spinnerService.hide();
+    //         this.messageService.error(error);
+    //     });
+    // }
+    // Save in backend
     storeExperience(experience: Experience, flag = false) {
         this.spinnerService.show();
         this.jobBoardHttpService.store('experiences', { experience }).subscribe(response => {
             this.spinnerService.hide();
             this.messageService.success(response);
             this.saveExperience(response['data']);
-            if (!flag) {
+            if (flag) {
+                this.formExperienceIn.reset();
+            } else {
                 this.displayOut.emit(false);
             }
-            this.resetFormExperience();
 
         }, error => {
             this.spinnerService.hide();
             this.messageService.error(error);
         });
     }
+
 
     // Save in backend
     updateExperience(experience: Experience) {
@@ -249,6 +272,12 @@ export class ExperienceFormComponent implements OnInit {
 
     markAllAsTouchedFormExperience() {
         this.formExperienceIn.markAllAsTouched();
+    }
+    calculateEndDate(){
+        if(this.startDateField.valid){
+            const date = add(new Date(this.startDateField.value), {months:1, days:1});
+            this.endDateField.patchValue(format(date, 'yyyy-MM-dd'));
+        }
     }
 
 }
