@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <app-skeleton *ngIf="flagExperiences" [type]="'table'"></app-skeleton>
 
 <div class="card" [hidden]="flagExperiences">
@@ -89,3 +90,148 @@
         (searchOut)="searchFiles($event)" [paginatorIn]="paginatorFiles" (paginatorOut)="getFiles($event)">
     </app-view-files>
 </p-dialog>
+=======
+<app-skeleton *ngIf="flagExperiences"></app-skeleton>
+<p-dialog [(visible)]="dialogUploadFiles" [style]="{width: '75%'}" header="Subir archivos" [modal]="true"
+          styleClass="p-fluid" (onHide)="dialogUploadFiles=false">
+    <app-upload-files (files)="upload($event,selectedExperience.id)"></app-upload-files>
+</p-dialog>
+
+<p-dialog [(visible)]="dialogViewFiles" [style]="{width: '75%'}" header="Subir Archivos" [modal]="true"
+          styleClass="p-fluid" (onHide)="dialogViewFiles=false;resetPaginator()">
+    <app-view-files
+            (files)="upload($event,selectedExperience.id)"
+            [filesIn]="files"
+            (searchOut)="searchFiles($event)"
+            [paginatorIn]="paginatorFiles"
+            (paginatorOut)="getFiles($event)"></app-view-files>
+</p-dialog>
+
+<div class="card">
+    <p-toolbar styleClass="p-mb-4">
+        <ng-template pTemplate="left">
+            <button pButton pRipple label="Crear" icon="pi pi-plus" class="p-button-success p-button-rounded"
+                    (click)="openNewFormExperience()"></button>
+            <button pButton pRipple label="Eliminar" icon="pi pi-trash" class="p-button-danger p-button-rounded p-ml-2"
+                    (click)="deleteExperiences()"
+                    [disabled]="!selectedExperiences || !selectedExperiences.length"></button>
+            <button pButton pRipple label="Actualizar" icon="pi pi-refresh" class="p-button-info p-button-rounded p-ml-2"
+                    (click)="paginatorOut.emit(paginatorIn)"></button>
+        </ng-template>
+
+        <ng-template pTemplate="right">
+            <p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Import"
+                          chooseLabel="Import" class="p-mr-2 p-mb-2 p-d-inline-block"></p-fileUpload>
+            <button pButton pRipple label="Export" icon="pi pi-upload" class="p-button-help p-mb-2"
+                    (click)="dt.exportCSV()"></button>
+        </ng-template>
+    </p-toolbar>
+    <p-paginator [rows]="paginatorIn.per_page" [totalRecords]="paginatorIn.total"
+                 (onPageChange)="pageChange($event)"></p-paginator>
+    <p-table #dt
+             [value]="experiencesIn" 
+             [rows]="paginatorIn.per_page"
+             [paginator]="false"
+             [(selection)]="selectedExperiences"
+             [rowHover]="true"
+             dataKey="id"
+             styleClass="p-datatable-customers"
+             currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+             [showCurrentPageReport]="true">
+        <ng-template pTemplate="caption">
+            <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header">
+                <h5 class="p-m-0">Experiencia</h5>
+                <span class="p-input-icon-left">
+                        <i class="pi pi-search" (click)="searchExperiences($event,search.value)"></i>
+                        <input #search pInputText type="text" (keyup)="searchExperiences($event,$event.target.value)"
+                               placeholder="Buscar..."/>
+                    </span>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="width: 3rem">
+                    <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                </th>
+                <th pSortableColumn="area">
+                   Area
+                    <p-sortIcon field="area"></p-sortIcon>
+                </th>
+                <th pSortableColumn="employer">
+                    Empleador
+                    <p-sortIcon field="employer"></p-sortIcon>
+                </th>
+                <th pSortableColumn="position">
+                    Posición
+                    <p-sortIcon field="position"></p-sortIcon>
+                </th>
+                <th pSortableColumn="start_date">
+                    Fecha Inicio
+                    <p-sortIcon field="start_date"></p-sortIcon>
+                </th>
+                <th pSortableColumn="end_date">
+                    Fecha Fin
+                    <p-sortIcon field="end_date"></p-sortIcon>
+                </th>
+                <th pSortableColumn="activities">
+                    Actividades
+                    <p-sortIcon field="activities"></p-sortIcon>
+                </th>
+                <th pSortableColumn="reason_leave">
+                    Razon
+                    <p-sortIcon field="reason_leave"></p-sortIcon>
+                </th>
+                <th pSortableColumn="is_working">
+                    Esta trabajando
+                    <p-sortIcon field="is_working"></p-sortIcon>
+                </th>
+                <th></th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-experience>
+            <tr>
+                <td>
+                    <p-tableCheckbox [value]="experience"></p-tableCheckbox>
+                </td>  
+                <td>
+                    {{experience.area}}
+                </td>
+                <td>
+                    {{experience.employer}}
+                </td>
+                <td>
+                    {{experience.position}}
+                </td>
+                <td>
+                    {{experience.start_date}}
+                </td>
+                <td>
+                    {{experience.end_date}}
+                </td>
+                <td>
+                    {{experience.activities}}
+                </td>
+                <td>
+                    {{experience.reason_leave}}
+                </td>
+                <td>
+                    {{experience.is_working}}
+                </td>
+                <td>
+                    <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-warning"
+                            (click)="openEditFormExperience(Experience)"></button>
+                    <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger p-ml-2"
+                            (click)="deleteExperiences(experience)"></button>
+                    <button pButton pRipple icon="pi pi-paperclip" class="p-button-rounded p-ml-2"
+                            (click)="selectExperience(experience);openViewFilesExperience()"></button>
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="summary">
+            <div class="p-d-flex p-ai-center p-jc-between">
+                En total hay {{paginatorIn ? paginatorIn.total : 0 }} experiencia.
+            </div>
+        </ng-template>
+    </p-table>
+</div>
+>>>>>>> u_6_faz-evelyn
