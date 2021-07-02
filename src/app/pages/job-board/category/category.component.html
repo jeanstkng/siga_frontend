@@ -1,0 +1,25 @@
+<div class="p-grid">
+    <div class="p-col-12">
+        <app-categoryt-list
+                [categoriesIn]="categories"
+                [flagCategories]="flagCategories"
+                [paginatorIn]="paginator"
+                [formCategoriesIn]="formCategories"
+                (categoriesOut)="categories=$event"
+                (displayOut)="categoryDialog=$event"
+                (formCategoryOut)="formCategory=$event"
+                (paginatorOut)="getCategories($event)">
+        </app-category-list>
+
+        <p-dialog [(visible)]="categoryDialog" [style]="{width: '450px'}" header="Categorias" [modal]="true"
+                  styleClass="p-fluid" (onHide)="categoryDialog=false">
+            <app-category-form
+                    [cateriesIn]="categories"
+                    [formCategoryIn]="formCategory"
+                    (categoriesOut)="categories=$event"
+                    (paginatorAdd)="paginator.total = paginator.total + $event"
+                    (displayOut)="categoryDialog=$event">
+            </app-category-form>
+        </p-dialog>
+    </div>
+</div>
