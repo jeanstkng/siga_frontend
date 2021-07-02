@@ -1,22 +1,27 @@
 <div class="p-grid">
-    <div class="p-col-4">
-        <app-category-filter
-            [categoriesIn]="categories"
-            [bodyIn]="body"
-            (bodyOut)="changeBody($event)">
-        </app-category-filter>
+    <div class="p-xl-4 p-lg-4 p-md-5 p-sm-12 p-col-12">
+        <div class="card p-shadow-2">
+            <h4>Filtrado por categorias</h4>
+            <app-category-filter
+                [categoriesIn]="categories"
+                [bodyIn]="body"
+                (bodyOut)="changeBody($event)">
+            </app-category-filter>
+        </div>
     </div>
-    <div class="p-col-8">
-        <app-filter
-            [bodyIn]="body"
-            (bodyOut)="changeBody($event)">
-        </app-filter>
-        <br>
-        <app-professional-list 
-            [professionalsIn]="professionals"
-            [paginatorIn]="paginator"
-            [flagProfessionals]="flagProfessionals"
-            (paginatorOut)="changePaginator($event)">
-        </app-professional-list>
+    <div class="p-xl-8 p-lg-8 p-md-7 p-sm-12 p-col-12">
+        <div class="card p-mt-0 p-shadow-2">
+            <app-filter
+                [bodyIn]="body"
+                (bodyOut)="changeBody($event)">
+            </app-filter>
+            <br>
+            <app-professional-list 
+                [professionalsIn]="professionals"
+                [paginatorIn]="paginator"
+                [flagProfessionals]="flagProfessionals"
+                (paginatorOut)="changePaginator($event)">
+            </app-professional-list>
+        </div>
     </div>
 </div>

@@ -1,38 +1,44 @@
-<p-paginator 
-    [rows]="paginatorIn.per_page"
-    [totalRecords]="paginatorIn.total"
-    (onPageChange)="pageChange($event)">
-</p-paginator>
-
 <app-skeleton *ngIf="flagProfessionals" [type]="'rectangle'"></app-skeleton>
 
 <div class="card" [hidden]="flagProfessionals">
     <div class="p-grid">
-        <div class="p-xl-4 p-lg-6 p-md-12 p-sm-12 p-col-12" *ngFor="let professional of professionalsIn">
+        <div class="p-xl-6 p-lg-6 p-md-12 p-sm-12 p-col-12" *ngFor="let professional of professionalsIn">
             <p-card>
                 <ng-template pTemplate="title" *ngFor="let academicFormation of professional.academic_formations">
                     {{academicFormation.professional_degree.name}}
                 </ng-template>
-                {{professional.about_me}}
+                <ng-template pTemplate="subtitle">Acerca de mi</ng-template>
+                <ng-template pTemplate="content">{{professional.about_me}}</ng-template>
                 <ng-template pTemplate="footer" *ngIf="loggedIn()">
-                    <button pButton pRipple
-                            type="button"
-                            label="Más Información"
-                            class="p-button-info"
-                            icon="pi pi-info-circle"
-                            iconPos="left">
-                    </button>
-                    <br><br>
-                    <button pButton pRipple
-                            type="button"
-                            label="Contactar"
-                            class="p-button-success"
-                            icon="pi pi-envelope"
-                            iconPos="left"
-                            (click)="professionalAplied(professional)">
-                    </button>
+                    <div class="p-grid">
+                        <div class="p-xl-6 p-lg-12 p-md-6 p-sm-6 p-col-6">
+                            <button pButton pRipple
+                                    type="button"
+                                    label="Contactar"
+                                    class="p-button-success"
+                                    icon="pi pi-check"
+                                    iconPos="left"
+                                    (click)="professionalAplied(professional)">
+                            </button>
+                        </div>
+                        <div class="p-xl-6 p-lg-12 p-md-6 p-sm-6 p-col-6">
+                            <button pButton pRipple
+                                    type="button"
+                                    label="Ver más"
+                                    class="p-button-info"
+                                    icon="pi pi-eye"
+                                    iconPos="left">
+                            </button>
+                        </div>
+                    </div>
                 </ng-template>
             </p-card>
         </div>
     </div>
 </div>
+
+<p-paginator 
+    [rows]="paginatorIn.per_page"
+    [totalRecords]="paginatorIn.total"
+    (onPageChange)="pageChange($event)">
+</p-paginator>

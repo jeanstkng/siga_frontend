@@ -24,7 +24,7 @@ export class WebProfessionalComponent implements OnInit {
   constructor(
     private jobBoardHttpService: JobBoardHttpService,
     private messageService: MessageService) {
-      this.paginator = {current_page: 1, per_page: 9};
+      this.paginator = {current_page: 1, per_page: 8};
       this.body = {ids: null, search: null};
       this.professionals = [];
     }
