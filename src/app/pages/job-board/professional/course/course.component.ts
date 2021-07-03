@@ -71,7 +71,7 @@ export class CourseComponent implements OnInit {
                 // this.spinnerService.hide();
                 this.flagCourses = false;
                 this.courses = response['data'];
-                   console.log(this.courses)
+                  // console.log(this.courses)
                 this.paginator = response as Paginator;
             }, error => {
                 // this.spinnerService.hide();
