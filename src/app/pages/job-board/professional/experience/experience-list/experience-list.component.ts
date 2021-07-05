@@ -31,6 +31,8 @@ export class ExperienceListComponent implements OnInit {
     files: File[];
     paginatorFiles: Paginator;
     colsExperience: Col[];
+    isWorking: boolean;
+  
 
     constructor(private messageService: MessageService,
         private spinnerService: NgxSpinnerService,

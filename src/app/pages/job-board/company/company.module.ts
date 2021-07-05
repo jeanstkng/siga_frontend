@@ -41,7 +41,7 @@ import {OfferProfessionalsComponent} from "./offer/offer-professionals/offer-pro
 import {CalendarModule} from 'primeng/calendar';
 import { ProfileComponent } from './profile/profile.component';
 import { ProfileFormComponent } from './profile/profile-form/profile-form.component';
-import { ProfessionalComponent } from '../professional/professional.component';
+import { ProfessionalComponent } from './professional/professional.component';
 import { ProfessionalListComponent } from './professional/professional-list/professional-list.component';
 import { RegisterComponent } from './register/register.component';
 import { RegisterFormComponent } from './register/register-form/register-form.component';

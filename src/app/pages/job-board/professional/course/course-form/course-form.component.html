@@ -56,26 +56,30 @@
              </div>
          </div>
          <div class="p-field">
-             <label for="type">
-                 <i class="p-error">*</i> Tipo:
-                 <i *ngIf="typeField.valid" class="pi pi-check-circle icon-valid"></i>
-                 <i *ngIf="typeField.invalid && (typeField.touched || typeField.dirty)"
-                     class="pi pi-times-circle icon-invalid"></i>
-             </label>
-             <p-autoComplete id="type" name="type" formControlName="type" [suggestions]="filteredTypes"
-                 (completeMethod)="filterType($event)" field="name" [dropdown]="true">
-                 <ng-template let-type pTemplate="item">
-                     <div class="country-item">
-                         <div>{{type.name}}</div>
-                     </div>
-                 </ng-template>
-             </p-autoComplete>
-             <div *ngIf="typeField.invalid && (typeField.touched || typeField.dirty)">
-                 <small *ngIf="typeField.errors?.required" id="type-help-1" class="p-error">
-                     {{messageService.fieldRequired}}
-                 </small>
-             </div>
-         </div>
+            <label for="type">
+                <i class="p-error">*</i> Tipo:
+                <i *ngIf="typeField.valid" class="pi pi-check-circle icon-valid"></i>
+                <i *ngIf="typeField.invalid && (typeField.touched || typeField.dirty)"
+                   class="pi pi-times-circle icon-invalid"></i>
+            </label>
+            <p-autoComplete id="type" formControlName="type"
+                            [suggestions]="filteredTypes"
+                            (completeMethod)="filterType($event)"
+                            field="name"
+                            [dropdown]="true">
+                <ng-template let-item pTemplate="item">
+                    <div class="country-item">
+                        <div>{{item.name}}</div>
+                    </div>
+                </ng-template>
+            </p-autoComplete>
+            <div *ngIf="typeField.invalid && (typeField.touched || typeField.dirty)">
+                <small *ngIf="typeField.errors?.required"
+                       id="type-help-1" class="p-error">
+                    {{messageService.fieldRequired}}
+                </small>
+            </div>
+        </div>
          <div class="p-field">
              <label for="institution">
                  <i class="p-error">*</i> Institución:
@@ -146,38 +150,6 @@
                     id="end_date"> 
             </app-date>
         </div>
-       <!--  <div class="p-field">
-             <label for="startDate">Fecha de inicio</label>
-             <app-date id="startDate" name="startDate" formControlName="start_date"></app-date>
-             <div *ngIf="startDateField.errors && (startDateField.touched || startDateField.dirty)">
-                 <small *ngIf="startDateField.hasError('required')" id="start-date-help-1" class="p-error">
-                     El campo es obligatorio.
-                 </small>
-             </div>
-         </div>
-         <div class="p-field">
-             <label for="endDate">Fecha final</label>
-             <app-date id="endDate" name="endDate" formControlName="end_date"></app-date>
-             <div *ngIf="endDateField.errors && (endDateField.touched || endDateField.dirty)">
-                 <small *ngIf="endDateField.hasError('required')" id="end-date-help-1" class="p-error">
-                     El campo es obligatorio.
-                 </small>
-             </div>
-         </div>
-        <div class="p-field">
-             <label for="hours">
-                 <i class="p-error">*</i> Horas:
-                 <i *ngIf="hoursField.valid" class="pi pi-check-circle icon-valid"></i>
-                 <i *ngIf="hoursField.invalid && (hoursField.touched || hoursField.dirty)"
-                     class="pi pi-times-circle icon-invalid"></i>
-             </label>
-             <input pInputText type="text" >
-             <div *ngIf="hoursField.invalid && (hoursField.touched || hoursField.dirty)">
-                 <small *ngIf="hoursField.errors?.required" id="hours-help-1" class="p-error">
-                     {{messageService.fieldRequired}}
-                 </small>
-             </div>
-         </div> -->
          <div class="p-field ">
             <label for="hours">Hours:</label>
             <input id="hours" name="hours" pInputText formControlName="hours" />
@@ -186,11 +158,7 @@
                     {{messageService.fieldRequired}}
                 </small>
             </div>
-        </div>
-   
-
-      
-         
+        </div>  
          <div class="p-formgrid p-grid">
              <div class="p-field p-col">
                  <button type="submit" pButton pRipple label="Guardar y Salir" icon="pi pi-save"
