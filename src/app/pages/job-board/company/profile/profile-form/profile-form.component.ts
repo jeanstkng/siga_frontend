@@ -11,7 +11,7 @@ import {SharedService} from '../../../../shared/services/shared.service';
 import {AppHttpService} from '../../../../../services/app/app-http.service';
 import {User} from 'src/app/models/auth/user';
 import {AuthService} from 'src/app/services/auth/auth.service';
-import {isAsciiHexDigit} from 'codelyzer/angular/styles/chars';
+
 
 @Component({
     selector: 'app-profile-form',
