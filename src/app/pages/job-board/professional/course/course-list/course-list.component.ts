@@ -39,6 +39,9 @@ export class CourseListComponent implements OnInit {
         //this.resetPaginatorFiles();
     }
 
+    resetPaginator() {
+        this.paginatorFiles = { current_page: 1, per_page: 5 };
+    }
     resetPaginatorCourses() {
         this.paginatorIn = { current_page: 1, per_page: 5 };
     }

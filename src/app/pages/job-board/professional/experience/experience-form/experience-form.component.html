@@ -134,13 +134,14 @@
             <label for="isWorking">
                 <i class="p-error">*</i> Está Trabajando:
                 <div class="p-field-checkbox">
-                    <p-checkbox name="isWorking" value="si" formControlName="is_working" [(ngModel)]="selectedIsWorking"
-                        inputId="isWorking"></p-checkbox>
+                    <p-checkbox name="isWorking" value="si" formControlName="is_working" inputId="isWorking">
+                    </p-checkbox>
+
                     <label for="ny">SI</label>
                 </div>
                 <div class="p-field-checkbox">
-                    <p-checkbox name="isWorking" value="no" formControlName="is_working" [(ngModel)]="selectedIsWorking"
-                        inputId="isWorkingField"></p-checkbox>
+                    <p-checkbox name="isWorking" value="no" formControlName="is_working" inputId="isWorkingField">
+                    </p-checkbox>
                     <label for="sf">NO</label>
                 </div>
             </label>
