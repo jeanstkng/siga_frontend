@@ -17,7 +17,8 @@ import { JobBoardHttpService } from 'src/app/services/job-board/job-board-http.s
 })
 
 export class CategoryListComponent implements OnInit {
-    @Input() flagSkeletonListCategories: boolean;
+    //@Input() flagSkeletonListCategories: boolean;
+    @Input() flagCategories: boolean;
     @Input() categoriesIn: Category[];
     @Input() paginatorIn: Paginator;
     @Input() formCategoryIn: FormGroup;
@@ -48,8 +49,11 @@ export class CategoryListComponent implements OnInit {
     // Columns table
     loadColsCategory() {
         this.colsCategory = [
-            {field: 'type', header: 'Tipo'},
-            {field: 'description', header: 'Descripción'},
+            {field: 'parent', header: 'padre'},
+            {field: 'code', header: 'codigo'},
+            {field: 'name', header: 'nombre'},
+            {field: 'icon', header: 'icono'},
+            
         ];
     }
 

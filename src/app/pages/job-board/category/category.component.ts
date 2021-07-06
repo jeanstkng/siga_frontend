@@ -23,6 +23,8 @@ export class CategoryComponent implements OnInit {
   formCategory: FormGroup;
   categoryDialog: boolean;
   flagSkeletonListCategories: boolean;
+  flagCategories: boolean;
+
 
   constructor(
       private spinnerService: NgxSpinnerService,
@@ -30,7 +32,7 @@ export class CategoryComponent implements OnInit {
       private formBuilder: FormBuilder,
       private appHttpService: AppHttpService,
       private jobBoardHttpService: JobBoardHttpService) {
-      this.paginator = { current_page: 1, per_page: 2 };
+      this.paginator = { current_page: 1, per_page: 20 };
       this.categories = [];
   }
 
@@ -43,8 +45,8 @@ export class CategoryComponent implements OnInit {
   buildFormCategory() {
       this.formCategory = this.formBuilder.group({
           id: [null],
-          parent_id: [null ],
-          children: [null ],
+          parent: [null ],
+          //children: [null ],
           code: [null, Validators.required ],
           name: [null, Validators.required ],
           icon: [null, Validators.required ],
@@ -62,11 +64,14 @@ export class CategoryComponent implements OnInit {
           response => {
               this.flagSkeletonListCategories = false;
               this.categories = response['data'];
+              console.log(this.categories);
               this.paginator = response as Paginator;
           }, error => {
               this.flagSkeletonListCategories = false;
               this.messageService.error(error);
           });
+
+    
   }
 }
 

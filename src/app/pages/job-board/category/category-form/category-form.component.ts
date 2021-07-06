@@ -29,6 +29,8 @@ export class CategoryFormComponent implements OnInit {
                 private appHttpService: AppHttpService,
                 private sharedService: SharedService,
                 private jobBoardHttpService: JobBoardHttpService) {
+
+                    console.log("hola mundo");
     }
 
     ngOnInit(): void {
@@ -41,11 +43,11 @@ export class CategoryFormComponent implements OnInit {
     }
 
     get parent_idField() {
-        return this.formCategoryIn.get('parent_id');
+        return this.formCategoryIn.get('parent');
     }
-    get childrenField() {
+    /* get childrenField() {
         return this.formCategoryIn.get('childrent');
-    }
+    } */
     get codeField() {
         return this.formCategoryIn.get('code');
     }
