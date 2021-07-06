@@ -40,7 +40,7 @@ export class CourseListComponent implements OnInit {
     }
 
     resetPaginator() {
-        this.paginatorFiles = {current_page: 1, per_page: 5};
+        this.paginatorFiles = { current_page: 1, per_page: 5 };
     }
     resetPaginatorCourses() {
         this.paginatorIn = { current_page: 1, per_page: 5 };

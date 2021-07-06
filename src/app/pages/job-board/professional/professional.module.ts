@@ -1,4 +1,3 @@
-
 // Angular Modules
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
@@ -37,7 +36,7 @@ import { RippleModule } from 'primeng/ripple';
 import { ProfessionalComponent } from './professional.component';
 import { SkillComponent } from './skill/skill.component';
 import { SkillFormComponent } from './skill/skill-form/skill-form.component';
-import { SkillListComponent } from './skill/skill-list/skill-list.component';
+//import { SkillListComponent } from './skill/skill-form/skill-list.component';
 import { CourseComponent } from './course/course.component';
 import { CourseFormComponent } from './course/course-form/course-form.component';
 import { CourseListComponent } from './course/course-list/course-list.Component';
@@ -50,9 +49,8 @@ import { ExperienceListComponent } from './experience/experience-list/experience
 import { LanguageComponent } from './language/language.component';
 import { LanguageFormComponent } from './language/language-form/language-form.component';
 import { LanguageListComponent } from './language/language-list/language-list.component';
-//import { ProfileComponent } from '../company/profile/profile.component';
+import { ProfileComponent } from '../company/profile/profile.component';
 //import { ProfilesComponent } from './profiles/profiles.component';
-import { CheckboxModule } from 'primeng/checkbox';
 
 
 @NgModule({
@@ -88,14 +86,13 @@ import { CheckboxModule } from 'primeng/checkbox';
         CardModule,
         SkeletonModule,
         RippleModule,
-        CheckboxModule,
     ],
     declarations: [
         ProfessionalComponent,
        // ProfileComponent,
         SkillComponent,
         SkillFormComponent,
-        SkillListComponent,
+        //SkillListComponent,
         CourseComponent,
         CourseFormComponent,
         CourseListComponent,
@@ -107,7 +104,7 @@ import { CheckboxModule } from 'primeng/checkbox';
         ExperienceFormComponent,
         LanguageComponent,
         LanguageFormComponent,
-        LanguageListComponent
+        LanguageListComponent,
         //ProfilesComponent
 
 

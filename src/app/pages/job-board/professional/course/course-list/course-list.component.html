@@ -6,7 +6,7 @@
 </p-dialog>
 
 <p-dialog [(visible)]="dialogViewFiles" [style]="{width: '75%'}" header="Subir Archivos" [modal]="true"
-          styleClass="p-fluid" >
+          styleClass="p-fluid" (onHide)="dialogViewFiles=false;resetPaginator()">
     <app-view-files
             (files)="upload($event,selectedCourse.id)"
             [filesIn]="files"

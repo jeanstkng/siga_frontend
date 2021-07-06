@@ -46,7 +46,7 @@ export class CourseFormComponent implements OnInit {
         this.getInstitutions();
         this.getCertificationTypes();
         this.getAreas();
-  
+
     }
 
     // Fields of Form
@@ -109,6 +109,7 @@ export class CourseFormComponent implements OnInit {
     }
 
     // Types of catalogues
+
     getTypes() {
         const params = new HttpParams().append('type', 'COURSE_TYPE');
         this.appHttpService.getCatalogues(params).subscribe(response => {
@@ -249,27 +250,27 @@ export class CourseFormComponent implements OnInit {
         }
         this.filteredCertificationTypes = filtered;
     }
-   // Filter area of experiences
-   filterArea(event) {
-    const filtered: any[] = [];
-    const query = event.query;
-    for (const area of this.areas) {
-        if (area.name.toLowerCase().indexOf(query.toLowerCase()) === 0) {
-            filtered.push(area);
+    // Filter area of experiences
+    filterArea(event) {
+        const filtered: any[] = [];
+        const query = event.query;
+        for (const area of this.areas) {
+            if (area.name.toLowerCase().indexOf(query.toLowerCase()) === 0) {
+                filtered.push(area);
+            }
         }
+        if (filtered.length === 0) {
+            this.messagePnService.clear();
+            this.messagePnService.add({
+                severity: 'error',
+                summary: 'Por favor seleccione un tipo del listado',
+                detail: 'En el caso de no existir comuníquese con el administrador!',
+                life: 5000
+            });
+            this.areaField.setValue(null);
+        }
+        this.filteredAreas = filtered;
     }
-     if (filtered.length === 0) {
-         this.messagePnService.clear();
-         this.messagePnService.add({
-             severity: 'error',
-             summary: 'Por favor seleccione un tipo del listado',
-             detail: 'En el caso de no existir comuníquese con el administrador!',
-             life: 5000
-         });
-         this.areaField.setValue(null);
-     }
-    this.filteredAreas = filtered;
-}
 
     test(event) {
         event.markAllAsTouched();
@@ -282,9 +283,9 @@ export class CourseFormComponent implements OnInit {
     markAllAsTouchedFormCourse() {
         this.formCourseIn.markAllAsTouched();
     }
-    calculateEndDate(){
-        if(this.startDateField.valid){
-            const date = add(new Date(this.startDateField.value), {months:1, days:1});
+    calculateEndDate() {
+        if (this.startDateField.valid) {
+            const date = add(new Date(this.startDateField.value), { months: 1, days: 1 });
             this.endDateField.patchValue(format(date, 'yyyy-MM-dd'));
         }
     }

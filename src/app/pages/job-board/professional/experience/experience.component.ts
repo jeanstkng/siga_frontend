@@ -55,8 +55,6 @@ export class ExperienceComponent implements OnInit {
     });
   }
 
-  
-
   // experiences of backend
   getExperiences(paginator: Paginator) {
     const params = new HttpParams()
@@ -78,6 +76,9 @@ export class ExperienceComponent implements OnInit {
         this.messageService.error(error);
       });
   }
+<<<<<<< HEAD
   
 
+=======
+>>>>>>> 0a562207a106de98ef9c4fb251fe5af6de9b0e67
 }
