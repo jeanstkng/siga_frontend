@@ -129,24 +129,33 @@
             </div>
         </div>
 
-
-        <div class="p-field">
-            <label for="isWorking">
-                <i class="p-error">*</i> Está Trabajando:
-                <div class="p-field-checkbox">
-                    <p-checkbox name="isWorking" value="si" formControlName="is_working" inputId="isWorking">
-                    </p-checkbox>
-
-                    <label for="ny">SI</label>
-                </div>
-                <div class="p-field-checkbox">
-                    <p-checkbox name="isWorking" value="no" formControlName="is_working" inputId="isWorkingField">
-                    </p-checkbox>
-                    <label for="sf">NO</label>
-                </div>
+        <div class="p-field p-xl-6 p-lg-6 p-md-6 p-sm-12">
+            <label for="is_disability">
+              <i class="p-error">*</i> Esta trabajando:
+              <i *ngIf="isWorkingField.valid" class="pi pi-check-circle icon-valid"></i>
+              <i *ngIf="Field.invalid && (isWorkingField.touched || isWorkingField.dirty)"
+                class="pi pi-times-circle icon-invalid"></i>
             </label>
-        </div>
-
+            <!-- <input id="is_travel" formControlName="is_travel" pInputText> -->
+            <div
+              *ngIf="isWorkingField.errors && (isWorkingField.touched ||isWorkingField.dirty)">
+              <small *ngIf="isWorkingField.errors?.required" id="is_working-help-1" class="p-error">
+                {{messageService.fieldRequired}}
+              </small>
+            </div>
+            <div class class="p-field-checkbox">
+              <p-checkbox name="is_working" value="si" formControlName="is_working"
+                inputId="isWorkingField">
+              </p-checkbox>
+              <label for="ny">SI</label>
+            </div>
+            <div class="p-field-checkbox">
+              <p-checkbox name="is_working" value="no" formControlName="is_working"
+                inputId="isWorkingField">
+              </p-checkbox>
+              <label for="sf">NO</label>
+            </div>
+          </div>
         <div class="p-formgrid p-grid">
             <div class="p-field p-col">
                 <button type="submit" pButton pRipple label="Guardar y Salir" icon="pi pi-save"
@@ -158,4 +167,5 @@
             </div>
         </div>
     </form>
+
 </div>

@@ -43,7 +43,7 @@ export class CourseFormComponent implements OnInit {
 
     ngOnInit(): void {
         this.getTypes();
-        this.getInstitution();
+        this.getInstitutions();
         this.getCertificationTypes();
         this.getAreas();
 
@@ -118,7 +118,8 @@ export class CourseFormComponent implements OnInit {
             this.messageService.error(error);
         });
     }
-    getInstitution() {
+   
+    getInstitutions() {
         const params = new HttpParams().append('type', 'COURSE_INSTITUTION');
         this.appHttpService.getCatalogues(params).subscribe(response => {
             this.institutions = response['data'];

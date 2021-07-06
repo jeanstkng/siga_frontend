@@ -16,7 +16,6 @@ import { MessageService } from 'src/app/pages/shared/services/message.service';
 export class WebProfessionalComponent implements OnInit {
 
   professionals: Professional[];
-  categories: Category[]
   paginator: Paginator;
   body: any;
   flagProfessionals: boolean;
