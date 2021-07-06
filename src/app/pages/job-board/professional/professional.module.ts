@@ -92,7 +92,7 @@ import { ProfileFormComponent } from './profile/profile-form/profile-form.compon
     ],
     declarations: [
         ProfessionalComponent,
-        ProfileComponent,
+       // ProfileComponent,
         SkillComponent,
         SkillFormComponent,
         SkillListComponent,

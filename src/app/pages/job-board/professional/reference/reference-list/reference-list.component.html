@@ -34,8 +34,9 @@
         </ng-template>
     </p-toolbar>
     <p-paginator [rows]="paginatorIn.per_page" [totalRecords]="paginatorIn.total"
-                 (onPageChange)="pageChange($event)"></p-paginator>
-    <p-table #dt
+                 (onPageChange)="pageChange($event)">
+                </p-paginator>
+    <p-table #dtReference
              [value]="referencesIn"
              [rows]="paginatorIn.per_page"
              [paginator]="false"
