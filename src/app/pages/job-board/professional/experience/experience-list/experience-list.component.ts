@@ -42,12 +42,18 @@ export class ExperienceListComponent implements OnInit {
     ngOnInit(): void {
         this.loadColsExperience();
     }
+    resetPaginator() {
 
+    }
     loadColsExperience() {
         this.colsExperience = [
             { field: 'type', header: 'Tipo' },
             { field: 'description', header: 'Descripción' },
         ];
+    }
+    pageChange(event) {
+        this.paginatorIn.current_page = event.page + 1;
+        this.paginatorOut.emit(this.paginatorIn);
     }
 
     // Search experiences in backend
