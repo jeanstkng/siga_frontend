@@ -23,14 +23,11 @@ export class CategoryListComponent implements OnInit {
     @Input() formCategoryIn: FormGroup;
     @Input() displayIn: boolean;
     @Output() categoriesOut = new EventEmitter<Category[]>();
-    @Output() formCategorylOut = new EventEmitter<FormGroup>();
+    @Output() formCategoryOut = new EventEmitter<FormGroup>();
     @Output() displayOut = new EventEmitter<boolean>();
     @Output() paginatorOut = new EventEmitter<Paginator>();
     selectedCategories: any[];
-    selectedCategory: Category;
-    dialogUploadFiles: boolean;
-    dialogViewFiles: boolean;
-    files: File[];
+    selectedCategory:Category;
     paginatorFiles: Paginator;
     colsCategory: Col[];
 
@@ -77,17 +74,16 @@ export class CategoryListComponent implements OnInit {
         this.displayOut.emit(true);
     }
 
-    openEditFormCategory(skill: Category) {
-        this.formCategoryIn.patchValue(skill);
+    openEditFormCategory(category: Category) {
+        this.formCategoryIn.patchValue(category);
         this.formCategoryOut.emit(this.formCategoryIn);
         this.displayOut.emit(true);
     }
 
-    selectCategory(skill: Category) {
-        this.selectedCategory = skill;
+    selectCategory(category: Category) {
+        this.selectedCategory = category;
     }
 
-   
 
 
     pageChange(event) {
@@ -95,17 +91,17 @@ export class CategoryListComponent implements OnInit {
         this.paginatorOut.emit(this.paginatorIn);
     }
 
-    deleteCategories(skill = null) {
+    deleteCategories(category = null) {
         this.messageService.questionDelete({})
             .then((result) => {
                 if (result.isConfirmed) {
-                    if (skill) {
+                    if (category) {
                         this.selectedCategories = [];
-                        this.selectedCategories.push(skill);
+                        this.selectedCategories.push(category);
                     }
                     const ids = this.selectedCategories.map(element => element.id);
                     this.spinnerService.show();
-                    this.jobBoardHttpService.delete('skill/delete', ids)
+                    this.jobBoardHttpService.delete('category/delete', ids)
                         .subscribe(response => {
                             this.spinnerService.hide();
                             this.messageService.success(response);
@@ -126,5 +122,4 @@ export class CategoryListComponent implements OnInit {
         this.categoriesOut.emit(this.categoriesIn);
     }
 
-   
 }

@@ -50,7 +50,7 @@ import { LanguageComponent } from './language/language.component';
 import { LanguageFormComponent } from './language/language-form/language-form.component';
 import { LanguageListComponent } from './language/language-list/language-list.component';
 import { ProfileComponent } from '../company/profile/profile.component';
-//import { ProfilesComponent } from '../professional/profiles/profiles.component';
+//import { ProfilesComponent } from './profiles/profiles.component';
 
 
 @NgModule({
@@ -104,7 +104,7 @@ import { ProfileComponent } from '../company/profile/profile.component';
         ExperienceFormComponent,
         LanguageComponent,
         LanguageFormComponent,
-        LanguageListComponent
+        LanguageListComponent,
         //ProfilesComponent
 
 

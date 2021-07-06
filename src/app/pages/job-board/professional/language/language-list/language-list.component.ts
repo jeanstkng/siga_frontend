@@ -1,13 +1,13 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Language} from '../../../../../models/job-board/language';
-import {FormGroup} from '@angular/forms';
-import {Col} from '../../../../../models/setting/col';
-import {Paginator} from '../../../../../models/setting/paginator';
-import {MessageService} from '../../../../shared/services/message.service';
-import {NgxSpinnerService} from 'ngx-spinner';
-import {JobBoardHttpService} from '../../../../../services/job-board/job-board-http.service';
-import {HttpParams} from '@angular/common/http';
-import {File} from "../../../../../models/app/file";
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Language } from '../../../../../models/job-board/language';
+import { FormGroup } from '@angular/forms';
+import { Col } from '../../../../../models/setting/col';
+import { Paginator } from '../../../../../models/setting/paginator';
+import { MessageService } from '../../../../shared/services/message.service';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { JobBoardHttpService } from '../../../../../services/job-board/job-board-http.service';
+import { HttpParams } from '@angular/common/http';
+import { File } from "../../../../../models/app/file";
 
 @Component({
     selector: 'app-language-list',
@@ -32,18 +32,21 @@ export class LanguageListComponent implements OnInit {
     paginatorFiles: Paginator;
 
     constructor(private messageService: MessageService,
-                private spinnerService: NgxSpinnerService,
-                private jobBoardHttpService: JobBoardHttpService) {
-                    this.resetPaginatorLanguages();
-                    this.resetPaginatorFiles();
+        private spinnerService: NgxSpinnerService,
+        private jobBoardHttpService: JobBoardHttpService) {
+        this.resetPaginatorLanguages();
+        this.resetPaginatorFiles();
+    }
+    resetPaginator() {
+        this.paginatorFiles = { current_page: 1, per_page: 5 };
     }
 
     resetPaginatorLanguages() {
-        this.paginatorIn = {current_page: 1, per_page: 5};
+        this.paginatorIn = { current_page: 1, per_page: 5 };
     }
 
     resetPaginatorFiles() {
-        this.paginatorFiles = {current_page: 1, per_page: 5};
+        this.paginatorFiles = { current_page: 1, per_page: 5 };
     }
 
     ngOnInit(): void {

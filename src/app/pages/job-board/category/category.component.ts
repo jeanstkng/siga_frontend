@@ -14,6 +14,9 @@ import { MessageService } from '../../shared/services/message.service';
   templateUrl: './category.component.html',
   styleUrls: ['./category.component.scss']
 })
+
+
+
 export class CategoryComponent implements OnInit {
   paginator: Paginator;
   categories: Category[];
