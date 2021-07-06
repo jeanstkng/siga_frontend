@@ -34,7 +34,7 @@ export class ReferenceFormComponent implements OnInit {
         private jobBoardHttpService: JobBoardHttpService) {
     }
 
-    ngOnInit(): void {
+    ngOnInit() {
         this.getInstitution();
     }
 
@@ -83,8 +83,7 @@ export class ReferenceFormComponent implements OnInit {
     getInstitution() {
         const params = new HttpParams().append('type', 'REFERENCE_INSTITUTION');
         this.appHttpService.getCatalogues(params).subscribe(response => {
-            this.institutions = response['data'];
-        //    console.log(this.institutions);
+            console.log("dsadasd");
         }, error => {
             this.messageService.error(error);
         });

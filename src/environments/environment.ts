@@ -19,7 +19,7 @@ export const environment = {
     API_URL_COMMUNITY: URL_API + 'community/',
     SYSTEM_ID: 1,
     CLIENT_ID: '1',
-    CLIENT_SECRET: 'fqpWoNgmNCgpyqs5yV5sYRBaerNNDl3IJJQJ6hQu',
+    CLIENT_SECRET: 'JwUhm8FLq8LXWEndmo3O0fEsgGpR5v4FdjvXbAZT',
     GRANT_TYPE: 'password',
 
     SITE_KEY: 'QpKtUkaJ40HNd1Di74B0pKC6asgKzAxuTx69L9Nb',

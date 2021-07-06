@@ -35,8 +35,9 @@ export class ExperienceComponent implements OnInit {
   }
 
   ngOnInit(): void {
+     this.buildFormExperience();
     this.getExperiences(this.paginator);
-    this.buildFormExperience();
+   
   }
 
   // Build form experience

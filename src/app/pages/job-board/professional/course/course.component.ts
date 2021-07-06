@@ -65,7 +65,6 @@ getCourses(paginator: Paginator) {
       .append('page', paginator.current_page.toString())
       .append('per_page', paginator.per_page.toString());
     this.flagCourses = true;
-    console.log(this.course);
     this.jobBoardHttpService.get('courses', params).subscribe(
       response => {
         this.flagCourses = false;

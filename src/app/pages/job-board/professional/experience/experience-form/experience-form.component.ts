@@ -129,33 +129,6 @@ export class ExperienceFormComponent implements OnInit {
         });
     } 
 
-   
-    // getProfessional() {
-    //     const params = new HttpParams().append('type', 'EXPERIENCE_PROFESSIONAL');
-    //     this.appHttpService.getCatalogues(params).subscribe(response => {
-    //         this.ares = response['data'];
-    //     }, error => {
-    //         this.messageService.error(error);
-    //     });
-    // }
-
-    // Save in backend
-    // storeExperience(experience: Experience, flag = false) {
-    //     this.spinnerService.show();
-    //     this.jobBoardHttpService.store('experiences', { experience }).subscribe(response => {
-    //         this.spinnerService.hide();
-    //         this.messageService.success(response);
-    //         this.saveExperience(response['data']);
-    //         if (!flag) {
-    //             this.displayOut.emit(false);
-    //         }
-    //         this.resetFormExperience();
-
-    //     }, error => {
-    //         this.spinnerService.hide();
-    //         this.messageService.error(error);
-    //     });
-    // }
     // Save in backend
     storeExperience(experience: Experience, flag = false) {
         this.spinnerService.show();
