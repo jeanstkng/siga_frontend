@@ -3,7 +3,6 @@
         <div class="card p-shadow-2">
             <h4>Filtrado por categorias</h4>
             <app-category-filter
-                [categoriesIn]="categories"
                 [bodyIn]="body"
                 (bodyOut)="changeBody($event)">
             </app-category-filter>
