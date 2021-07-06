@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Category } from 'src/app/models/job-board/category';
 import { Paginator } from 'src/app/models/setting/paginator';
+import { AppHttpService } from 'src/app/services/app/app-http.service';
 import { JobBoardHttpService } from 'src/app/services/job-board/job-board-http.service';
 import { BreadcrumbService } from 'src/app/shared/services/breadcrumb.service';
 import { MessageService } from '../../shared/services/message.service';
@@ -17,55 +18,53 @@ export class CategoryComponent implements OnInit {
   paginator: Paginator;
   categories: Category[];
   formCategory: FormGroup;
-  flagCategories: boolean;
+  categoryDialog: boolean;
+  flagSkeletonListCategories: boolean;
 
   constructor(
-    private spinnerService: NgxSpinnerService,
-    private messageService: MessageService,
-    private formBuilder: FormBuilder,
-    private jobBoardHttpService: JobBoardHttpService,
-  ) {
-    this.paginator = { current_page: 1, per_page: 10 };
-    this.categories = [];
-
+      private spinnerService: NgxSpinnerService,
+      public messageService: MessageService,
+      private formBuilder: FormBuilder,
+      private appHttpService: AppHttpService,
+      private jobBoardHttpService: JobBoardHttpService) {
+      this.paginator = { current_page: 1, per_page: 2 };
+      this.categories = [];
   }
 
   ngOnInit(): void {
-    this.getCategories(this.paginator);
-    this.buildFormCategory();
-    
+      this.getCategories(this.paginator);
+      this.buildFormCategory();
   }
 
+  // Build form category
   buildFormCategory() {
-    this.formCategory = this.formBuilder.group({
-      parent: [null],
-      children: [null, [Validators.required]],
-      code: [null, Validators.required],
-      name: [null, Validators.required],
-      icon: [null, Validators.required],
-      
-    });
-}
+      this.formCategory = this.formBuilder.group({
+          id: [null],
+          parent_id: [null ],
+          children: [null ],
+          code: [null, Validators.required ],
+          name: [null, Validators.required ],
+          icon: [null, Validators.required ],
+      });
+  }
 
+  // categories of backend
   getCategories(paginator: Paginator) {
-    const params = new HttpParams()
-      .append('page', paginator.current_page.toString())
-      .append('per_page', paginator.per_page.toString());
+      const params = new HttpParams()
+          .append('page', paginator.current_page.toString())
+          .append('per_page', paginator.per_page.toString());
 
-      this.flagCategories = true;
-    this.jobBoardHttpService.get('categories', params).subscribe(
-      response => {
-        this.flagCategories = false;
-        this.categories = response['data'];
-        this.paginator= response as Paginator;
-      },error => {
-        this.flagCategories = false;
-        this.messageService.error(error);
-      }
-    )
-
-  } 
-
+      this.flagSkeletonListCategories = true;
+      this.jobBoardHttpService.get('categories', params).subscribe(
+          response => {
+              this.flagSkeletonListCategories = false;
+              this.categories = response['data'];
+              this.paginator = response as Paginator;
+          }, error => {
+              this.flagSkeletonListCategories = false;
+              this.messageService.error(error);
+          });
+  }
 }
 
 

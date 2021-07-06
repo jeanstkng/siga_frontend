@@ -24,10 +24,11 @@ export const JobBoardRouting: Routes = [
                 path: 'web',
                 loadChildren: () => import('./landing-page/landing-page.module').then(m => m.LandingPageModule),
             },
-            {
-                path: 'category', component: CategoryComponent
-            },
-
+            
         ]
-    }
+    },
+    {
+        path: 'category', component: CategoryComponent
+    },
+
 ];

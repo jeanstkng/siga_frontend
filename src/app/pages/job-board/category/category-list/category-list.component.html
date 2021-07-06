@@ -60,17 +60,16 @@
                 <th style="width: 3rem">
                     <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
                 </th>
-                
-                <th pSortableColumn="parent">
+                <th pSortableColumn=" parent_id">
                     Padre
-                    <p-sortIcon field="parent"></p-sortIcon>
+                    <p-sortIcon field=" parent_id"></p-sortIcon>
                 </th>
                 <th pSortableColumn="children">
-                    Hijo
+                    Hijo 
                     <p-sortIcon field="children"></p-sortIcon>
                 </th>
                 <th pSortableColumn="code">
-                    codigo
+                    Código
                     <p-sortIcon field="code"></p-sortIcon>
                 </th>
                 <th pSortableColumn="name">
@@ -78,10 +77,9 @@
                     <p-sortIcon field="name"></p-sortIcon>
                 </th>
                 <th pSortableColumn="icon">
-                    icono
+                    Icono
                     <p-sortIcon field="icon"></p-sortIcon>
                 </th>
-                
                 <th></th>
             </tr>
         </ng-template>
@@ -91,7 +89,7 @@
                     <p-tableCheckbox [value]="category"></p-tableCheckbox>
                 </td>
                 <td>
-                    {{category.parent}}
+                    {{category.parent_id}}
                 </td> 
                 <td>
                     {{category.children}}
@@ -105,14 +103,13 @@
                 <td>
                     {{category.icon}}
                 </td>
-               
                 <td>
                     <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-warning"
                             (click)="openEditFormCategory(category)"></button>
                     <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger p-ml-2"
                             (click)="deleteCategories(category)"></button>
                     <button pButton pRipple icon="pi pi-paperclip" class="p-button-rounded p-ml-2"
-                            (click)="selectedCategory(category);openViewFilesCategory()"></button>
+                            (click)="selectCategory(category);openViewFilesCategory()"></button>
                 </td>
             </tr>
         </ng-template>

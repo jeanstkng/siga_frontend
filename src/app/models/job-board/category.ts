@@ -1,7 +1,7 @@
 
 export interface Category{
     id?: number;
-    parent?: Category;
+    parent_id?: Category;
     code?: string;
     name?: string;
     icon?: null;
