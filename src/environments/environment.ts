@@ -2,9 +2,9 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
-export const URL_API = 'http://siga_backend.test:8080/v1/';
-export const URL = 'http://siga_backend.test:8080/';
-export const WEB = 'http://siga_backend.test:8080/';
+export const URL_API = 'http://siga_backend.test/v1/';
+export const URL = 'http://siga_backend.test/';
+export const WEB = 'http://siga_backend.test/';
 
 export const environment = {
     production: false,
@@ -19,11 +19,7 @@ export const environment = {
     API_URL_COMMUNITY: URL_API + 'community/',
     SYSTEM_ID: 1,
     CLIENT_ID: '1',
-<<<<<<< HEAD
     CLIENT_SECRET: 'f5kPJQDAsdZKo4cNhvrvhKm0wSz98mZXgQleMnt1',
-=======
-    CLIENT_SECRET: 'kwMoypsRF033OI4eprEpXufvJPZlP68MVu0wZFrv',
->>>>>>> f11860d35747e2d5b7b806c997d0dad0444930c9
     GRANT_TYPE: 'password',
 
     SITE_KEY: 'QpKtUkaJ40HNd1Di74B0pKC6asgKzAxuTx69L9Nb',
