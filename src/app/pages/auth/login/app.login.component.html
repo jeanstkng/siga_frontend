@@ -86,8 +86,8 @@
 </div>
 
 <!-- Seleccionar Institutcion -->
-<app-select-role (flagLogin)="flagLogin=$event"
-                             *ngIf="flagLogin==='selectRole'"></app-select-role>
+<app-select-institution-role (flagLogin)="flagLogin=$event"
+                             *ngIf="flagLogin==='selectRole'"></app-select-institution-role>
 
 <!-- Formulario cambiar contraseña -->
 <app-change-password (flagLogin)="flagLogin=$event" [passwordOld]="passwordField.value"
