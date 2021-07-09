@@ -12,7 +12,7 @@ import {MessageService as MessagePnService} from 'primeng/api';
 @Component({
   selector: 'app-category-form',
   templateUrl: './category-form.component.html',
-  styleUrls: ['./category-form.component.css']
+  styleUrls: ['./category-form.component.scss']
 })
 
 export class CategoryFormComponent implements OnInit {
@@ -42,12 +42,9 @@ export class CategoryFormComponent implements OnInit {
         return this.formCategoryIn.get('id');
     }
 
-    get parent_idField() {
+    get parentField() {
         return this.formCategoryIn.get('parent');
     }
-    /* get childrenField() {
-        return this.formCategoryIn.get('childrent');
-    } */
     get codeField() {
         return this.formCategoryIn.get('code');
     }

@@ -1,12 +1,13 @@
 {{formCategoryIn.value|json}} 
 <p-toast></p-toast>
 <p-card>
+    
     <div class="p-fluid">
         <form [formGroup]="formCategoryIn" (ngSubmit)="onSubmit()">
             <div class="p-formgrid p-grid">
                 <div class="p-field p-col">
                     <label for="parent">Padre:</label>
-                    <input id="parent" name="parent" pInputText formControlName="parent_id" />
+                    <input id="parent" name="parent" pInputText formControlName="parent" />
                     <div *ngIf="parentField.errors && parentField.touched">
                         <small *ngIf="parentdField.hasError('required')" 
                         id="parent-help-1" class="p-error">
@@ -16,20 +17,7 @@
                 </div>
             </div>
 
-            <!-- <div class="p-formgrid p-grid">
-                <div class="p-field p-col">
-                    <label for="children">children:</label>
-                    <input id="children" name="children" pInputText formControlName="children" />
-                    <div *ngIf="childrenField.errors && childrenField.touched">
-                        <small *ngIf="childrenField.hasError('required')" 
-                        id="children-help-1" class="p-error">
-                            {{messageService.fieldRequired}}
-                        </small>
-                    </div>
-                </div>
-            </div> -->
-
-            <div class="p-formgrid p-grid">
+           <div class="p-formgrid p-grid">
                 <div class="p-field p-col">
                     <label for="code">Código:</label>
                     <input id="code" name="code" pInputText formControlName="code" />
@@ -40,7 +28,7 @@
                         </small>
                     </div>
                 </div>
-            </div>
+            </div> 
 
             <div class="p-formgrid p-grid">
                 <div class="p-field p-col">

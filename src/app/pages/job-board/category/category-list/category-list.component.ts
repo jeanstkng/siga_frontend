@@ -36,7 +36,8 @@ export class CategoryListComponent implements OnInit {
                 private spinnerService: NgxSpinnerService,
                 private jobBoardHttpService: JobBoardHttpService) {
         this.resetPaginator();
-    }
+    console.log("mundo");
+   }
 
     resetPaginator() {
         this.paginatorFiles = {current_page: 1, per_page: 5};
