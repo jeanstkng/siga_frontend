@@ -6,7 +6,6 @@ import { Paginator } from '../../../../models/setting/paginator';
 import { HttpParams } from '@angular/common/http';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { MessageService } from '../../../shared/services/message.service';
-import { DateValidators } from '../../../shared/validators/date.validators';
 import {AppHttpService} from '../../../../services/app/app-http.service';
 
 @Component({

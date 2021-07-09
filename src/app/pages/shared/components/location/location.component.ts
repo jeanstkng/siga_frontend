@@ -9,7 +9,7 @@ import {SharedService} from '../../services/shared.service';
 @Component({
     selector: 'app-location',
     templateUrl: './location.component.html',
-    styleUrls: ['./location.component.css'],
+    styleUrls: ['./location.component.scss'],
     providers: [
         {
             provide: NG_VALUE_ACCESSOR,
@@ -21,6 +21,7 @@ import {SharedService} from '../../services/shared.service';
 
 export class LocationComponent implements OnInit, ControlValueAccessor {
     @Input() option = 1;
+    @Input() header = '';
     @Output() formLocationOut = new EventEmitter<FormGroup>();
     formLocation: FormGroup;
     countries: Location[];

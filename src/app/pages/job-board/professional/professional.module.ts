@@ -54,6 +54,7 @@ import { LanguageListComponent } from './language/language-list/language-list.co
 //import { ProfileComponent } from '../company/profile/profile.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ProfileFormComponent } from './profile/profile-form/profile-form.component';
+import {CheckboxModule} from 'primeng/checkbox';
 
 
 @NgModule({
@@ -89,6 +90,7 @@ import { ProfileFormComponent } from './profile/profile-form/profile-form.compon
         CardModule,
         SkeletonModule,
         RippleModule,
+        CheckboxModule,
     ],
     declarations: [
         ProfessionalComponent,

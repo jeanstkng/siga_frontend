@@ -1,16 +1,16 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Experience } from '../../../../../models/job-board/experience';
-import { MessageService } from '../../../../shared/services/message.service';
-import { NgxSpinnerService } from 'ngx-spinner';
-import { JobBoardHttpService } from '../../../../../services/job-board/job-board-http.service';
-import { AppHttpService } from '../../../../../services/app/app-http.service';
-import { HttpParams } from '@angular/common/http';
-import { Catalogue } from '../../../../../models/app/catalogue';
-import { MessageService as MessagePnService } from 'primeng/api';
-import { SharedService } from '../../../../shared/services/shared.service';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Experience} from '../../../../../models/job-board/experience';
+import {MessageService} from '../../../../shared/services/message.service';
+import {NgxSpinnerService} from 'ngx-spinner';
+import {JobBoardHttpService} from '../../../../../services/job-board/job-board-http.service';
+import {AppHttpService} from '../../../../../services/app/app-http.service';
+import {HttpParams} from '@angular/common/http';
+import {Catalogue} from '../../../../../models/app/catalogue';
+import {MessageService as MessagePnService} from 'primeng/api';
+import {SharedService} from '../../../../shared/services/shared.service';
 
-import { add, format } from 'date-fns';
+import {add, format} from 'date-fns';
 
 @Component({
     selector: 'app-experience-form',
@@ -33,12 +33,12 @@ export class ExperienceFormComponent implements OnInit {
     value: boolean;
 
     constructor(private formBuilder: FormBuilder,
-        private messageService: MessageService,
-        private messagePnService: MessagePnService,
-        private spinnerService: NgxSpinnerService,
-        private appHttpService: AppHttpService,
-        private sharedService: SharedService,
-        private jobBoardHttpService: JobBoardHttpService) {
+                public messageService: MessageService,
+                private messagePnService: MessagePnService,
+                private spinnerService: NgxSpinnerService,
+                private appHttpService: AppHttpService,
+                private sharedService: SharedService,
+                private jobBoardHttpService: JobBoardHttpService) {
     }
 
     ngOnInit(): void {
@@ -88,9 +88,14 @@ export class ExperienceFormComponent implements OnInit {
         return this.formExperienceIn.get('is_working');
     }
 
+    get isDisabilityField() {
+        return this.formExperienceIn.get('is_disability');
+    }
+
     addActivities() {
         this.activitiesField.push(this.formBuilder.control(null, Validators.required));
     }
+
     removeActivities(activity) {
         this.activitiesField.removeAt(activity);
     }
@@ -109,6 +114,7 @@ export class ExperienceFormComponent implements OnInit {
             this.formExperienceIn.markAllAsTouched();
         }
     }
+
     /* getIsWorkings() {
          const params = new HttpParams().append('type', 'EXPERIENCE_IS-WORKING');
          this.appHttpService.getCatalogues(params).subscribe(response => {
@@ -157,7 +163,7 @@ export class ExperienceFormComponent implements OnInit {
     // Save in backend
     storeExperience(experience: Experience, flag = false) {
         this.spinnerService.show();
-        this.jobBoardHttpService.store('experiences', { experience }).subscribe(response => {
+        this.jobBoardHttpService.store('experiences', {experience}).subscribe(response => {
             this.spinnerService.hide();
             this.messageService.success(response);
             this.saveExperience(response['data']);
@@ -177,7 +183,7 @@ export class ExperienceFormComponent implements OnInit {
     // Save in backend
     updateExperience(experience: Experience) {
         this.spinnerService.show();
-        this.jobBoardHttpService.update('experiences/' + experience.id, { experience })
+        this.jobBoardHttpService.update('experiences/' + experience.id, {experience})
             .subscribe(response => {
                 this.spinnerService.hide();
                 this.messageService.success(response);
@@ -273,9 +279,10 @@ export class ExperienceFormComponent implements OnInit {
     markAllAsTouchedFormExperience() {
         this.formExperienceIn.markAllAsTouched();
     }
+
     calculateEndDate() {
         if (this.startDateField.valid) {
-            const date = add(new Date(this.startDateField.value), { months: 1, days: 1 });
+            const date = add(new Date(this.startDateField.value), {months: 1, days: 1});
             this.endDateField.patchValue(format(date, 'yyyy-MM-dd'));
         }
     }

@@ -1,12 +1,9 @@
 import { HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { NgxSpinnerService } from 'ngx-spinner';
 import { Category } from 'src/app/models/job-board/category';
 import { Paginator } from 'src/app/models/setting/paginator';
-import { AppHttpService } from 'src/app/services/app/app-http.service';
 import { JobBoardHttpService } from 'src/app/services/job-board/job-board-http.service';
-import { BreadcrumbService } from 'src/app/shared/services/breadcrumb.service';
 import { MessageService } from '../../shared/services/message.service';
 
 @Component({
@@ -20,7 +17,7 @@ import { MessageService } from '../../shared/services/message.service';
     formCategory: FormGroup;
     categoryDialog: boolean;
     flagSkeletonListCategories: boolean;
-
+    flagCategories: boolean;
     constructor(
         public messageService: MessageService,
         private formBuilder: FormBuilder,

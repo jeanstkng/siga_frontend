@@ -92,6 +92,7 @@ import { RegisterFormComponent } from './register/register-form/register-form.co
         ProfessionalListComponent,
         RegisterComponent,
         RegisterFormComponent,
+        OfferProfessionalsComponent
     ],
     providers: []
 })
