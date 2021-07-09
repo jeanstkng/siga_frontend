@@ -6,9 +6,10 @@ export const URL_API = 'http://siga_backend.test/v1/';
 export const URL = 'http://siga_backend.test/';
 export const WEB = 'http://siga_backend.test/';
 
+
 export const environment = {
     production: false,
-    STORAGE_URL: URL + 'storage/',
+    STORAGE_URL: 'http://siga_backend.test/storage/',
     WEB,
     API_URL_AUTHENTICATION: URL_API + 'authentication/',
     API_URL_APP: URL_API + 'app/',
@@ -19,7 +20,9 @@ export const environment = {
     API_URL_COMMUNITY: URL_API + 'community/',
     SYSTEM_ID: 1,
     CLIENT_ID: '1',
-    CLIENT_SECRET: '1oThvAfKjqzw3GV0Ze5Ip6N9ddlaZsToTzT499qk',
+
+    CLIENT_SECRET: 'Km7nU8imfswXvT0Cw3Au5ovod9C607ye41TmMm0j',
+
     GRANT_TYPE: 'password',
 
     SITE_KEY: 'QpKtUkaJ40HNd1Di74B0pKC6asgKzAxuTx69L9Nb',
