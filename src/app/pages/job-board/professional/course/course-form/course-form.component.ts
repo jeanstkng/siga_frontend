@@ -1,15 +1,15 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Course } from '../../../../../models/job-board/course';
-import { MessageService } from '../../../../shared/services/message.service';
-import { NgxSpinnerService } from 'ngx-spinner';
-import { JobBoardHttpService } from '../../../../../services/job-board/job-board-http.service';
-import { AppHttpService } from '../../../../../services/app/app-http.service';
-import { HttpParams } from '@angular/common/http';
-import { Catalogue } from '../../../../../models/app/catalogue';
-import { MessageService as MessagePnService } from 'primeng/api';
-import { SharedService } from '../../../../shared/services/shared.service';
-import { add, format } from 'date-fns';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Course} from '../../../../../models/job-board/course';
+import {MessageService} from '../../../../shared/services/message.service';
+import {NgxSpinnerService} from 'ngx-spinner';
+import {JobBoardHttpService} from '../../../../../services/job-board/job-board-http.service';
+import {AppHttpService} from '../../../../../services/app/app-http.service';
+import {HttpParams} from '@angular/common/http';
+import {Catalogue} from '../../../../../models/app/catalogue';
+import {MessageService as MessagePnService} from 'primeng/api';
+import {SharedService} from '../../../../shared/services/shared.service';
+import {add, format} from 'date-fns';
 
 @Component({
     selector: 'app-course-form',
@@ -33,12 +33,12 @@ export class CourseFormComponent implements OnInit {
 
 
     constructor(private formBuilder: FormBuilder,
-        private messageService: MessageService,
-        private messagePnService: MessagePnService,
-        private spinnerService: NgxSpinnerService,
-        private appHttpService: AppHttpService,
-        private sharedService: SharedService,
-        private jobBoardHttpService: JobBoardHttpService) {
+                public messageService: MessageService,
+                private messagePnService: MessagePnService,
+                private spinnerService: NgxSpinnerService,
+                private appHttpService: AppHttpService,
+                private sharedService: SharedService,
+                private jobBoardHttpService: JobBoardHttpService) {
     }
 
     ngOnInit(): void {
@@ -50,10 +50,6 @@ export class CourseFormComponent implements OnInit {
     }
 
     // Fields of Form
-    get professionalfield() {
-        return this.formCourseIn.get('professional');
-    }
-
     get typeField() {
         return this.formCourseIn.get('type');
     }
@@ -111,14 +107,13 @@ export class CourseFormComponent implements OnInit {
     // Types of catalogues
 
     getTypes() {
-        const params = new HttpParams().append('type', 'COURSE_TYPE');
-        this.appHttpService.getCatalogues(params).subscribe(response => {
+        this.appHttpService.getCatalogues('COURSE_TYPE').subscribe(response => {
             this.types = response['data'];
         }, error => {
             this.messageService.error(error);
         });
     }
-   
+
     getInstitutions() {
         const params = new HttpParams().append('type', 'COURSE_INSTITUTION');
         this.appHttpService.getCatalogues(params).subscribe(response => {
@@ -127,6 +122,7 @@ export class CourseFormComponent implements OnInit {
             this.messageService.error(error);
         });
     }
+
     getCertificationTypes() {
         const params = new HttpParams().append('type', 'COURSE_CERTIFICATION_TYPE');
         this.appHttpService.getCatalogues(params).subscribe(response => {
@@ -135,6 +131,7 @@ export class CourseFormComponent implements OnInit {
             this.messageService.error(error);
         });
     }
+
     getAreas() {
         const params = new HttpParams().append('type', 'COURSE_AREA');
         this.appHttpService.getCatalogues(params).subscribe(response => {
@@ -143,10 +140,11 @@ export class CourseFormComponent implements OnInit {
             this.messageService.error(error);
         });
     }
+
     // Save in backend
     storeCourse(course: Course, flag = false) {
         this.spinnerService.show();
-        this.jobBoardHttpService.store('courses', { course }).subscribe(response => {
+        this.jobBoardHttpService.store('courses', {course}).subscribe(response => {
             this.spinnerService.hide();
             this.messageService.success(response);
             this.saveCourse(response['data']);
@@ -155,7 +153,6 @@ export class CourseFormComponent implements OnInit {
             } else {
                 this.displayOut.emit(false);
             }
-
         }, error => {
             this.spinnerService.hide();
             this.messageService.error(error);
@@ -165,7 +162,7 @@ export class CourseFormComponent implements OnInit {
     // Save in backend
     updateCourse(course: Course) {
         this.spinnerService.show();
-        this.jobBoardHttpService.update('courses/' + course.id, { course })
+        this.jobBoardHttpService.update('courses/' + course.id, {course})
             .subscribe(response => {
                 this.spinnerService.hide();
                 this.messageService.success(response);
@@ -230,6 +227,7 @@ export class CourseFormComponent implements OnInit {
         }
         this.filteredInstitutions = filtered;
     }
+
     filterCertificationType(event) {
         const filtered: any[] = [];
         const query = event.query;
@@ -250,6 +248,7 @@ export class CourseFormComponent implements OnInit {
         }
         this.filteredCertificationTypes = filtered;
     }
+
     // Filter area of experiences
     filterArea(event) {
         const filtered: any[] = [];
@@ -272,20 +271,9 @@ export class CourseFormComponent implements OnInit {
         this.filteredAreas = filtered;
     }
 
-    test(event) {
-        event.markAllAsTouched();
-    }
-
-    resetFormCourse() {
-        this.formCourseIn.reset();
-    }
-
-    markAllAsTouchedFormCourse() {
-        this.formCourseIn.markAllAsTouched();
-    }
     calculateEndDate() {
         if (this.startDateField.valid) {
-            const date = add(new Date(this.startDateField.value), { months: 1, days: 1 });
+            const date = add(new Date(this.startDateField.value), {months: 1, days: 1});
             this.endDateField.patchValue(format(date, 'yyyy-MM-dd'));
         }
     }

@@ -1,16 +1,16 @@
-import { Professional } from './../../../../../models/job-board/professional';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { MessageService } from '../../../../shared/services/message.service';
-import { NgxSpinnerService } from 'ngx-spinner';
-import { JobBoardHttpService } from '../../../../../services/job-board/job-board-http.service';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { HttpParams } from '@angular/common/http';
-import { MessageService as MessagePnService } from 'primeng/api';
-import { SharedService } from '../../../../shared/services/shared.service';
-import { AppHttpService } from '../../../../../services/app/app-http.service';
-import { User } from 'src/app/models/auth/user';
-import { AuthService } from 'src/app/services/auth/auth.service';
-import { isAsciiHexDigit } from 'codelyzer/angular/styles/chars';
+import {Professional} from './../../../../../models/job-board/professional';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {MessageService} from '../../../../shared/services/message.service';
+import {NgxSpinnerService} from 'ngx-spinner';
+import {JobBoardHttpService} from '../../../../../services/job-board/job-board-http.service';
+import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {HttpParams} from '@angular/common/http';
+import {MessageService as MessagePnService} from 'primeng/api';
+import {SharedService} from '../../../../shared/services/shared.service';
+import {AppHttpService} from '../../../../../services/app/app-http.service';
+import {User} from 'src/app/models/auth/user';
+import {AuthService} from 'src/app/services/auth/auth.service';
+import {isAsciiHexDigit} from 'codelyzer/angular/styles/chars';
 
 @Component({
     selector: 'app-profile-form',
@@ -51,12 +51,15 @@ export class ProfileFormComponent implements OnInit {
     get firstNameField() {
         return this.formProfessionalIn['controls']['user'].get('first_name');
     }
+
     get secondNameField() {
         return this.formProfessionalIn['controls']['user'].get('second_name');
     }
+
     get firstLastnameField() {
         return this.formProfessionalIn['controls']['user'].get('first_lastname');
     }
+
     get secondLastnameField() {
         return this.formProfessionalIn['controls']['user'].get('second_lastname');
     }
@@ -93,8 +96,7 @@ export class ProfileFormComponent implements OnInit {
         return this.formProfessionalIn.get('about_me');
     }
 
-    onSubmit(event: Event, flag = false) {
-        event.preventDefault();
+    onSubmit() {
         if (this.formProfessionalIn.valid) {
             this.updateProfessional(this.formProfessionalIn.value);
         } else {
@@ -104,7 +106,7 @@ export class ProfileFormComponent implements OnInit {
 
     updateProfessional(professional: Professional) {
         this.spinnerService.show();
-        this.jobBoardHttpService.update('professional/update', { professional })
+        this.jobBoardHttpService.update('professional/update', {professional})
             .subscribe(response => {
                 this.spinnerService.hide();
                 this.messageService.success(response);
@@ -133,4 +135,11 @@ export class ProfileFormComponent implements OnInit {
         this.formProfessionalIn.markAllAsTouched();
     }
 
+    validateIsDisability() {
+        // if (campoDiscapacidad == true) {
+        //     this.formProfessionalIn.setValidators(Validators.required);
+        // }else{
+        //     this.formProfessionalIn.setValidators(null);
+        // }
+    }
 }

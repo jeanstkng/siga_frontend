@@ -58,7 +58,6 @@ export class ExperienceComponent implements OnInit {
     // experiences of backend
     getExperiences(paginator: Paginator) {
         const params = new HttpParams()
-            .append('professional_id', "1")
             .append('page', paginator.current_page.toString())
             .append('per_page', paginator.per_page.toString());
 

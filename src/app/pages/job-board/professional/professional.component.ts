@@ -1,18 +1,19 @@
-import { Component, OnInit } from '@angular/core';
-import { BreadcrumbService } from '../../../shared/services/breadcrumb.service';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
+import {BreadcrumbService} from '../../../shared/services/breadcrumb.service';
+import {FormBuilder, FormGroup} from '@angular/forms';
 
 @Component({
     selector: 'app-professional',
     templateUrl: './professional.component.html',
-    styleUrls: ['./professional.component.css']
+    styleUrls: ['./professional.component.scss']
 })
 export class ProfessionalComponent implements OnInit {
+    selectedTab = 0;
 
     constructor(private breadcrumbService: BreadcrumbService, private fb: FormBuilder) {
         this.breadcrumbService.setItems([
-            { label: 'Dashboard', routerLink: ['/dashboard'] },
-            { label: 'Profesional' }
+            {label: 'Dashboard', routerLink: ['/dashboard']},
+            {label: 'Profesional'}
         ]);
     }
 
@@ -24,4 +25,8 @@ export class ProfessionalComponent implements OnInit {
         });
     }
 
+    handleChange(event) {
+        console.log(event);
+        this.selectedTab = event.index;
+    }
 }
