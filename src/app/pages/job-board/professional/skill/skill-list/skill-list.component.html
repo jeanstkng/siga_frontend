@@ -17,7 +17,12 @@
     <p-paginator [rows]="paginatorIn.per_page" [totalRecords]="paginatorIn.total"
         (onPageChange)="paginateSkill($event)">
     </p-paginator>
-    <p-table #dtSkill [value]="skillsIn" [paginator]="false" [(selection)]="selectedSkills" [rowHover]="true"
+    <p-table #dtSkill 
+    [value]="skillsIn" 
+    [rows]="paginatorIn.per_page"
+    [paginator]="false" 
+    [(selection)]="selectedSkills" 
+    [rowHover]="true"
         [responsive]="true" dataKey="id" styleClass="p-datatable-customers"
         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
         <ng-template pTemplate="caption">

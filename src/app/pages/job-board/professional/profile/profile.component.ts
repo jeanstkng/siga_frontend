@@ -14,7 +14,7 @@ export class ProfileComponent implements OnInit {
   formProfessional: FormGroup;
   company: Company;
   professional: Professional;
-  companyDialog: boolean;
+  professionalDialog: boolean;
   paginator: Paginator;
 
   constructor(private formBuilder: FormBuilder) {
@@ -23,10 +23,10 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.buildFormCompany();
+    this.buildFormProfessional();
   }
   //Formulario de Empresa//
-  buildFormCompany() {
+  buildFormProfessional() {
     this.formProfessional = this.formBuilder.group({
       user: this.formBuilder.group({
         identification: [null, Validators.required],
@@ -44,16 +44,6 @@ export class ProfileComponent implements OnInit {
       is_catastrophic_illness: [null, Validators.required],
       is_familiar_catastrophic_illness: [null, Validators.required],
       about_me: [null, Validators.required],
-      varis_travel: [null, Validators.required],
-      trade_name: [null, Validators.required],
-      prefix: [null, Validators.required],
-      comercial_activities: this.formBuilder.array([
-        this.formBuilder.control([null, Validators.required])
-      ]),
-      web: [null, Validators.required],
-      type: [null, Validators.required],
-      activity_type: [null, Validators.required],
-      person_type: [null, Validators.required],
     });
     console.log(this.formProfessional['controls']['user']);
   }

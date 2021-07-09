@@ -9,6 +9,7 @@ import { MessageService } from '../../../shared/services/message.service';
 import { DateValidators } from '../../../shared/validators/date.validators';
 import { BreadcrumbService } from '../../../../shared/services/breadcrumb.service';
 
+
 @Component({
   selector: 'app-experience',
   templateUrl: './experience.component.html',
@@ -34,8 +35,9 @@ export class ExperienceComponent implements OnInit {
   }
 
   ngOnInit(): void {
+     this.buildFormExperience();
     this.getExperiences(this.paginator);
-    this.buildFormExperience();
+   
   }
 
   // Build form experience

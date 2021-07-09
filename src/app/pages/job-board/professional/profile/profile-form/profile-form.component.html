@@ -119,20 +119,6 @@
       <div class="p-field p-xl-6 p-lg-6 p-md-12 p-sm-12">
         <p-card header="Información Personal:">
           <div class="p-formgrid p-grid">
-            <!-- <div class="p-field p-xl-6 p-lg-6 p-md-6 p-sm-12">
-              <label for="tradeName">
-                <i class="p-error">*</i>Nombre Comercial:
-                <i *ngIf="tradeNameField.valid" class="pi pi-check-circle icon-valid"></i>
-                <i *ngIf="tradeNameField.invalid && (tradeNameField.touched || tradeNameField.dirty)"
-                  class="pi pi-times-circle icon-invalid"></i>
-              </label>
-              <input id="tradeName" formControlName="trade_name" pInputText>
-              <div *ngIf="tradeNameField.errors && (tradeNameField.touched ||tradeNameField.dirty)">
-                <small *ngIf="tradeNameField.errors?.required" id="tradeName-help-1" class="p-error">
-                  {{messageService.fieldRequired}}
-                </small>
-              </div>
-            </div> -->
             <div class="p-field p-xl-6 p-lg-6 p-md-6 p-sm-12">
               <label for="is_travel">
                 <i class="p-error">*</i>Puede Viajar:
@@ -156,20 +142,6 @@
                 <label for="sf">NO</label>
               </div>
             </div>
-            <!-- <div class="p-field p-xl-6 p-lg-6 p-md-6 p-sm-12">
-              <label for="prefix">
-                <i class="p-error">*</i>Prefijo:
-                <i *ngIf="prefixField.valid" class="pi pi-check-circle icon-valid"></i>
-                <i *ngIf="prefixField.invalid && (prefixField.touched || prefixField.dirty)"
-                  class="pi pi-times-circle icon-invalid"></i>
-              </label>
-              <input id="prefix" formControlName="prefix" pInputText>
-              <div *ngIf="prefixField.errors && (prefixField.touched ||prefixField.dirty)">
-                <small *ngIf="prefixField.errors?.required" id="prefix-help-1" class="p-error">
-                  {{messageService.fieldRequired}}
-                </small>
-              </div>
-            </div> -->
             <div class="p-field p-xl-6 p-lg-6 p-md-6 p-sm-12">
               <label for="is_disability">
                 <i class="p-error">*</i>Discapacidad:
@@ -196,20 +168,6 @@
             </div>
           </div>
           <div class="p-formgrid p-grid">
-            <!-- <div class="p-field p-xl-6 p-lg-6 p-md-6 p-sm-12">
-              <label for="web">
-                <i class="p-error">*</i>Web:
-                <i *ngIf="webField.valid" class="pi pi-check-circle icon-valid"></i>
-                <i *ngIf="webField.invalid && (webField.touched || webField.dirty)"
-                  class="pi pi-times-circle icon-invalid"></i>
-              </label>
-              <input id="web" formControlName="web" pInputText>
-              <div *ngIf="webField.errors && (webField.touched || webField.dirty)">
-                <small *ngIf="webField.errors?.required" id="web-help-1" class="p-error">
-                  {{messageService.fieldRequired}}
-                </small>
-              </div>
-            </div> -->
             <div class="p-field p-xl-6 p-lg-6 p-md-6 p-sm-12">
               <label for="is_disability">
                 <i class="p-error">*</i> Familiar con Discapacidad:
@@ -255,22 +213,6 @@
             </div>
           </div>
           <div class="p-formgrid p-grid">
-            <!-- <div class="p-field p-xl-6 p-lg-6 p-md-6 p-sm-12">
-              <label for="personType">
-                <i class="p-error">*</i> Tipo de Persona:
-                <i *ngIf="personTypeField.valid" class="pi pi-check-circle icon-valid"></i>
-                <i *ngIf="personTypeField.invalid && (personTypeField.touched || personTypeField.dirty)"
-                  class="pi pi-times-circle icon-invalid"></i>
-              </label>
-              <p-autoComplete id="personType" formControlName="person_type" [suggestions]="filteredpersonTypes"
-                (completeMethod)="filterPersonType($event)" field="name" [dropdown]="true">
-                <ng-template let-item pTemplate="item">
-                  <div class="country-item">
-                    <div>{{item.name}}</div>
-                  </div>
-                </ng-template>
-              </p-autoComplete>
-            </div> -->
             <div class="p-field p-xl-6 p-lg-6 p-md-6 p-sm-12">
               <label for="is_disability">
                 <i class="p-error">*</i> Tiene Enfermedad Catastrófica:
@@ -298,22 +240,6 @@
                 <label for="sf">NO</label>
               </div>
             </div>
-            <!-- <div class="p-field p-xl-6 p-lg-6 p-md-6 p-sm-12">
-              <label for="activityType">
-                <i class="p-error">*</i> Tipo de Actividad:
-                <i *ngIf="activityTypesField.valid" class="pi pi-check-circle icon-valid"></i>
-                <i *ngIf="activityTypesField.invalid && (activityTypesField.touched || activityTypesField.dirty)"
-                  class="pi pi-times-circle icon-invalid"></i>
-              </label>
-              <p-autoComplete id="activityType" formControlName="activity_type" [suggestions]="filteredActivityTypes"
-                (completeMethod)="filterActivityType($event)" field="name" [dropdown]="true">
-                <ng-template let-item pTemplate="item">
-                  <div class="country-item">
-                    <div>{{item.name}}</div>
-                  </div>
-                </ng-template>
-              </p-autoComplete>
-            </div> -->
             <div class="p-field p-xl-6 p-lg-6 p-md-6 p-sm-12">
               <label for="is_familiar_catastrophic_illness">
                 <i class="p-error">*</i> Su Familiar Tiene Enfermedad Catastrófica:
@@ -343,38 +269,6 @@
               </div>
             </div>
           </div>
-          <!-- <div class="p-fluid p-formgrid p-grid">
-            <div class="p-field p-xl-2 p-lg-2 p-md-1 p-sm-12">
-              <label for="comercialActivities">
-                Actividades Comerciales
-              </label>
-            </div>
-            <div class="p-field p-xl-3 p-lg-3 p-md-2 p-sm-12">
-              <button pButton pRipple type="button" (click)="addComercialActivity()" iconPos="right" icon="pi pi-plus"
-                class="p-button-success p-button-raised" label="Añadir"></button>
-            </div>
-          </div> -->
-          <!-- <div formArrayName="comercial_activities">
-            <div *ngFor="let comercial_activity of comercialActivitiesField.controls let i = index;">
-
-              <div class="p-fluid p-formgrid p-grid">
-                <div class="p-field p-xl-11 p-lg-11 p-md-6 p-sm-12">
-                  <input [formControlName]="i" pInputText>
-                </div>
-                <div class="p-field p-xl-1 p-lg-1 p-md-1 p-sm-12">
-                  <button pButton pRipple type="button" (click)="removeComercialActivity(i)" iconPos="right"
-                    icon="pi pi-trash" class="p-button-danger p-button-rounded"></button>
-                </div>
-                <div
-                  *ngIf="comercialActivitiesField.errors && (comercialActivitiesField.touched || comercialActivitiesField.dirty)">
-                  <small *ngIf="comercialActivitiesField.errors?.required" id="comercialActivities-help-1"
-                    class="p-error">
-                    {{messageService.fieldRequired}}
-                  </small>
-                </div>
-              </div>
-            </div>
-          </div> -->
           <div class="p-field">
             <label for="about_me">
               <i class="p-error">*</i> Acerca de Mí:
