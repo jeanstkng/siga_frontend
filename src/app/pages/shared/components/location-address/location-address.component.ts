@@ -96,8 +96,7 @@ export class LocationAddressComponent implements OnInit, ControlValueAccessor {
     }
 
     getSectors() {
-        const params = new HttpParams().append('type', 'SECTOR');
-        this.appHttpService.getCatalogues(params).subscribe(response => {
+        this.appHttpService.getCatalogues('SECTOR').subscribe(response => {
             this.sectors = response['data'];
         }, error => {
             this.messageService.error(error);

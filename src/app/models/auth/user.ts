@@ -26,6 +26,7 @@ export interface User {
     birthdate?: Date;
     phone?: string;
     email?: string;
+    personal_email?: string;
     is_changed_password?: boolean;
     images?: Image[];
     avatar?: string;
