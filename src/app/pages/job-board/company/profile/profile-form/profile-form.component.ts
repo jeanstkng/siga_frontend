@@ -4,10 +4,7 @@ import {MessageService} from '../../../../shared/services/message.service';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {JobBoardHttpService} from '../../../../../services/job-board/job-board-http.service';
 import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {HttpParams} from '@angular/common/http';
 import {Catalogue} from '../../../../../models/app/catalogue';
-import {MessageService as MessagePnService} from 'primeng/api';
-import {SharedService} from '../../../../shared/services/shared.service';
 import {AppHttpService} from '../../../../../services/app/app-http.service';
 import {User} from 'src/app/models/auth/user';
 import {AuthService} from 'src/app/services/auth/auth.service';
@@ -37,10 +34,8 @@ export class ProfileFormComponent implements OnInit {
     constructor(
         private formBuilder: FormBuilder,
         public messageService: MessageService,
-        private messagePnService: MessagePnService,
         private spinnerService: NgxSpinnerService,
         private appHttpService: AppHttpService,
-        private sharedService: SharedService,
         private jobBoardHttpService: JobBoardHttpService,
         private authServices: AuthService,
     ) {
@@ -125,7 +120,6 @@ export class ProfileFormComponent implements OnInit {
             .subscribe(response => {
                 this.spinnerService.hide();
                 this.messageService.success(response);
-                console.log(response);
                 this.displayOut.emit(false);
             }, error => {
                 this.spinnerService.hide();
