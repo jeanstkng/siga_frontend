@@ -42,7 +42,7 @@ export class OfferFormComponent implements OnInit {
     ofertaEjemplo: Offer;
 
     constructor(private formBuilder: FormBuilder,
-                private messageService: MessageService,
+                public messageService: MessageService,
                 private spinnerService: NgxSpinnerService,
                 private appHttpService: AppHttpService,
                 private jobBoardHttpService: JobBoardHttpService,

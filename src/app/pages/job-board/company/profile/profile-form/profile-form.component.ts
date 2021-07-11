@@ -4,10 +4,7 @@ import {MessageService} from '../../../../shared/services/message.service';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {JobBoardHttpService} from '../../../../../services/job-board/job-board-http.service';
 import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {HttpParams} from '@angular/common/http';
 import {Catalogue} from '../../../../../models/app/catalogue';
-import {MessageService as MessagePnService} from 'primeng/api';
-import {SharedService} from '../../../../shared/services/shared.service';
 import {AppHttpService} from '../../../../../services/app/app-http.service';
 import {User} from 'src/app/models/auth/user';
 import {AuthService} from 'src/app/services/auth/auth.service';
@@ -37,10 +34,8 @@ export class ProfileFormComponent implements OnInit {
     constructor(
         private formBuilder: FormBuilder,
         public messageService: MessageService,
-        private messagePnService: MessagePnService,
         private spinnerService: NgxSpinnerService,
         private appHttpService: AppHttpService,
-        private sharedService: SharedService,
         private jobBoardHttpService: JobBoardHttpService,
         private authServices: AuthService,
     ) {
@@ -84,7 +79,7 @@ export class ProfileFormComponent implements OnInit {
     }
 
     get comercialActivitiesField() {
-        return this.formCompanyIn.get("comercial_activities") as FormArray;
+        return this.formCompanyIn.get('comercial_activities') as FormArray;
     }
 
     addComercialActivity(data = null) {
@@ -125,7 +120,6 @@ export class ProfileFormComponent implements OnInit {
             .subscribe(response => {
                 this.spinnerService.hide();
                 this.messageService.success(response);
-                console.log(response);
                 this.displayOut.emit(false);
             }, error => {
                 this.spinnerService.hide();
@@ -139,7 +133,9 @@ export class ProfileFormComponent implements OnInit {
             .subscribe(response => {
                 this.spinnerService.hide();
                 this.formCompanyIn.patchValue(response['data']);
-                this.comercialActivitiesField.removeAt(0);
+                if (response['data']['comercial_activities']?.length > 0) {
+                    this.comercialActivitiesField.removeAt(0);
+                }
                 for (const comercialActivity of response['data']['comercial_activities']) {
                     console.log(comercialActivity);
                     this.addComercialActivity(comercialActivity);
@@ -158,8 +154,7 @@ export class ProfileFormComponent implements OnInit {
 
     // Types of catalogues
     getIdentificationTypes() {
-        const params = new HttpParams().append('type', 'IDENTIFICATION_TYPE');
-        this.appHttpService.getCatalogues(params).subscribe(response => {
+        this.appHttpService.getCatalogues('IDENTIFICATION_TYPE').subscribe(response => {
             this.identificationTypes = response['data'];
         }, error => {
             this.messageService.error(error);
@@ -167,8 +162,7 @@ export class ProfileFormComponent implements OnInit {
     }
 
     getTypes() {
-        const params = new HttpParams().append('type', 'COMPANY_TYPE');
-        this.appHttpService.getCatalogues(params).subscribe(response => {
+        this.appHttpService.getCatalogues('COMPANY_TYPE').subscribe(response => {
             this.types = response['data'];
         }, error => {
             this.messageService.error(error);
@@ -176,8 +170,7 @@ export class ProfileFormComponent implements OnInit {
     }
 
     getPersonType() {
-        const params = new HttpParams().append('type', 'COMPANY_PERSON_TYPE');
-        this.appHttpService.getCatalogues(params).subscribe(response => {
+        this.appHttpService.getCatalogues('COMPANY_PERSON_TYPE').subscribe(response => {
             this.personType = response['data'];
         }, error => {
             this.messageService.error(error);
@@ -185,8 +178,7 @@ export class ProfileFormComponent implements OnInit {
     }
 
     getActivityTypes() {
-        const params = new HttpParams().append('type', 'COMPANY_ACTIVITY_TYPE');
-        this.appHttpService.getCatalogues(params).subscribe(response => {
+        this.appHttpService.getCatalogues('COMPANY_ACTIVITY_TYPE').subscribe(response => {
             this.activityTypes = response['data'];
         }, error => {
             this.messageService.error(error);
