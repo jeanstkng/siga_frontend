@@ -142,7 +142,7 @@
                         <div class="p-fluid p-formgrid p-grid">
                             <div class="p-field p-xl-11 p-lg-11 p-md-6 p-sm-12">
                                 <input pInputText [id]="'activity-'+ i" [formControlName]="i">
-                                <div *ngIf="activitiesField.invalid">
+                                <div *ngIf="activitiesField.invalid && (activitiesField.touched || activitiesField.dirty)">
                                     <small *ngIf="activitiesField.controls[i].errors?.required" 
                                             id="activities-help-1"
                                             class="p-error">
@@ -174,7 +174,7 @@
                         <div class="p-fluid p-formgrid p-grid">
                             <div class="p-field p-xl-11 p-lg-11 p-md-6 p-sm-12">
                                 <input pInputText [id]="'requirements-'+ i" [formControlName]="i">
-                                <div *ngIf="requirementsField.invalid">
+                                <div *ngIf="requirementsField.invalid && (activitiesField.touched || activitiesField.dirty)">
                                     <small *ngIf="requirementsField.controls[i].errors?.required" 
                                             id="requirements-help-1" 
                                             class="p-error">

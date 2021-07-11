@@ -120,8 +120,8 @@
 
 
         <div class="p-field p-col">
-            <label for="reasonLeave">Razón que se fue:</label>
-            <input id="reason_leave" name="reasonLeave" pInputText formControlName="reason_eave" />
+            <label for="reason_leave">Razón que se fue:</label>
+            <input id="reason_leave" pInputText formControlName="reason_leave" />
             <div *ngIf="reasonLeaveField.errors && reasonLeaveField.touched">
                 <small *ngIf="reasonLeaveField.hasError('required')" id="reason_leave-help-1" class="p-error">
                     {{messageService.fieldRequired}}
@@ -132,18 +132,18 @@
         <div class="p-field p-xl-6 p-lg-6 p-md-6 p-sm-12">
             <label for="is_disability">
               <i class="p-error">*</i> Esta trabajando:
-              <i *ngIf="isWorkingField.valid" class="pi pi-check-circle icon-valid"></i>
-              <i *ngIf="Field.invalid && (isWorkingField.touched || isWorkingField.dirty)"
+              <i *ngIf="isDisabilityField.valid" class="pi pi-check-circle icon-valid"></i>
+              <i *ngIf="isDisabilityField.invalid && (isDisabilityField.touched || isDisabilityField.dirty)"
                 class="pi pi-times-circle icon-invalid"></i>
             </label>
             <!-- <input id="is_travel" formControlName="is_travel" pInputText> -->
             <div
-              *ngIf="isWorkingField.errors && (isWorkingField.touched ||isWorkingField.dirty)">
-              <small *ngIf="isWorkingField.errors?.required" id="is_working-help-1" class="p-error">
+              *ngIf="isDisabilityField.errors && (isDisabilityField.touched ||isDisabilityField.dirty)">
+              <small *ngIf="isDisabilityField.errors?.required" id="is_working-help-1" class="p-error">
                 {{messageService.fieldRequired}}
               </small>
             </div>
-            <div class class="p-field-checkbox">
+            <div class="p-field-checkbox">
               <p-checkbox name="is_working" value="si" formControlName="is_working"
                 inputId="isWorkingField">
               </p-checkbox>

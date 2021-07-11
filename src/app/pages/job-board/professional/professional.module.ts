@@ -1,5 +1,3 @@
-
-
 // Angular Modules
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
@@ -54,6 +52,10 @@ import { LanguageListComponent } from './language/language-list/language-list.co
 //import { ProfileComponent } from '../company/profile/profile.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ProfileFormComponent } from './profile/profile-form/profile-form.component';
+import { CurriculumComponent } from './curriculum/curriculum.component';
+import { CurriculumFormComponent from './curriculum/curriculum-form/curriculum-form.component'};
+import { }
+import { CheckboxModule } from 'primeng/checkbox';
 
 
 @NgModule({
@@ -89,10 +91,11 @@ import { ProfileFormComponent } from './profile/profile-form/profile-form.compon
         CardModule,
         SkeletonModule,
         RippleModule,
+        CheckboxModule,
     ],
     declarations: [
         ProfessionalComponent,
-       // ProfileComponent,
+        // ProfileComponent,
         SkillComponent,
         SkillFormComponent,
         SkillListComponent,
@@ -109,7 +112,9 @@ import { ProfileFormComponent } from './profile/profile-form/profile-form.compon
         LanguageFormComponent,
         LanguageListComponent,
         ProfileComponent,
-        ProfileFormComponent
+        ProfileFormComponent,
+        CurriculumComponent,
+        CurriculumFormComponent
 
 
     ],

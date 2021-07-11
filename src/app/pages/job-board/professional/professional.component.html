@@ -1,25 +1,26 @@
 <div class="card">
     <h5>Hoja de Vida</h5>
-    <p-tabView>
+    <p-tabView (onChange)="handleChange($event)">
         <p-tabPanel header="Datos Personales" leftIcon="pi pi-id-card" tooltip="">
             <app-profile></app-profile>
         </p-tabPanel>
-
         <p-tabPanel header="Habilidades" leftIcon="pi pi-heart" tooltip="">
-            <app-skill></app-skill>
+            <app-skill *ngIf="selectedTab===1"></app-skill>
         </p-tabPanel>
         <p-tabPanel header="Cursos y Capacitaciones" leftIcon="pi pi-star-o" tooltip="">
-            <app-course></app-course>
+            <app-course *ngIf="selectedTab===2"></app-course>
         </p-tabPanel>
-
         <p-tabPanel header="Experiencia Profesional" leftIcon="pi pi-briefcase" tooltip="">
-            <app-experience></app-experience>
+            <app-experience *ngIf="selectedTab===3"></app-experience>
         </p-tabPanel>
         <p-tabPanel header="Idiomas" leftIcon="pi pi-globe" tooltip="">
-            <app-language></app-language>
+            <app-language *ngIf="selectedTab===4"></app-language>
         </p-tabPanel>
         <p-tabPanel header="Referencias Personales" leftIcon="pi pi-users" tooltip="">
-            <app-reference></app-reference>
+            <app-reference *ngIf="selectedTab===5"></app-reference>
+        </p-tabPanel>
+        <p-tabPanel header="Curriculum" leftIcon="pi pi-users" tooltip="">
+            <app-curriculum *ngIf="selectedTab===6"></app-curriculum>
         </p-tabPanel>
     </p-tabView>
 </div>
