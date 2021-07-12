@@ -75,6 +75,10 @@
                     Esta trabajando
                     <p-sortIcon field="is_working"></p-sortIcon>
                 </th>
+                <th pSortableColumn="is_disability">
+                    Es discapacitado
+                    <p-sortIcon field="is_disability"></p-sortIcon>
+                </th>
                 <th></th>
             </tr>
         </ng-template>
@@ -84,7 +88,7 @@
                     <p-tableCheckbox [value]="experience"></p-tableCheckbox>
                 </td>
                 <td>
-                    {{experience.area}}
+                    {{experience.area.name}}
                 </td>
                 <td>
                     {{experience.employer}}
@@ -106,6 +110,9 @@
                 </td>
                 <td>
                     {{experience.is_working}}
+                </td>
+                <td>
+                    {{experience.is_disability}}
                 </td>
                 <td>
                     <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-warning"

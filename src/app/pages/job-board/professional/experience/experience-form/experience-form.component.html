@@ -7,28 +7,28 @@
                 (formLocationOut)="setFormLocation($event)" id="address" name="address" formControlName="address">
             </app-location-address>
         </div> -->
-        <div class="p-field">
+        <div class="p-field p-xl-12 p-lg-6 p-md-6 p-sm-15">
             <label for="area">
-                <i class="p-error">*</i> Area:
-                <i *ngIf="areaField.valid" class="pi pi-check-circle icon-valid"></i>
-                <i *ngIf="areaField.invalid && (areaField.touched || areaField.dirty)"
-                    class="pi pi-times-circle icon-invalid"></i>
+              <i class="p-error">*</i> Area:
+              <i *ngIf="areaField.valid" class="pi pi-check-circle icon-valid"></i>
+              <i *ngIf="areaField.invalid && (areaField.touched || areaField.dirty)"
+                class="pi pi-times-circle icon-invalid"></i>
             </label>
-            <p-autoComplete id="area" name="area" formControlName="area" [suggestions]="filteredAreas"
-                (completeMethod)="filterArea($event)" field="name" [dropdown]="true">
-                <ng-template let-area pTemplate="item">
-                    <div class="country-item">
-                        <div>{{area.name}}</div>
-                    </div>
-                </ng-template>
-            </p-autoComplete>
-            <div *ngIf="areaField.invalid && (areaField.touched || areaField.dirty)">
-                <small *ngIf="areaField.errors?.required" id="area-help-1" class="p-error">
-                    {{messageService.fieldRequired}}
-                </small>
-            </div>
-        </div>
-
+            <p-dropdown id="arean" [options]="areas" formControlName="area"
+                        optionLabel="name" [filter]="true" filterBy="name"
+                        placeholder="Seleccione...">
+              <ng-template pTemplate="selectedarea">
+                <div class="country-area country-area-value"  *ngIf="areaField.value">
+                  <div>{{area.name}}</div>
+                </div>
+              </ng-template>
+              <ng-template let-area pTemplate="area">
+                <div class="country-area">
+                  <div>{{area.name}}</div>
+                </div>
+              </ng-template>
+            </p-dropdown>
+          </div>
         <div class="p-formgrid p-grid">
             <div class="p-field p-col">
                 <label for="employer">Nombre Empledor:</label>
@@ -96,29 +96,6 @@
                 </div>
             </div>
         </div>
-        <!-- <div class="p-formgrid p-grid">
-            <div class="p-field p-col">
-                <label for="isWorking">Esta trabajando:</label>
-                <input id="isWorking" name="isWorking" pInputText formControlName="isWorking" />
-                <div *ngIf="isWorkingField.errors && isWorkingField.touched">
-                    <small *ngIf="isWorkingField.hasError('required')" id="isWorking-help-1" class="p-error">
-                        {{messageService.fieldRequired}}
-                    </small>
-                </div>
-            </div>
-        </div>
-      <div class="p-field">
-            <label for="isWorking">
-                <i class="p-error">*</i> Está Trabajando:
-                <i *ngIf="isWorkingField.valid" class="pi pi-check-circle icon-valid"></i>
-                <i *ngIf="isWorkingField.invalid && (isWorkingField.touched || isWorkingField.dirty)"
-                    class="pi pi-times-circle icon-invalid"></i> 
-                </label>
-                <p-checkbox name="groupname" value="val1" [(ngModel)]="selectedValues"></p-checkbox>
-                <p-checkbox name="groupname" value="val2" [(ngModel)]="selectedValues"></p-checkbox>  
-            </div>-->
-
-
         <div class="p-field p-col">
             <label for="reason_leave">Razón que se fue:</label>
             <input id="reason_leave" pInputText formControlName="reason_leave" />
@@ -128,34 +105,35 @@
                 </small>
             </div>
         </div>
-
-        <div class="p-field p-xl-6 p-lg-6 p-md-6 p-sm-12">
-            <label for="is_disability">
-              <i class="p-error">*</i> Esta trabajando:
-              <i *ngIf="isDisabilityField.valid" class="pi pi-check-circle icon-valid"></i>
-              <i *ngIf="isDisabilityField.invalid && (isDisabilityField.touched || isDisabilityField.dirty)"
+            <label for="isWorking">
+              <i class="p-error">*</i>Esta trabajando:
+              <i *ngIf="isWorkingField.valid" class="pi pi-check-circle icon-valid"></i>
+              <i *ngIf="isWorkingField.invalid && (isWorkingField.touched || isWorkingField.dirty)"
                 class="pi pi-times-circle icon-invalid"></i>
             </label>
-            <!-- <input id="is_travel" formControlName="is_travel" pInputText> -->
-            <div
-              *ngIf="isDisabilityField.errors && (isDisabilityField.touched ||isDisabilityField.dirty)">
-              <small *ngIf="isDisabilityField.errors?.required" id="is_working-help-1" class="p-error">
-                {{messageService.fieldRequired}}
-              </small>
-            </div>
-            <div class="p-field-checkbox">
-              <p-checkbox name="is_working" value="si" formControlName="is_working"
-                inputId="isWorkingField">
-              </p-checkbox>
-              <label for="ny">SI</label>
-            </div>
-            <div class="p-field-checkbox">
-              <p-checkbox name="is_working" value="no" formControlName="is_working"
-                inputId="isWorkingField">
-              </p-checkbox>
-              <label for="sf">NO</label>
-            </div>
-          </div>
+            <p-inputSwitch [(ngModel)]="is_working" formControlName="is_working" (onChange)="clickIsWorking($event)" 
+            onLabel="yes" offLabel="no">
+              <ng-template let-isWorking pTemplate="isWorking">
+                <div class="country-isWorking">
+                  <div>{{isWorking.name}}</div>
+                </div>
+              </ng-template>
+            </p-inputSwitch>
+            <br>
+            <label for="isDisability">
+                <i class="p-error">*</i>Es discapacitado:
+                <i *ngIf="isDisabilityField.valid" class="pi pi-check-circle icon-valid"></i>
+                <i *ngIf="isDisabilityField.invalid && (isDisabilityField.touched || isDisabilityField.dirty)"
+                  class="pi pi-times-circle icon-invalid"></i>
+              </label>
+              <p-inputSwitch [(ngModel)]="is_disability" formControlName="is_disability" (onChange)="clickIsDisability($event)" 
+              onLabel="yes" offLabel="no">
+                <ng-template let-isDisability pTemplate="isDisability">
+                  <div class="country-isDisability">
+                    <div>{{isDisability.name}}</div>
+                  </div>
+                </ng-template>
+              </p-inputSwitch>
         <div class="p-formgrid p-grid">
             <div class="p-field p-col">
                 <button type="submit" pButton pRipple label="Guardar y Salir" icon="pi pi-save"

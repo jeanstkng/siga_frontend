@@ -13,6 +13,7 @@ import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { DropdownModule } from 'primeng/dropdown';
 import { SkeletonModule } from 'primeng/skeleton';
+import {InputSwitchModule} from 'primeng/inputswitch';
 
 // My Components
 import { TooltipModule } from 'primeng/tooltip';
@@ -91,6 +92,7 @@ import {CheckboxModule} from 'primeng/checkbox';
         SkeletonModule,
         RippleModule,
         CheckboxModule,
+        InputSwitchModule,
     ],
     declarations: [
         ProfessionalComponent,
