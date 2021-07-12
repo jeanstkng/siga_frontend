@@ -384,6 +384,11 @@
                                         class="p-error">
                                     {{messageService.fieldRequired}}
                                 </small>
+                                <small *ngIf="vacanciesField.hasError('min')" 
+                                    id="vacancies-help-2" 
+                                    class="p-error">
+                                    {{messageService.fieldMinLength}}
+                                </small>
                             </div>
                         </div>
                     </div>
