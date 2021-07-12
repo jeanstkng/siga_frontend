@@ -28,7 +28,8 @@ export class ExperienceFormComponent implements OnInit {
     filteredAreas: any[];
     areas: Catalogue[];
     // filteredIsWorkings: any[];
-    isWorking: boolean;
+    isWorking: boolean = false;
+    isDisability: boolean= false;
     selectedValues: string[] = [];
     value: boolean;
 
@@ -44,6 +45,10 @@ export class ExperienceFormComponent implements OnInit {
     ngOnInit(): void {
         //this.getProfessional();
         this.getAreas();
+        this.isWorking = false;
+        this.isWorking = true;
+        this.isDisability = false;
+        this.isDisability = true;
         // this.getIsWorkings();
     }
 
@@ -100,6 +105,9 @@ export class ExperienceFormComponent implements OnInit {
         this.activitiesField.removeAt(activity);
     }
 
+
+    
+     
     // Submit Form
 
     onSubmit(event: Event, flag = false) {
@@ -115,18 +123,8 @@ export class ExperienceFormComponent implements OnInit {
         }
     }
 
-    /* getIsWorkings() {
-         const params = new HttpParams().append('type', 'EXPERIENCE_IS-WORKING');
-         this.appHttpService.getCatalogues(params).subscribe(response => {
-             this.isWorkings = response['data'];
-             this.messageService.success(response);
-         }, error => {
-             this.messageService.error(error);
-         });
-     }*/
     getAreas() {
-        const params = new HttpParams().append('type', 'EXPERIENCE_AREA');
-        this.appHttpService.getCatalogues(params).subscribe(response => {
+        this.appHttpService.getCatalogues('EXPERIENCE_AREA').subscribe(response => {
             this.areas = response['data'];
         }, error => {
             this.messageService.error(error);
@@ -134,32 +132,7 @@ export class ExperienceFormComponent implements OnInit {
     }
 
 
-    // getProfessional() {
-    //     const params = new HttpParams().append('type', 'EXPERIENCE_PROFESSIONAL');
-    //     this.appHttpService.getCatalogues(params).subscribe(response => {
-    //         this.ares = response['data'];
-    //     }, error => {
-    //         this.messageService.error(error);
-    //     });
-    // }
-
-    // Save in backend
-    // storeExperience(experience: Experience, flag = false) {
-    //     this.spinnerService.show();
-    //     this.jobBoardHttpService.store('experiences', { experience }).subscribe(response => {
-    //         this.spinnerService.hide();
-    //         this.messageService.success(response);
-    //         this.saveExperience(response['data']);
-    //         if (!flag) {
-    //             this.displayOut.emit(false);
-    //         }
-    //         this.resetFormExperience();
-
-    //     }, error => {
-    //         this.spinnerService.hide();
-    //         this.messageService.error(error);
-    //     });
-    // }
+    
     // Save in backend
     storeExperience(experience: Experience, flag = false) {
         this.spinnerService.show();
@@ -178,7 +151,6 @@ export class ExperienceFormComponent implements OnInit {
             this.messageService.error(error);
         });
     }
-
 
     // Save in backend
     updateExperience(experience: Experience) {
@@ -228,46 +200,7 @@ export class ExperienceFormComponent implements OnInit {
         this.filteredAreas = filtered;
     }
 
-    /*filterIsWorking(event) {
-        const filtered: any[] = [];
-        const query = event.query;
-        for (const isWorking of this.isWorkings) {
-            if (isWorking.name.toLowerCase().indexOf(query.toLowerCase()) === 0) {
-                filtered.push(isWorking);
-            }
-        }
-         if (filtered.length === 0) {
-             this.messagePnService.clear();
-             this.messagePnService.add({
-                 severity: 'error',
-                 summary: 'Por favor seleccione un tipo del listado',
-                 detail: 'En el caso de no existir comuníquese con el administrador!',
-                 life: 5000
-             });
-             this.areaField.setValue(null);
-         }
-        this.filteredWorkings= filtered;
-    }*/
-    // filterProfessional(event) {
-    //     const filtered: any[] = [];
-    //     const query = event.query;
-    //     for (const professional of this.professionals) {
-    //         if (professional.name.toLowerCase().indexOf(query.toLowerCase()) === 0) {
-    //             filtered.push(professional);
-    //         }
-    //     }
-    //     if (filtered.length === 0) {
-    //         this.messagePnService.clear();
-    //         this.messagePnService.add({
-    //             severity: 'error',
-    //             summary: 'Por favor seleccione un tipo del listado',
-    //             detail: 'En el caso de no existir comuníquese con el administrador!',
-    //             life: 5000
-    //         });
-    //         this.professionalField.setValue(null);
-    //     }
-    //     this.filteredProfessionals = filtered;
-    // }
+    
     test(event) {
         event.markAllAsTouched();
     }
@@ -280,11 +213,24 @@ export class ExperienceFormComponent implements OnInit {
         this.formExperienceIn.markAllAsTouched();
     }
 
-    calculateEndDate() {
-        if (this.startDateField.valid) {
-            const date = add(new Date(this.startDateField.value), {months: 1, days: 1});
-            this.endDateField.patchValue(format(date, 'yyyy-MM-dd'));
+  
+    public clickIsWorking(e) {
+        const isWorking = e.checked;
+        if (isWorking) {
+          console.log('jsdhck');
+          this.isWorking = true;
+          this.isWorking = false;
         }
-    }
+      }
+      public clickIsDisability(e) {
+        const isDisability = e.checked;
+        if (isDisability) {
+          console.log('jsdhck');
+          this.isDisability = true;
+          this.isDisability = false;
+          
+          
+        }
+      }
 
 }
