@@ -5,22 +5,26 @@
                 <div class="p-formgrid p-grid">
                     <div class="p-lg-6 p-md-6 p-sm-12">
                         <div class="p-field">
-                            <label for="vacancies">
-                                <i class="p-error">*</i> Vacantes:
-                                <i *ngIf="vacanciesField.valid" class="pi pi-check-circle icon-valid"></i>
-                                <i *ngIf="vacanciesField.invalid && (vacanciesField.touched || vacanciesField.dirty)"
-                                    class="pi pi-times-circle icon-invalid"></i></label>
-                            <p-inputNumber id="vacancies" 
-                                        formControlName="vacancies"
-                                        placeholder="Vacantes para la oferta Ej. 5"
-                                        mode="decimal" 
-                                        [showButtons]="true"
-                                        [min]="0" 
-                                        [max]="1000">
-                            </p-inputNumber>
-                            <div *ngIf="vacanciesField.invalid && (vacanciesField.touched || vacanciesField.dirty)">
-                                <small *ngIf="vacanciesField.errors?.required" 
-                                        id="vacancies-help-1" 
+                            <label for="status">
+                                <i class="p-error">*</i> Estado:
+                                <i *ngIf="statusField.valid" class="pi pi-check-circle icon-valid"></i>
+                                <i *ngIf="statusField.invalid && (statusField.touched || statusField.dirty)"
+                                    class="pi pi-times-circle icon-invalid"></i>
+                            </label>
+                            <p-autoComplete id="status" formControlName="status"  
+                                            [suggestions]="filteredStatus"
+                                            (completeMethod)="filterStatus($event)" 
+                                            field="name" 
+                                            [dropdown]="true">
+                                <ng-template let-status pTemplate="item">
+                                    <div class="country-item">
+                                        <div>{{status.name}}</div>
+                                    </div>
+                                </ng-template>
+                            </p-autoComplete>
+                            <div *ngIf="statusField.invalid && (statusField.touched || statusField.dirty)">
+                                <small *ngIf="statusField.errors?.required" 
+                                        id="status-help-1" 
                                         class="p-error">
                                     {{messageService.fieldRequired}}
                                 </small>
@@ -33,55 +37,53 @@
                             <input pInputText id="code" formControlName="code">
                         </div>
                     </div>
-                </div>
-                <div class="p-field">
-                    <label for="aditional_information">Información adicional</label>
-                    <textarea pInputTextarea id="aditional_information" 
-                            formControlName="aditional_information"
-                            autoResize="autoResize"
-                            rows="4">
-                    </textarea>
-                </div>
-                <div class="p-field">
-                    <label for="contact_name">
-                        <i class="p-error">*</i> Nombre del contacto:
-                        <i *ngIf="contactNameField.valid" class="pi pi-check-circle icon-valid"></i>
-                        <i *ngIf="contactNameField.invalid && (contactNameField.touched || contactNameField.dirty)"
-                            class="pi pi-times-circle icon-invalid"></i>
-                    </label>
-                    <input pInputText id="contact_name" 
-                        formControlName="contact_name" 
-                        placeholder="Ej. Mariana López"
-                         />
-                    <div *ngIf="contactNameField.errors && (contactNameField.touched || contactNameField.dirty)">
-                        <small *ngIf="contactNameField.errors?.required" 
-                                id="contact_name-help-1" 
-                                class="p-error">
-                            {{messageService.fieldRequired}}
-                        </small>
+                </div>  
+                <div class="p-formgrid p-grid">
+                    <div class="p-lg-6 p-md-6 p-sm-12">
+                        <div class="p-field">
+                            <label for="contact_name">
+                                <i class="p-error">*</i> Nombre del contacto:
+                                <i *ngIf="contactNameField.valid" class="pi pi-check-circle icon-valid"></i>
+                                <i *ngIf="contactNameField.invalid && (contactNameField.touched || contactNameField.dirty)"
+                                    class="pi pi-times-circle icon-invalid"></i>
+                            </label>
+                            <input pInputText id="contact_name" 
+                                formControlName="contact_name" 
+                                placeholder="Ej. Mariana López"
+                                 />
+                            <div *ngIf="contactNameField.errors && (contactNameField.touched || contactNameField.dirty)">
+                                <small *ngIf="contactNameField.errors?.required" 
+                                        id="contact_name-help-1" 
+                                        class="p-error">
+                                    {{messageService.fieldRequired}}
+                                </small>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="p-field">
-                    <label for="contact_email">
-                        <i class="p-error">*</i> Email del contacto:
-                        <i *ngIf="contactEmailField.valid" class="pi pi-check-circle icon-valid"></i>
-                        <i *ngIf="contactEmailField.invalid && (contactEmailField.touched || contactEmailField.dirty)"
-                            class="pi pi-times-circle icon-invalid"></i>
-                    </label>
-                    <input pInputText id="contact_email" 
-                        formControlName="contact_email"
-                        placeholder="Ej. ejemplo@ejemplo.com"/>
-                    <div *ngIf="contactEmailField.errors && (contactEmailField.touched || contactEmailField.dirty)">
-                        <small *ngIf="contactEmailField.errors?.required" 
-                                id="contact_email-help-1" 
-                                class="p-error">
-                            {{messageService.fieldRequired}}
-                        </small>
-                        <small *ngIf="contactEmailField.hasError('email')" 
-                            id="contact_email-help-2" 
-                            class="p-error">
-                            {{messageService.fieldEmail}}
-                        </small>
+                    <div class="p-lg-6 p-md-6 p-sm-12">
+                        <div class="p-field">
+                            <label for="contact_email">
+                                <i class="p-error">*</i> Email del contacto:
+                                <i *ngIf="contactEmailField.valid" class="pi pi-check-circle icon-valid"></i>
+                                <i *ngIf="contactEmailField.invalid && (contactEmailField.touched || contactEmailField.dirty)"
+                                    class="pi pi-times-circle icon-invalid"></i>
+                            </label>
+                            <input pInputText id="contact_email" 
+                                formControlName="contact_email"
+                                placeholder="Ej. ejemplo@ejemplo.com"/>
+                            <div *ngIf="contactEmailField.errors && (contactEmailField.touched || contactEmailField.dirty)">
+                                <small *ngIf="contactEmailField.errors?.required" 
+                                        id="contact_email-help-1" 
+                                        class="p-error">
+                                    {{messageService.fieldRequired}}
+                                </small>
+                                <small *ngIf="contactEmailField.hasError('email')" 
+                                    id="contact_email-help-2" 
+                                    class="p-error">
+                                    {{messageService.fieldEmail}}
+                                </small>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="p-formgrid p-grid">
@@ -104,7 +106,7 @@
                 </div>
                 <div class="p-field">
                     <label for="start_date">
-                        <i class="p-error">*</i> Fecha de Inicio:
+                        <i class="p-error">*</i> Fecha de Inicio de la publicaciòn:
                         <i *ngIf="startDateField.valid" class="pi pi-check-circle icon-valid"></i>
                         <i *ngIf="startDateField.invalid && (startDateField.touched || startDateField.dirty)"
                             class="pi pi-times-circle icon-invalid"></i>
@@ -122,7 +124,7 @@
                     </div>
                 </div>
                 <div class="p-field">
-                    <label for="end_date">Fecha Fin: </label>
+                    <label for="end_date">Fecha de Fin: </label>
                     <app-date formControlName="end_date"
                             id="end_date"> 
                     </app-date>
@@ -194,49 +196,55 @@
                 </div>
             </p-card>
             <p-card class="p-xl-6 p-lg-6 p-md-12 p-sm-12">
-                <div class="p-field">
-                    <label for="remuneration">
-                        <i class="p-error">*</i> Remuneración:
-                        <i *ngIf="remunerationField.valid" class="pi pi-check-circle icon-valid"></i>
-                        <i *ngIf="remunerationField.invalid && (remunerationField.touched || remunerationField.dirty)"
-                            class="pi pi-times-circle icon-invalid"></i>
-                    </label>
-                    <input pInputText id="remuneration" 
-                        formControlName="remuneration" 
-                        placeholder="Ej. 500"
-                         />
-                    <div *ngIf="remunerationField.errors && (remunerationField.touched || remunerationField.dirty)">
-                        <small *ngIf="remunerationField.errors?.required" 
-                                id="remuneration-help-1" 
-                                class="p-error">
-                            {{messageService.fieldRequired}}
-                        </small>
-                    </div>
-                </div>
-                <div class="p-field">
-                    <label for="contract_type">
-                        <i class="p-error">*</i> Tipo de Contrato:
-                        <i *ngIf="contractTypeField.valid" class="pi pi-check-circle icon-valid"></i>
-                        <i *ngIf="contractTypeField.invalid && (contractTypeField.touched || contractTypeField.dirty)"
-                            class="pi pi-times-circle icon-invalid"></i>
-                    </label>
-                    <p-autoComplete id="contract_type" formControlName="contract_type"
-                            [suggestions]="filteredContracTypes" 
-                            (completeMethod)="filterContracType($event)" 
-                            field="name"
-                            [dropdown]="true">
-                        <ng-template let-contract_type pTemplate="item">
-                            <div class="country-item">
-                                <div>{{contract_type.name}}</div>
+                <div class="p-formgrid p-grid">
+                    <div class="p-lg-6 p-md-6 p-sm-12">
+                        <div class="p-field">
+                            <label for="remuneration">
+                                <i class="p-error">*</i> Remuneración:
+                                <i *ngIf="remunerationField.valid" class="pi pi-check-circle icon-valid"></i>
+                                <i *ngIf="remunerationField.invalid && (remunerationField.touched || remunerationField.dirty)"
+                                    class="pi pi-times-circle icon-invalid"></i>
+                            </label>
+                            <input pInputText id="remuneration" 
+                                formControlName="remuneration" 
+                                placeholder="Ej. 500"
+                                 />
+                            <div *ngIf="remunerationField.errors && (remunerationField.touched || remunerationField.dirty)">
+                                <small *ngIf="remunerationField.errors?.required" 
+                                        id="remuneration-help-1" 
+                                        class="p-error">
+                                    {{messageService.fieldRequired}}
+                                </small>
                             </div>
-                        </ng-template>
-                    </p-autoComplete>
-                    <div *ngIf="contractTypeField.invalid && (contractTypeField.touched || contractTypeField.dirty)">
-                        <small *ngIf="contractTypeField.errors?.required" 
-                            id="contractType-help-1" 
-                            class="p-error">
-                            {{messageService.fieldRequired}}
-                        </small>
+                        </div>
+                    </div>
+                    <div class="p-lg-6 p-md-6 p-sm-12">
+                        <div class="p-field">
+                            <label for="contract_type">
+                                <i class="p-error">*</i> Tipo de Contrato:
+                                <i *ngIf="contractTypeField.valid" class="pi pi-check-circle icon-valid"></i>
+                                <i *ngIf="contractTypeField.invalid && (contractTypeField.touched || contractTypeField.dirty)"
+                                    class="pi pi-times-circle icon-invalid"></i>
+                            </label>
+                            <p-autoComplete id="contract_type" formControlName="contract_type"
+                                    [suggestions]="filteredContracTypes" 
+                                    (completeMethod)="filterContracType($event)" 
+                                    field="name"
+                                    [dropdown]="true">
+                                <ng-template let-contract_type pTemplate="item">
+                                    <div class="country-item">
+                                        <div>{{contract_type.name}}</div>
+                                    </div>
+                                </ng-template>
+                            </p-autoComplete>
+                            <div *ngIf="contractTypeField.invalid && (contractTypeField.touched || contractTypeField.dirty)">
+                                <small *ngIf="contractTypeField.errors?.required" 
+                                    id="contractType-help-1" 
+                                    class="p-error">
+                                    {{messageService.fieldRequired}}
+                                </small>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="p-field">
@@ -295,110 +303,126 @@
                                 formControlName="location">
                     </app-location>
                 </div>
-                <div class="p-field">
-                    <label for="training_hours">
-                        <i class="p-error">*</i> Horas de capacitación recibidas:
-                        <i *ngIf="trainingHoursField.valid" class="pi pi-check-circle icon-valid"></i>
-                        <i *ngIf="trainingHoursField.invalid && (trainingHoursField.touched || trainingHoursField.dirty)"
-                            class="pi pi-times-circle icon-invalid"></i>
-                    </label>
-                    <p-autoComplete id="training_hours" formControlName="training_hours"
-                                    [suggestions]="filteredTrainingHours" 
-                                    (completeMethod)="filterTrainingHour($event)" 
-                                    field="name"
-                                    [dropdown]="true">
-                        <ng-template let-training_hours pTemplate="item">
-                            <div class="country-item">
-                                <div>{{training_hours.name}}</div>
+                <div class="p-formgrid p-grid">
+                    <div class="p-lg-6 p-md-6 p-sm-12">
+                        <div class="p-field">
+                            <label for="training_hours">
+                                <i class="p-error">*</i> Horas de capacitación recibidas:
+                                <i *ngIf="trainingHoursField.valid" class="pi pi-check-circle icon-valid"></i>
+                                <i *ngIf="trainingHoursField.invalid && (trainingHoursField.touched || trainingHoursField.dirty)"
+                                    class="pi pi-times-circle icon-invalid"></i>
+                            </label>
+                            <p-autoComplete id="training_hours" formControlName="training_hours"
+                                            [suggestions]="filteredTrainingHours" 
+                                            (completeMethod)="filterTrainingHour($event)" 
+                                            field="name"
+                                            [dropdown]="true">
+                                <ng-template let-training_hours pTemplate="item">
+                                    <div class="country-item">
+                                        <div>{{training_hours.name}}</div>
+                                    </div>
+                                </ng-template>
+                            </p-autoComplete>
+                            <div *ngIf="trainingHoursField.invalid && (trainingHoursField.touched || trainingHoursField.dirty)">
+                                <small *ngIf="trainingHoursField.errors?.required" 
+                                        id="training-hours-help-1" 
+                                        class="p-error">
+                                    {{messageService.fieldRequired}}
+                                </small>
                             </div>
-                        </ng-template>
-                    </p-autoComplete>
-                    <div *ngIf="trainingHoursField.invalid && (trainingHoursField.touched || trainingHoursField.dirty)">
-                        <small *ngIf="trainingHoursField.errors?.required" 
-                                id="training-hours-help-1" 
-                                class="p-error">
-                            {{messageService.fieldRequired}}
-                        </small>
+                        </div>
+                    </div>
+                    <div class="p-lg-6 p-md-6 p-sm-12">
+                        <div class="p-field">
+                            <label for="experience_time">
+                                <i class="p-error">*</i> Tiempo de experiencia:
+                                <i *ngIf="experienceTimeField.valid" class="pi pi-check-circle icon-valid"></i>
+                                <i *ngIf="experienceTimeField.invalid && (experienceTimeField.touched || experienceTimeField.dirty)"
+                                    class="pi pi-times-circle icon-invalid"></i>
+                            </label>
+                            <p-autoComplete id="experience_time" formControlName="experience_time"
+                                            [suggestions]="filteredExperienceTimes" 
+                                            (completeMethod)="filterExperienceTime($event)"
+                                            field="name" 
+                                            [dropdown]="true">
+                                <ng-template let-experience_time pTemplate="item">
+                                    <div class="country-item">
+                                        <div>{{experience_time.name}}</div>
+                                    </div>
+                                </ng-template>
+                            </p-autoComplete>
+                            <div
+                                *ngIf="experienceTimeField.invalid && (experienceTimeField.touched || experienceTimeField.dirty)">
+                                <small *ngIf="experienceTimeField.errors?.required" 
+                                        id="experience-time-help-1" 
+                                        class="p-error">
+                                    {{messageService.fieldRequired}}
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-formgrid p-grid">
+                    <div class="p-lg-6 p-md-6 p-sm-12">
+                        <div class="p-field">
+                            <label for="vacancies">
+                                <i class="p-error">*</i> Vacantes:
+                                <i *ngIf="vacanciesField.valid" class="pi pi-check-circle icon-valid"></i>
+                                <i *ngIf="vacanciesField.invalid && (vacanciesField.touched || vacanciesField.dirty)"
+                                    class="pi pi-times-circle icon-invalid"></i></label>
+                            <p-inputNumber id="vacancies" 
+                                        formControlName="vacancies"
+                                        placeholder="Vacantes para la oferta Ej. 5"
+                                        mode="decimal" 
+                                        [showButtons]="true"
+                                        [min]="0" 
+                                        [max]="1000">
+                            </p-inputNumber>
+                            <div *ngIf="vacanciesField.invalid && (vacanciesField.touched || vacanciesField.dirty)">
+                                <small *ngIf="vacanciesField.errors?.required" 
+                                        id="vacancies-help-1" 
+                                        class="p-error">
+                                    {{messageService.fieldRequired}}
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-lg-6 p-md-6 p-sm-12">
+                        <div class="p-field">
+                            <label for="working_day">
+                                <i class="p-error">*</i> Modalidad de trabajo:
+                                <i *ngIf="workingDayField.valid" class="pi pi-check-circle icon-valid"></i>
+                                <i *ngIf="workingDayField.invalid && (workingDayField.touched || workingDayField.dirty)"
+                                    class="pi pi-times-circle icon-invalid"></i>
+                            </label>
+                            <p-autoComplete id="working_day" formControlName="working_day"  
+                                            [suggestions]="filteredWorkingDays"
+                                            (completeMethod)="filterWorkingDay($event)" 
+                                            field="name" 
+                                            [dropdown]="true">
+                                <ng-template let-working_day pTemplate="item">
+                                    <div class="country-item">
+                                        <div>{{working_day.name}}</div>
+                                    </div>
+                                </ng-template>
+                            </p-autoComplete>
+                            <div *ngIf="workingDayField.invalid && (workingDayField.touched || workingDayField.dirty)">
+                                <small *ngIf="workingDayField.errors?.required" 
+                                        id="working-day-help-1" 
+                                        class="p-error">
+                                    {{messageService.fieldRequired}}
+                                </small>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="p-field">
-                    <label for="experience_time">
-                        <i class="p-error">*</i> Tiempo de experiencia:
-                        <i *ngIf="experienceTimeField.valid" class="pi pi-check-circle icon-valid"></i>
-                        <i *ngIf="experienceTimeField.invalid && (experienceTimeField.touched || experienceTimeField.dirty)"
-                            class="pi pi-times-circle icon-invalid"></i>
-                    </label>
-                    <p-autoComplete id="experience_time" formControlName="experience_time"
-                                    [suggestions]="filteredExperienceTimes" 
-                                    (completeMethod)="filterExperienceTime($event)"
-                                    field="name" 
-                                    [dropdown]="true">
-                        <ng-template let-experience_time pTemplate="item">
-                            <div class="country-item">
-                                <div>{{experience_time.name}}</div>
-                            </div>
-                        </ng-template>
-                    </p-autoComplete>
-                    <div
-                        *ngIf="experienceTimeField.invalid && (experienceTimeField.touched || experienceTimeField.dirty)">
-                        <small *ngIf="experienceTimeField.errors?.required" 
-                                id="experience-time-help-1" 
-                                class="p-error">
-                            {{messageService.fieldRequired}}
-                        </small>
-                    </div>
-                </div>
-                <div class="p-field">
-                    <label for="working_day">
-                        <i class="p-error">*</i> Modalidad de trabajo:
-                        <i *ngIf="workingDayField.valid" class="pi pi-check-circle icon-valid"></i>
-                        <i *ngIf="workingDayField.invalid && (workingDayField.touched || workingDayField.dirty)"
-                            class="pi pi-times-circle icon-invalid"></i>
-                    </label>
-                    <p-autoComplete id="working_day" formControlName="working_day"  
-                                    [suggestions]="filteredWorkingDays"
-                                    (completeMethod)="filterWorkingDay($event)" 
-                                    field="name" 
-                                    [dropdown]="true">
-                        <ng-template let-working_day pTemplate="item">
-                            <div class="country-item">
-                                <div>{{working_day.name}}</div>
-                            </div>
-                        </ng-template>
-                    </p-autoComplete>
-                    <div *ngIf="workingDayField.invalid && (workingDayField.touched || workingDayField.dirty)">
-                        <small *ngIf="workingDayField.errors?.required" 
-                                id="working-day-help-1" 
-                                class="p-error">
-                            {{messageService.fieldRequired}}
-                        </small>
-                    </div>
-                </div>
-                <div class="p-field">
-                    <label for="status">
-                        <i class="p-error">*</i> Estado:
-                        <i *ngIf="statusField.valid" class="pi pi-check-circle icon-valid"></i>
-                        <i *ngIf="statusField.invalid && (statusField.touched || statusField.dirty)"
-                            class="pi pi-times-circle icon-invalid"></i>
-                    </label>
-                    <p-autoComplete id="status" formControlName="status"  
-                                    [suggestions]="filteredStatus"
-                                    (completeMethod)="filterStatus($event)" 
-                                    field="name" 
-                                    [dropdown]="true">
-                        <ng-template let-status pTemplate="item">
-                            <div class="country-item">
-                                <div>{{status.name}}</div>
-                            </div>
-                        </ng-template>
-                    </p-autoComplete>
-                    <div *ngIf="statusField.invalid && (statusField.touched || statusField.dirty)">
-                        <small *ngIf="statusField.errors?.required" 
-                                id="status-help-1" 
-                                class="p-error">
-                            {{messageService.fieldRequired}}
-                        </small>
-                    </div>
+                    <label for="aditional_information">Información adicional</label>
+                    <textarea pInputTextarea id="aditional_information" 
+                            formControlName="aditional_information"
+                            autoResize="autoResize"
+                            rows="4">
+                    </textarea>
                 </div>
             </p-card>
         </div>
