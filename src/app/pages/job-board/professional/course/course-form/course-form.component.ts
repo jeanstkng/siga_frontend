@@ -1,15 +1,15 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Course } from '../../../../../models/job-board/course';
-import { MessageService } from '../../../../shared/services/message.service';
-import { NgxSpinnerService } from 'ngx-spinner';
-import { JobBoardHttpService } from '../../../../../services/job-board/job-board-http.service';
-import { AppHttpService } from '../../../../../services/app/app-http.service';
-import { HttpParams } from '@angular/common/http';
-import { Catalogue } from '../../../../../models/app/catalogue';
-import { MessageService as MessagePnService } from 'primeng/api';
-import { SharedService } from '../../../../shared/services/shared.service';
-import { add, format } from 'date-fns';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Course} from '../../../../../models/job-board/course';
+import {MessageService} from '../../../../shared/services/message.service';
+import {NgxSpinnerService} from 'ngx-spinner';
+import {JobBoardHttpService} from '../../../../../services/job-board/job-board-http.service';
+import {AppHttpService} from '../../../../../services/app/app-http.service';
+import {HttpParams} from '@angular/common/http';
+import {Catalogue} from '../../../../../models/app/catalogue';
+import {MessageService as MessagePnService} from 'primeng/api';
+import {SharedService} from '../../../../shared/services/shared.service';
+import {add, format} from 'date-fns';
 
 @Component({
     selector: 'app-course-form',
@@ -33,12 +33,12 @@ export class CourseFormComponent implements OnInit {
 
 
     constructor(private formBuilder: FormBuilder,
-        private messageService: MessageService,
-        private messagePnService: MessagePnService,
-        private spinnerService: NgxSpinnerService,
-        private appHttpService: AppHttpService,
-        private sharedService: SharedService,
-        private jobBoardHttpService: JobBoardHttpService) {
+                public messageService: MessageService,
+                private messagePnService: MessagePnService,
+                private spinnerService: NgxSpinnerService,
+                private appHttpService: AppHttpService,
+                private sharedService: SharedService,
+                private jobBoardHttpService: JobBoardHttpService) {
     }
 
     ngOnInit(): void {
@@ -50,10 +50,6 @@ export class CourseFormComponent implements OnInit {
     }
 
     // Fields of Form
-    get professionalfield() {
-        return this.formCourseIn.get('professional');
-    }
-
     get typeField() {
         return this.formCourseIn.get('type');
     }
@@ -111,42 +107,41 @@ export class CourseFormComponent implements OnInit {
     // Types of catalogues
 
     getTypes() {
-        const params = new HttpParams().append('type', 'COURSE_TYPE');
-        this.appHttpService.getCatalogues(params).subscribe(response => {
+        this.appHttpService.getCatalogues('COURSE_TYPE').subscribe(response => {
             this.types = response['data'];
         }, error => {
             this.messageService.error(error);
         });
     }
-   
+
     getInstitutions() {
-        const params = new HttpParams().append('type', 'COURSE_INSTITUTION');
-        this.appHttpService.getCatalogues(params).subscribe(response => {
+        this.appHttpService.getCatalogues('COURSE_INSTITUTION').subscribe(response => {
             this.institutions = response['data'];
         }, error => {
             this.messageService.error(error);
         });
     }
+
     getCertificationTypes() {
-        const params = new HttpParams().append('type', 'COURSE_CERTIFICATION_TYPE');
-        this.appHttpService.getCatalogues(params).subscribe(response => {
+        this.appHttpService.getCatalogues('COURSE_CERTIFICATION_TYPE').subscribe(response => {
             this.certificationTypes = response['data'];
         }, error => {
             this.messageService.error(error);
         });
     }
+
     getAreas() {
-        const params = new HttpParams().append('type', 'COURSE_AREA');
-        this.appHttpService.getCatalogues(params).subscribe(response => {
+        this.appHttpService.getCatalogues('COURSE_AREA').subscribe(response => {
             this.areas = response['data'];
         }, error => {
             this.messageService.error(error);
         });
     }
+
     // Save in backend
     storeCourse(course: Course, flag = false) {
         this.spinnerService.show();
-        this.jobBoardHttpService.store('courses', { course }).subscribe(response => {
+        this.jobBoardHttpService.store('courses', {course}).subscribe(response => {
             this.spinnerService.hide();
             this.messageService.success(response);
             this.saveCourse(response['data']);
@@ -155,7 +150,6 @@ export class CourseFormComponent implements OnInit {
             } else {
                 this.displayOut.emit(false);
             }
-
         }, error => {
             this.spinnerService.hide();
             this.messageService.error(error);
@@ -165,7 +159,7 @@ export class CourseFormComponent implements OnInit {
     // Save in backend
     updateCourse(course: Course) {
         this.spinnerService.show();
-        this.jobBoardHttpService.update('courses/' + course.id, { course })
+        this.jobBoardHttpService.update('courses/' + course.id, {course})
             .subscribe(response => {
                 this.spinnerService.hide();
                 this.messageService.success(response);
@@ -188,105 +182,4 @@ export class CourseFormComponent implements OnInit {
         this.coursesOut.emit(this.coursesIn);
     }
 
-    // Filters courses
-    filterType(event) {
-        const filtered: any[] = [];
-        const query = event.query;
-        for (const type of this.types) {
-            if (type.name.toLowerCase().indexOf(query.toLowerCase()) === 0) {
-                filtered.push(type);
-            }
-        }
-        if (filtered.length === 0) {
-            this.messagePnService.clear();
-            this.messagePnService.add({
-                severity: 'error',
-                summary: 'Por favor seleccione un tipo del listado',
-                detail: 'En el caso de no existir comuníquese con el administrador!',
-                life: 5000
-            });
-            this.typeField.setValue(null);
-        }
-        this.filteredTypes = filtered;
-    }
-
-    filterInstitution(event) {
-        const filtered: any[] = [];
-        const query = event.query;
-        for (const institution of this.institutions) {
-            if (institution.name.toLowerCase().indexOf(query.toLowerCase()) === 0) {
-                filtered.push(institution);
-            }
-        }
-        if (filtered.length === 0) {
-            this.messagePnService.clear();
-            this.messagePnService.add({
-                severity: 'error',
-                summary: 'Por favor seleccione un tipo del listado',
-                detail: 'En el caso de no existir comuníquese con el administrador!',
-                life: 5000
-            });
-            this.institutionField.setValue(null);
-        }
-        this.filteredInstitutions = filtered;
-    }
-    filterCertificationType(event) {
-        const filtered: any[] = [];
-        const query = event.query;
-        for (const certificationType of this.certificationTypes) {
-            if (certificationType.name.toLowerCase().indexOf(query.toLowerCase()) === 0) {
-                filtered.push(certificationType);
-            }
-        }
-        if (filtered.length === 0) {
-            this.messagePnService.clear();
-            this.messagePnService.add({
-                severity: 'error',
-                summary: 'Por favor seleccione un tipo del listado',
-                detail: 'En el caso de no existir comuníquese con el administrador!',
-                life: 5000
-            });
-            this.certificationTypeField.setValue(null);
-        }
-        this.filteredCertificationTypes = filtered;
-    }
-    // Filter area of experiences
-    filterArea(event) {
-        const filtered: any[] = [];
-        const query = event.query;
-        for (const area of this.areas) {
-            if (area.name.toLowerCase().indexOf(query.toLowerCase()) === 0) {
-                filtered.push(area);
-            }
-        }
-        if (filtered.length === 0) {
-            this.messagePnService.clear();
-            this.messagePnService.add({
-                severity: 'error',
-                summary: 'Por favor seleccione un tipo del listado',
-                detail: 'En el caso de no existir comuníquese con el administrador!',
-                life: 5000
-            });
-            this.areaField.setValue(null);
-        }
-        this.filteredAreas = filtered;
-    }
-
-    test(event) {
-        event.markAllAsTouched();
-    }
-
-    resetFormCourse() {
-        this.formCourseIn.reset();
-    }
-
-    markAllAsTouchedFormCourse() {
-        this.formCourseIn.markAllAsTouched();
-    }
-    calculateEndDate() {
-        if (this.startDateField.valid) {
-            const date = add(new Date(this.startDateField.value), { months: 1, days: 1 });
-            this.endDateField.patchValue(format(date, 'yyyy-MM-dd'));
-        }
-    }
 }

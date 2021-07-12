@@ -1,33 +1,34 @@
  {{formReferenceIn.value|json}} 
 <p-card>
  <div class="p-fluid">
-    <form [formGroup]="formReferenceIn" (ngSubmit)="onSubmit()">  
-        <div class="p-field">
+    <form [formGroup]="formReferenceIn" (ngSubmit)="onSubmit()">
+       
+        <div class="p-field p-xl-12 p-lg-6 p-md-6 p-sm-15">
             <label for="institution">
-                <i class="p-error">*</i> Institución:
-                <i *ngIf="institutionField.valid" class="pi pi-check-circle icon-valid"></i>
-                <i *ngIf="institutionField.invalid && (institutionField.touched || institutionField.dirty)"
-                    class="pi pi-times-circle icon-invalid"></i>
+              <i class="p-error">*</i> Institución:
+              <i *ngIf="institutionField.valid" class="pi pi-check-circle icon-valid"></i>
+              <i *ngIf="institutionField.invalid && (institutionField.touched || institutionField.dirty)"
+                class="pi pi-times-circle icon-invalid"></i>
             </label>
-            <p-autoComplete id="institution" name="institution" formControlName="institution"
-                [suggestions]="filteredInstitutions" (completeMethod)="filterInstitution($event)" field="name"
-                [dropdown]="true">
-                <ng-template let-institution pTemplate="item">
-                    <div class="country-item">
-                        <div>{{institution.name}}</div>
-                    </div>
-                </ng-template>
-            </p-autoComplete>
-            <div *ngIf="institutionField.invalid && (institutionField.touched || institutionField.dirty)">
-                <small *ngIf="institutionField.errors?.required" id="institution-help-1" class="p-error">
-                    {{messageService.fieldRequired}}
-                </small>
-            </div>
-        </div>
+            <p-dropdown id="institution" [options]="institutions" formControlName="institution"
+                        optionLabel="name" [filter]="true" filterBy="name"
+                        placeholder="Seleccione...">
+              <ng-template pTemplate="selectedinstitution">
+                <div class="country-institution country-institution-value"  *ngIf="institutionField.value">
+                  <div>{{institution.name}}</div>
+                </div>
+              </ng-template>
+              <ng-template let-institution pTemplate="institution">
+                <div class="country-institution">
+                  <div>{{institution.name}}</div>
+                </div>
+              </ng-template>
+            </p-dropdown>
+          </div>
 
          <div class="p-formgrid p-grid">
             <div class="p-field p-col">
-                <label for="position">Posición:</label>
+                <label for="position">Cargo:</label>
                 <input id="position" name="position" pInputText formControlName="position" />
                 <div *ngIf="positionField.errors && positionField.touched">
                     <small *ngIf="positionField.hasError('required')" 

@@ -28,6 +28,7 @@ import {PaginatorModule} from 'primeng/paginator';
 import {KeyFilterModule} from 'primeng/keyfilter';
 import {TabViewModule} from 'primeng/tabview';
 import {TreeModule} from 'primeng/tree';
+import {KnobModule} from 'primeng/knob';
 import {AccordionModule} from 'primeng/accordion';
 import {OverlayPanelModule} from 'primeng/overlaypanel';
 import {CardModule} from 'primeng/card';
@@ -56,6 +57,7 @@ import { RegisterFormComponent } from './register/register-form/register-form.co
         PasswordModule,
         ButtonModule,
         DropdownModule,
+        KnobModule,
         TooltipModule,
         AutoCompleteModule,
         ToastModule,
@@ -92,6 +94,7 @@ import { RegisterFormComponent } from './register/register-form/register-form.co
         ProfessionalListComponent,
         RegisterComponent,
         RegisterFormComponent,
+        OfferProfessionalsComponent
     ],
     providers: []
 })

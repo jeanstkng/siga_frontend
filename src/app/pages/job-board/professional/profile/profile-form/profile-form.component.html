@@ -1,405 +1,316 @@
 <div class="p-fluid">
-  <form [formGroup]="formProfessionalIn" (ngSubmit)="onSubmit($event)">
-    <div class="p-formgrid p-grid">
-      <div class="p-field p-xl-6 p-lg-6 p-md-12 p-sm-12">
-        <div formGroupName="user">
-          <p-card header="Datos de Usuario:">
-            <div class="p-formgrid p-grid">
-              <div class="p-field p-xl-6 p-lg-6 p-md-6 p-sm-12">
-                <label for="identification">
-                  <i class="p-error">*</i>Identificación:
-                  <i *ngIf="identificationField.valid" class="pi pi-check-circle icon-valid"></i>
-                  <i *ngIf="identificationField.invalid && (identificationField.touched || identificationField.dirty)"
-                    class="pi pi-times-circle icon-invalid"></i>
-                </label>
-                <input id="identification" formControlName="identification" pInputText>
-                <div *ngIf="identificationField.errors && (identificationField.touched || identificationField.dirty)">
-                  <small *ngIf="identificationField.errors?.required" id="user-help-1" class="p-error">
-                    {{messageService.fieldRequired}}
-                  </small>
+    <form [formGroup]="formProfessionalIn" (ngSubmit)="onSubmit()">
+        <div class="p-formgrid p-grid">
+            <div class="p-field p-xl-6 p-lg-6 p-md-12 p-sm-12">
+                <div formGroupName="user">
+                    <p-card header="Datos de Usuario:">
+                        <div class="p-formgrid p-grid">
+                            <div class="p-field p-xl-6 p-lg-6 p-md-6 p-sm-12">
+                                <label for="identification">
+                                    <i class="p-error">*</i>Identificación:
+                                    <i *ngIf="identificationField.valid" class="pi pi-check-circle icon-valid"></i>
+                                    <i *ngIf="identificationField.invalid && (identificationField.touched || identificationField.dirty)"
+                                       class="pi pi-times-circle icon-invalid"></i>
+                                </label>
+                                <input id="identification" formControlName="identification" pInputText>
+                                <div *ngIf="identificationField.errors && (identificationField.touched || identificationField.dirty)">
+                                    <small *ngIf="identificationField.errors?.required" id="identification-help-1"
+                                           class="p-error">
+                                        {{messageService.fieldRequired}}
+                                    </small>
+                                </div>
+                            </div>
+                            <div class="p-field p-xl-6 p-lg-6 p-md-6 p-sm-12">
+                                <label for="email">
+                                    <i class="p-error">*</i>Correo:
+                                    <i *ngIf="emailField.valid" class="pi pi-check-circle icon-valid"></i>
+                                    <i *ngIf="emailField.invalid && (emailField.touched || emailField.dirty)"
+                                       class="pi pi-times-circle icon-invalid"></i>
+                                </label>
+                                <input id="email" formControlName="email" pInputText>
+                                <div *ngIf="emailField.errors && (emailField.touched || emailField.dirty)">
+                                    <small *ngIf="emailField.errors?.required" id="email-help-1" class="p-error">
+                                        {{messageService.fieldRequired}}
+                                    </small>
+                                    <small *ngIf="emailField.errors?.email" id="email-help-2" class="p-error">
+                                        {{messageService.fieldEmail}}
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-formgrid p-grid">
+                            <div class="p-field p-xl-6 p-lg-6 p-md-6 p-sm-12">
+                                <label for="first_name">
+                                    <i class="p-error">*</i>Primer Nombre:
+                                    <i *ngIf="firstNameField.valid" class="pi pi-check-circle icon-valid"></i>
+                                    <i *ngIf="firstNameField.invalid && (firstNameField.touched || firstNameField.dirty)"
+                                       class="pi pi-times-circle icon-invalid"></i>
+                                </label>
+                                <input id="first_name" formControlName="first_name" pInputText>
+                                <div *ngIf="firstNameField.errors && (firstNameField.touched || firstNameField.dirty)">
+                                    <small *ngIf="firstNameField.errors?.required" id="user-help-1" class="p-error">
+                                        {{messageService.fieldRequired}}
+                                    </small>
+                                </div>
+                            </div>
+                            <div class="p-field p-xl-6 p-lg-6 p-md-6 p-sm-12">
+                                <label for="second_name">
+                                    <i class="p-error">*</i>Segundo Nombre:
+                                    <i *ngIf="secondNameField.valid" class="pi pi-check-circle icon-valid"></i>
+                                    <i *ngIf="secondNameField.invalid && (secondNameField.touched || secondNameField.dirty)"
+                                       class="pi pi-times-circle icon-invalid"></i>
+                                </label>
+                                <input id="second_name" formControlName="second_name" pInputText>
+                                <div *ngIf="secondNameField.errors && (secondNameField.touched || secondNameField.dirty)">
+                                    <small *ngIf="secondNameField.errors?.required" id="user-help-1" class="p-error">
+                                        {{messageService.fieldRequired}}
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-formgrid p-grid">
+                            <div class="p-field p-xl-6 p-lg-6 p-md-6 p-sm-12">
+                                <label for="first_lastname">
+                                    <i class="p-error">*</i>Primer Apellido:
+                                    <i *ngIf="firstLastnameField.valid" class="pi pi-check-circle icon-valid"></i>
+                                    <i *ngIf="firstLastnameField.invalid && (firstLastnameField.touched || firstLastnameField.dirty)"
+                                       class="pi pi-times-circle icon-invalid"></i>
+                                </label>
+                                <input id="first_lastname" formControlName="first_lastname" pInputText>
+                                <div *ngIf="firstLastnameField.errors && (firstLastnameField.touched || firstLastnameField.dirty)">
+                                    <small *ngIf="firstLastnameField.errors?.required" id="user-help-1" class="p-error">
+                                        {{messageService.fieldRequired}}
+                                    </small>
+                                </div>
+                            </div>
+                            <div class="p-field p-xl-6 p-lg-6 p-md-6 p-sm-12">
+                                <label for="second_lastname">
+                                    <i class="p-error">*</i>Segundo Apellido:
+                                    <i *ngIf="secondLastnameField.valid" class="pi pi-check-circle icon-valid"></i>
+                                    <i *ngIf="secondLastnameField.invalid && (secondLastnameField.touched || secondLastnameField.dirty)"
+                                       class="pi pi-times-circle icon-invalid"></i>
+                                </label>
+                                <input id="second_lastname" formControlName="second_lastname" pInputText>
+                                <div *ngIf="secondLastnameField.errors && (secondLastnameField.touched || secondLastnameField.dirty)">
+                                    <small *ngIf="secondLastnameField.errors?.required" id="user-help-1"
+                                           class="p-error">
+                                        {{messageService.fieldRequired}}
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-formgrid p-grid">
+                            <div class="p-field p-xl-6 p-lg-6 p-md-6 p-sm-12">
+                                <label for="phone">
+                                    <i class="p-error">*</i>Telefóno:
+                                    <i *ngIf="phoneField.valid" class="pi pi-check-circle icon-valid"></i>
+                                    <i *ngIf="phoneField.invalid && (phoneField.touched || phoneField.dirty)"
+                                       class="pi pi-times-circle icon-invalid"></i>
+                                </label>
+                                <input id="phone" formControlName="phone" pInputText>
+                                <div *ngIf="phoneField.errors && (phoneField.touched || phoneField.dirty)">
+                                    <small *ngIf="phoneField.errors?.required" id="phone-help-1" class="p-error">
+                                        {{messageService.fieldRequired}}
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                    </p-card>
                 </div>
-              </div>
-              <div class="p-field p-xl-6 p-lg-6 p-md-6 p-sm-12">
-                <label for="email">
-                  <i class="p-error">*</i>Correo:
-                  <i *ngIf="emailField.valid" class="pi pi-check-circle icon-valid"></i>
-                  <i *ngIf="emailField.invalid && (emailField.touched || emailField.dirty)"
-                    class="pi pi-times-circle icon-invalid"></i>
-                </label>
-                <input id="email" formControlName="email" pInputText>
-                <div *ngIf="emailField.errors && (emailField.touched || emailField.dirty)">
-                  <small *ngIf="emailField.errors?.required" id="email-help-1" class="p-error">
-                    {{messageService.fieldRequired}}
-                  </small>
-                  <small *ngIf="emailField.errors?.email" id="email-help-1" class="p-error">
-                    {{messageService.fieldEmail}}
-                  </small>
-                </div>
-              </div>
             </div>
-            <div class="p-formgrid p-grid">
-              <div class="p-field p-xl-6 p-lg-6 p-md-6 p-sm-12">
-                <label for="first_name">
-                  <i class="p-error">*</i>Primer Nombre:
-                  <i *ngIf="firstNameField.valid" class="pi pi-check-circle icon-valid"></i>
-                  <i *ngIf="firstNameField.invalid && (firstNameField.touched || firstNameField.dirty)"
-                    class="pi pi-times-circle icon-invalid"></i>
-                </label>
-                <input id="first_name" formControlName="first_name" pInputText>
-                <div *ngIf="firstNameField.errors && (firstNameField.touched || firstNameField.dirty)">
-                  <small *ngIf="firstNameField.errors?.required" id="user-help-1" class="p-error">
-                    {{messageService.fieldRequired}}
-                  </small>
-                </div>
-              </div>
-              <div class="p-field p-xl-6 p-lg-6 p-md-6 p-sm-12">
-                <label for="second_name">
-                  <i class="p-error">*</i>Segundo Nombre:
-                  <i *ngIf="secondNameField.valid" class="pi pi-check-circle icon-valid"></i>
-                  <i *ngIf="secondNameField.invalid && (secondNameField.touched || secondNameField.dirty)"
-                    class="pi pi-times-circle icon-invalid"></i>
-                </label>
-                <input id="second_name" formControlName="second_name" pInputText>
-                <div *ngIf="secondNameField.errors && (secondNameField.touched || secondNameField.dirty)">
-                  <small *ngIf="secondNameField.errors?.required" id="user-help-1" class="p-error">
-                    {{messageService.fieldRequired}}
-                  </small>
-                </div>
-              </div>
+            <div class="p-field p-xl-6 p-lg-6 p-md-12 p-sm-12">
+                <p-card header="Información Personal:">
+                    <div class="p-formgrid p-grid">
+                        <div class="p-field p-xl-6 p-lg-6 p-md-6 p-sm-12">
+                            <label for="is_travel">
+                                <i class="p-error">*</i>Puede Viajar:
+                                <i *ngIf="isTravelField.valid" class="pi pi-check-circle icon-valid"></i>
+                                <i *ngIf="isTravelField.invalid && (isTravelField.touched || isTravelField.dirty)"
+                                   class="pi pi-times-circle icon-invalid"></i>
+                            </label>
+                            <!-- <input id="is_travel" formControlName="is_travel" pInputText> -->
+                            <div *ngIf="isTravelField.errors && (isTravelField.touched ||isTravelField.dirty)">
+                                <small *ngIf="isTravelField.errors?.required" id="is_travel-help-1" class="p-error">
+                                    {{messageService.fieldRequired}}
+                                </small>
+                            </div>
+                            <div class class="p-field-checkbox">
+                                <p-checkbox name="is_travel" value="si" formControlName="is_travel"
+                                            inputId="is_travel"></p-checkbox>
+                                <label for="ny">SI</label>
+                            </div>
+                            <div class="p-field-checkbox">
+                                <p-checkbox name="is_travel" value="no" formControlName="is_travel"
+                                            inputId="isTravelField">
+                                </p-checkbox>
+                                <label for="sf">NO</label>
+                            </div>
+                        </div>
+                        <div class="p-field p-xl-6 p-lg-6 p-md-6 p-sm-12">
+                            <label for="is_disability">
+                                <i class="p-error">*</i>Discapacidad:
+                                <i *ngIf="isDisabilityField.valid" class="pi pi-check-circle icon-valid"></i>
+                                <i *ngIf="isDisabilityField.invalid && (isDisabilityField.touched || isDisabilityField.dirty)"
+                                   class="pi pi-times-circle icon-invalid"></i>
+                            </label>
+                            <!-- <input id="is_travel" formControlName="is_travel" pInputText> -->
+                            <div *ngIf="isDisabilityField.errors && (isDisabilityField.touched ||isDisabilityField.dirty)">
+                                <small *ngIf="isDisabilityField.errors?.required" id="is_disability-help-1"
+                                       class="p-error">
+                                    {{messageService.fieldRequired}}
+                                </small>
+                            </div>
+                            <div class class="p-field-checkbox">
+                                <p-checkbox name="is_disability" value="si" formControlName="is_disability"
+                                            inputId="isDisabilityField">
+                                </p-checkbox>
+                                <label for="ny">SI</label>
+                            </div>
+                            <div class="p-field-checkbox">
+                                <p-checkbox name="is_disability" value="no" formControlName="is_disability"
+                                            inputId="isDisabilityField">
+                                </p-checkbox>
+                                <label for="sf">NO</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-formgrid p-grid">
+                        <div class="p-field p-xl-6 p-lg-6 p-md-6 p-sm-12">
+                            <label for="is_disability">
+                                <i class="p-error">*</i> Familiar con Discapacidad:
+                                <i *ngIf="isFamiliarDisabilityField.valid" class="pi pi-check-circle icon-valid"></i>
+                                <i *ngIf="isFamiliarDisabilityField.invalid && (isFamiliarDisabilityField.touched || isFamiliarDisabilityField.dirty)"
+                                   class="pi pi-times-circle icon-invalid"></i>
+                            </label>
+                            <!-- <input id="is_travel" formControlName="is_travel" pInputText> -->
+                            <div
+                                    *ngIf="isFamiliarDisabilityField.errors && (isFamiliarDisabilityField.touched ||isFamiliarDisabilityField.dirty)">
+                                <small *ngIf="isFamiliarDisabilityField.errors?.required" id="is_disability-help-1"
+                                       class="p-error">
+                                    {{messageService.fieldRequired}}
+                                </small>
+                            </div>
+                            <div class class="p-field-checkbox">
+                                <p-checkbox name="is_disability" value="si" formControlName="is_disability"
+                                            inputId="isFamiliarDisabilityField">
+                                </p-checkbox>
+                                <label for="ny">SI</label>
+                            </div>
+                            <div class="p-field-checkbox">
+                                <p-checkbox name="is_disability" value="no" formControlName="is_disability"
+                                            inputId="isFamiliarDisabilityField">
+                                </p-checkbox>
+                                <label for="sf">NO</label>
+                            </div>
+                        </div>
+                        <div class="p-field p-xl-6 p-lg-6 p-md-6 p-sm-12">
+                            <label for="type">
+                                <i class="p-error">*</i> Identificación del Familiar con Discapacidad:
+                                <i *ngIf="identificationFamiliarDisabilityField.valid"
+                                   class="pi pi-check-circle icon-valid"></i>
+                                <i *ngIf="identificationFamiliarDisabilityField.invalid && (identificationFamiliarDisabilityField.touched || identificationFamiliarDisabilityField.dirty)"
+                                   class="pi pi-times-circle icon-invalid"></i>
+                            </label>
+                            <input id="identification_familiar_disability"
+                                   formControlName="identification_familiar_disability"
+                                   pInputText>
+                            <div
+                                    *ngIf="identificationFamiliarDisabilityField.errors && (identificationFamiliarDisabilityField.touched || identificationFamiliarDisabilityField.dirty)">
+                                <small *ngIf="identificationFamiliarDisabilityField.errors?.required" id="user-help-1"
+                                       class="p-error">
+                                    {{messageService.fieldRequired}}
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-formgrid p-grid">
+                        <div class="p-field p-xl-6 p-lg-6 p-md-6 p-sm-12">
+                            <label for="is_disability">
+                                <i class="p-error">*</i> Tiene Enfermedad Catastrófica:
+                                <i *ngIf="isFamiliarDisabilityField.valid" class="pi pi-check-circle icon-valid"></i>
+                                <i *ngIf="isFamiliarDisabilityField.invalid && (isFamiliarDisabilityField.touched || isFamiliarDisabilityField.dirty)"
+                                   class="pi pi-times-circle icon-invalid"></i>
+                            </label>
+                            <!-- <input id="is_travel" formControlName="is_travel" pInputText> -->
+                            <div
+                                    *ngIf="isFamiliarDisabilityField.errors && (isFamiliarDisabilityField.touched ||isFamiliarDisabilityField.dirty)">
+                                <small *ngIf="isFamiliarDisabilityField.errors?.required" id="is_disability-help-1"
+                                       class="p-error">
+                                    {{messageService.fieldRequired}}
+                                </small>
+                            </div>
+                            <div class class="p-field-checkbox">
+                                <p-checkbox name="is_disability" value="si" formControlName="is_disability"
+                                            inputId="isFamiliarDisabilityField">
+                                </p-checkbox>
+                                <label for="ny">SI</label>
+                            </div>
+                            <div class="p-field-checkbox">
+                                <p-checkbox name="is_disability" value="no" formControlName="is_disability"
+                                            inputId="isFamiliarDisabilityField">
+                                </p-checkbox>
+                                <label for="sf">NO</label>
+                            </div>
+                        </div>
+                        <div class="p-field p-xl-6 p-lg-6 p-md-6 p-sm-12">
+                            <label for="is_familiar_catastrophic_illness">
+                                <i class="p-error">*</i> Su Familiar Tiene Enfermedad Catastrófica:
+                                <i *ngIf="isFamiliarCatastrophicIllnessField.valid"
+                                   class="pi pi-check-circle icon-valid"></i>
+                                <i *ngIf="isFamiliarCatastrophicIllnessField.invalid && (isFamiliarCatastrophicIllnessField.touched || isFamiliarCatastrophicIllnessField.dirty)"
+                                   class="pi pi-times-circle icon-invalid"></i>
+                            </label>
+                            <!-- <input id="is_travel" formControlName="is_travel" pInputText> -->
+                            <div
+                                    *ngIf="isFamiliarCatastrophicIllnessField.errors && (isFamiliarCatastrophicIllnessField.touched ||isFamiliarCatastrophicIllnessField.dirty)">
+                                <small *ngIf="isFamiliarCatastrophicIllnessField.errors?.required"
+                                       id="is_familiar_catastrophic_illness-help-1" class="p-error">
+                                    {{messageService.fieldRequired}}
+                                </small>
+                            </div>
+                            <div class class="p-field-checkbox">
+                                <p-checkbox name="is_familiar_catastrophic_illness" value="si"
+                                            formControlName="is_familiar_catastrophic_illness"
+                                            inputId="isFamiliarCatastrophicIllnessField">
+                                </p-checkbox>
+                                <label for="ny">SI</label>
+                            </div>
+                            <div class="p-field-checkbox">
+                                <p-checkbox name="is_familiar_catastrophic_illness" value="no"
+                                            formControlName="is_familiar_catastrophic_illness"
+                                            inputId="isFamiliarCatastrophicIllnessField">
+                                </p-checkbox>
+                                <label for="sf">NO</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-field">
+                        <label for="about_me">
+                            <i class="p-error">*</i> Acerca de Mí:
+                            <i *ngIf="aboutMeField.valid" class="pi pi-check-circle icon-valid"></i>
+                            <i *ngIf="aboutMeField.invalid && (aboutMeField.touched || aboutMeField.dirty)"
+                               class="pi pi-times-circle icon-invalid"></i>
+                        </label>
+                        <textarea pInputTextarea id="about_me" name="type" formControlName="about_me"
+                                  rows="5"></textarea>
+                        <div *ngIf="aboutMeField.errors && (aboutMeField.touched || aboutMeField.dirty)">
+                            <small *ngIf="aboutMeField.hasError('required')" id="about_me-help-1" class="p-error">
+                                {{messageService.fieldRequired}}
+                            </small>
+                            <small *ngIf="aboutMeField.hasError('minlength')" id="about_me-help-2" class="p-error">
+                                Mínimo de caracteres es {{aboutMeField.errors.minlength.requiredLength}}.
+                            </small>
+                        </div>
+                    </div>
+                </p-card>
             </div>
-            <div class="p-formgrid p-grid">
-              <div class="p-field p-xl-6 p-lg-6 p-md-6 p-sm-12">
-                <label for="first_lastname">
-                  <i class="p-error">*</i>Primer Apellido:
-                  <i *ngIf="firstLastnameField.valid" class="pi pi-check-circle icon-valid"></i>
-                  <i *ngIf="firstLastnameField.invalid && (firstLastnameField.touched || firstLastnameField.dirty)"
-                    class="pi pi-times-circle icon-invalid"></i>
-                </label>
-                <input id="first_lastname" formControlName="first_lastname" pInputText>
-                <div *ngIf="firstLastnameField.errors && (firstLastnameField.touched || firstLastnameField.dirty)">
-                  <small *ngIf="firstLastnameField.errors?.required" id="user-help-1" class="p-error">
-                    {{messageService.fieldRequired}}
-                  </small>
-                </div>
-              </div>
-              <div class="p-field p-xl-6 p-lg-6 p-md-6 p-sm-12">
-                <label for="second_lastname">
-                  <i class="p-error">*</i>Segundo Apellido:
-                  <i *ngIf="secondLastnameField.valid" class="pi pi-check-circle icon-valid"></i>
-                  <i *ngIf="secondLastnameField.invalid && (secondLastnameField.touched || secondLastnameField.dirty)"
-                    class="pi pi-times-circle icon-invalid"></i>
-                </label>
-                <input id="second_lastname" formControlName="second_lastname" pInputText>
-                <div *ngIf="secondLastnameField.errors && (secondLastnameField.touched || secondLastnameField.dirty)">
-                  <small *ngIf="secondLastnameField.errors?.required" id="user-help-1" class="p-error">
-                    {{messageService.fieldRequired}}
-                  </small>
-                </div>
-              </div>
-            </div>
-            <div class="p-formgrid p-grid">
-              <div class="p-field p-xl-6 p-lg-6 p-md-6 p-sm-12">
-                <label for="phone">
-                  <i class="p-error">*</i>Telefóno:
-                  <i *ngIf="phoneField.valid" class="pi pi-check-circle icon-valid"></i>
-                  <i *ngIf="phoneField.invalid && (phoneField.touched || phoneField.dirty)"
-                    class="pi pi-times-circle icon-invalid"></i>
-                </label>
-                <input id="phone" formControlName="phone" pInputText>
-                <div *ngIf="phoneField.errors && (phoneField.touched || phoneField.dirty)">
-                  <small *ngIf="phoneField.errors?.required" id="phone-help-1" class="p-error">
-                    {{messageService.fieldRequired}}
-                  </small>
-                </div>
-              </div>
-            </div>
-          </p-card>
         </div>
-      </div>
-      <div class="p-field p-xl-6 p-lg-6 p-md-12 p-sm-12">
-        <p-card header="Información Personal:">
-          <div class="p-formgrid p-grid">
-            <!-- <div class="p-field p-xl-6 p-lg-6 p-md-6 p-sm-12">
-              <label for="tradeName">
-                <i class="p-error">*</i>Nombre Comercial:
-                <i *ngIf="tradeNameField.valid" class="pi pi-check-circle icon-valid"></i>
-                <i *ngIf="tradeNameField.invalid && (tradeNameField.touched || tradeNameField.dirty)"
-                  class="pi pi-times-circle icon-invalid"></i>
-              </label>
-              <input id="tradeName" formControlName="trade_name" pInputText>
-              <div *ngIf="tradeNameField.errors && (tradeNameField.touched ||tradeNameField.dirty)">
-                <small *ngIf="tradeNameField.errors?.required" id="tradeName-help-1" class="p-error">
-                  {{messageService.fieldRequired}}
-                </small>
-              </div>
-            </div> -->
-            <div class="p-field p-xl-6 p-lg-6 p-md-6 p-sm-12">
-              <label for="is_travel">
-                <i class="p-error">*</i>Puede Viajar:
-                <i *ngIf="isTravelField.valid" class="pi pi-check-circle icon-valid"></i>
-                <i *ngIf="isTravelField.invalid && (isTravelField.touched || isTravelField.dirty)"
-                  class="pi pi-times-circle icon-invalid"></i>
-              </label>
-              <!-- <input id="is_travel" formControlName="is_travel" pInputText> -->
-              <div *ngIf="isTravelField.errors && (isTravelField.touched ||isTravelField.dirty)">
-                <small *ngIf="isTravelField.errors?.required" id="is_travel-help-1" class="p-error">
-                  {{messageService.fieldRequired}}
-                </small>
-              </div>
-              <div class class="p-field-checkbox">
-                <p-checkbox name="is_travel" value="si" formControlName="is_travel" inputId="is_travel"></p-checkbox>
-                <label for="ny">SI</label>
-              </div>
-              <div class="p-field-checkbox">
-                <p-checkbox name="is_travel" value="no" formControlName="is_travel" inputId="isTravelField">
-                </p-checkbox>
-                <label for="sf">NO</label>
-              </div>
+        <div class="p-formgrid p-grid">
+            <div class="p-field">
+                <button type="submit" pButton pRipple label="Guardar y Salir" icon="pi pi-save"
+                        class="p-button-success p-button-raised"
+                        style="display:inline-block;margin-left:35%;width:25%;"></button>
             </div>
-            <!-- <div class="p-field p-xl-6 p-lg-6 p-md-6 p-sm-12">
-              <label for="prefix">
-                <i class="p-error">*</i>Prefijo:
-                <i *ngIf="prefixField.valid" class="pi pi-check-circle icon-valid"></i>
-                <i *ngIf="prefixField.invalid && (prefixField.touched || prefixField.dirty)"
-                  class="pi pi-times-circle icon-invalid"></i>
-              </label>
-              <input id="prefix" formControlName="prefix" pInputText>
-              <div *ngIf="prefixField.errors && (prefixField.touched ||prefixField.dirty)">
-                <small *ngIf="prefixField.errors?.required" id="prefix-help-1" class="p-error">
-                  {{messageService.fieldRequired}}
-                </small>
-              </div>
-            </div> -->
-            <div class="p-field p-xl-6 p-lg-6 p-md-6 p-sm-12">
-              <label for="is_disability">
-                <i class="p-error">*</i>Discapacidad:
-                <i *ngIf="isDisabilityField.valid" class="pi pi-check-circle icon-valid"></i>
-                <i *ngIf="isDisabilityField.invalid && (isDisabilityField.touched || isDisabilityField.dirty)"
-                  class="pi pi-times-circle icon-invalid"></i>
-              </label>
-              <!-- <input id="is_travel" formControlName="is_travel" pInputText> -->
-              <div *ngIf="isDisabilityField.errors && (isDisabilityField.touched ||isDisabilityField.dirty)">
-                <small *ngIf="isDisabilityField.errors?.required" id="is_disability-help-1" class="p-error">
-                  {{messageService.fieldRequired}}
-                </small>
-              </div>
-              <div class class="p-field-checkbox">
-                <p-checkbox name="is_disability" value="si" formControlName="is_disability" inputId="isDisabilityField">
-                </p-checkbox>
-                <label for="ny">SI</label>
-              </div>
-              <div class="p-field-checkbox">
-                <p-checkbox name="is_disability" value="no" formControlName="is_disability" inputId="isDisabilityField">
-                </p-checkbox>
-                <label for="sf">NO</label>
-              </div>
-            </div>
-          </div>
-          <div class="p-formgrid p-grid">
-            <!-- <div class="p-field p-xl-6 p-lg-6 p-md-6 p-sm-12">
-              <label for="web">
-                <i class="p-error">*</i>Web:
-                <i *ngIf="webField.valid" class="pi pi-check-circle icon-valid"></i>
-                <i *ngIf="webField.invalid && (webField.touched || webField.dirty)"
-                  class="pi pi-times-circle icon-invalid"></i>
-              </label>
-              <input id="web" formControlName="web" pInputText>
-              <div *ngIf="webField.errors && (webField.touched || webField.dirty)">
-                <small *ngIf="webField.errors?.required" id="web-help-1" class="p-error">
-                  {{messageService.fieldRequired}}
-                </small>
-              </div>
-            </div> -->
-            <div class="p-field p-xl-6 p-lg-6 p-md-6 p-sm-12">
-              <label for="is_disability">
-                <i class="p-error">*</i> Familiar con Discapacidad:
-                <i *ngIf="isFamiliarDisabilityField.valid" class="pi pi-check-circle icon-valid"></i>
-                <i *ngIf="isFamiliarDisabilityField.invalid && (isFamiliarDisabilityField.touched || isFamiliarDisabilityField.dirty)"
-                  class="pi pi-times-circle icon-invalid"></i>
-              </label>
-              <!-- <input id="is_travel" formControlName="is_travel" pInputText> -->
-              <div
-                *ngIf="isFamiliarDisabilityField.errors && (isFamiliarDisabilityField.touched ||isFamiliarDisabilityField.dirty)">
-                <small *ngIf="isFamiliarDisabilityField.errors?.required" id="is_disability-help-1" class="p-error">
-                  {{messageService.fieldRequired}}
-                </small>
-              </div>
-              <div class class="p-field-checkbox">
-                <p-checkbox name="is_disability" value="si" formControlName="is_disability"
-                  inputId="isFamiliarDisabilityField">
-                </p-checkbox>
-                <label for="ny">SI</label>
-              </div>
-              <div class="p-field-checkbox">
-                <p-checkbox name="is_disability" value="no" formControlName="is_disability"
-                  inputId="isFamiliarDisabilityField">
-                </p-checkbox>
-                <label for="sf">NO</label>
-              </div>
-            </div>
-            <div class="p-field p-xl-6 p-lg-6 p-md-6 p-sm-12">
-              <label for="type">
-                <i class="p-error">*</i> Identificación del Familiar con Discapacidad:
-                <i *ngIf="identificationFamiliarDisabilityField.valid" class="pi pi-check-circle icon-valid"></i>
-                <i *ngIf="identificationFamiliarDisabilityField.invalid && (identificationFamiliarDisabilityField.touched || identificationFamiliarDisabilityField.dirty)"
-                  class="pi pi-times-circle icon-invalid"></i>
-              </label>
-              <input id="identification_familiar_disability" formControlName="identification_familiar_disability"
-                pInputText>
-              <div
-                *ngIf="identificationFamiliarDisabilityField.errors && (identificationFamiliarDisabilityField.touched || identificationFamiliarDisabilityField.dirty)">
-                <small *ngIf="identificationFamiliarDisabilityField.errors?.required" id="user-help-1" class="p-error">
-                  {{messageService.fieldRequired}}
-                </small>
-              </div>
-            </div>
-          </div>
-          <div class="p-formgrid p-grid">
-            <!-- <div class="p-field p-xl-6 p-lg-6 p-md-6 p-sm-12">
-              <label for="personType">
-                <i class="p-error">*</i> Tipo de Persona:
-                <i *ngIf="personTypeField.valid" class="pi pi-check-circle icon-valid"></i>
-                <i *ngIf="personTypeField.invalid && (personTypeField.touched || personTypeField.dirty)"
-                  class="pi pi-times-circle icon-invalid"></i>
-              </label>
-              <p-autoComplete id="personType" formControlName="person_type" [suggestions]="filteredpersonTypes"
-                (completeMethod)="filterPersonType($event)" field="name" [dropdown]="true">
-                <ng-template let-item pTemplate="item">
-                  <div class="country-item">
-                    <div>{{item.name}}</div>
-                  </div>
-                </ng-template>
-              </p-autoComplete>
-            </div> -->
-            <div class="p-field p-xl-6 p-lg-6 p-md-6 p-sm-12">
-              <label for="is_disability">
-                <i class="p-error">*</i> Tiene Enfermedad Catastrófica:
-                <i *ngIf="isFamiliarDisabilityField.valid" class="pi pi-check-circle icon-valid"></i>
-                <i *ngIf="isFamiliarDisabilityField.invalid && (isFamiliarDisabilityField.touched || isFamiliarDisabilityField.dirty)"
-                  class="pi pi-times-circle icon-invalid"></i>
-              </label>
-              <!-- <input id="is_travel" formControlName="is_travel" pInputText> -->
-              <div
-                *ngIf="isFamiliarDisabilityField.errors && (isFamiliarDisabilityField.touched ||isFamiliarDisabilityField.dirty)">
-                <small *ngIf="isFamiliarDisabilityField.errors?.required" id="is_disability-help-1" class="p-error">
-                  {{messageService.fieldRequired}}
-                </small>
-              </div>
-              <div class class="p-field-checkbox">
-                <p-checkbox name="is_disability" value="si" formControlName="is_disability"
-                  inputId="isFamiliarDisabilityField">
-                </p-checkbox>
-                <label for="ny">SI</label>
-              </div>
-              <div class="p-field-checkbox">
-                <p-checkbox name="is_disability" value="no" formControlName="is_disability"
-                  inputId="isFamiliarDisabilityField">
-                </p-checkbox>
-                <label for="sf">NO</label>
-              </div>
-            </div>
-            <!-- <div class="p-field p-xl-6 p-lg-6 p-md-6 p-sm-12">
-              <label for="activityType">
-                <i class="p-error">*</i> Tipo de Actividad:
-                <i *ngIf="activityTypesField.valid" class="pi pi-check-circle icon-valid"></i>
-                <i *ngIf="activityTypesField.invalid && (activityTypesField.touched || activityTypesField.dirty)"
-                  class="pi pi-times-circle icon-invalid"></i>
-              </label>
-              <p-autoComplete id="activityType" formControlName="activity_type" [suggestions]="filteredActivityTypes"
-                (completeMethod)="filterActivityType($event)" field="name" [dropdown]="true">
-                <ng-template let-item pTemplate="item">
-                  <div class="country-item">
-                    <div>{{item.name}}</div>
-                  </div>
-                </ng-template>
-              </p-autoComplete>
-            </div> -->
-            <div class="p-field p-xl-6 p-lg-6 p-md-6 p-sm-12">
-              <label for="is_familiar_catastrophic_illness">
-                <i class="p-error">*</i> Su Familiar Tiene Enfermedad Catastrófica:
-                <i *ngIf="isFamiliarCatastrophicIllnessField.valid" class="pi pi-check-circle icon-valid"></i>
-                <i *ngIf="isFamiliarCatastrophicIllnessField.invalid && (isFamiliarCatastrophicIllnessField.touched || isFamiliarCatastrophicIllnessField.dirty)"
-                  class="pi pi-times-circle icon-invalid"></i>
-              </label>
-              <!-- <input id="is_travel" formControlName="is_travel" pInputText> -->
-              <div
-                *ngIf="isFamiliarCatastrophicIllnessField.errors && (isFamiliarCatastrophicIllnessField.touched ||isFamiliarCatastrophicIllnessField.dirty)">
-                <small *ngIf="isFamiliarCatastrophicIllnessField.errors?.required"
-                  id="is_familiar_catastrophic_illness-help-1" class="p-error">
-                  {{messageService.fieldRequired}}
-                </small>
-              </div>
-              <div class class="p-field-checkbox">
-                <p-checkbox name="is_familiar_catastrophic_illness" value="si"
-                  formControlName="is_familiar_catastrophic_illness" inputId="isFamiliarCatastrophicIllnessField">
-                </p-checkbox>
-                <label for="ny">SI</label>
-              </div>
-              <div class="p-field-checkbox">
-                <p-checkbox name="is_familiar_catastrophic_illness" value="no"
-                  formControlName="is_familiar_catastrophic_illness" inputId="isFamiliarCatastrophicIllnessField">
-                </p-checkbox>
-                <label for="sf">NO</label>
-              </div>
-            </div>
-          </div>
-          <!-- <div class="p-fluid p-formgrid p-grid">
-            <div class="p-field p-xl-2 p-lg-2 p-md-1 p-sm-12">
-              <label for="comercialActivities">
-                Actividades Comerciales
-              </label>
-            </div>
-            <div class="p-field p-xl-3 p-lg-3 p-md-2 p-sm-12">
-              <button pButton pRipple type="button" (click)="addComercialActivity()" iconPos="right" icon="pi pi-plus"
-                class="p-button-success p-button-raised" label="Añadir"></button>
-            </div>
-          </div> -->
-          <!-- <div formArrayName="comercial_activities">
-            <div *ngFor="let comercial_activity of comercialActivitiesField.controls let i = index;">
-
-              <div class="p-fluid p-formgrid p-grid">
-                <div class="p-field p-xl-11 p-lg-11 p-md-6 p-sm-12">
-                  <input [formControlName]="i" pInputText>
-                </div>
-                <div class="p-field p-xl-1 p-lg-1 p-md-1 p-sm-12">
-                  <button pButton pRipple type="button" (click)="removeComercialActivity(i)" iconPos="right"
-                    icon="pi pi-trash" class="p-button-danger p-button-rounded"></button>
-                </div>
-                <div
-                  *ngIf="comercialActivitiesField.errors && (comercialActivitiesField.touched || comercialActivitiesField.dirty)">
-                  <small *ngIf="comercialActivitiesField.errors?.required" id="comercialActivities-help-1"
-                    class="p-error">
-                    {{messageService.fieldRequired}}
-                  </small>
-                </div>
-              </div>
-            </div>
-          </div> -->
-          <div class="p-field">
-            <label for="about_me">
-              <i class="p-error">*</i> Acerca de Mí:
-              <i *ngIf="aboutMeField.valid" class="pi pi-check-circle icon-valid"></i>
-              <i *ngIf="aboutMeField.invalid && (aboutMeField.touched || aboutMeField.dirty)"
-                class="pi pi-times-circle icon-invalid"></i>
-            </label>
-            <textarea pInputTextarea id="about_me" name="type" formControlName="about_me" rows="5"></textarea>
-            <div *ngIf="aboutMeField.errors && (aboutMeField.touched || aboutMeField.dirty)">
-              <small *ngIf="aboutMeField.hasError('required')" id="about_me-help-1" class="p-error">
-                {{messageService.fieldRequired}}
-              </small>
-              <small *ngIf="aboutMeField.hasError('minlength')" id="about_me-help-2" class="p-error">
-                Mínimo de caracteres es {{aboutMeField.errors.minlength.requiredLength}}.
-              </small>
-            </div>
-          </div>
-        </p-card>
-      </div>
-    </div>
-    <div class="p-formgrid p-grid">
-      <div class="p-field">
-        <button type="submit" pButton pRipple label="Guardar y Salir" icon="pi pi-save"
-          class="p-button-success p-button-raised" style="display:inline-block;margin-left:35%;width:25%;"></button>
-      </div>
-    </div>
-  </form>
+        </div>
+    </form>
 </div>

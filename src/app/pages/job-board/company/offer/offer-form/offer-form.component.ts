@@ -42,7 +42,7 @@ export class OfferFormComponent implements OnInit {
     ofertaEjemplo: Offer;
 
     constructor(private formBuilder: FormBuilder,
-                private messageService: MessageService,
+                public messageService: MessageService,
                 private spinnerService: NgxSpinnerService,
                 private appHttpService: AppHttpService,
                 private jobBoardHttpService: JobBoardHttpService,
@@ -50,6 +50,7 @@ export class OfferFormComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        console.log('LLENAR BASE CON .....');
         this.getContractType();
         this.getPosition();
         this.getSector();
@@ -149,48 +150,42 @@ export class OfferFormComponent implements OnInit {
 
     // Get Catalogues 
     getContractType() {
-        const params = new HttpParams().append('type', 'OFFER_CONTRACT_TYPE');
-        this.appHttpService.getCatalogues(params).subscribe(response => {
+        this.appHttpService.getCatalogues('OFFER_CONTRACT_TYPE').subscribe(response => {
             this.contractTypes = response['data'];
         }, error => {
             this.messageService.error(error);
         });
     }
     getPosition() {
-        const params = new HttpParams().append('type', 'OFFER_POSITION');
-        this.appHttpService.getCatalogues(params).subscribe(response => {
+        this.appHttpService.getCatalogues('OFFER_POSITION').subscribe(response => {
             this.positions = response['data'];
         }, error => {
             this.messageService.error(error);
         });
     }
     getSector() {
-        const params = new HttpParams().append('type', 'SECTOR');
-        this.appHttpService.getCatalogues(params).subscribe(response => {
+        this.appHttpService.getCatalogues('SECTOR').subscribe(response => {
             this.sectors = response['data'];
         }, error => {
             this.messageService.error(error);
         });
     }
     getWorkingDay() {
-        const params = new HttpParams().append('type', 'OFFER_WORKING_DAY');
-        this.appHttpService.getCatalogues(params).subscribe(response => {
+        this.appHttpService.getCatalogues('OFFER_WORKING_DAY').subscribe(response => {
             this.workingDays = response['data'];
         }, error => {
             this.messageService.error(error);
         });
     }
     getExperienceTime() {
-        const params = new HttpParams().append('type', 'OFFER_EXPERIENCE_TIME');
-        this.appHttpService.getCatalogues(params).subscribe(response => {
+        this.appHttpService.getCatalogues('OFFER_EXPERIENCE_TIME').subscribe(response => {
             this.experienceTimes = response['data'];
         }, error => {
             this.messageService.error(error);
         });
     }
     getTrainingHours() {
-        const params = new HttpParams().append('type', 'OFFER_TRAINING_HOURS');
-        this.appHttpService.getCatalogues(params).subscribe(response => {
+        this.appHttpService.getCatalogues('OFFER_TRAINING_HOURS').subscribe(response => {
             this.trainingHours = response['data'];
         }, error => {
             this.messageService.error(error);
