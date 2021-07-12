@@ -24,6 +24,7 @@ export class AuthGuard implements CanActivate {
         return true;
         const requestURL = next['_routerState']['url'];
         this.authService.setUri(requestURL);
+        return true;
         this.auth = this.authService.getAuth();
         this.role = this.authService.getRole();
         this.authPermissions = this.authService.getPermissions();
