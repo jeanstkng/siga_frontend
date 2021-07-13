@@ -56,21 +56,21 @@ export class WebOfferComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.buildForms();
-        this.getOffers(this.paginator, this.searchParams);
-        this.getCategories();
-        this.items = [
-            {
-                label: 'Filtrar por código', icon: 'pi pi-percentage', command: () => {
-                    this.showModalFilter('code');
-                }
-            },
-            {
-                label: 'Más filtros', icon: 'pi pi-plus', command: () => {
-                    this.showModalFilter('moreFilter');
-                }
-            }
-        ];
+        // this.buildForms();
+        // this.getOffers(this.paginator, this.searchParams);
+        // this.getCategories();
+        // this.items = [
+        //     {
+        //         label: 'Filtrar por código', icon: 'pi pi-percentage', command: () => {
+        //             this.showModalFilter('code');
+        //         }
+        //     },
+        //     {
+        //         label: 'Más filtros', icon: 'pi pi-plus', command: () => {
+        //             this.showModalFilter('moreFilter');
+        //         }
+        //     }
+        // ];
     }
 
     buildForms() {

@@ -1,4 +1,14 @@
-<app-skeleton *ngIf="flagTotal" [type]="'rectangle'"></app-skeleton>
+<div class="p-grid" *ngIf="flagTotal">
+    <div class="p-xl-4 p-lg-4 p-md-6 p-sm-12 p-col-12">
+        <app-skeleton [type]="'rectangle'"></app-skeleton>
+    </div>
+    <div class="p-xl-4 p-lg-4 p-md-6 p-sm-12 p-col-12">
+        <app-skeleton [type]="'rectangle'"></app-skeleton>
+    </div>
+    <div class="p-xl-4 p-lg-4 p-md-6 p-sm-12 p-col-12">
+        <app-skeleton [type]="'rectangle'"></app-skeleton>
+    </div>
+</div>
 
 <div [hidden]="flagTotal">
     <div class="p-grid">

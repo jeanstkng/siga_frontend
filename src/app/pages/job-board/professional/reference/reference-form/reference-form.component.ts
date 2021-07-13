@@ -134,27 +134,7 @@ export class ReferenceFormComponent implements OnInit {
         this.referencesOut.emit(this.referencesIn);
     }
 
-    // Filter 
-    /*filterInstitution(event) {
-        const filtered: any[] = [];
-        const query = event.query;
-        for (const institution of this.institutions) {
-            if (institution.name.toLowerCase().indexOf(query.toLowerCase()) === 0) {
-                filtered.push(institution);
-            }
-        }
-        if (filtered.length === 0) {
-            this.messagePnService.clear();
-            this.messagePnService.add({
-                severity: 'error',
-                summary: 'Por favor seleccione un tipo del listado',
-                detail: 'En el caso de no existir comuníquese con el administrador!',
-                life: 5000
-            });
-            this.institutionField.setValue(null);
-        }
-        this.filteredInstitutions = filtered;
-    }*/
+   
 
      // Reset Forms
      resetFormReference() {
