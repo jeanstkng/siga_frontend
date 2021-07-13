@@ -60,7 +60,6 @@ export class ExperienceComponent implements OnInit {
         const params = new HttpParams()
             .append('page', paginator.current_page.toString())
             .append('per_page', paginator.per_page.toString());
-
         this.flagExperiences = true;
         // this.spinnerService.show();
         this.jobBoardHttpService.get('experiences', params).subscribe(
