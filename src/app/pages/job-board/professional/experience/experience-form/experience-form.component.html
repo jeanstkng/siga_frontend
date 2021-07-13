@@ -2,19 +2,14 @@
 <p-toast></p-toast>
 <div class="p-fluid">
     <form [formGroup]="formExperienceIn" (ngSubmit)="onSubmit($event)">
-        <!-- <div class="p-field">
-            <app-location-address [option]="2" (formAddressOut)="formAddress=$event"
-                (formLocationOut)="setFormLocation($event)" id="address" name="address" formControlName="address">
-            </app-location-address>
-        </div> -->
-        <div class="p-field p-xl-12 p-lg-6 p-md-6 p-sm-15">
+         <div class="p-field p-xl-12 p-lg-6 p-md-6 p-sm-15">
             <label for="area">
               <i class="p-error">*</i> Area:
               <i *ngIf="areaField.valid" class="pi pi-check-circle icon-valid"></i>
               <i *ngIf="areaField.invalid && (areaField.touched || areaField.dirty)"
                 class="pi pi-times-circle icon-invalid"></i>
             </label>
-            <p-dropdown id="arean" [options]="areas" formControlName="area"
+            <p-dropdown id="area" [options]="areas" formControlName="area"
                         optionLabel="name" [filter]="true" filterBy="name"
                         placeholder="Seleccione...">
               <ng-template pTemplate="selectedarea">
@@ -58,7 +53,7 @@
                 <i *ngIf="startDateField.invalid && (startDateField.touched || startDateField.dirty)"
                     class="pi pi-times-circle icon-invalid"></i>
             </label>
-            <app-date formControlName="start_date" id="start_date" (click)="calculateEndDate()">
+            <app-date formControlName="start_date" id="start_date" >
             </app-date>
             <div *ngIf="startDateField.errors && (startDateField.touched || startDateField.dirty)">
                 <small *ngIf="startDateField.errors?.required" id="start_date-help-1" class="p-error">
@@ -115,7 +110,7 @@
             onLabel="yes" offLabel="no">
               <ng-template let-isWorking pTemplate="isWorking">
                 <div class="country-isWorking">
-                  <div>{{isWorking.name}}</div>
+                  <div>{{is_working.name}}</div>
                 </div>
               </ng-template>
             </p-inputSwitch>
@@ -130,7 +125,7 @@
               onLabel="yes" offLabel="no">
                 <ng-template let-isDisability pTemplate="isDisability">
                   <div class="country-isDisability">
-                    <div>{{isDisability.name}}</div>
+                    <div>{{is_disability.name}}</div>
                   </div>
                 </ng-template>
               </p-inputSwitch>
@@ -147,3 +142,4 @@
     </form>
 
 </div>
+

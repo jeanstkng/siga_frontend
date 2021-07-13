@@ -66,13 +66,13 @@ export class SkillFormComponent implements OnInit {
 
     // Catalogues
     getTypes() {
-        const params = new HttpParams().append('type', 'SKILL_TYPE');
-        this.appHttpService.getCatalogues(params).subscribe(response => {
+        this.appHttpService.getCatalogues('SKILL_TYPE').subscribe(response => {
             this.types = response['data'];
         }, error => {
             this.messageService.error(error);
         });
     }
+
 
     // Save in backend
     storeSkill(skill: Skill, flag = false) {
