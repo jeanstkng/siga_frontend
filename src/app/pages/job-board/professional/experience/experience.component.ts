@@ -67,6 +67,7 @@ export class ExperienceComponent implements OnInit {
                 // this.spinnerService.hide();
                 this.flagExperiences = false;
                 this.experiences = response['data'];
+              // console.log(this.experiences);
                 this.paginator = response as Paginator;
             }, error => {
                 // this.spinnerService.hide();

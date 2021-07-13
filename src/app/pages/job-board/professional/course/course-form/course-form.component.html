@@ -10,7 +10,7 @@
                   <i *ngIf="areaField.invalid && (areaField.touched || areaField.dirty)"
                     class="pi pi-times-circle icon-invalid"></i>
                 </label>
-                <p-dropdown id="arean" [options]="areas" formControlName="area"
+                <p-dropdown id="area" [options]="areas" formControlName="area"
                             optionLabel="name" [filter]="true" filterBy="name"
                             placeholder="Seleccione...">
                   <ng-template pTemplate="selectedarea">
@@ -126,7 +126,7 @@
                 <i *ngIf="startDateField.invalid && (startDateField.touched || startDateField.dirty)"
                     class="pi pi-times-circle icon-invalid"></i>
             </label>
-            <app-date formControlName="start_date" id="start_date" (click)="calculateEndDate()">
+            <app-date formControlName="start_date" id="start_date" >
             </app-date>
             <div *ngIf="startDateField.errors && (startDateField.touched || startDateField.dirty)">
                 <small *ngIf="startDateField.errors?.required" id="start_date-help-1" class="p-error">

@@ -3,31 +3,30 @@
 <p-card>
     <div class="p-fluid">
         <form [formGroup]="formSkillIn" (ngSubmit)="onSubmit()">
-            <div class="p-field">
+            <div class="p-field p-xl-12 p-lg-6 p-md-6 p-sm-15">
                 <label for="type">
-                    <i class="p-error">*</i> Tipo:
-                    <i *ngIf="typeField.valid" class="pi pi-check-circle icon-valid"></i>
-                    <i *ngIf="typeField.invalid && (typeField.touched || typeField.dirty)"
-                       class="pi pi-times-circle icon-invalid"></i>
+                  <i class="p-error">*</i>Tipo:
+                  <i *ngIf="typeField.valid" class="pi pi-check-circle icon-valid"></i>
+                  <i *ngIf="typeField.invalid && (typeField.touched || typeField.dirty)"
+                    class="pi pi-times-circle icon-invalid"></i>
                 </label>
-                <p-autoComplete id="type" formControlName="type"
-                                [suggestions]="filteredTypes"
-                                (completeMethod)="filterType($event)"
-                                field="name"
-                                [dropdown]="true">
-                    <ng-template let-item pTemplate="item">
-                        <div class="country-item">
-                            <div>{{item.name}}</div>
-                        </div>
-                    </ng-template>
-                </p-autoComplete>
-                <div *ngIf="typeField.invalid && (typeField.touched || typeField.dirty)">
-                    <small *ngIf="typeField.errors?.required"
-                           id="type-help-1" class="p-error">
-                        {{messageService.fieldRequired}}
-                    </small>
-                </div>
-            </div>
+                <p-dropdown id="type" [options]="types" formControlName="type"
+                            optionLabel="name" [filter]="true" filterBy="name"
+                            placeholder="Seleccione...">
+                  <ng-template pTemplate="selectedtype">
+                    <div class="country-type country-type-value"  *ngIf="typeField.value">
+                      <div>{{type.name}}</div>
+                    </div>
+                  </ng-template>
+                  <ng-template let-type pTemplate="type">
+                    <div class="country-type">
+                      <div>{{type.name}}</div>
+                    </div>
+                  </ng-template>
+                </p-dropdown>
+              </div>
+            
+            
             <div class="p-field">
                 <label for="description">
                     <i class="p-error">*</i> Descripción:
