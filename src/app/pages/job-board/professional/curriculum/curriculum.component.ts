@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Paginator } from 'src/app/models/setting/paginator';
 import { Professional } from 'src/app/models/job-board/professional';
+import { Course } from 'src/app/models/job-board/course';
 
 @Component({
     selector: 'app-curriculum',
@@ -12,10 +13,11 @@ import { Professional } from 'src/app/models/job-board/professional';
 export class CurriculumComponent implements OnInit {
 
     formProfessional: FormGroup;
-    //formCourse: FormGroup;
+    // formCourse: FormGroup;
     professional: Professional;
     professionalDialog: boolean;
-    //courseDialog: boolean;
+    // courseDialog: boolean;
+    // course: Course;
     paginator: Paginator;
 
     constructor(private formBuilder: FormBuilder) {

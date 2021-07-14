@@ -163,19 +163,17 @@ export class ProfileFormComponent implements OnInit {
     //         });
     // }
 
-
-
     markAllAsTouchedFormProfessional() {
         this.formProfessionalIn.markAllAsTouched();
     }
 
-    // validateIsDisability() {
-    //     if (this.isDisability == true) {
-    //         this.formProfessionalIn.setValidators(Validators.required);
-    //     } else {
-    //         this.formProfessionalIn.setValidators(null);
-    //     }
-    // }
+    validateIsDisability() {
+        if (this.isDisability == true) {
+            this.formProfessionalIn.setValidators(Validators.required);
+        } else {
+            this.formProfessionalIn.setValidators(null);
+        }
+    }
     setFormLocation(event) {
         this.formLocation = event;
     }
