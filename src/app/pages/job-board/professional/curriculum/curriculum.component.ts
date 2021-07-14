@@ -5,15 +5,17 @@ import { Paginator } from 'src/app/models/setting/paginator';
 import { Professional } from 'src/app/models/job-board/professional';
 
 @Component({
-    selector: 'app-profile',
-    templateUrl: './profile.component.html',
-    styleUrls: ['./profile.component.scss']
+    selector: 'app-curriculum',
+    templateUrl: './curriculum.component.html',
+    styleUrls: ['./curriculum.component.scss']
 })
-export class ProfileComponent implements OnInit {
+export class CurriculumComponent implements OnInit {
 
     formProfessional: FormGroup;
+    //formCourse: FormGroup;
     professional: Professional;
     professionalDialog: boolean;
+    //courseDialog: boolean;
     paginator: Paginator;
 
     constructor(private formBuilder: FormBuilder) {
@@ -24,7 +26,7 @@ export class ProfileComponent implements OnInit {
         this.buildFormProfessional();
     }
 
-    //Formulario//
+    //Formulario Professional//
     buildFormProfessional() {
         this.formProfessional = this.formBuilder.group({
             user: this.formBuilder.group({
@@ -50,4 +52,19 @@ export class ProfileComponent implements OnInit {
         });
         console.log(this.formProfessional['controls']['user']);
     }
+    // Build form course
+    // buildFormCourse() {
+    //     this.formCourse = this.formBuilder.group({
+    //         id: [null],
+    //         type: [null, Validators.required],
+    //         institution: [null, Validators.required],
+    //         certification_type: [null, Validators.required],
+    //         area: [null, Validators.required],
+    //         name: [null, Validators.required],
+    //         description: [null, [Validators.required, Validators.minLength(10)]],
+    //         start_date: [null, Validators.required],
+    //         end_date: [null, Validators.required],
+    //         hours: [null, Validators.required],
+    //     });
+    // }
 }

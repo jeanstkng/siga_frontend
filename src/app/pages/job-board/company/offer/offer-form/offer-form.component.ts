@@ -50,7 +50,6 @@ export class OfferFormComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        console.log('LLENAR BASE CON .....');
         this.getContractType();
         this.getPosition();
         this.getSector();
@@ -248,27 +247,7 @@ export class OfferFormComponent implements OnInit {
         this.offersOut.emit(this.offersIn);
     }
 
-    // Filters offers
-    filterContracType(event) {
-        const filtered: any[] = [];
-        const query = event.query;
-        for (const contractType of this.contractTypes) {
-            if (contractType.name.toLowerCase().indexOf(query.toLowerCase()) === 0) {
-                filtered.push(contractType);
-            }
-        }
-        if (filtered.length === 0) {
-            this.messagePnService.clear();
-            this.messagePnService.add({
-                severity: 'error',
-                summary: 'Por favor seleccione un tipo del listado',
-                detail: 'En el caso de no existir comuníquese con el administrador!',
-                life: 5000
-            });
-            this.contractTypeField.setValue(null);
-        }
-        this.filteredContracTypes = filtered;
-    }
+    // Filters offers BORRAR TODO
 
     filterPosition(event) {
         const filtered: any[] = [];

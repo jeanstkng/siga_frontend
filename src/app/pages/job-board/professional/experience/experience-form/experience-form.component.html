@@ -2,13 +2,14 @@
 <p-toast></p-toast>
 <div class="p-fluid">
     <form [formGroup]="formExperienceIn" (ngSubmit)="onSubmit($event)">
-         <div class="p-field p-xl-12 p-lg-6 p-md-6 p-sm-15">
+        <div class="p-field p-xl-12 p-lg-6 p-md-6 p-sm-15">
             <label for="area">
-              <i class="p-error">*</i> Area:
-              <i *ngIf="areaField.valid" class="pi pi-check-circle icon-valid"></i>
-              <i *ngIf="areaField.invalid && (areaField.touched || areaField.dirty)"
-                class="pi pi-times-circle icon-invalid"></i>
+                <i class="p-error">*</i> Area:
+                <i *ngIf="areaField.valid" class="pi pi-check-circle icon-valid"></i>
+                <i *ngIf="areaField.invalid && (areaField.touched || areaField.dirty)"
+                    class="pi pi-times-circle icon-invalid"></i>
             </label>
+<<<<<<< HEAD
             <p-dropdown id="area" [options]="areas"
             formControlName="area" optionLabel="name" [filter]="true" filterBy="name"
             placeholder="Seleccione...">
@@ -24,6 +25,22 @@
             </ng-template>
           </p-dropdown>
           </div>
+=======
+            <p-dropdown id="area" [options]="areas" formControlName="area" optionLabel="name" [filter]="true"
+                filterBy="name" placeholder="Seleccione...">
+                <ng-template pTemplate="selectedarea">
+                    <div class="country-area country-area-value" *ngIf="areaField.value">
+                        <div>{{area.name}}</div>
+                    </div>
+                </ng-template>
+                <ng-template let-area pTemplate="area">
+                    <div class="country-area">
+                        <div>{{area.name}}</div>
+                    </div>
+                </ng-template>
+            </p-dropdown>
+        </div>
+>>>>>>> eec4ba6e5b546aa9561025798b388423125e5668
         <div class="p-formgrid p-grid">
             <div class="p-field p-col">
                 <i class="p-error">*</i>Nombre Empledor:
@@ -53,7 +70,7 @@
                 <i *ngIf="startDateField.invalid && (startDateField.touched || startDateField.dirty)"
                     class="pi pi-times-circle icon-invalid"></i>
             </label>
-            <app-date formControlName="start_date" id="start_date" >
+            <app-date formControlName="start_date" id="start_date">
             </app-date>
             <div *ngIf="startDateField.errors && (startDateField.touched || startDateField.dirty)">
                 <small *ngIf="startDateField.errors?.required" id="start_date-help-1" class="p-error">
@@ -100,6 +117,7 @@
                 </small>
             </div>
         </div>
+<<<<<<< HEAD
            <label for="isWorking">
               <i class="p-error">*</i>Esta trabajando:
               <i *ngIf="isWorkingField.valid" class="pi pi-check-circle icon-valid"></i>
@@ -107,11 +125,21 @@
                 class="pi pi-times-circle icon-invalid"></i>
             </label>
             <p-inputSwitch formControlName="is_working" (onChange)="clickIsWorking($event)" 
+=======
+        <label for="isWorking">
+            <i class="p-error">*</i>Esta trabajando:
+            <i *ngIf="isWorkingField.valid" class="pi pi-check-circle icon-valid"></i>
+            <i *ngIf="isWorkingField.invalid && (isWorkingField.touched || isWorkingField.dirty)"
+                class="pi pi-times-circle icon-invalid"></i>
+        </label>
+        <p-inputSwitch [(ngModel)]="isWorking" formControlName="is_working" (onChange)="clickIsWorking($event)"
+>>>>>>> eec4ba6e5b546aa9561025798b388423125e5668
             onLabel="yes" offLabel="no">
-              <ng-template let-isWorking pTemplate="isWorking">
+            <ng-template let-isWorking pTemplate="isWorking">
                 <div class="country-isWorking">
-                  <div>{{is_working.name}}</div>
+                    <div>{{is_working.name}}</div>
                 </div>
+<<<<<<< HEAD
               </ng-template>
             </p-inputSwitch>
             <br>
@@ -125,10 +153,25 @@
               onLabel="yes" offLabel="no">
                 <ng-template let-isDisability pTemplate="isDisability">
                   <div class="country-isDisability">
+=======
+            </ng-template>
+        </p-inputSwitch>
+        <br>
+        <label for="isDisability">
+            <i class="p-error">*</i>Es discapacitado:
+            <i *ngIf="isDisabilityField.valid" class="pi pi-check-circle icon-valid"></i>
+            <i *ngIf="isDisabilityField.invalid && (isDisabilityField.touched || isDisabilityField.dirty)"
+                class="pi pi-times-circle icon-invalid"></i>
+        </label>
+        <p-inputSwitch [(ngModel)]="isDisability" formControlName="is_disability" (onChange)="clickIsDisability($event)"
+            onLabel="yes" offLabel="no">
+            <ng-template let-isDisability pTemplate="isDisability">
+                <div class="country-isDisability">
+>>>>>>> eec4ba6e5b546aa9561025798b388423125e5668
                     <div>{{is_disability.name}}</div>
-                  </div>
-                </ng-template>
-              </p-inputSwitch>
+                </div>
+            </ng-template>
+        </p-inputSwitch>
         <div class="p-formgrid p-grid">
             <div class="p-field p-col">
                 <button type="submit" pButton pRipple label="Guardar y Salir" icon="pi pi-save"
@@ -142,4 +185,3 @@
     </form>
 
 </div>
-

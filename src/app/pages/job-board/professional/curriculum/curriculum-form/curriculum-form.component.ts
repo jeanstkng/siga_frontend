@@ -14,19 +14,19 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 import { isAsciiHexDigit } from 'codelyzer/angular/styles/chars';
 
 @Component({
-    selector: 'app-profile-form',
-    templateUrl: './profile-form.component.html',
-    styleUrls: ['./profile-form.component.scss']
+    selector: 'app-curriculum-form',
+    templateUrl: './curriculum-form.component.html',
+    styleUrls: ['./curriculum-form.component.scss']
 })
-export class ProfileFormComponent implements OnInit {
+export class CurriculumFormComponent implements OnInit {
 
-    @Input() formProfessionalIn: FormGroup;
+    @Input() formCurriculumIn: FormGroup;
     @Output() displayOut = new EventEmitter<boolean>();
     auth: User;
     sex: Catalogue[];
     formAddress: FormGroup;
     formLocation: FormGroup;
-    isTravel: boolean = true;
+    isTravel: boolean = false;
     isDisability: boolean = false;
     isCatastrophicIllness: boolean = false;
     isFamiliarDisability: boolean = false;
@@ -64,68 +64,68 @@ export class ProfileFormComponent implements OnInit {
     }
 
     get identificationField() {
-        return this.formProfessionalIn['controls']['user'].get('identification');
+        return this.formCurriculumIn['controls']['user'].get('identification');
     }
 
     get emailField() {
-        return this.formProfessionalIn['controls']['user'].get('email');
+        return this.formCurriculumIn['controls']['user'].get('email');
     }
 
     get firstNameField() {
-        return this.formProfessionalIn['controls']['user'].get('first_name');
+        return this.formCurriculumIn['controls']['user'].get('first_name');
     }
 
     get firstLastnameField() {
-        return this.formProfessionalIn['controls']['user'].get('first_lastname');
+        return this.formCurriculumIn['controls']['user'].get('first_lastname');
     }
 
     get secondLastnameField() {
-        return this.formProfessionalIn['controls']['user'].get('second_lastname');
+        return this.formCurriculumIn['controls']['user'].get('second_lastname');
     }
 
     get phoneField() {
-        return this.formProfessionalIn['controls']['user'].get('phone');
+        return this.formCurriculumIn['controls']['user'].get('phone');
     }
     get birthdateField() {
-        return this.formProfessionalIn['controls']['user'].get('birthdate');
+        return this.formCurriculumIn['controls']['user'].get('birthdate');
     }
     get sexField() {
-        return this.formProfessionalIn['controls']['user'].get('sex');
+        return this.formCurriculumIn['controls']['user'].get('sex');
     }
 
     get isTravelField() {
-        return this.formProfessionalIn.get('is_travel');
+        return this.formCurriculumIn.get('is_travel');
     }
 
     get isDisabilityField() {
-        return this.formProfessionalIn.get('is_disability');
+        return this.formCurriculumIn.get('is_disability');
     }
 
     get isCatastrophicIllnessField() {
-        return this.formProfessionalIn.get('is_catastrophic_illness');
+        return this.formCurriculumIn.get('is_catastrophic_illness');
     }
 
     get isFamiliarDisabilityField() {
-        return this.formProfessionalIn.get('is_familiar_disability');
+        return this.formCurriculumIn.get('is_familiar_disability');
     }
 
     get identificationFamiliarDisabilityField() {
-        return this.formProfessionalIn.get('identification_familiar_disability');
+        return this.formCurriculumIn.get('identification_familiar_disability');
     }
 
     get isFamiliarCatastrophicIllnessField() {
-        return this.formProfessionalIn.get('is_familiar_catastrophic_illness');
+        return this.formCurriculumIn.get('is_familiar_catastrophic_illness');
     }
 
     get aboutMeField() {
-        return this.formProfessionalIn.get('about_me');
+        return this.formCurriculumIn.get('about_me');
     }
 
     onSubmit() {
-        if (this.formProfessionalIn.valid) {
-            this.updateProfessional(this.formProfessionalIn.value);
+        if (this.formCurriculumIn.valid) {
+            this.updateProfessional(this.formCurriculumIn.value);
         } else {
-            this.formProfessionalIn.markAllAsTouched();
+            this.formCurriculumIn.markAllAsTouched();
         }
     }
     // getSex() {
@@ -155,7 +155,7 @@ export class ProfileFormComponent implements OnInit {
     //     this.jobBoardHttpService.get('professional/show')
     //         .subscribe(response => {
     //             this.spinnerService.hide();
-    //             this.formProfessionalIn.patchValue(response['data']);
+    //             this.formCurriculumIn.patchValue(response['data']);
     //             console.log(response);
     //         }, error => {
     //             this.spinnerService.hide();
@@ -163,17 +163,15 @@ export class ProfileFormComponent implements OnInit {
     //         });
     // }
 
-
-
     markAllAsTouchedFormProfessional() {
-        this.formProfessionalIn.markAllAsTouched();
+        this.formCurriculumIn.markAllAsTouched();
     }
 
     // validateIsDisability() {
     //     if (this.isDisability == true) {
-    //         this.formProfessionalIn.setValidators(Validators.required);
+    //         this.formCurriculumIn.setValidators(Validators.required);
     //     } else {
-    //         this.formProfessionalIn.setValidators(null);
+    //         this.formCurriculumIn.setValidators(null);
     //     }
     // }
     setFormLocation(event) {

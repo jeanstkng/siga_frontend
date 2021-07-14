@@ -1,13 +1,13 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Company} from 'src/app/models/job-board/company';
-import {MessageService} from '../../../../shared/services/message.service';
-import {NgxSpinnerService} from 'ngx-spinner';
-import {JobBoardHttpService} from '../../../../../services/job-board/job-board-http.service';
-import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {Catalogue} from '../../../../../models/app/catalogue';
-import {AppHttpService} from '../../../../../services/app/app-http.service';
-import {User} from 'src/app/models/auth/user';
-import {AuthService} from 'src/app/services/auth/auth.service';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Company } from 'src/app/models/job-board/company';
+import { MessageService } from '../../../../shared/services/message.service';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { JobBoardHttpService } from '../../../../../services/job-board/job-board-http.service';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Catalogue } from '../../../../../models/app/catalogue';
+import { AppHttpService } from '../../../../../services/app/app-http.service';
+import { User } from 'src/app/models/auth/user';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 
 @Component({
@@ -116,7 +116,7 @@ export class ProfileFormComponent implements OnInit {
 
     updateCompany(company: Company) {
         this.spinnerService.show();
-        this.jobBoardHttpService.update('company/update', {company})
+        this.jobBoardHttpService.update('company/update', { company })
             .subscribe(response => {
                 this.spinnerService.hide();
                 this.messageService.success(response);
