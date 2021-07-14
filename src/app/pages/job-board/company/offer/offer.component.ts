@@ -42,7 +42,7 @@ export class OfferComponent implements OnInit {
         this.formOffer = this.formBuilder.group({
             // VERIFICAR CAMPOS Y SI TODOS SON REQUERIDOS Y CON EL MINIMO
             id: [null],
-            vacancies: [null, [Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/), Validators.min(1)]],
+            vacancies: [null, [Validators.required, Validators.min(1)]],
             code: [{value: null, disabled: true}],
             aditional_information: [null],
             contact_name: [null, Validators.required],
