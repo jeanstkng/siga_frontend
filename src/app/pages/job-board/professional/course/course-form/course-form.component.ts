@@ -1,15 +1,15 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {Course} from '../../../../../models/job-board/course';
-import {MessageService} from '../../../../shared/services/message.service';
-import {NgxSpinnerService} from 'ngx-spinner';
-import {JobBoardHttpService} from '../../../../../services/job-board/job-board-http.service';
-import {AppHttpService} from '../../../../../services/app/app-http.service';
-import {HttpParams} from '@angular/common/http';
-import {Catalogue} from '../../../../../models/app/catalogue';
-import {MessageService as MessagePnService} from 'primeng/api';
-import {SharedService} from '../../../../shared/services/shared.service';
-import {add, format} from 'date-fns';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Course } from '../../../../../models/job-board/course';
+import { MessageService } from '../../../../shared/services/message.service';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { JobBoardHttpService } from '../../../../../services/job-board/job-board-http.service';
+import { AppHttpService } from '../../../../../services/app/app-http.service';
+import { HttpParams } from '@angular/common/http';
+import { Catalogue } from '../../../../../models/app/catalogue';
+import { MessageService as MessagePnService } from 'primeng/api';
+import { SharedService } from '../../../../shared/services/shared.service';
+import { add, format } from 'date-fns';
 
 @Component({
     selector: 'app-course-form',
@@ -31,14 +31,13 @@ export class CourseFormComponent implements OnInit {
     filteredAreas: any[];
     areas: Catalogue[];
 
-
     constructor(private formBuilder: FormBuilder,
-                public messageService: MessageService,
-                private messagePnService: MessagePnService,
-                private spinnerService: NgxSpinnerService,
-                private appHttpService: AppHttpService,
-                private sharedService: SharedService,
-                private jobBoardHttpService: JobBoardHttpService) {
+        public messageService: MessageService,
+        private messagePnService: MessagePnService,
+        private spinnerService: NgxSpinnerService,
+        private appHttpService: AppHttpService,
+        private sharedService: SharedService,
+        private jobBoardHttpService: JobBoardHttpService) {
     }
 
     ngOnInit(): void {
@@ -141,7 +140,7 @@ export class CourseFormComponent implements OnInit {
     // Save in backend
     storeCourse(course: Course, flag = false) {
         this.spinnerService.show();
-        this.jobBoardHttpService.store('courses', {course}).subscribe(response => {
+        this.jobBoardHttpService.store('courses', { course }).subscribe(response => {
             this.spinnerService.hide();
             this.messageService.success(response);
             this.saveCourse(response['data']);
@@ -159,7 +158,7 @@ export class CourseFormComponent implements OnInit {
     // Save in backend
     updateCourse(course: Course) {
         this.spinnerService.show();
-        this.jobBoardHttpService.update('courses/' + course.id, {course})
+        this.jobBoardHttpService.update('courses/' + course.id, { course })
             .subscribe(response => {
                 this.spinnerService.hide();
                 this.messageService.success(response);

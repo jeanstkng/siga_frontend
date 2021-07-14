@@ -1,4 +1,6 @@
 import { User } from '../auth/user';
+import { Catalogue } from '../app/catalogue';
+import { Address } from '../app/address';
 
 export interface Professional {
     id?: number;
@@ -10,4 +12,7 @@ export interface Professional {
     is_catastrophic_illness?: boolean;
     is_familiar_catastrophic_illness?: boolean;
     about_me?: string;
+    address?: Address;
+    sex?: User
+    nationality?: Catalogue;
 }
