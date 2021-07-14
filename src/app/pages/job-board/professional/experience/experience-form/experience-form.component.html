@@ -9,6 +9,23 @@
                 <i *ngIf="areaField.invalid && (areaField.touched || areaField.dirty)"
                     class="pi pi-times-circle icon-invalid"></i>
             </label>
+<<<<<<< HEAD
+            <p-dropdown id="area" [options]="areas"
+            formControlName="area" optionLabel="name" [filter]="true" filterBy="name"
+            placeholder="Seleccione...">
+            <ng-template pTemplate="selectedItem">
+              <div class="country-item country-item-value" *ngIf="areaField.value">
+                <div>{{areaField.value.name}}</div>
+              </div>
+            </ng-template>
+            <ng-template let-item pTemplate="item">
+              <div class="country-item">
+                <div>{{item.name}}</div>
+              </div>
+            </ng-template>
+          </p-dropdown>
+          </div>
+=======
             <p-dropdown id="area" [options]="areas" formControlName="area" optionLabel="name" [filter]="true"
                 filterBy="name" placeholder="Seleccione...">
                 <ng-template pTemplate="selectedarea">
@@ -23,9 +40,10 @@
                 </ng-template>
             </p-dropdown>
         </div>
+>>>>>>> eec4ba6e5b546aa9561025798b388423125e5668
         <div class="p-formgrid p-grid">
             <div class="p-field p-col">
-                <label for="employer">Nombre Empledor:</label>
+                <i class="p-error">*</i>Nombre Empledor:
                 <input id="employer" name="employer" pInputText formControlName="employer" />
                 <div *ngIf="employerField.errors && employerField.touched">
                     <small *ngIf="employerField.hasError('required')" id="employer-help-1" class="p-error">
@@ -99,6 +117,15 @@
                 </small>
             </div>
         </div>
+<<<<<<< HEAD
+           <label for="isWorking">
+              <i class="p-error">*</i>Esta trabajando:
+              <i *ngIf="isWorkingField.valid" class="pi pi-check-circle icon-valid"></i>
+              <i *ngIf="isWorkingField.invalid && (isWorkingField.touched || isWorkingField.dirty)"
+                class="pi pi-times-circle icon-invalid"></i>
+            </label>
+            <p-inputSwitch formControlName="is_working" (onChange)="clickIsWorking($event)" 
+=======
         <label for="isWorking">
             <i class="p-error">*</i>Esta trabajando:
             <i *ngIf="isWorkingField.valid" class="pi pi-check-circle icon-valid"></i>
@@ -106,11 +133,27 @@
                 class="pi pi-times-circle icon-invalid"></i>
         </label>
         <p-inputSwitch [(ngModel)]="isWorking" formControlName="is_working" (onChange)="clickIsWorking($event)"
+>>>>>>> eec4ba6e5b546aa9561025798b388423125e5668
             onLabel="yes" offLabel="no">
             <ng-template let-isWorking pTemplate="isWorking">
                 <div class="country-isWorking">
                     <div>{{is_working.name}}</div>
                 </div>
+<<<<<<< HEAD
+              </ng-template>
+            </p-inputSwitch>
+            <br>
+            <label for="isDisability">
+                <i class="p-error">*</i>Es discapacitado:
+                <i *ngIf="isDisabilityField.valid" class="pi pi-check-circle icon-valid"></i>
+                <i *ngIf="isDisabilityField.invalid && (isDisabilityField.touched || isDisabilityField.dirty)"
+                  class="pi pi-times-circle icon-invalid"></i>
+              </label>
+              <p-inputSwitch  formControlName="is_disability" (onChange)="clickIsDisability($event)" 
+              onLabel="yes" offLabel="no">
+                <ng-template let-isDisability pTemplate="isDisability">
+                  <div class="country-isDisability">
+=======
             </ng-template>
         </p-inputSwitch>
         <br>
@@ -124,6 +167,7 @@
             onLabel="yes" offLabel="no">
             <ng-template let-isDisability pTemplate="isDisability">
                 <div class="country-isDisability">
+>>>>>>> eec4ba6e5b546aa9561025798b388423125e5668
                     <div>{{is_disability.name}}</div>
                 </div>
             </ng-template>
