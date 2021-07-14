@@ -15,12 +15,12 @@ export const environment = {
     API_URL_ATTENDANCE: URL_API + 'attendance/',
     API_URL_JOB_BOARD: URL_API + 'job_board/',
     API_URL_WEB: URL_API + 'web/',
-    API_URL_TEACHER_EVAL: URL_API + 'teacher_eval/',
+    API_URL_TEACHEREVAL: URL_API + 'teacher-eval/',
     API_URL_COMMUNITY: URL_API + 'community/',
 
     SYSTEM_ID: 1,
     CLIENT_ID: '1',
-    CLIENT_SECRET: '5s5njGg9kWfu1G1SOcxs55F8KVFOW80qurv5auk4',
+    CLIENT_SECRET: 'TnAleQhZKaa3fo9eEVz3LbX671haXvhV4ytP4Og6',
     GRANT_TYPE: 'password',
 
     SITE_KEY: '6LcY8xAaAAAAAOTR95-UJ_zAeP9OWYPhlWg4_iFC',

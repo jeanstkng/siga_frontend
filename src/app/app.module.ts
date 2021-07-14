@@ -35,7 +35,7 @@ import {MenuService} from './shared/services/app.menu.service';
 import {InterceptorService} from './interceptors/interceptor.service';
 import {SharedModule} from './pages/shared/shared.module';
 import {PasswordModule} from 'primeng/password';
-import { TeacherEvalComponent } from './pages/teacher-eval/teacher-eval.component';
+
 
 
 
@@ -55,6 +55,7 @@ import { TeacherEvalComponent } from './pages/teacher-eval/teacher-eval.componen
         RadioButtonModule,
         InputSwitchModule,
         PasswordModule,
+       
     ],
     declarations: [
         AppBlankComponent,
@@ -66,8 +67,8 @@ import { TeacherEvalComponent } from './pages/teacher-eval/teacher-eval.componen
         AppMenuComponent,
         AppMenuitemComponent,
         AppRightPanelComponent,
-        AppTopBarComponent,
-        TeacherEvalComponent
+        AppTopBarComponent
+    
     ],
     providers: [
         {provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true},
