@@ -1,63 +1,56 @@
-{{formSkillIn.value|json}} 
+{{formSkillIn.value|json}}
 <p-toast></p-toast>
 <p-card>
-    <div class="p-fluid">
-        <form [formGroup]="formSkillIn" (ngSubmit)="onSubmit()">
-            <div class="p-field p-xl-12 p-lg-6 p-md-6 p-sm-15">
-                <label for="type">
-                  <i class="p-error">*</i>Tipo:
-                  <i *ngIf="typeField.valid" class="pi pi-check-circle icon-valid"></i>
-                  <i *ngIf="typeField.invalid && (typeField.touched || typeField.dirty)"
-                    class="pi pi-times-circle icon-invalid"></i>
-                </label>
-                <p-dropdown id="type" [options]="types" formControlName="type"
-                            optionLabel="name" [filter]="true" filterBy="name"
-                            placeholder="Seleccione...">
-                  <ng-template pTemplate="selectedtype">
-                    <div class="country-type country-type-value"  *ngIf="typeField.value">
-                      <div>{{type.name}}</div>
-                    </div>
-                  </ng-template>
-                  <ng-template let-type pTemplate="type">
-                    <div class="country-type">
-                      <div>{{type.name}}</div>
-                    </div>
-                  </ng-template>
-                </p-dropdown>
-              </div>
-            
-            
-            <div class="p-field">
-                <label for="description">
-                    <i class="p-error">*</i> Descripción:
-                    <i *ngIf="descriptionField.valid" class="pi pi-check-circle icon-valid"></i>
-                    <i *ngIf="descriptionField.invalid && (descriptionField.touched || descriptionField.dirty)"
-                       class="pi pi-times-circle icon-invalid"></i>
-                </label>
-                <textarea pInputTextarea id="description"
-                          formControlName="description"
-                          rows="5"></textarea>
-                <div *ngIf="descriptionField.errors && (descriptionField.touched || descriptionField.dirty)">
-                    <small *ngIf="descriptionField.errors?.required"
-                           id="description-help-1" class="p-error">
-                        {{messageService.fieldRequired}}
-                    </small>
-                    <small *ngIf="descriptionField.errors?.minlength"
-                           id="description-help-2" class="p-error">
-                        {{messageService.fieldMinLength(descriptionField)}}
-                    </small>
-                </div>
+  <div class="p-fluid">
+    <form [formGroup]="formSkillIn" (ngSubmit)="onSubmit()">
+      <div class="p-field p-xl-12 p-lg-6 p-md-6 p-sm-15">
+        <label for="type">
+          <i class="p-error">*</i>Tipo:
+          <i *ngIf="typeField.valid" class="pi pi-check-circle icon-valid"></i>
+          <i *ngIf="typeField.invalid && (typeField.touched || typeField.dirty)"
+            class="pi pi-times-circle icon-invalid"></i>
+        </label>
+        <p-dropdown id="type" [options]="types" formControlName="type" optionLabel="name" [filter]="true"
+          filterBy="name" placeholder="Seleccione...">
+          <ng-template pTemplate="selectedtype">
+            <div class="country-type country-type-value" *ngIf="typeField.value">
+              <div>{{type.name}}</div>
             </div>
-            <div class="p-formgrid p-grid">
-                <div class="p-field p-col">
-                    <button type="submit" pButton pRipple label="Guardar y Salir" icon="pi pi-save"
-                        class="p-button-success p-button-raised"></button>
-                </div>
-                <div *ngIf="!idField.value" class="p-field p-col">
-                    <button type="button" pButton pRipple label="Guardar" icon="pi pi-arrow-right" class="p-button-raised"
-                        (click)="onSubmit(true)"></button>
-                </div>
+          </ng-template>
+          <ng-template let-type pTemplate="type">
+            <div class="country-type">
+              <div>{{type.name}}</div>
             </div>
-        </form>
-    </div>
+          </ng-template>
+        </p-dropdown>
+      </div>
+      <div class="p-field">
+        <label for="description">
+          <i class="p-error">*</i> Descripción:
+          <i *ngIf="descriptionField.valid" class="pi pi-check-circle icon-valid"></i>
+          <i *ngIf="descriptionField.invalid && (descriptionField.touched || descriptionField.dirty)"
+            class="pi pi-times-circle icon-invalid"></i>
+        </label>
+        <textarea pInputTextarea id="description" formControlName="description" rows="5"></textarea>
+        <div *ngIf="descriptionField.errors && (descriptionField.touched || descriptionField.dirty)">
+          <small *ngIf="descriptionField.errors?.required" id="description-help-1" class="p-error">
+            {{messageService.fieldRequired}}
+          </small>
+          <small *ngIf="descriptionField.errors?.minlength" id="description-help-2" class="p-error">
+            {{messageService.fieldMinLength(descriptionField)}}
+          </small>
+        </div>
+      </div>
+      <div class="p-formgrid p-grid">
+        <div class="p-field p-col">
+          <button type="submit" pButton pRipple label="Guardar y Salir" icon="pi pi-save"
+            class="p-button-success p-button-raised"></button>
+        </div>
+        <div *ngIf="!idField.value" class="p-field p-col">
+          <button type="button" pButton pRipple label="Guardar" icon="pi pi-arrow-right" class="p-button-raised"
+            (click)="onSubmit(true)"></button>
+        </div>
+      </div>
+    </form>
+  </div>
 </p-card>

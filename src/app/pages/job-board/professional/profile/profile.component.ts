@@ -1,8 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {Company} from 'src/app/models/job-board/company';
-import {Paginator} from 'src/app/models/setting/paginator';
-import {Professional} from 'src/app/models/job-board/professional';
+import { Catalogue } from 'src/app/models/app/catalogue';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Paginator } from 'src/app/models/setting/paginator';
+import { Professional } from 'src/app/models/job-board/professional';
 
 @Component({
     selector: 'app-profile',
@@ -12,21 +12,19 @@ import {Professional} from 'src/app/models/job-board/professional';
 export class ProfileComponent implements OnInit {
 
     formProfessional: FormGroup;
-    company: Company;
     professional: Professional;
     professionalDialog: boolean;
     paginator: Paginator;
 
     constructor(private formBuilder: FormBuilder) {
-        this.paginator = {current_page: 1, per_page: 3};
-
+        this.paginator = { current_page: 1, per_page: 3 };
     }
 
     ngOnInit(): void {
         this.buildFormProfessional();
     }
 
-    //Formulario de Empresa//
+    //Formulario//
     buildFormProfessional() {
         this.formProfessional = this.formBuilder.group({
             user: this.formBuilder.group({
@@ -35,14 +33,18 @@ export class ProfileComponent implements OnInit {
                 first_name: [null, Validators.required],
                 second_name: [null, Validators.required],
                 first_lastname: [null, Validators.required],
-                second_lastname: [null, Validators.required],
+                second_lastname: [null],
                 phone: [null, Validators.required],
+                birthdate: [null, Validators.required],
+            }),
+            catalogue: this.formBuilder.group({
+                sex: [null, Validators.required],
             }),
             is_travel: [null, Validators.required],
             is_disability: [null, Validators.required],
+            is_catastrophic_illness: [null, Validators.required],
             is_familiar_disability: [null, Validators.required],
             identification_familiar_disability: [null],
-            is_catastrophic_illness: [null, Validators.required],
             is_familiar_catastrophic_illness: [null, Validators.required],
             about_me: [null, Validators.required],
         });

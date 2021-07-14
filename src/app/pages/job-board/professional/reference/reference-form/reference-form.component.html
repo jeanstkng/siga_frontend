@@ -28,7 +28,7 @@
 
          <div class="p-formgrid p-grid">
             <div class="p-field p-col">
-                <label for="position">Cargo:</label>
+                <i class="p-error">*</i>Cargo:
                 <input id="position" name="position" pInputText formControlName="position" />
                 <div *ngIf="positionField.errors && positionField.touched">
                     <small *ngIf="positionField.hasError('required')" 
@@ -40,7 +40,7 @@
         </div>
          <div class="p-formgrid p-grid">
             <div class="p-field p-col">
-                <label for="contactName">Nombre de contacto:</label>
+                <i class="p-error">*</i>Nombre de contacto:
                 <input id="contactName" name="contactName" pInputText formControlName="contact_name" />
                 <div *ngIf="contactNameField.errors && contactNameField.touched">
                     <small *ngIf="contactNameField.hasError('required')" 
@@ -52,7 +52,7 @@
         </div>
         <div class="p-formgrid p-grid">
             <div class="p-field p-col">
-                <label for="contactPhone">Número de contacto:</label>
+                <i class="p-error">*</i>Número de contacto:
                 <input id="contactPhone" name="contactPhone" pInputText formControlName="contact_phone" />
                 <div *ngIf="contactPhoneField.errors && contactPhoneField.touched">
                     <small *ngIf="contactPhoneField.hasError('required')" 
@@ -64,7 +64,7 @@
         </div>
         <div class="p-formgrid p-grid">
             <div class="p-field p-col">
-                <label for="contactEmail">Email de contacto:</label>
+                <i class="p-error">*</i>Email de contacto:
                 <input id="contactEmail" name="contactEmail" pInputText formControlName="contact_email" />
                 <div *ngIf="contactEmailField.errors && contactEmailField.touched">
                     <small *ngIf="contactEmailField.hasError('required')" 
