@@ -9,20 +9,20 @@
               <i *ngIf="areaField.invalid && (areaField.touched || areaField.dirty)"
                 class="pi pi-times-circle icon-invalid"></i>
             </label>
-            <p-dropdown id="area" [options]="areas" formControlName="area"
-                        optionLabel="name" [filter]="true" filterBy="name"
-                        placeholder="Seleccione...">
-              <ng-template pTemplate="selectedarea">
-                <div class="country-area country-area-value"  *ngIf="areaField.value">
-                  <div>{{area.name}}</div>
-                </div>
-              </ng-template>
-              <ng-template let-area pTemplate="area">
-                <div class="country-area">
-                  <div>{{area.name}}</div>
-                </div>
-              </ng-template>
-            </p-dropdown>
+            <p-dropdown id="area" [options]="areas"
+            formControlName="area" optionLabel="name" [filter]="true" filterBy="name"
+            placeholder="Seleccione...">
+            <ng-template pTemplate="selectedItem">
+              <div class="country-item country-item-value" *ngIf="areaField.value">
+                <div>{{areaField.value.name}}</div>
+              </div>
+            </ng-template>
+            <ng-template let-item pTemplate="item">
+              <div class="country-item">
+                <div>{{item.name}}</div>
+              </div>
+            </ng-template>
+          </p-dropdown>
           </div>
         <div class="p-formgrid p-grid">
             <div class="p-field p-col">
@@ -37,7 +37,7 @@
         </div>
         <div class="p-formgrid p-grid">
             <div class="p-field p-col">
-                <label for="position">Posición:</label>
+                <label for="position">Cargo:</label>
                 <input id="position" name="position" pInputText formControlName="position" />
                 <div *ngIf="positionField.errors && positionField.touched">
                     <small *ngIf="positionField.hasError('required')" id="position-help-1" class="p-error">
@@ -100,13 +100,13 @@
                 </small>
             </div>
         </div>
-            <label for="isWorking">
+           <label for="isWorking">
               <i class="p-error">*</i>Esta trabajando:
               <i *ngIf="isWorkingField.valid" class="pi pi-check-circle icon-valid"></i>
               <i *ngIf="isWorkingField.invalid && (isWorkingField.touched || isWorkingField.dirty)"
                 class="pi pi-times-circle icon-invalid"></i>
             </label>
-            <p-inputSwitch [(ngModel)]="is_working" formControlName="is_working" (onChange)="clickIsWorking($event)" 
+            <p-inputSwitch formControlName="is_working" (onChange)="clickIsWorking($event)" 
             onLabel="yes" offLabel="no">
               <ng-template let-isWorking pTemplate="isWorking">
                 <div class="country-isWorking">
@@ -121,7 +121,7 @@
                 <i *ngIf="isDisabilityField.invalid && (isDisabilityField.touched || isDisabilityField.dirty)"
                   class="pi pi-times-circle icon-invalid"></i>
               </label>
-              <p-inputSwitch [(ngModel)]="is_disability" formControlName="is_disability" (onChange)="clickIsDisability($event)" 
+              <p-inputSwitch  formControlName="is_disability" (onChange)="clickIsDisability($event)" 
               onLabel="yes" offLabel="no">
                 <ng-template let-isDisability pTemplate="isDisability">
                   <div class="country-isDisability">

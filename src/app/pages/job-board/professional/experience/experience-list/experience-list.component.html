@@ -59,10 +59,6 @@
                     Fecha Inicio
                     <p-sortIcon field="start_date"></p-sortIcon>
                 </th>
-                <th pSortableColumn="end_date">
-                    Fecha Fin
-                    <p-sortIcon field="end_date"></p-sortIcon>
-                </th>
                 <th pSortableColumn="activities">
                     Actividades
                     <p-sortIcon field="activities"></p-sortIcon>
@@ -100,9 +96,6 @@
                     {{experience.start_date}}
                 </td>
                 <td>
-                    {{experience.end_date}}
-                </td>
-                <td>
                     {{experience.activities}}
                 </td>
                 <td>
@@ -116,7 +109,7 @@
                 </td>
                 <td>
                     <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-warning"
-                            (click)="openEditFormExperience(Experience)"></button>
+                    (click)="openEditFormExperience(experience)"></button>
                     <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger p-ml-2"
                             (click)="deleteExperiences(experience)"></button>
                     <button pButton pRipple icon="pi pi-paperclip" class="p-button-rounded p-ml-2"
