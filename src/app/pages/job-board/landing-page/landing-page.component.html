@@ -29,7 +29,7 @@
             </ul>
         </div>
 
-        <div style="text-align: right">
+        <div style="text-align: right" *ngIf="!authService.getAuth()">
             <button pButton pRipple type="button" id="btnLogin"
                     label="Iniciar Sesión"
                     class="p-button-rounded"
