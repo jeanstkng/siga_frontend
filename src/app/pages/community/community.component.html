@@ -1,0 +1,51 @@
+<p>
+    community works!
+  </p>
+
+   <div class="p-fuid">
+    <form >
+      <div class="p-fierld">
+  
+        <label for="level">Nivel:
+          <i class="p-error">*</i>Nivel Académico:
+        </label>
+        <input pInputText id = 'level' >
+        <p-password > ingrese cotraseña</p-password>
+<p>
+  community works!
+</p>
+
+<div class="p-fluid">
+ 
+    <div >
+      <div class="p-formgrid p-grid">
+        <div class="p-field p-xl-6 p-lg-6 p-md-6 p-sm-12">
+            <label for="first_name">
+                <i class="p-error">*</i>Primer Nombre:
+                
+            </label>
+            <input id="first_name" formControlName="first_name" pInputText>
+            <div *ngIf="firstNameField.errors && (firstNameField.touched || firstNameField.dirty)">
+                <small *ngIf="firstNameField.errors?.required" id="user-help-1" class="p-error">
+                    {{messageService.fieldRequired}}
+                </small>
+            </div>
+        </div> 
+        <div class="p-field p-xl-6 p-lg-6 p-md-6 p-sm-12">
+            <label for="second_name">
+                <i class="p-error">*</i>Segundo Nombre:
+                <i *ngIf="secondNameField.valid" class="pi pi-check-circle icon-valid"></i>
+                <i *ngIf="secondNameField.invalid && (secondNameField.touched || secondNameField.dirty)"
+                   class="pi pi-times-circle icon-invalid"></i>
+            </label>
+            <input id="second_name" formControlName="second_name" pInputText>
+            <div *ngIf="secondNameField.errors && (secondNameField.touched || secondNameField.dirty)">
+                <small *ngIf="secondNameField.errors?.required" id="user-help-1" class="p-error">
+                    {{messageService.fieldRequired}}
+                </small>
+            </div>
+        </div>
+    </div>
+    </div>
+ 
+</div>

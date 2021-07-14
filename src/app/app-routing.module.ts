@@ -15,17 +15,28 @@ import {AuthGuard} from './shared/guards/auth.guard';
             {
                 path: '', component: AppMainComponent,
                 children: [
-                    {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
+                    {path: '', redirectTo: '/community', pathMatch: 'full'},
+                   
+
+                   /* 
+                    {
+                        path: 'user',
+                        loadChildren: () => import('./pages/auth/auth.module').then(m => m.AuthModule),
+                        canActivate: [AuthGuard]
+                    },*/
+                    
+                   {
+                        path: 'community',
+                        loadChildren: () => import('./pages/community/community.module').then(m => m.CommunityModule),
+                        canActivate: [AuthGuard]
+                    },
+                   
+
                     {
                         path: 'dashboard',
                         loadChildren: () => import('./pages/dashboard/dashboard.module').then(m => m.DashboardModule),
                         canActivate: [AuthGuard]
                     },
-                /*    {
-                        path: 'user',
-                        loadChildren: () => import('./pages/user/user.module').then(m => m.UserModule),
-                        canActivate: [AuthGuard]
-                    } */
                 ]
             },
             {
