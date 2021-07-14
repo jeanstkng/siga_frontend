@@ -87,6 +87,14 @@ export class MessageService {
         return `Máximo de caracteres es ${field.errors.maxlength.requiredLength}.`;
     }
 
+    fieldMin(field) {
+        return `Numero mínimo permitido es ${field.errors.min.requiredMin}.`;
+    }
+
+    fieldMax(field): string {
+        return `Numero maximo permitido es ${field.errors.max.requiredMax}.`;
+    }
+
     get fieldNoPasswordMatch(): string {
         return 'Las contraseñas no coinciden.';
     }

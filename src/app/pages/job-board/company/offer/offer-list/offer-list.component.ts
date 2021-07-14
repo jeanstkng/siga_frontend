@@ -107,7 +107,7 @@ export class OfferListComponent implements OnInit {
     }
 
     resetPaginatorOffers() {
-        this.paginatorIn = {current_page: 1, per_page: 5};
+        this.paginatorIn = {current_page: 1, per_page: 10};
     }
 
     deleteOffer(offer: Offer) {
