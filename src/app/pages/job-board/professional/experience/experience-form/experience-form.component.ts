@@ -40,10 +40,6 @@ export class ExperienceFormComponent implements OnInit {
 
     ngOnInit(): void {
         this.getAreas();
-        this.isWorking = false;
-        this.isWorking = true;
-        this.isDisability = false;
-        this.isDisability = true;
     }
 
     // Fields of Form
@@ -173,15 +169,14 @@ export class ExperienceFormComponent implements OnInit {
 
 
   
-    public clickIsWorking(e) {
+     clickIsWorking(e) {
         const isWorking = e.checked;
         if (isWorking) {
-          console.log('jsdhck');
           this.isWorking = true;
           this.isWorking = false;
         }
       }
-      public clickIsDisability(e) {
+       clickIsDisability(e) {
         const isDisability = e.checked;
         if (isDisability) {
           console.log('jsdhck');
