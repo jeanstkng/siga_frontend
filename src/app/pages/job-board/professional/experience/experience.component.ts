@@ -1,13 +1,13 @@
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {JobBoardHttpService} from '../../../../services/job-board/job-board-http.service';
-import {Experience} from '../../../../models/job-board/experience';
-import {Paginator} from '../../../../models/setting/paginator';
-import {HttpParams} from '@angular/common/http';
-import {NgxSpinnerService} from 'ngx-spinner';
-import {MessageService} from '../../../shared/services/message.service';
-import {DateValidators} from '../../../shared/validators/date.validators';
-import {BreadcrumbService} from '../../../../shared/services/breadcrumb.service';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { JobBoardHttpService } from '../../../../services/job-board/job-board-http.service';
+import { Experience } from '../../../../models/job-board/experience';
+import { Paginator } from '../../../../models/setting/paginator';
+import { HttpParams } from '@angular/common/http';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { MessageService } from '../../../shared/services/message.service';
+import { DateValidators } from '../../../shared/validators/date.validators';
+import { BreadcrumbService } from '../../../../shared/services/breadcrumb.service';
 
 
 @Component({
@@ -20,7 +20,6 @@ export class ExperienceComponent implements OnInit {
     paginator: Paginator;
     experiences: Experience[];
     formExperience: FormGroup;
-    experience: Experience;
     experienceDialog: boolean;
     flagExperiences: boolean;
 
@@ -30,7 +29,7 @@ export class ExperienceComponent implements OnInit {
         private formBuilder: FormBuilder,
         private jobBoardHttpService: JobBoardHttpService) {
 
-        this.paginator = {current_page: 1, per_page: 2};
+        this.paginator = { current_page: 1, per_page: 2 };
         this.experiences = [];
     }
 
@@ -67,7 +66,7 @@ export class ExperienceComponent implements OnInit {
                 // this.spinnerService.hide();
                 this.flagExperiences = false;
                 this.experiences = response['data'];
-              // console.log(this.experiences);
+                // console.log(this.experiences);
                 this.paginator = response as Paginator;
             }, error => {
                 // this.spinnerService.hide();

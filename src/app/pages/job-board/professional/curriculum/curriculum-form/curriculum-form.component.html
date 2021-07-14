@@ -183,15 +183,15 @@
                             </div>
                         </div>
                     </p-card>
-                    <div class="p-field">
+                    <!-- <div class="p-field">
                         <app-location-address [option]="1" (formAddressOut)="formAddress=$event"
                             (formLocationOut)="setFormLocation($event)" id="address" formControlName="address">
                         </app-location-address>
-                    </div>
+                    </div> -->
                 </div>
             </div>
             <div class="p-field p-xl-6 p-lg-6 p-md-12 p-sm-12">
-                <p-card header="Información Personal:">
+                <p-card header="">
                     <div class="p-formgrid p-grid">
                         <div class="p-field p-xl-6 p-lg-6 p-md-6 p-sm-12">
                             <label for="isTravel">
@@ -201,8 +201,8 @@
                                     class="pi pi-times-circle icon-invalid"></i>
                             </label>
                             <div>
-                                <p-inputSwitch [(ngModel)]="isTravel" formControlName="is_travel"
-                                    (onChange)="clickIsTravel($event)" onLabel="yes" offLabel="no">
+                                <p-inputSwitch formControlName="is_travel" (onChange)="clickIsTravel($event)"
+                                    onLabel="yes" offLabel="no">
                                     <ng-template let-isTravel pTemplate="isTravel">
                                         <div class="country-isTravel">
                                             <div>{{is_travel.name}}</div>
@@ -221,8 +221,8 @@
                                     class="pi pi-times-circle icon-invalid"></i>
                             </label>
                             <div>
-                                <p-inputSwitch [(ngModel)]="isDisability" formControlName="is_disability"
-                                    (onChange)="clickIsDisability($event)" onLabel="yes" offLabel="no">
+                                <p-inputSwitch formControlName="is_disability" (onChange)="clickIsDisability($event)"
+                                    onLabel="yes" offLabel="no">
                                     <ng-template let-isDisability pTemplate="isDisability">
                                         <div class="country-isDisability">
                                             <div>{{is_disability.name}}</div>
@@ -239,8 +239,7 @@
                                     class="pi pi-times-circle icon-invalid"></i>
                             </label>
                             <div>
-                                <p-inputSwitch [(ngModel)]="isCatastrophicIllness"
-                                    formControlName="is_catastrophic_illness"
+                                <p-inputSwitch formControlName="is_catastrophic_illness"
                                     (onChange)="clickIsCatastrophicIllness($event)" onLabel="yes" offLabel="no">
                                     <ng-template let-isCatastrophicIllness pTemplate="isCatastrophicIllness">
                                         <div class="country-isCatastrophicIllness">
@@ -260,8 +259,7 @@
                                     class="pi pi-times-circle icon-invalid"></i>
                             </label>
                             <div>
-                                <p-inputSwitch [(ngModel)]="isFamiliarDisability"
-                                    formControlName="is_familiar_disability"
+                                <p-inputSwitch formControlName="is_familiar_disability"
                                     (onChange)="clickIsFamiliarDisability($event)" onLabel="yes" offLabel="no">
                                     <ng-template let-isFamiliarDisability pTemplate="isFamiliarDisability">
                                         <div class="country-isFamiliarDisability">
@@ -300,8 +298,7 @@
                                     class="pi pi-times-circle icon-invalid"></i>
                             </label>
                             <div>
-                                <p-inputSwitch [(ngModel)]="isFamiliarCatastrophicIllness"
-                                    formControlName="is_familiar_catastrophic_illness"
+                                <p-inputSwitch formControlName="is_familiar_catastrophic_illness"
                                     (onChange)="clickIsFamiliarCatastrophicIllness($event)" onLabel="yes" offLabel="no">
                                     <ng-template let-isFamiliarCatastrophicIllness
                                         pTemplate="isFamiliarCatastrophicIllness">
@@ -315,11 +312,52 @@
                     </div>
                 </p-card>
             </div>
-        </div>
-        <div class="p-field p-xl-11 p-lg-11 p-md-11 p-sm-12">
-            <button type="submit" pButton pRipple label="Imprimir" icon="pi pi-save"
-                class="p-button-success p-button-raised"
-                style="display:inline-block;margin-left:40%;width:25%;"></button>
+            <div class="p-field p-xl-6 p-lg-6 p-md-12 p-sm-12">
+                <p-card header="Habilidades:">
+                    <div class="p-formgrid p-grid">
+                        <div class="p-field p-xl-6 p-lg-6 p-md-6 p-sm-12">
+
+                        </div>
+                    </div>
+                </p-card>
+            </div>
+            <div class="p-field p-xl-6 p-lg-6 p-md-12 p-sm-12">
+                <p-card header="Cursos y Capacitaciones:">
+                    <div class="p-formgrid p-grid">
+                        <div class="p-field p-xl-6 p-lg-6 p-md-6 p-sm-12">
+                        </div>
+                    </div>
+                </p-card>
+            </div>
+            <div class="p-field p-xl-6 p-lg-6 p-md-12 p-sm-12">
+                <p-card header="Experiencia Profesional:">
+                    <div class="p-formgrid p-grid">
+                        <div class="p-field p-xl-6 p-lg-6 p-md-6 p-sm-12">
+                        </div>
+                    </div>
+                </p-card>
+            </div>
+            <div class="p-field p-xl-6 p-lg-6 p-md-12 p-sm-12">
+                <p-card header="Idiomas:">
+                    <div class="p-formgrid p-grid">
+                        <div class="p-field p-xl-6 p-lg-6 p-md-6 p-sm-12">
+                        </div>
+                    </div>
+                </p-card>
+            </div>
+            <div class="p-field p-xl-6 p-lg-6 p-md-12 p-sm-12">
+                <p-card header="Referencias Prsonales:">
+                    <div class="p-formgrid p-grid">
+                        <div class="p-field p-xl-6 p-lg-6 p-md-6 p-sm-12">
+                        </div>
+                    </div>
+                </p-card>
+            </div>
+            <div class="p-field p-xl-11 p-lg-11 p-md-11 p-sm-12">
+                <button type="submit" pButton pRipple label="Imprimir" icon="pi pi-save"
+                    class="p-button-success p-button-raised"
+                    style="display:inline-block;margin-left:40%;width:25%;"></button>
+            </div>
         </div>
     </form>
 </div>

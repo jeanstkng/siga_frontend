@@ -50,16 +50,6 @@ export class CurriculumFormComponent implements OnInit {
 
     ngOnInit() {
         // this.getSex();
-        this.isTravel = false;
-        this.isTravel = true;
-        this.isDisability = false;
-        this.isDisability = true;
-        this.isCatastrophicIllness = false;
-        this.isCatastrophicIllness = true;
-        this.isFamiliarDisability = false;
-        this.isFamiliarDisability = true;
-        this.isFamiliarCatastrophicIllness = false;
-        this.isFamiliarCatastrophicIllness = true;
         //this.getProfessional();
     }
 
@@ -180,7 +170,6 @@ export class CurriculumFormComponent implements OnInit {
     public clickIsTravel(e) {
         const isTravel = e.checked;
         if (isTravel) {
-            console.log('jsdhck');
             this.isTravel = true;
             this.isTravel = false;
         }
@@ -188,7 +177,6 @@ export class CurriculumFormComponent implements OnInit {
     public clickIsDisability(e) {
         const isDisability = e.checked;
         if (isDisability) {
-            console.log('jsdhck');
             this.isDisability = true;
             this.isDisability = false;
         }
@@ -196,7 +184,6 @@ export class CurriculumFormComponent implements OnInit {
     public clickIsCatastrophicIllness(e) {
         const isCatastrophicIllness = e.checked;
         if (isCatastrophicIllness) {
-            console.log('jsdhck');
             this.isCatastrophicIllness = true;
             this.isCatastrophicIllness = false;
         }
@@ -204,7 +191,6 @@ export class CurriculumFormComponent implements OnInit {
     public clickIsFamiliarDisability(e) {
         const isFamiliarDisability = e.checked;
         if (isFamiliarDisability) {
-            console.log('jsdhck');
             this.isFamiliarDisability = true;
             this.isFamiliarDisability = false;
         }
@@ -212,7 +198,6 @@ export class CurriculumFormComponent implements OnInit {
     public clickIsFamiliarCatastrophicIllness(e) {
         const isFamiliarCatastrophicIllness = e.checked;
         if (isFamiliarCatastrophicIllness) {
-            console.log('jsdhck');
             this.isFamiliarCatastrophicIllness = true;
             this.isFamiliarCatastrophicIllness = false;
         }
