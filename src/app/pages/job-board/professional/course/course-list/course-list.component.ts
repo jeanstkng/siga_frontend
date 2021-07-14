@@ -15,7 +15,7 @@ import { File } from '../../../../../models/app/file';
     styleUrls: ['./course-list.component.scss']
 })
 export class CourseListComponent implements OnInit {
-    @Input() flagCourses: boolean;
+    @Input() flagSkeletonCourses: boolean;
     @Input() coursesIn: Course[];
     @Input() paginatorIn: Paginator;
     @Input() formCourseIn: FormGroup;

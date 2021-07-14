@@ -90,8 +90,7 @@ export class CourseFormComponent implements OnInit {
     }
 
     // Submit Form
-    onSubmit(event: Event, flag = false) {
-        event.preventDefault();
+    onSubmit(flag = false) {
         if (this.formCourseIn.valid) {
             if (this.idField.value) {
                 this.updateCourse(this.formCourseIn.value);
@@ -180,5 +179,4 @@ export class CourseFormComponent implements OnInit {
         }
         this.coursesOut.emit(this.coursesIn);
     }
-
 }

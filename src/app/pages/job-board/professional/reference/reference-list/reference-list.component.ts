@@ -14,7 +14,7 @@ import { File } from '../../../../../models/app/file';
     styleUrls: ['./reference-list.component.scss']
 })
 export class ReferenceListComponent implements OnInit {
-    @Input() flagReferences: boolean;
+    @Input() flagSkeletonReferences: boolean;
     @Input() referencesIn: Reference[];
     @Input() paginatorIn: Paginator;
     @Input() formReferenceIn: FormGroup;

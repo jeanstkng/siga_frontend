@@ -14,7 +14,7 @@ import { File } from '../../../../../models/app/file';
     styleUrls: ['./experience-list.component.scss']
 })
 export class ExperienceListComponent implements OnInit {
-    @Input() flagExperiences: boolean;
+    @Input() flagSkeletonExperiences: boolean;
     @Input() experiencesIn: Experience[];
     @Input() paginatorIn: Paginator;
     @Input() formExperienceIn: FormGroup;
@@ -84,7 +84,7 @@ export class ExperienceListComponent implements OnInit {
     }
 
     openEditFormExperience(experience: Experience) {
-        // this.formExperienceIn.patchValue(experience);
+        this.formExperienceIn.patchValue(experience);
         this.formExperienceOut.emit(this.formExperienceIn);
         this.displayOut.emit(true);
     }

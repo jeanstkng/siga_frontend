@@ -1,4 +1,4 @@
-<app-skeleton *ngIf="flagExperiences"></app-skeleton>
+<app-skeleton *ngIf="flagSkeletonExperiences"></app-skeleton>
 <p-dialog [(visible)]="dialogUploadFiles" [style]="{width: '75%'}" header="Subir archivos" [modal]="true"
     styleClass="p-fluid" (onHide)="dialogUploadFiles=false">
     <app-upload-files (files)="upload($event,selectedExperience.id)"></app-upload-files>
@@ -17,16 +17,8 @@
                 (click)="openNewFormExperience()"></button>
             <button pButton pRipple label="Eliminar" icon="pi pi-trash" class="p-button-danger p-button-rounded p-ml-2"
                 (click)="deleteExperiences()" [disabled]="!selectedExperiences || !selectedExperiences.length"></button>
-            <button pButton pRipple label="Actualizar" icon="pi pi-refresh"
-                class="p-button-info p-button-rounded p-ml-2" (click)="paginatorOut.emit(paginatorIn)"></button>
         </ng-template>
 
-        <ng-template pTemplate="right">
-            <p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Import" chooseLabel="Import"
-                class="p-mr-2 p-mb-2 p-d-inline-block"></p-fileUpload>
-            <button pButton pRipple label="Export" icon="pi pi-upload" class="p-button-help p-mb-2"
-                (click)="dt.exportCSV()"></button>
-        </ng-template>
     </p-toolbar>
     <p-paginator [rows]="paginatorIn.per_page" [totalRecords]="paginatorIn.total" (onPageChange)="pageChange($event)">
     </p-paginator>

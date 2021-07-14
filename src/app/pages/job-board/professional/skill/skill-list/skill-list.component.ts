@@ -1,13 +1,13 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Skill} from '../../../../../models/job-board/skill';
-import {FormGroup} from '@angular/forms';
-import {Col} from '../../../../../models/setting/col';
-import {Paginator} from '../../../../../models/setting/paginator';
-import {MessageService} from '../../../../shared/services/message.service';
-import {NgxSpinnerService} from 'ngx-spinner';
-import {JobBoardHttpService} from '../../../../../services/job-board/job-board-http.service';
-import {HttpParams} from '@angular/common/http';
-import {File} from '../../../../../models/app/file';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Skill } from '../../../../../models/job-board/skill';
+import { FormGroup } from '@angular/forms';
+import { Col } from '../../../../../models/setting/col';
+import { Paginator } from '../../../../../models/setting/paginator';
+import { MessageService } from '../../../../shared/services/message.service';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { JobBoardHttpService } from '../../../../../services/job-board/job-board-http.service';
+import { HttpParams } from '@angular/common/http';
+import { File } from '../../../../../models/app/file';
 
 @Component({
     selector: 'app-skill-list',
@@ -33,13 +33,13 @@ export class SkillListComponent implements OnInit {
     colsSkill: Col[];
 
     constructor(public messageService: MessageService,
-                private spinnerService: NgxSpinnerService,
-                private jobBoardHttpService: JobBoardHttpService) {
+        private spinnerService: NgxSpinnerService,
+        private jobBoardHttpService: JobBoardHttpService) {
         this.resetPaginator();
     }
 
     resetPaginator() {
-        this.paginatorFiles = {current_page: 1, per_page: 5};
+        this.paginatorFiles = { current_page: 1, per_page: 5 };
     }
 
     ngOnInit(): void {
@@ -49,8 +49,8 @@ export class SkillListComponent implements OnInit {
     // Columns table
     loadColsSkill() {
         this.colsSkill = [
-            {field: 'type', header: 'Tipo'},
-            {field: 'description', header: 'Descripción'},
+            { field: 'type', header: 'Tipo' },
+            { field: 'description', header: 'Descripción' },
         ];
     }
 
@@ -88,6 +88,11 @@ export class SkillListComponent implements OnInit {
     openViewFilesSkill() {
         this.getFiles(this.paginatorFiles);
     }
+    pageChange(event) {
+        this.paginatorIn.current_page = event.page + 1;
+        this.paginatorOut.emit(this.paginatorIn);
+    }
+
 
     getFiles(paginator: Paginator) {
         const params = new HttpParams()

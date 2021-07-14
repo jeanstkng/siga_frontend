@@ -1,17 +1,14 @@
-import {Professional} from './../../../../models/job-board/professional';
-import {Institution} from './../../../../models/app/institution';
-import {Component, OnInit} from '@angular/core';
+import { Institution } from './../../../../models/app/institution';
+import { Component, OnInit } from '@angular/core';
 
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {JobBoardHttpService} from '../../../../services/job-board/job-board-http.service';
-import {Course} from '../../../../models/job-board/course';
-import {Paginator} from '../../../../models/setting/paginator';
-import {HttpParams} from '@angular/common/http';
-import {NgxSpinnerService} from 'ngx-spinner';
-import {BreadcrumbService} from '../../../../shared/services/breadcrumb.service';
-import {MessageService} from '../../../shared/services/message.service';
-
-
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { JobBoardHttpService } from '../../../../services/job-board/job-board-http.service';
+import { Course } from '../../../../models/job-board/course';
+import { Paginator } from '../../../../models/setting/paginator';
+import { HttpParams } from '@angular/common/http';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { BreadcrumbService } from '../../../../shared/services/breadcrumb.service';
+import { MessageService } from '../../../shared/services/message.service';
 @Component({
     selector: 'app-course',
     templateUrl: './course.component.html',
@@ -27,11 +24,11 @@ export class CourseComponent implements OnInit {
     flagCourses: boolean;
 
     constructor(private spinnerService: NgxSpinnerService,
-                public messageService: MessageService,
-                private formBuilder: FormBuilder,
-                private jobBoardHttpService: JobBoardHttpService,
-                private breadcrumbService: BreadcrumbService) {
-        this.paginator = {current_page: 1, per_page: 5};
+        public messageService: MessageService,
+        private formBuilder: FormBuilder,
+        private jobBoardHttpService: JobBoardHttpService,
+        private breadcrumbService: BreadcrumbService) {
+        this.paginator = { current_page: 1, per_page: 5 };
         this.courses = [];
     }
 
@@ -58,7 +55,6 @@ export class CourseComponent implements OnInit {
     }
 
     // courses of backend
-
     getCourses(paginator: Paginator) {
         const params = new HttpParams()
             .append('page', paginator.current_page.toString())

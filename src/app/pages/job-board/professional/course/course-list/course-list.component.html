@@ -1,4 +1,4 @@
-<app-skeleton *ngIf="flagCourses" [type]="'table'"></app-skeleton>
+<app-skeleton *ngIf="flagSkeletonCourses" [type]="'table'"></app-skeleton>
 <p-dialog [(visible)]="dialogUploadFiles" [style]="{width: '75%'}" header="Subir archivos" [modal]="true"
     styleClass="p-fluid" (onHide)="dialogUploadFiles=false">
     <app-upload-files (files)="upload($event,selectedCourse.id)"></app-upload-files>
@@ -9,17 +9,14 @@
     <app-view-files (files)="upload($event,selectedCourse.id)" [filesIn]="files" (searchOut)="searchFiles($event)"
         [paginatorIn]="paginatorFiles" (paginatorOut)="getFiles($event)"></app-view-files>
 </p-dialog>
-<div class="card" [hidden]="flagCourses">
+
+<div class="card" [hidden]="flagSkeletonCourses">
     <p-toolbar styleClass="p-mb-4">
         <ng-template pTemplate="left">
-            <button pButton pRipple label="Crear" icon="pi pi-plus" class="p-button-success p-button-rounded"
+            <button pButton pRipple label="Nuevo" icon="pi pi-plus" class="p-button-success p-button-rounded"
                 (click)="openNewFormCourse()"></button>
             <button pButton pRipple label="Eliminar" icon="pi pi-trash" class="p-button-danger p-button-rounded p-ml-2"
                 (click)="deleteCourses()" [disabled]="!selectedCourses || !selectedCourses.length"></button>
-        </ng-template>
-        <ng-template pTemplate="right">
-            <button pButton pRipple label="Actualizar" icon="pi pi-refresh" class="p-button-info"
-                (click)="paginatorOut.emit(paginatorIn)"></button>
         </ng-template>
     </p-toolbar>
     <p-paginator [rows]="paginatorIn.per_page" [totalRecords]="paginatorIn.total" (onPageChange)="pageChange($event)">

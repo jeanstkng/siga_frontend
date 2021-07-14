@@ -25,7 +25,7 @@ export class ExperienceComponent implements OnInit {
 
     constructor(
         private spinnerService: NgxSpinnerService,
-        private messageService: MessageService,
+        public messageService: MessageService,
         private formBuilder: FormBuilder,
         private jobBoardHttpService: JobBoardHttpService) {
 
@@ -44,7 +44,7 @@ export class ExperienceComponent implements OnInit {
             id: [null],
             area: [null, Validators.required],
             employer: [null, Validators.required],
-            position: [null, [Validators.required, Validators.minLength(10)]],
+            position: [null, [Validators.required, Validators.minLength(3)]],
             start_date: [null, Validators.required],
             end_date: [null, Validators.required],
             reason_leave: [null, Validators.required],

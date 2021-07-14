@@ -15,7 +15,7 @@ import { File } from "../../../../../models/app/file";
     styleUrls: ['./language-list.component.scss']
 })
 export class LanguageListComponent implements OnInit {
-    @Input() flagLanguages: boolean;
+    @Input() flagSkeletonLanguages: boolean;
     @Input() languagesIn: Language[];
     @Input() paginatorIn: Paginator;
     @Input() formLanguageIn: FormGroup;

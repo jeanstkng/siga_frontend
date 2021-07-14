@@ -1,5 +1,5 @@
 {{formExperienceIn.value|json}}
-<!-- <p-toast></p-toast> -->
+<p-toast></p-toast>
 <p-card>
     <div class="p-fluid">
         <form [formGroup]="formExperienceIn" (ngSubmit)="onSubmit($event)">
@@ -42,6 +42,9 @@
                     <div *ngIf="positionField.errors && positionField.touched">
                         <small *ngIf="positionField.hasError('required')" id="position-help-1" class="p-error">
                             {{messageService.fieldRequired}}
+                        </small>
+                        <small *ngIf="positionField.errors?.minlength" id="position-help-2" class="p-error">
+                            {{messageService.fieldMinLength(positionField)}}
                         </small>
                     </div>
                 </div>
