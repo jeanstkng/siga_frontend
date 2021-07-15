@@ -36,7 +36,7 @@ export class RegisterComponent implements OnInit {
         identification_type: [null, Validators.required],
       },{validator:[CustomValidators.passwordMatchValidator,Validations.identificationMatchValidator]}),
       trade_name: [null, Validators.required],
-      prefix:[null,Validators.required],
+      prefix:[null,[Validators.required,Validators.minLength(2),Validators.maxLength(5)]],
       comercial_activities: this.formBuilder.array([
         this.formBuilder.control(null, Validators.required)
       ]),

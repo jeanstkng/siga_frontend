@@ -22,10 +22,10 @@
                     <small *ngIf="usernameField.errors?.required" id="user-help-1" class="p-error">
                       {{messageService.fieldRequired}}
                     </small>
-                    <small *ngIf="usernameField.errors?.minLength" id="user-help-2" class="p-error">
+                    <small *ngIf="usernameField.errors?.minlength" id="user-help-2" class="p-error">
                       {{messageService.fieldMinLength(usernameField)}}
                     </small>
-                    <small *ngIf="usernameField.errors?.maxLength" id="user-help-3" class="p-error">
+                    <small *ngIf="usernameField.errors?.maxlength" id="user-help-3" class="p-error">
                       {{messageService.fieldMaxLength(usernameField)}}
                     </small>
                     <small *ngIf="usernameField.errors?.noIdentificationMatch" id="user-help-4" class="p-error">
@@ -117,10 +117,10 @@
                     <small *ngIf="passwordField.errors?.required" id="password-help-1" class="p-error">
                       {{messageService.fieldRequired}}
                     </small>
-                    <small *ngIf="passwordField.errors?.minLength" id="password-help-2" class="p-error">
+                    <small *ngIf="passwordField.errors?.minlength" id="password-help-2" class="p-error">
                       {{messageService.fieldMinLength(passwordField)}}
                     </small>
-                     <small *ngIf="passwordField.errors?.maxLength" id="password-help-3" class="p-error">
+                     <small *ngIf="passwordField.errors?.maxlength" id="password-help-3" class="p-error">
                       {{messageService.fieldMaxLength(passwordField)}}
                     </small>
                     <small *ngIf="passwordField.errors?.noPasswordMatch" id="password-help-4" class="p-error">
@@ -268,6 +268,9 @@
                 <div *ngIf="prefixField.errors && (prefixField.touched ||prefixField.dirty)">
                   <small *ngIf="prefixField.errors?.required" id="prefix-help-1" class="p-error">
                     {{messageService.fieldRequired}}
+                  </small>
+                  <small *ngIf="prefixField.errors?.minlength" id="prefix-help-2" class="p-error">
+                    {{messageService.fieldMinLength(prefixField)}}
                   </small>
                 </div>
               </div>

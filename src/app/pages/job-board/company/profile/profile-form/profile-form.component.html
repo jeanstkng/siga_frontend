@@ -31,7 +31,7 @@
                   <small *ngIf="emailField.errors?.required" id="email-help-1" class="p-error">
                     {{messageService.fieldRequired}}
                   </small>
-                  <small *ngIf="emailField.errors?.email" id="email-help-1" class="p-error">
+                  <small *ngIf="emailField.errors?.email" id="email-help-2" class="p-error">
                     {{messageService.fieldEmail}}
                   </small>
                 </div>
@@ -49,6 +49,12 @@
                 <div *ngIf="phoneField.errors && (phoneField.touched || phoneField.dirty)">
                   <small *ngIf="phoneField.errors?.required" id="phone-help-1" class="p-error">
                     {{messageService.fieldRequired}}
+                  </small>
+                  <small *ngIf="phoneField.errors?.minlength" id="phone-help-2" class="p-error">
+                    {{messageService.fieldMinLength(phoneField)}}
+                  </small>
+                  <small *ngIf="phoneField.errors?.maxlength" id="phone-help-3" class="p-error">
+                    {{messageService.fieldMaxLength(phoneField)}}
                   </small>
                 </div>
               </div>
@@ -111,6 +117,12 @@
               <div *ngIf="prefixField.errors && (prefixField.touched ||prefixField.dirty)">
                 <small *ngIf="prefixField.errors?.required" id="prefix-help-1" class="p-error">
                   {{messageService.fieldRequired}}
+                </small>
+                <small *ngIf="prefixField.errors?.minlength" id="prefix-help-2" class="p-error">
+                  {{messageService.fieldMinLength(prefixField)}}
+                </small>
+                <small *ngIf="prefixField.errors?.maxlength" id="prefix-help-3" class="p-error">
+                  {{messageService.fieldMaxLength(prefixField)}}
                 </small>
               </div>
             </div>
