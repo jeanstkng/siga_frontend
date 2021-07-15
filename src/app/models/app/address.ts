@@ -12,3 +12,5 @@ export interface Address {
     latitude?: number;
     longitude?: number;
 }
+
+//use \Illuminate\Support\Facades\DB;
