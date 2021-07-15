@@ -1,15 +1,30 @@
-<app-skeleton *ngIf="flagProfessionals" [type]="'rectangle'"></app-skeleton>
+<div class="p-grid" *ngIf="flagProfessionals">
+    <div class="p-xl-6 p-lg-6 p-md-12 p-sm-12 p-col-12">
+        <app-skeleton [type]="'rectangle'"></app-skeleton>
+    </div>
+    <div class="p-xl-6 p-lg-6 p-md-12 p-sm-12 p-col-12">
+        <app-skeleton [type]="'rectangle'"></app-skeleton>
+    </div>
+    <div class="p-xl-6 p-lg-6 p-md-12 p-sm-12 p-col-12">
+        <app-skeleton [type]="'rectangle'"></app-skeleton>
+    </div>
+    <div class="p-xl-6 p-lg-6 p-md-12 p-sm-12 p-col-12">
+        <app-skeleton [type]="'rectangle'"></app-skeleton>
+    </div>
+</div>
 
 <div class="card" [hidden]="flagProfessionals">
-    <div class="p-grid">
+    <div class="p-grid" *ngIf="professionalsIn.length > 0">
         <div class="p-xl-6 p-lg-6 p-md-12 p-sm-12 p-col-12" *ngFor="let professional of professionalsIn">
             <p-card>
                 <ng-template pTemplate="title" *ngFor="let academicFormation of professional.academic_formations">
-                    {{academicFormation.professional_degree.name}}
+                    <div class="card-title">{{academicFormation.professional_degree.name}}</div>
                 </ng-template>
-                <ng-template pTemplate="subtitle">Acerca de mi</ng-template>
-                <ng-template pTemplate="content">{{professional.about_me}}</ng-template>
-                <ng-template pTemplate="footer" *ngIf="loggedIn()">
+                <ng-template pTemplate="subtitle">Acerca de mi:</ng-template>
+                <ng-template pTemplate="content">
+                    <div class="card-content">{{professional.about_me}}</div>
+                </ng-template>
+                <ng-template pTemplate="footer">
                     <div class="p-grid">
                         <div class="p-xl-6 p-lg-12 p-md-6 p-sm-6 p-col-6">
                             <button pButton pRipple
@@ -18,7 +33,7 @@
                                     class="p-button-success"
                                     icon="pi pi-check"
                                     iconPos="left"
-                                    (click)="professionalAplied(professional)">
+                                    (click)="applyProfessional(professional)">
                             </button>
                         </div>
                         <div class="p-xl-6 p-lg-12 p-md-6 p-sm-6 p-col-6">
@@ -27,7 +42,8 @@
                                     label="Ver más"
                                     class="p-button-info"
                                     icon="pi pi-eye"
-                                    iconPos="left">
+                                    iconPos="left"
+                                    (click)="showCurriculum(professional)">
                             </button>
                         </div>
                     </div>
@@ -35,9 +51,15 @@
             </p-card>
         </div>
     </div>
+    <p-message 
+        *ngIf="professionalsIn.length == 0" 
+        severity="info"
+        text="No se encontraron profesionales, intenta más tarde">
+    </p-message>
 </div>
 
-<p-paginator 
+<p-paginator
+    *ngIf="professionalsIn.length > 0"
     [rows]="paginatorIn.per_page"
     [totalRecords]="paginatorIn.total"
     (onPageChange)="pageChange($event)">

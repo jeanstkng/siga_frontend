@@ -1,5 +1,4 @@
 
-
 // Angular Modules
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
@@ -13,6 +12,7 @@ import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { DropdownModule } from 'primeng/dropdown';
 import { SkeletonModule } from 'primeng/skeleton';
+import { InputSwitchModule } from 'primeng/inputswitch';
 
 // My Components
 import { TooltipModule } from 'primeng/tooltip';
@@ -36,6 +36,8 @@ import { CardModule } from 'primeng/card';
 import { SharedModule } from '../../shared/shared.module';
 import { RippleModule } from 'primeng/ripple';
 import { ProfessionalComponent } from './professional.component';
+import { CurriculumComponent } from './curriculum/curriculum.component';
+import { CurriculumFormComponent } from './curriculum/curriculum-form/curriculum-form.component';
 import { SkillComponent } from './skill/skill.component';
 import { SkillFormComponent } from './skill/skill-form/skill-form.component';
 import { SkillListComponent } from './skill/skill-list/skill-list.component';
@@ -54,9 +56,7 @@ import { LanguageListComponent } from './language/language-list/language-list.co
 //import { ProfileComponent } from '../company/profile/profile.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ProfileFormComponent } from './profile/profile-form/profile-form.component';
-import {CheckboxModule} from 'primeng/checkbox';
-
-
+import { CheckboxModule } from 'primeng/checkbox';
 @NgModule({
     imports: [
         CommonModule,
@@ -91,10 +91,13 @@ import {CheckboxModule} from 'primeng/checkbox';
         SkeletonModule,
         RippleModule,
         CheckboxModule,
+        InputSwitchModule,
     ],
     declarations: [
         ProfessionalComponent,
-       // ProfileComponent,
+        CurriculumComponent,
+        CurriculumFormComponent,
+        // ProfileComponent,
         SkillComponent,
         SkillFormComponent,
         SkillListComponent,
@@ -111,7 +114,7 @@ import {CheckboxModule} from 'primeng/checkbox';
         LanguageFormComponent,
         LanguageListComponent,
         ProfileComponent,
-        ProfileFormComponent
+        ProfileFormComponent,
 
 
     ],

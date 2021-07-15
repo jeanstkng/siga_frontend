@@ -5,7 +5,6 @@ import {MessageService} from '../../../../shared/services/message.service';
 import {NgxSpinnerService} from 'ngx-spinner';
 import {JobBoardHttpService} from '../../../../../services/job-board/job-board-http.service';
 import {AppHttpService} from '../../../../../services/app/app-http.service';
-import {HttpParams} from '@angular/common/http';
 import {Catalogue} from '../../../../../models/app/catalogue';
 import {MessageService as MessagePnService} from 'primeng/api';
 import {SharedService} from '../../../../shared/services/shared.service';
@@ -23,12 +22,10 @@ export class ExperienceFormComponent implements OnInit {
     @Input() experiencesIn: Experience[];
     @Output() experiencesOut = new EventEmitter<Experience[]>();
     @Output() displayOut = new EventEmitter<boolean>();
-    // filteredProfessionals: any[];
-    // professionals: Catalogue[];
     filteredAreas: any[];
     areas: Catalogue[];
-    // filteredIsWorkings: any[];
-    isWorking: boolean;
+    isWorking :  boolean= true;
+    isDisability: boolean= false;
     selectedValues: string[] = [];
     value: boolean;
 
@@ -42,9 +39,7 @@ export class ExperienceFormComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        //this.getProfessional();
         this.getAreas();
-        // this.getIsWorkings();
     }
 
     // Fields of Form
@@ -99,7 +94,7 @@ export class ExperienceFormComponent implements OnInit {
     removeActivities(activity) {
         this.activitiesField.removeAt(activity);
     }
-
+     
     // Submit Form
 
     onSubmit(event: Event, flag = false) {
@@ -115,18 +110,8 @@ export class ExperienceFormComponent implements OnInit {
         }
     }
 
-    /* getIsWorkings() {
-         const params = new HttpParams().append('type', 'EXPERIENCE_IS-WORKING');
-         this.appHttpService.getCatalogues(params).subscribe(response => {
-             this.isWorkings = response['data'];
-             this.messageService.success(response);
-         }, error => {
-             this.messageService.error(error);
-         });
-     }*/
     getAreas() {
-        const params = new HttpParams().append('type', 'EXPERIENCE_AREA');
-        this.appHttpService.getCatalogues(params).subscribe(response => {
+        this.appHttpService.getCatalogues('EXPERIENCE_AREA').subscribe(response => {
             this.areas = response['data'];
         }, error => {
             this.messageService.error(error);
@@ -134,32 +119,7 @@ export class ExperienceFormComponent implements OnInit {
     }
 
 
-    // getProfessional() {
-    //     const params = new HttpParams().append('type', 'EXPERIENCE_PROFESSIONAL');
-    //     this.appHttpService.getCatalogues(params).subscribe(response => {
-    //         this.ares = response['data'];
-    //     }, error => {
-    //         this.messageService.error(error);
-    //     });
-    // }
-
-    // Save in backend
-    // storeExperience(experience: Experience, flag = false) {
-    //     this.spinnerService.show();
-    //     this.jobBoardHttpService.store('experiences', { experience }).subscribe(response => {
-    //         this.spinnerService.hide();
-    //         this.messageService.success(response);
-    //         this.saveExperience(response['data']);
-    //         if (!flag) {
-    //             this.displayOut.emit(false);
-    //         }
-    //         this.resetFormExperience();
-
-    //     }, error => {
-    //         this.spinnerService.hide();
-    //         this.messageService.error(error);
-    //     });
-    // }
+    
     // Save in backend
     storeExperience(experience: Experience, flag = false) {
         this.spinnerService.show();
@@ -179,7 +139,6 @@ export class ExperienceFormComponent implements OnInit {
         });
     }
 
-
     // Save in backend
     updateExperience(experience: Experience) {
         this.spinnerService.show();
@@ -188,12 +147,14 @@ export class ExperienceFormComponent implements OnInit {
                 this.spinnerService.hide();
                 this.messageService.success(response);
                 this.saveExperience(response['data']);
+                console.log("hola");
                 this.displayOut.emit(false);
             }, error => {
                 this.spinnerService.hide();
                 this.messageService.error(error);
             });
     }
+
 
     // Save in frontend
     saveExperience(experience: Experience) {
@@ -206,85 +167,24 @@ export class ExperienceFormComponent implements OnInit {
         this.experiencesOut.emit(this.experiencesIn);
     }
 
-    // Filter area of experiences
-    filterArea(event) {
-        const filtered: any[] = [];
-        const query = event.query;
-        for (const area of this.areas) {
-            if (area.name.toLowerCase().indexOf(query.toLowerCase()) === 0) {
-                filtered.push(area);
-            }
-        }
-        if (filtered.length === 0) {
-            this.messagePnService.clear();
-            this.messagePnService.add({
-                severity: 'error',
-                summary: 'Por favor seleccione un tipo del listado',
-                detail: 'En el caso de no existir comuníquese con el administrador!',
-                life: 5000
-            });
-            this.areaField.setValue(null);
-        }
-        this.filteredAreas = filtered;
-    }
 
-    /*filterIsWorking(event) {
-        const filtered: any[] = [];
-        const query = event.query;
-        for (const isWorking of this.isWorkings) {
-            if (isWorking.name.toLowerCase().indexOf(query.toLowerCase()) === 0) {
-                filtered.push(isWorking);
-            }
+  
+     clickIsWorking(e) {
+        const isWorking = e.checked;
+        if (isWorking) {
+          this.isWorking = true;
+          this.isWorking = false;
         }
-         if (filtered.length === 0) {
-             this.messagePnService.clear();
-             this.messagePnService.add({
-                 severity: 'error',
-                 summary: 'Por favor seleccione un tipo del listado',
-                 detail: 'En el caso de no existir comuníquese con el administrador!',
-                 life: 5000
-             });
-             this.areaField.setValue(null);
-         }
-        this.filteredWorkings= filtered;
-    }*/
-    // filterProfessional(event) {
-    //     const filtered: any[] = [];
-    //     const query = event.query;
-    //     for (const professional of this.professionals) {
-    //         if (professional.name.toLowerCase().indexOf(query.toLowerCase()) === 0) {
-    //             filtered.push(professional);
-    //         }
-    //     }
-    //     if (filtered.length === 0) {
-    //         this.messagePnService.clear();
-    //         this.messagePnService.add({
-    //             severity: 'error',
-    //             summary: 'Por favor seleccione un tipo del listado',
-    //             detail: 'En el caso de no existir comuníquese con el administrador!',
-    //             life: 5000
-    //         });
-    //         this.professionalField.setValue(null);
-    //     }
-    //     this.filteredProfessionals = filtered;
-    // }
-    test(event) {
-        event.markAllAsTouched();
-    }
-
-    resetFormExperience() {
-        this.formExperienceIn.reset();
-    }
-
-    markAllAsTouchedFormExperience() {
-        this.formExperienceIn.markAllAsTouched();
-    }
-
-    calculateEndDate() {
-        if (this.startDateField.valid) {
-            const date = add(new Date(this.startDateField.value), {months: 1, days: 1});
-            this.endDateField.patchValue(format(date, 'yyyy-MM-dd'));
+      }
+       clickIsDisability(e) {
+        const isDisability = e.checked;
+        if (isDisability) {
+          console.log('jsdhck');
+          this.isDisability = true;
+          this.isDisability = false;
+          
+          
         }
-    }
+      }
 
 }

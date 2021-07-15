@@ -149,48 +149,42 @@ export class OfferFormComponent implements OnInit {
 
     // Get Catalogues 
     getContractType() {
-        const params = new HttpParams().append('type', 'OFFER_CONTRACT_TYPE');
-        this.appHttpService.getCatalogues(params).subscribe(response => {
+        this.appHttpService.getCatalogues('OFFER_CONTRACT_TYPE').subscribe(response => {
             this.contractTypes = response['data'];
         }, error => {
             this.messageService.error(error);
         });
     }
     getPosition() {
-        const params = new HttpParams().append('type', 'OFFER_POSITION');
-        this.appHttpService.getCatalogues(params).subscribe(response => {
+        this.appHttpService.getCatalogues('OFFER_POSITION').subscribe(response => {
             this.positions = response['data'];
         }, error => {
             this.messageService.error(error);
         });
     }
     getSector() {
-        const params = new HttpParams().append('type', 'SECTOR');
-        this.appHttpService.getCatalogues(params).subscribe(response => {
+        this.appHttpService.getCatalogues('SECTOR').subscribe(response => {
             this.sectors = response['data'];
         }, error => {
             this.messageService.error(error);
         });
     }
     getWorkingDay() {
-        const params = new HttpParams().append('type', 'OFFER_WORKING_DAY');
-        this.appHttpService.getCatalogues(params).subscribe(response => {
+        this.appHttpService.getCatalogues('OFFER_WORKING_DAY').subscribe(response => {
             this.workingDays = response['data'];
         }, error => {
             this.messageService.error(error);
         });
     }
     getExperienceTime() {
-        const params = new HttpParams().append('type', 'OFFER_EXPERIENCE_TIME');
-        this.appHttpService.getCatalogues(params).subscribe(response => {
+        this.appHttpService.getCatalogues('OFFER_EXPERIENCE_TIME').subscribe(response => {
             this.experienceTimes = response['data'];
         }, error => {
             this.messageService.error(error);
         });
     }
     getTrainingHours() {
-        const params = new HttpParams().append('type', 'OFFER_TRAINING_HOURS');
-        this.appHttpService.getCatalogues(params).subscribe(response => {
+        this.appHttpService.getCatalogues('OFFER_TRAINING_HOURS').subscribe(response => {
             this.trainingHours = response['data'];
         }, error => {
             this.messageService.error(error);
@@ -210,7 +204,6 @@ export class OfferFormComponent implements OnInit {
     // Save in backend
     storeOffer(offer: Offer, flag = false) {
         this.spinnerService.show();
-
         this.jobBoardHttpService.store('offers', {offer}).subscribe(response => {
             this.spinnerService.hide();
             this.messageService.success(response);
@@ -252,156 +245,6 @@ export class OfferFormComponent implements OnInit {
         }
         this.offersOut.emit(this.offersIn);
     }
-
-    // Filters offers
-    filterContracType(event) {
-        const filtered: any[] = [];
-        const query = event.query;
-        for (const contractType of this.contractTypes) {
-            if (contractType.name.toLowerCase().indexOf(query.toLowerCase()) === 0) {
-                filtered.push(contractType);
-            }
-        }
-        if (filtered.length === 0) {
-            this.messagePnService.clear();
-            this.messagePnService.add({
-                severity: 'error',
-                summary: 'Por favor seleccione un tipo del listado',
-                detail: 'En el caso de no existir comuníquese con el administrador!',
-                life: 5000
-            });
-            this.contractTypeField.setValue(null);
-        }
-        this.filteredContracTypes = filtered;
-    }
-
-    filterPosition(event) {
-        const filtered: any[] = [];
-        const query = event.query;
-        for (const position of this.positions) {
-            if (position.name.toLowerCase().indexOf(query.toLowerCase()) === 0) {
-                filtered.push(position);
-            }
-        }
-        if (filtered.length === 0) {
-            this.messagePnService.clear();
-            this.messagePnService.add({
-                severity: 'error',
-                summary: 'Por favor seleccione un tipo del listado',
-                detail: 'En el caso de no existir comuníquese con el administrador!',
-                life: 5000
-            });
-            this.positionField.setValue(null);
-        }
-        this.filteredPositions = filtered;
-    }
-
-    filterSector(event) {
-        const filtered: any[] = [];
-        const query = event.query;
-        for (const sector of this.sectors) {
-            if (sector.name.toLowerCase().indexOf(query.toLowerCase()) === 0) {
-                filtered.push(sector);
-            }
-        }
-        if (filtered.length === 0) {
-            this.messagePnService.clear();
-            this.messagePnService.add({
-                severity: 'error',
-                summary: 'Por favor seleccione un tipo del listado',
-                detail: 'En el caso de no existir comuníquese con el administrador!',
-                life: 5000
-            });
-            this.sectorField.setValue(null);
-        }
-        this.filteredSectors = filtered;
-    }
-
-    filterWorkingDay(event) {
-        const filtered: any[] = [];
-        const query = event.query;
-        for (const workingDay of this.workingDays) {
-            if (workingDay.name.toLowerCase().indexOf(query.toLowerCase()) === 0) {
-                filtered.push(workingDay);
-            }
-        }
-        if (filtered.length === 0) {
-            this.messagePnService.clear();
-            this.messagePnService.add({
-                severity: 'error',
-                summary: 'Por favor seleccione un tipo del listado',
-                detail: 'En el caso de no existir comuníquese con el administrador!',
-                life: 5000
-            });
-            this.workingDayField.setValue(null);
-        }
-        this.filteredWorkingDays = filtered;
-    }
-
-    filterExperienceTime(event) {
-        const filtered: any[] = [];
-        const query = event.query;
-        for (const experienceTime of this.experienceTimes) {
-            if (experienceTime.name.toLowerCase().indexOf(query.toLowerCase()) === 0) {
-                filtered.push(experienceTime);
-            }
-        }
-        if (filtered.length === 0) {
-            this.messagePnService.clear();
-            this.messagePnService.add({
-                severity: 'error',
-                summary: 'Por favor seleccione un tipo del listado',
-                detail: 'En el caso de no existir comuníquese con el administrador!',
-                life: 5000
-            });
-            this.experienceTimeField.setValue(null);
-        }
-        this.filteredExperienceTimes = filtered;
-    }
-
-    filterTrainingHour(event) {
-        const filtered: any[] = [];
-        const query = event.query;
-        for (const trainingHour of this.trainingHours) {
-            if (trainingHour.name.toLowerCase().indexOf(query.toLowerCase()) === 0) {
-                filtered.push(trainingHour);
-            }
-        }
-        if (filtered.length === 0) {
-            this.messagePnService.clear();
-            this.messagePnService.add({
-                severity: 'error',
-                summary: 'Por favor seleccione un tipo del listado',
-                detail: 'En el caso de no existir comuníquese con el administrador!',
-                life: 5000
-            });
-            this.trainingHoursField.setValue(null);
-        }
-        this.filteredTrainingHours = filtered;
-    }
-
-    filterStatus(event) {
-        const filtered: any[] = [];
-        const query = event.query;
-        for (const status of this.status) {
-            if (status.name.toLowerCase().indexOf(query.toLowerCase()) === 0) {
-                filtered.push(status);
-            }
-        }
-        if (filtered.length === 0) {
-            this.messagePnService.clear();
-            this.messagePnService.add({
-                severity: 'error',
-                summary: 'Por favor seleccione un tipo del listado',
-                detail: 'En el caso de no existir comuníquese con el administrador!',
-                life: 5000
-            });
-            this.statusField.setValue(null);
-        }
-        this.filteredStatus = filtered;
-    }
-
-
 
     calculateEndDate(){
         if(this.startDateField.valid){

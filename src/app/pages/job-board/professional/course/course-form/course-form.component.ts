@@ -115,8 +115,7 @@ export class CourseFormComponent implements OnInit {
     }
 
     getInstitutions() {
-        const params = new HttpParams().append('type', 'COURSE_INSTITUTION');
-        this.appHttpService.getCatalogues(params).subscribe(response => {
+        this.appHttpService.getCatalogues('COURSE_INSTITUTION').subscribe(response => {
             this.institutions = response['data'];
         }, error => {
             this.messageService.error(error);
@@ -124,8 +123,7 @@ export class CourseFormComponent implements OnInit {
     }
 
     getCertificationTypes() {
-        const params = new HttpParams().append('type', 'COURSE_CERTIFICATION_TYPE');
-        this.appHttpService.getCatalogues(params).subscribe(response => {
+        this.appHttpService.getCatalogues('COURSE_CERTIFICATION_TYPE').subscribe(response => {
             this.certificationTypes = response['data'];
         }, error => {
             this.messageService.error(error);
@@ -133,8 +131,7 @@ export class CourseFormComponent implements OnInit {
     }
 
     getAreas() {
-        const params = new HttpParams().append('type', 'COURSE_AREA');
-        this.appHttpService.getCatalogues(params).subscribe(response => {
+        this.appHttpService.getCatalogues('COURSE_AREA').subscribe(response => {
             this.areas = response['data'];
         }, error => {
             this.messageService.error(error);
@@ -185,96 +182,4 @@ export class CourseFormComponent implements OnInit {
         this.coursesOut.emit(this.coursesIn);
     }
 
-    // Filters courses
-    filterType(event) {
-        const filtered: any[] = [];
-        const query = event.query;
-        for (const type of this.types) {
-            if (type.name.toLowerCase().indexOf(query.toLowerCase()) === 0) {
-                filtered.push(type);
-            }
-        }
-        if (filtered.length === 0) {
-            this.messagePnService.clear();
-            this.messagePnService.add({
-                severity: 'error',
-                summary: 'Por favor seleccione un tipo del listado',
-                detail: 'En el caso de no existir comuníquese con el administrador!',
-                life: 5000
-            });
-            this.typeField.setValue(null);
-        }
-        this.filteredTypes = filtered;
-    }
-
-    filterInstitution(event) {
-        const filtered: any[] = [];
-        const query = event.query;
-        for (const institution of this.institutions) {
-            if (institution.name.toLowerCase().indexOf(query.toLowerCase()) === 0) {
-                filtered.push(institution);
-            }
-        }
-        if (filtered.length === 0) {
-            this.messagePnService.clear();
-            this.messagePnService.add({
-                severity: 'error',
-                summary: 'Por favor seleccione un tipo del listado',
-                detail: 'En el caso de no existir comuníquese con el administrador!',
-                life: 5000
-            });
-            this.institutionField.setValue(null);
-        }
-        this.filteredInstitutions = filtered;
-    }
-
-    filterCertificationType(event) {
-        const filtered: any[] = [];
-        const query = event.query;
-        for (const certificationType of this.certificationTypes) {
-            if (certificationType.name.toLowerCase().indexOf(query.toLowerCase()) === 0) {
-                filtered.push(certificationType);
-            }
-        }
-        if (filtered.length === 0) {
-            this.messagePnService.clear();
-            this.messagePnService.add({
-                severity: 'error',
-                summary: 'Por favor seleccione un tipo del listado',
-                detail: 'En el caso de no existir comuníquese con el administrador!',
-                life: 5000
-            });
-            this.certificationTypeField.setValue(null);
-        }
-        this.filteredCertificationTypes = filtered;
-    }
-
-    // Filter area of experiences
-    filterArea(event) {
-        const filtered: any[] = [];
-        const query = event.query;
-        for (const area of this.areas) {
-            if (area.name.toLowerCase().indexOf(query.toLowerCase()) === 0) {
-                filtered.push(area);
-            }
-        }
-        if (filtered.length === 0) {
-            this.messagePnService.clear();
-            this.messagePnService.add({
-                severity: 'error',
-                summary: 'Por favor seleccione un tipo del listado',
-                detail: 'En el caso de no existir comuníquese con el administrador!',
-                life: 5000
-            });
-            this.areaField.setValue(null);
-        }
-        this.filteredAreas = filtered;
-    }
-
-    calculateEndDate() {
-        if (this.startDateField.valid) {
-            const date = add(new Date(this.startDateField.value), {months: 1, days: 1});
-            this.endDateField.patchValue(format(date, 'yyyy-MM-dd'));
-        }
-    }
 }

@@ -35,7 +35,7 @@ export class ReferenceFormComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.getInstitution();
+        this.getInstitutions();
     }
 
     // Fields of Form
@@ -80,15 +80,14 @@ export class ReferenceFormComponent implements OnInit {
     }
   
     // catalogues
-    getInstitution() {
-        const params = new HttpParams().append('type', 'REFERENCE_INSTITUTION');
-        this.appHttpService.getCatalogues(params).subscribe(response => {
-            console.log("dsadasd");
+    getInstitutions() {
+        this.appHttpService.getCatalogues('REFERENCE_INSTITUTION').subscribe(response => {
+            this.institutions = response['data'];
         }, error => {
             this.messageService.error(error);
         });
     }
-
+    
     // Save in backend
     storeReference(reference: Reference, flag = false) {
         this.spinnerService.show();
@@ -135,27 +134,7 @@ export class ReferenceFormComponent implements OnInit {
         this.referencesOut.emit(this.referencesIn);
     }
 
-    // Filter 
-    filterInstitution(event) {
-        const filtered: any[] = [];
-        const query = event.query;
-        for (const institution of this.institutions) {
-            if (institution.name.toLowerCase().indexOf(query.toLowerCase()) === 0) {
-                filtered.push(institution);
-            }
-        }
-        if (filtered.length === 0) {
-            this.messagePnService.clear();
-            this.messagePnService.add({
-                severity: 'error',
-                summary: 'Por favor seleccione un tipo del listado',
-                detail: 'En el caso de no existir comuníquese con el administrador!',
-                life: 5000
-            });
-            this.institutionField.setValue(null);
-        }
-        this.filteredInstitutions = filtered;
-    }
+   
 
      // Reset Forms
      resetFormReference() {

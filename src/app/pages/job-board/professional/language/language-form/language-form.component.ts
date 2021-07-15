@@ -92,9 +92,8 @@ export class LanguageFormComponent implements OnInit {
     }
 
     // Idiom of catalogues
-    getIdioms() {
-        const params = new HttpParams().append('type', 'LANGUAGE_IDIOM');
-        this.appHttpService.getCatalogues(params).subscribe(response => {
+      getIdioms() {
+        this.appHttpService.getCatalogues('LANGUAGE_IDIOM').subscribe(response => {
             this.idioms = response['data'];
         }, error => {
             this.messageService.error(error);
@@ -102,8 +101,7 @@ export class LanguageFormComponent implements OnInit {
     }
         // Types of catalogues
     getWrittenLevels() {
-        const params = new HttpParams().append('type', 'LANGUAGE_WRITTEN_LEVEL');
-        this.appHttpService.getCatalogues(params).subscribe(response => {
+        this.appHttpService.getCatalogues('LANGUAGE_WRITTEN_LEVEL').subscribe(response => {
             this.writtenLevels = response['data'];
         }, error => {
             this.messageService.error(error);
@@ -111,8 +109,7 @@ export class LanguageFormComponent implements OnInit {
     }
     // Types of catalogues
     getSpokenLevels() {
-        const params = new HttpParams().append('type', 'LANGUAGE_SPOKEN_LEVEL');
-        this.appHttpService.getCatalogues(params).subscribe(response => {
+        this.appHttpService.getCatalogues('LANGUAGE_SPOKEN_LEVEL').subscribe(response => {
             this.spokenLevels = response['data'];
         }, error => {
             this.messageService.error(error);
@@ -123,13 +120,13 @@ export class LanguageFormComponent implements OnInit {
 
 // Types of catalogues
 getReadLevels() {
-    const params = new HttpParams().append('type', 'LANGUAGE_READ_LEVEL');
-    this.appHttpService.getCatalogues(params).subscribe(response => {
+    this.appHttpService.getCatalogues('LANGUAGE_READ_LEVEL').subscribe(response => {
         this.readLevels = response['data'];
     }, error => {
         this.messageService.error(error);
     });
 }
+
     // Save in backend
     storeLanguage(language: Language, flag = false) {
         this.spinnerService.show();
