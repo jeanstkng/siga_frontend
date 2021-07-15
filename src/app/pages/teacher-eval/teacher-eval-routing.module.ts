@@ -1,7 +1,19 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { GeneratePDFComponent } from './generate-pdf/generate-pdf.component';
 
-const routes: Routes = [];
+import { ManagementComponent } from './management/management.component';
+
+const routes: Routes = [
+  {
+    path: 'prueba',
+    component: ManagementComponent
+  },
+  {
+    path: 'generate-pdf',
+    component: GeneratePDFComponent
+  }
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
@@ -10,3 +22,7 @@ const routes: Routes = [];
 export class TeacherEvalRoutingModule { }
 
 // hola
+
+
+
+

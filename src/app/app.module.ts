@@ -55,6 +55,7 @@ import {PasswordModule} from 'primeng/password';
         RadioButtonModule,
         InputSwitchModule,
         PasswordModule,
+       
     ],
     declarations: [
         AppBlankComponent,

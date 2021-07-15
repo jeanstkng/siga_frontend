@@ -29,6 +29,10 @@ import {AuthGuard} from './shared/guards/auth.guard';
                         loadChildren: () => import('./pages/user/user.module').then(m => m.UserModule),
                         canActivate: [AuthGuard]
                     }*/
+                    {
+                        path: 'teacher-eval',
+                        loadChildren: () => import('./pages/teacher-eval/teacher-eval.module').then(m => m.TeacherEvalModule)
+                    }
                 ]
             },
             {
