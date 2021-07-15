@@ -21,7 +21,6 @@ export class AuthGuard implements CanActivate {
     }
 
     canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-        return true;
         const requestURL = next['_routerState']['url'];
         this.authService.setUri(requestURL);
         return true;

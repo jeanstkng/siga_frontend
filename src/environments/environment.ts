@@ -8,19 +8,19 @@ export const WEB = 'http://localhost:8000/';
 
 export const environment = {
     production: false,
-    STORAGE_URL: 'http://127.0.0.1:8000/storage/',
+    STORAGE_URL: URL + 'storage/',
     WEB,
     API_URL_AUTHENTICATION: URL_API + 'authentication/',
     API_URL_APP: URL_API + 'app/',
     API_URL_ATTENDANCE: URL_API + 'attendance/',
     API_URL_JOB_BOARD: URL_API + 'job_board/',
-    API_URL_WEB: URL_API + 'web/',
+    API_URL_WEB: URL_API + 'web/',  
     API_URL_TEACHER_EVAL: URL_API + 'teacher_eval/',
     API_URL_COMMUNITY: URL_API + 'community/',
 
     SYSTEM_ID: 1,
     CLIENT_ID: '1',
-    CLIENT_SECRET: '5s5njGg9kWfu1G1SOcxs55F8KVFOW80qurv5auk4',
+    CLIENT_SECRET: '4plzvYHXx4DjZz9nph4vCvuzez0qO1Sn1Tsz2VAi',
     GRANT_TYPE: 'password',
 
     SITE_KEY: '6LcY8xAaAAAAAOTR95-UJ_zAeP9OWYPhlWg4_iFC',
