@@ -35,12 +35,9 @@ import {MenuService} from './shared/services/app.menu.service';
 import {InterceptorService} from './interceptors/interceptor.service';
 import {SharedModule} from './pages/shared/shared.module';
 import {PasswordModule} from 'primeng/password';
-<<<<<<< HEAD
 import { TeacherEvalComponent } from './pages/teacher-eval/teacher-eval.component';
 import { TeacherEvalService } from './services/teacher-eval/teacher-eval.service';
-=======
 
->>>>>>> origin/u_10_quinaluisa-david
 
 
 

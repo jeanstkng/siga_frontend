@@ -1,6 +1,5 @@
-<<<<<<< HEAD
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpParams} from '@angular/common/http';
+import {HttpClient, HttpParams, HttpHeaders} from '@angular/common/http';
 import {Router} from '@angular/router';
 import {environment, WEB} from '../../../environments/environment';
 import {User} from '../../models/auth/models.index';
@@ -9,13 +8,15 @@ import {MessageService} from '../app/message.service';
 import {AuthService} from '../auth/auth.service';
 
 
+
 @Injectable({
     providedIn: 'root'
 })
 
 export class TeacherEvalHttpService {
-    API_URL_TEACHER_EVAL: string = environment.API_URL_TEACHER_EVAL;
+    API_URL_TEACHER_EVAL: string = environment.API_URL_TEACHEREVAL;
     auth: User;
+    private headers : HttpHeaders;
 
     constructor(private httpClient: HttpClient,
                 private authService: AuthService,
@@ -125,7 +126,7 @@ export class TeacherEvalHttpService {
         return this.httpClient.post(url, {params});
     }
     getEvaluationTypes(params = new HttpParams() ){
-        const url = environment.API_URL_TEACHER_EVAL + 'evaluationType/get';
+        const url = environment.API_URL_TEACHEREVAL + 'evaluationType/get';
         return this.httpClient.post(url, {params});
     }
 
@@ -138,28 +139,11 @@ export class TeacherEvalHttpService {
         const url = environment.API_URL_AUTHENTICATION + 'auth/change-password';
         return this.httpClient.put(url, data, {params});
     }
-=======
-import { Injectable } from '@angular/core';
-import { environment } from '../../../environments/environment';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import {Router} from '@angular/router';
-
-@Injectable({
-  providedIn: 'root'
-})
-export class TeacherEvalHttpService {
-/*Hola*/
-          private headers : HttpHeaders;
-  constructor(
-        
-          private httpClient : HttpClient
-  ) { }
-
     getTeacher(url : string ){
         url = environment.API_URL_TEACHEREVAL + url;
         return this.httpClient.get(url, {headers: this.headers});
     }
-
-
->>>>>>> origin/u_10_quinaluisa-david
 }
+
+
+

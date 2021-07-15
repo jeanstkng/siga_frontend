@@ -19,14 +19,8 @@ export const environment = {
     API_URL_COMMUNITY: URL_API + 'community/',
     SYSTEM_ID: 1,
     CLIENT_ID: '1',
-<<<<<<< HEAD
     CLIENT_SECRET: '590Bo85WYLCGqd9RwlWJzbP6YAnOFTQkDArTwVkW',//ir cambiando constantemente
-
-=======
-    CLIENT_SECRET: 'TnAleQhZKaa3fo9eEVz3LbX671haXvhV4ytP4Og6',
->>>>>>> origin/u_10_quinaluisa-david
     GRANT_TYPE: 'password',
-
     SITE_KEY: 'QpKtUkaJ40HNd1Di74B0pKC6asgKzAxuTx69L9Nb',
 };
 

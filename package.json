@@ -28,12 +28,9 @@
         "@ngx-translate/http-loader": "^6.0.0",
         "chart.js": "2.9.4",
         "file-saver": "^2.0.5",
-<<<<<<< HEAD
         "font-awesome": "^4.7.0",
-=======
         "html2canvas": "^1.0.0",
         "jspdf": "^1.5.3",
->>>>>>> origin/u_10_quinaluisa-david
         "moment": "^2.29.1",
         "ngx-spinner": "^10.0.1",
         "primeflex": "2.0.0",

@@ -43,15 +43,9 @@ const routes: Routes = [
                         loadChildren: () => import('./pages/user/user.module').then(m => m.UserModule),
                         canActivate: [AuthGuard]
                     }*/
-<<<<<<< HEAD
                 ]//ayuda
-=======
-                    {
-                        path: 'teacher-eval',
-                        loadChildren: () => import('./pages/teacher-eval/teacher-eval.module').then(m => m.TeacherEvalModule)
-                    }
-                ]
->>>>>>> origin/u_10_quinaluisa-david
+
+                   
             },
             {
                 path: 'auth',
