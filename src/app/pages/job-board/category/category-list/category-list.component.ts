@@ -17,7 +17,6 @@ import { JobBoardHttpService } from 'src/app/services/job-board/job-board-http.s
 })
 
 export class CategoryListComponent implements OnInit {
-    //@Input() flagSkeletonListCategories: boolean;
     @Input() flagCategories: boolean;
     @Input() categoriesIn: Category[];
     @Input() paginatorIn: Paginator;
@@ -36,7 +35,6 @@ export class CategoryListComponent implements OnInit {
                 private spinnerService: NgxSpinnerService,
                 private jobBoardHttpService: JobBoardHttpService) {
         this.resetPaginator();
-    console.log("mundo");
    }
 
     resetPaginator() {

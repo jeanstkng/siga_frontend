@@ -18,11 +18,12 @@ import { MessageService } from '../../shared/services/message.service';
     categoryDialog: boolean;
     flagSkeletonListCategories: boolean;
     flagCategories: boolean;
+
     constructor(
         public messageService: MessageService,
         private formBuilder: FormBuilder,
         private jobBoardHttpService: JobBoardHttpService) {
-        this.paginator = { current_page: 1, per_page: 2 };
+        this.paginator = { current_page: 1, per_page: 20 };
         this.categories = [];
     }
 
@@ -31,7 +32,7 @@ import { MessageService } from '../../shared/services/message.service';
         this.buildFormCategory();
     }
 
-    // Build form skill
+    // Build form category
     buildFormCategory() {
         this.formCategory = this.formBuilder.group({
             id: [null],
@@ -42,7 +43,8 @@ import { MessageService } from '../../shared/services/message.service';
         });
     }
 
-    // categories of backend
+   
+
     getCategories(paginator: Paginator) {
         const params = new HttpParams()
             .append('page', paginator.current_page.toString())
@@ -51,6 +53,7 @@ import { MessageService } from '../../shared/services/message.service';
         this.flagSkeletonListCategories = true;
         this.jobBoardHttpService.get('categories', params).subscribe(
             response => {
+                console.log(response);
                 this.flagSkeletonListCategories = false;
                 this.categories = response['data'];
                 console.log(this.categories);
@@ -59,6 +62,6 @@ import { MessageService } from '../../shared/services/message.service';
                 this.flagSkeletonListCategories = false;
                 this.messageService.error(error);
             });
-    }
+    } 
 }
 

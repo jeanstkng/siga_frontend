@@ -40,10 +40,7 @@
                 <th style="width: 3rem">
                     <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
                 </th>
-                <th pSortableColumn=" parent">
-                    Padre
-                    <p-sortIcon field=" parent"></p-sortIcon>
-                </th>
+               
                 <th pSortableColumn="code">
                     Código
                     <p-sortIcon field="code"></p-sortIcon>
@@ -64,9 +61,7 @@
                 <td>
                     <p-tableCheckbox [value]="category"></p-tableCheckbox>
                 </td>
-                <td>
-                    {{category.parent?.name}}
-                </td> 
+               
                 <td>
                     {{category.code}}
                 </td>
@@ -81,8 +76,6 @@
                             (click)="openEditFormCategory(category)"></button>
                     <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger p-ml-2"
                             (click)="deleteCategories(category)"></button>
-                    <button pButton pRipple icon="pi pi-paperclip" class="p-button-rounded p-ml-2"
-                            (click)="selectCategory(category);openViewFilesCategory()"></button>
                 </td>
             </tr>
         </ng-template>

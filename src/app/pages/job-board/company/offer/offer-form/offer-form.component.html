@@ -288,8 +288,12 @@
                                 <i *ngIf="trainingHoursField.invalid && (trainingHoursField.touched || trainingHoursField.dirty)"
                                     class="pi pi-times-circle icon-invalid"></i>
                             </label>
-                            <p-dropdown id="training_hours" [options]="trainingHours" formControlName="training_hours"
-                                optionLabel="name" [filter]="true" filterBy="name" placeholder="Seleccione...">
+                            <p-dropdown id="training_hours" [options]="trainingHours" 
+                                        formControlName="training_hours"
+                                        optionLabel="name" 
+                                        [filter]="true" 
+                                        filterBy="name" 
+                                        placeholder="Seleccione...">
                                 <ng-template pTemplate="selectedItem">
                                     <div class="country-item country-item-value" *ngIf="trainingHoursField.value">
                                         <div>{{trainingHoursField.value.name}}</div>

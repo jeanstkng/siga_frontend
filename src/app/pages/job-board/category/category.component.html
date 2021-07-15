@@ -11,7 +11,7 @@
                 (paginatorOut)="getCategories($event)">
         </app-category-list>
 
-       <p-dialog [(visible)]="categoryDialog" [style]="{width: '450px'}" header="Categorias" [modal]="true"
+       <p-dialog [(visible)]="categoryDialog" [style]="{width: '1000px'}" header="Categorias" [modal]="true"
                   styleClass="p-fluid" (onHide)="categoryDialog=false">
             <app-category-form
                     [categoriesIn]="categories"

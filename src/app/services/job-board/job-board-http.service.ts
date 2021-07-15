@@ -44,6 +44,14 @@ export class JobBoardHttpService {
     }
 
     get(url: string, params = new HttpParams()) {
+        console.log(url);
+        url = this.API_URL_JOB_BOARD + url;
+        console.log(this.API_URL_JOB_BOARD);
+        return this.httpClient.get(url, {params});
+    
+    }
+
+    allCategories(url: string, params = new HttpParams()) {
         url = this.API_URL_JOB_BOARD + url;
         return this.httpClient.get(url, {params});
     }
