@@ -1,14 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { TeacherEvalRoutingModule } from './teacher-eval-routing.module';
+import { TeacherEvalRouting } from './teacher-eval.routing';
+import { QuestionComponent } from './question/question.component';
+
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    QuestionComponent,
+    
+  ],
   imports: [
     CommonModule,
-    TeacherEvalRoutingModule
+    TeacherEvalRouting
   ]
 })
 export class TeacherEvalModule { }

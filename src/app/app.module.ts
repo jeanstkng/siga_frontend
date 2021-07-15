@@ -36,6 +36,7 @@ import {InterceptorService} from './interceptors/interceptor.service';
 import {SharedModule} from './pages/shared/shared.module';
 import {PasswordModule} from 'primeng/password';
 import { TeacherEvalComponent } from './pages/teacher-eval/teacher-eval.component';
+import { TeacherEvalService } from './services/teacher-eval/teacher-eval.service';
 
 
 
@@ -73,7 +74,8 @@ import { TeacherEvalComponent } from './pages/teacher-eval/teacher-eval.componen
         {provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true},
         {provide: LocationStrategy, useClass: HashLocationStrategy},
         MenuService,
-        BreadcrumbService
+        BreadcrumbService,
+        TeacherEvalService
     ],
     bootstrap: [AppComponent]
 })

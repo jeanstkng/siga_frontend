@@ -1,1 +1,1 @@
-// hola
+export {Question} from './question';
