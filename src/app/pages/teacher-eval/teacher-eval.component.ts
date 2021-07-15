@@ -6,7 +6,7 @@ import { TeacherEvalHttpService } from 'src/app/services/teacher-eval/teacher-ev
 @Component({
   selector: 'app-teacher-eval',
   templateUrl: './teacher-eval.component.html',
-  styleUrls: ['./teacher-eval.component.css']
+  styleUrls: ['./teacher-eval.component.scss']
 })
 export class TeacherEvalComponent implements OnInit {
 

@@ -15,12 +15,16 @@ export const environment = {
     API_URL_ATTENDANCE: URL_API + 'attendance/',
     API_URL_JOB_BOARD: URL_API + 'job-board/',
     API_URL_WEB: URL_API + 'web/',
-    API_URL_TEACHER_EVAL: URL_API + 'teacher_eval/',
+    API_URL_TEACHEREVAL: URL_API + 'teacher-eval/',
     API_URL_COMMUNITY: URL_API + 'community/',
     SYSTEM_ID: 1,
     CLIENT_ID: '1',
+<<<<<<< HEAD
     CLIENT_SECRET: '590Bo85WYLCGqd9RwlWJzbP6YAnOFTQkDArTwVkW',//ir cambiando constantemente
 
+=======
+    CLIENT_SECRET: 'TnAleQhZKaa3fo9eEVz3LbX671haXvhV4ytP4Og6',
+>>>>>>> origin/u_10_quinaluisa-david
     GRANT_TYPE: 'password',
 
     SITE_KEY: 'QpKtUkaJ40HNd1Di74B0pKC6asgKzAxuTx69L9Nb',

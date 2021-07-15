@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {Router} from '@angular/router';
@@ -137,4 +138,28 @@ export class TeacherEvalHttpService {
         const url = environment.API_URL_AUTHENTICATION + 'auth/change-password';
         return this.httpClient.put(url, data, {params});
     }
+=======
+import { Injectable } from '@angular/core';
+import { environment } from '../../../environments/environment';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import {Router} from '@angular/router';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class TeacherEvalHttpService {
+/*Hola*/
+          private headers : HttpHeaders;
+  constructor(
+        
+          private httpClient : HttpClient
+  ) { }
+
+    getTeacher(url : string ){
+        url = environment.API_URL_TEACHEREVAL + url;
+        return this.httpClient.get(url, {headers: this.headers});
+    }
+
+
+>>>>>>> origin/u_10_quinaluisa-david
 }

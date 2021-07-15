@@ -33,7 +33,7 @@ const routes: Routes = [
                     {
                         path: 'dashboard',
                         loadChildren: () => import('./pages/dashboard/dashboard.module').then(m => m.DashboardModule),
-                        canActivate: [AuthGuard]
+                        //canActivate: [AuthGuard]
                     },
                     
 
@@ -43,7 +43,15 @@ const routes: Routes = [
                         loadChildren: () => import('./pages/user/user.module').then(m => m.UserModule),
                         canActivate: [AuthGuard]
                     }*/
+<<<<<<< HEAD
                 ]//ayuda
+=======
+                    {
+                        path: 'teacher-eval',
+                        loadChildren: () => import('./pages/teacher-eval/teacher-eval.module').then(m => m.TeacherEvalModule)
+                    }
+                ]
+>>>>>>> origin/u_10_quinaluisa-david
             },
             {
                 path: 'auth',
