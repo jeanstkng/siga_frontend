@@ -1,8 +1,10 @@
 import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
 
 import { NgxSpinnerService } from 'ngx-spinner';
+import Swal from 'sweetalert2';
 
 import { Professional } from 'src/app/models/job-board/professional';
+import { Role } from 'src/app/models/auth/role';
 import { Paginator } from 'src/app/models/setting/paginator';
 
 import { JobBoardHttpService } from 'src/app/services/job-board/job-board-http.service';
@@ -23,11 +25,15 @@ export class ProfessionalListComponent implements OnInit {
   @Output() paginatorOut = new EventEmitter<Paginator>();
   @Output() bodyOut = new EventEmitter<any>();
 
+  role: Role;
+
   constructor(
     private jobBoardHttpService: JobBoardHttpService,
     private spinnerService: NgxSpinnerService,
     private messageService: MessageService,
-    private authService: AuthService) { }
+    private authService: AuthService) {
+      this.role = authService.getRole();
+    }
 
   ngOnInit(): void { }
 
@@ -36,30 +42,39 @@ export class ProfessionalListComponent implements OnInit {
     this.paginatorOut.emit(this.paginatorIn);
   }
 
-  professionalAplied(professional: Professional): void {
-    const user = this.authService.getAuth();
-
-    if (user.role.name == 'EMPRESA') {
-      this.spinnerService.show();
-      this.jobBoardHttpService.applyProfessional(professional.id).subscribe(
-        response => {
-          this.spinnerService.hide();
-          console.log(response);
-          this.messageService.success(response);
-        },
-        error => {
-          this.spinnerService.hide();
-          console.error(error);
-          this.messageService.error(error);
-        }
-      );
-    }
-    else {
-      alert('Sólo las empresas pueden contactar con los profesionales');
+  applyProfessional(professional: Professional): void {
+    if (this.role?.code === 'COMPANY') {
+      alert('Professional contactado con éxito ' + professional);
+      // this.spinnerService.show();
+      // this.jobBoardHttpService.applyProfessional(professional.id).subscribe(
+      //   response => {
+      //     this.spinnerService.hide();
+      //     console.log(response);
+      //     this.messageService.success(response);
+      //   },
+      //   error => {
+      //     this.spinnerService.hide();
+      //     console.error(error);
+      //     this.messageService.error(error);
+      //   }
+      // );
+    } else {
+      Swal.fire({
+        text: 'Para contactar con los profesionales tiene que iniciar sesión como EMPRESA',
+        icon: 'error'
+      });
     }
   }
 
-  loggedIn(): boolean {
-    return this.authService.getAuth()? true : false;
+  showCurriculum(professional: Professional){
+    if (this.role?.code === 'COMPANY') {
+      alert(professional);
+    }
+    else {
+      Swal.fire({
+        text: 'Para ver más información tiene que iniciar sesión como EMPRESA',
+        icon: 'error'
+      });
+    }
   }
 }

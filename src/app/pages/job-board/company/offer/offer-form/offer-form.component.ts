@@ -57,6 +57,7 @@ export class OfferFormComponent implements OnInit {
         this.getExperienceTime();
         this.getTrainingHours();
         this.getStatus();
+        console.log(this.formOfferIn);
     }
 
     // Fields of Form
@@ -246,136 +247,6 @@ export class OfferFormComponent implements OnInit {
         }
         this.offersOut.emit(this.offersIn);
     }
-
-    // Filters offers BORRAR TODO
-
-    filterPosition(event) {
-        const filtered: any[] = [];
-        const query = event.query;
-        for (const position of this.positions) {
-            if (position.name.toLowerCase().indexOf(query.toLowerCase()) === 0) {
-                filtered.push(position);
-            }
-        }
-        if (filtered.length === 0) {
-            this.messagePnService.clear();
-            this.messagePnService.add({
-                severity: 'error',
-                summary: 'Por favor seleccione un tipo del listado',
-                detail: 'En el caso de no existir comuníquese con el administrador!',
-                life: 5000
-            });
-            this.positionField.setValue(null);
-        }
-        this.filteredPositions = filtered;
-    }
-
-    filterSector(event) {
-        const filtered: any[] = [];
-        const query = event.query;
-        for (const sector of this.sectors) {
-            if (sector.name.toLowerCase().indexOf(query.toLowerCase()) === 0) {
-                filtered.push(sector);
-            }
-        }
-        if (filtered.length === 0) {
-            this.messagePnService.clear();
-            this.messagePnService.add({
-                severity: 'error',
-                summary: 'Por favor seleccione un tipo del listado',
-                detail: 'En el caso de no existir comuníquese con el administrador!',
-                life: 5000
-            });
-            this.sectorField.setValue(null);
-        }
-        this.filteredSectors = filtered;
-    }
-
-    filterWorkingDay(event) {
-        const filtered: any[] = [];
-        const query = event.query;
-        for (const workingDay of this.workingDays) {
-            if (workingDay.name.toLowerCase().indexOf(query.toLowerCase()) === 0) {
-                filtered.push(workingDay);
-            }
-        }
-        if (filtered.length === 0) {
-            this.messagePnService.clear();
-            this.messagePnService.add({
-                severity: 'error',
-                summary: 'Por favor seleccione un tipo del listado',
-                detail: 'En el caso de no existir comuníquese con el administrador!',
-                life: 5000
-            });
-            this.workingDayField.setValue(null);
-        }
-        this.filteredWorkingDays = filtered;
-    }
-
-    filterExperienceTime(event) {
-        const filtered: any[] = [];
-        const query = event.query;
-        for (const experienceTime of this.experienceTimes) {
-            if (experienceTime.name.toLowerCase().indexOf(query.toLowerCase()) === 0) {
-                filtered.push(experienceTime);
-            }
-        }
-        if (filtered.length === 0) {
-            this.messagePnService.clear();
-            this.messagePnService.add({
-                severity: 'error',
-                summary: 'Por favor seleccione un tipo del listado',
-                detail: 'En el caso de no existir comuníquese con el administrador!',
-                life: 5000
-            });
-            this.experienceTimeField.setValue(null);
-        }
-        this.filteredExperienceTimes = filtered;
-    }
-
-    filterTrainingHour(event) {
-        const filtered: any[] = [];
-        const query = event.query;
-        for (const trainingHour of this.trainingHours) {
-            if (trainingHour.name.toLowerCase().indexOf(query.toLowerCase()) === 0) {
-                filtered.push(trainingHour);
-            }
-        }
-        if (filtered.length === 0) {
-            this.messagePnService.clear();
-            this.messagePnService.add({
-                severity: 'error',
-                summary: 'Por favor seleccione un tipo del listado',
-                detail: 'En el caso de no existir comuníquese con el administrador!',
-                life: 5000
-            });
-            this.trainingHoursField.setValue(null);
-        }
-        this.filteredTrainingHours = filtered;
-    }
-
-    filterStatus(event) {
-        const filtered: any[] = [];
-        const query = event.query;
-        for (const status of this.status) {
-            if (status.name.toLowerCase().indexOf(query.toLowerCase()) === 0) {
-                filtered.push(status);
-            }
-        }
-        if (filtered.length === 0) {
-            this.messagePnService.clear();
-            this.messagePnService.add({
-                severity: 'error',
-                summary: 'Por favor seleccione un tipo del listado',
-                detail: 'En el caso de no existir comuníquese con el administrador!',
-                life: 5000
-            });
-            this.statusField.setValue(null);
-        }
-        this.filteredStatus = filtered;
-    }
-
-
 
     calculateEndDate(){
         if(this.startDateField.valid){

@@ -3,7 +3,6 @@ import { HttpParams } from '@angular/common/http';
 
 import { Paginator } from 'src/app/models/setting/paginator';
 import { Professional } from 'src/app/models/job-board/professional';
-import { Category } from 'src/app/models/job-board/category';
 
 import { JobBoardHttpService } from 'src/app/services/job-board/job-board-http.service';
 import { MessageService } from 'src/app/pages/shared/services/message.service';
