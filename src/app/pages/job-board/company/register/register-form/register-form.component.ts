@@ -132,7 +132,7 @@ export class RegisterFormComponent implements OnInit {
     });
 } 
 
-onSubmit(flag = false) {
+onSubmit() {
     if (this.formRegisterIn.valid) {
          this.register(this.formRegisterIn.value);
         }else {
@@ -172,48 +172,6 @@ onSubmit(flag = false) {
                 this.messageService.error(error);
             });
         }
-        // Filter type of companies
-    filterType(event) {
-        const filtered: any[] = [];
-        const query = event.query;
-        for (const type of this.types) {
-            if (type.name.toLowerCase().indexOf(query.toLowerCase()) === 0) {
-                filtered.push(type);
-            }
-        }
-        this.filteredTypes = filtered;
-    }
-
-    filterIdentificationType(event) {
-        const filtered: any[] = [];
-        const query = event.query;
-        for (const type of this.identificationTypes) {
-          if (type.name.toLowerCase().indexOf(query.toLowerCase()) === 0) {
-            filtered.push(type);
-          }
-        }
-        this.filteredidentificationTypes = filtered;
-      }
-    filterPersonType(event){
-        const filtered: any[] = [];
-        const query = event.query;
-        for (const type of this.personType) {
-            if (type.name.toLowerCase().indexOf(query.toLowerCase()) === 0) {
-                filtered.push(type);
-            }
-        }
-        this.filteredpersonType = filtered;
-    }
-    filterActivityType(event){
-        const filtered: any[] = [];
-        const query = event.query;
-        for (const type of this.activityType) {
-            if (type.name.toLowerCase().indexOf(query.toLowerCase()) === 0) {
-                filtered.push(type);
-            }
-        }
-        this.filteredactivityType = filtered;
-    }
     markAllAsTouchedFormRegister() {
         this.formRegisterIn.markAllAsTouched();
         this.formLocation.markAllAsTouched();

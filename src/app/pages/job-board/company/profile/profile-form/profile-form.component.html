@@ -69,7 +69,6 @@
                   </ng-template>
                   <ng-template let-item pTemplate="item">
                     <div class="country-item">
-                      <div let-item pTemplate="item"></div>
                       <div>{{item.name}}</div>
                     </div>
                   </ng-template>
@@ -78,7 +77,7 @@
             </div>
           </p-card>
           <div class="p-field">
-            <app-location-address [option]="3" (formAddressOut)="formAddress=$event"
+            <app-location-address [option]="1" (formAddressOut)="formAddress=$event"
               (formLocationOut)="setFormLocation($event)" id="address" formControlName="address">
             </app-location-address>
           </div>

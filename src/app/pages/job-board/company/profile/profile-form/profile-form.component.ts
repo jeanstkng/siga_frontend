@@ -137,11 +137,8 @@ export class ProfileFormComponent implements OnInit {
                     this.comercialActivitiesField.removeAt(0);
                 }
                 for (const comercialActivity of response['data']['comercial_activities']) {
-                    console.log(comercialActivity);
                     this.addComercialActivity(comercialActivity);
                 }
-                console.log(response);
-                console.log(this.comercialActivitiesField.value);
             }, error => {
                 this.spinnerService.hide();
                 this.messageService.error(error);
@@ -183,51 +180,6 @@ export class ProfileFormComponent implements OnInit {
         }, error => {
             this.messageService.error(error);
         });
-    }
-
-    // Filter type of companies
-    filterTypes(event) {
-        const filtered: any[] = [];
-        const query = event.query;
-        for (const type of this.types) {
-            if (type.name.toLowerCase().indexOf(query.toLowerCase()) === 0) {
-                filtered.push(type);
-            }
-        }
-        this.filteredTypes = filtered;
-    }
-
-    filterIdentificationType(event) {
-        const filtered: any[] = [];
-        const query = event.query;
-        for (const type of this.identificationTypes) {
-            if (type.name.toLowerCase().indexOf(query.toLowerCase()) === 0) {
-                filtered.push(type);
-            }
-        }
-        this.filteredidentificationTypes = filtered;
-    }
-
-    filterPersonType(event) {
-        const filtered: any[] = [];
-        const query = event.query;
-        for (const type of this.personType) {
-            if (type.name.toLowerCase().indexOf(query.toLowerCase()) === 0) {
-                filtered.push(type);
-            }
-        }
-        this.filteredpersonTypes = filtered;
-    }
-
-    filterActivityType(event) {
-        const filtered: any[] = [];
-        const query = event.query;
-        for (const type of this.activityTypes) {
-            if (type.name.toLowerCase().indexOf(query.toLowerCase()) === 0) {
-                filtered.push(type);
-            }
-        }
-        this.filteredActivityTypes = filtered;
     }
 
     setFormLocation(event) {

@@ -45,7 +45,6 @@ export class ProfileComponent implements OnInit {
             activity_type: [null, Validators.required],
             person_type: [null, Validators.required],
         });
-        console.log(this.formCompany['controls']['user']);
     }
 
 }
