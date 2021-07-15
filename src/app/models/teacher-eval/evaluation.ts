@@ -1,12 +1,14 @@
-import { SchoolPeriod, Status, Teacher } from "../app/models.index";
+import { SchoolPeriod } from "../app/school-period";
+import { Status } from "../app/status";
+import { Teacher } from "../app/teacher";
 import { EvaluationType } from "./evaluation-type";
 
 export interface Evaluation {
-    id: number;
-    teacher?:Teacher;
-    evaluation_type?:EvaluationType;
-    school_period?:SchoolPeriod;
-    status?:Status;
-    result:number;
-    double:number;
+    id?: number,
+    result: number,
+    percentage: number,
+    teacher?: Teacher,
+    evaluationType? : EvaluationType,
+    schoolPeriod? : SchoolPeriod,
+    status? : Status
 }

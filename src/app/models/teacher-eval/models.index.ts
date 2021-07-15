@@ -1,4 +1,3 @@
-export {Question} from './question';
-export {EvaluationType} from './evaluation-type';
-export {Answer} from './answer';
-export {Evaluation} from './evaluation'
+export { DetailEvaluation } from './detail-evaluation';
+export { Evaluation } from './evaluation';
+export { EvaluationType } from './evaluation-type';
