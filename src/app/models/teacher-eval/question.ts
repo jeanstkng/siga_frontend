@@ -1,13 +1,19 @@
-import {EvaluationType} from './models.index';
-import {Catalogue, Status} from '../app/models.index';
+import { Catalogue } from "../app/catalogue";
+import { Status } from "../app/status";
+import { EVALUATION_TYPES } from "src/environments/catalogues";
 
-export interface Question {
+
+
+export interface Question{
     id: number;
+    type_id?: Catalogue; 
+    //evaluation_type?: Evaluation_Types;
+    status_id?: Status;
     code: string;
     order: number;
     name: string;
     description: string;
-    evaluation_type?: EvaluationType;
-    type?:Catalogue;
-    status?:Status;
+    delete_at: null;
+    create_at: string;
+    update_at: string;
 }

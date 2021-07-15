@@ -2,8 +2,8 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
-export const URL_API = 'http://127.0.0.1:8000/v1/';
-export const URL = 'http://127.0.0.1:8000/';
+export const URL_API = 'http://siga_backend.test/v1/';
+export const URL = 'http://siga_backend.test/';
 export const WEB = 'http://localhost:8000/';
 
 export const environment = {
@@ -13,17 +13,15 @@ export const environment = {
     API_URL_AUTHENTICATION: URL_API + 'authentication/',
     API_URL_APP: URL_API + 'app/',
     API_URL_ATTENDANCE: URL_API + 'attendance/',
-    API_URL_JOB_BOARD: URL_API + 'job_board/',
+    API_URL_JOB_BOARD: URL_API + 'job-board/',
     API_URL_WEB: URL_API + 'web/',
     API_URL_TEACHEREVAL: URL_API + 'teacher-eval/',
     API_URL_COMMUNITY: URL_API + 'community/',
-
     SYSTEM_ID: 1,
     CLIENT_ID: '1',
-    CLIENT_SECRET: 'TnAleQhZKaa3fo9eEVz3LbX671haXvhV4ytP4Og6',
+    CLIENT_SECRET: '590Bo85WYLCGqd9RwlWJzbP6YAnOFTQkDArTwVkW',//ir cambiando constantemente
     GRANT_TYPE: 'password',
-
-    SITE_KEY: '6LcY8xAaAAAAAOTR95-UJ_zAeP9OWYPhlWg4_iFC',
+    SITE_KEY: 'QpKtUkaJ40HNd1Di74B0pKC6asgKzAxuTx69L9Nb',
 };
 
 /*

@@ -1,0 +1,122 @@
+import { Component, OnInit } from '@angular/core';
+import { DropdownModule } from 'primeng/dropdown';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { MessageService } from 'src/app/services/app/message.service';
+import { TeacherEvalHttpService } from 'src/app/services/teacher-eval/teacher-eval-http.service';
+import { HttpParams } from '@angular/common/http';
+import { Paginator } from 'src/app/models/setting/paginator';
+import { Question } from 'src/app/models/teacher-eval/question';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { TeacherEvalService } from 'src/app/services/teacher-eval/teacher-eval.service';
+import {RadioButtonModule} from 'primeng/radiobutton';
+
+
+
+
+@Component({
+  selector: 'app-question',
+  templateUrl: './question.component.html',
+  styleUrls: ['./question.component.css']
+})
+
+export class QuestionComponent implements OnInit{
+  formQuestion: FormGroup;
+  paginator: Paginator;
+  questions: Question[];
+  
+  selectedValue: string = 'val1';
+
+  constructor(public messageService: MessageService,
+    private spinnerService: NgxSpinnerService,
+    private formBuilder: FormBuilder,
+    private teacherEvalService: TeacherEvalService,
+    private teacherEvalHttpService: TeacherEvalHttpService,
+    private radioButtonModule: RadioButtonModule) {
+    this.paginator = { current_page: 1, per_page: 2 };
+    this.questions=[];
+
+  }
+  city: string;
+
+  selectedCategory: any = null;
+
+  categories: any[] = [{name: 'bien', key: 'A'}, {name: 'muy bien', key: 'M'}, {name: 'mal', key: 'P'}, {name: 'Research', key: 'R'}];
+  pregunta:any[];
+
+buildFormQuestion() {
+  this.formQuestion = this.formBuilder.group({
+      type: [null],
+      status:[null],
+      code: [null, Validators.required ],
+      order: [null, Validators.required ],
+      name: [null, Validators.required ],     
+      description: [null, Validators.required ],
+  });
+}
+
+get typeField() {
+  return this.formQuestion.get('type');
+}
+get statusField() {
+  return this.formQuestion.get('type');
+}
+get cpdeField() {
+  return this.formQuestion.get('type');
+}
+get orderField() {
+  return this.formQuestion.get('type');
+}
+get nameField() {
+  return this.formQuestion.get('type');
+}
+get descriptionField() {
+  return this.formQuestion.get('type');
+}
+
+
+  getQuestions(paginator: Paginator) {
+    const params = new HttpParams()
+      .append('page', paginator.current_page.toString())
+      .append('per_page', paginator.per_page.toString());
+
+    this.teacherEvalHttpService.get('questions').subscribe(
+      response => {
+        this.questions = response ['data'];
+        this.paginator=response as Paginator;
+        this.messageService.success(response);
+       }, error => { 
+        this.messageService.error(error);
+       }
+    )    
+  }
+ 
+
+  ngOnInit() {
+    this.buildFormQuestion();
+    this.onTestWebService();
+    this.selectedCategory = this.categories[1];
+  }
+
+  /*onTestWebService() {
+    this.teacherEvalService.getInit(1).subscribe(result => {
+        console.log(result);
+        let question: Question=result.data;
+        this.pregunta=question.name;
+        
+    });
+    console.log("esta es una prueba");
+    }*/
+    onTestWebService() {
+      
+      this.teacherEvalService.getInit(1).subscribe(result => {
+          console.log(result);
+         
+          this.pregunta=result.data;      
+            
+      });
+      console.log("esta es una prueba");
+      }
+}
+
+
+
