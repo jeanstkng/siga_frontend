@@ -1,0 +1,11 @@
+<ul>
+    <li *ngFor="let question of pregunta">
+      {{ question.name }}
+     
+      <div *ngFor="let category of categories" class="p-field-checkbox">
+        <p-radioButton [inputId]="category.key" name="category" [value]="category" [(ngModel)]="selectedCategory" [disabled]="category.key === 'R'"></p-radioButton>
+        <label [for]="category.key">{{category.name}}</label>
+    </div>
+    </li>
+
+</ul>

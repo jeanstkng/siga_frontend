@@ -8,22 +8,20 @@ export const WEB = 'http://localhost:8000/';
 
 export const environment = {
     production: false,
-    STORAGE_URL: 'http://siga_backend.test/storage/',
+    STORAGE_URL: URL + 'storage/',
     WEB,
     API_URL_AUTHENTICATION: URL_API + 'authentication/',
     API_URL_APP: URL_API + 'app/',
     API_URL_ATTENDANCE: URL_API + 'attendance/',
-    API_URL_JOB_BOARD: URL_API + 'job_board/',
+    API_URL_JOB_BOARD: URL_API + 'job-board/',
     API_URL_WEB: URL_API + 'web/',
     API_URL_TEACHEREVAL: URL_API + 'teacher-eval/',
     API_URL_COMMUNITY: URL_API + 'community/',
-
     SYSTEM_ID: 1,
     CLIENT_ID: '1',
     CLIENT_SECRET: 'OxMw3zU117P5hjJmS2bsiEccdVlm8FPMaIqJE5DD',
     GRANT_TYPE: 'password',
-
-    SITE_KEY: '6LcY8xAaAAAAAOTR95-UJ_zAeP9OWYPhlWg4_iFC',
+    SITE_KEY: 'QpKtUkaJ40HNd1Di74B0pKC6asgKzAxuTx69L9Nb',
 };
 
 /*
