@@ -28,7 +28,7 @@ export class WebOfferComponent implements OnInit {
     offers: Offer[];
     treeData: any[];
     paginator: Paginator;
-    scrollHeight = '10px';
+    scrollHeight = '100px';
     formCodeFilter: FormGroup;
     formMoreFilters: FormGroup;
     categories: Category[];
@@ -88,6 +88,7 @@ export class WebOfferComponent implements OnInit {
 
     setDefaultParamsSearch(): void {
         this.searchParams = {
+            generalSearch: null,
             searchCode: null,
             searchProvince: null,
             searchCanton: null,
@@ -225,6 +226,7 @@ export class WebOfferComponent implements OnInit {
         }
 
         this.getOffers(this.paginator, params);
+        console.log(params);
         this.displayModalFilter = false;
     }
 
@@ -248,10 +250,21 @@ export class WebOfferComponent implements OnInit {
         }
     }
 
+    generalFilter(args): void {
+        const params: SearchParams = this.searchParams;
+        params.generalSearch = args;
+        this.getOffers(this.paginator, params);
+        console.log(params);
+    }
+
     cleanSelectedCategories(): void {
+        const paginator: Paginator = {
+            per_page: 9,
+            current_page: 1,
+        };
         this.setDefaultParamsSearch();
         this.selectedCategories = undefined;
-        this.getOffers(this.paginator, this.searchParams);
+        this.getOffers(paginator, this.searchParams);
     }
 
     loadWideField() {
@@ -298,9 +311,9 @@ export class WebOfferComponent implements OnInit {
         this.filteredSpecificCategory = filtered;
     }
 
-    getSpecificField(parent) {
-        console.log(parent.value.id);
-    }
+    // getSpecificField(parent) {
+    //     console.log(parent.value.id);
+    // }
 
     get wideField() {
         return this.formMoreFilters.get('wideField');

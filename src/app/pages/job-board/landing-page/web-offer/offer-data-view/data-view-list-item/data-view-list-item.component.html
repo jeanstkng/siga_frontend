@@ -1,7 +1,12 @@
 <div class="offer-list-item">
     <div class="offer-list-detail">
-        <div class="offer-name">{{ offer.position.name  }}</div>
+        <div class="offer-name">{{ offer.position.name }}</div>
         <div class="p-col-12">
+            <i class="pi pi-bookmark offer-category-icon"></i>
+            <span [class]="'offer-badge'">Código: {{ offer.code }}</span>
+            <span class="p-mr-2 p-ml-2">
+                &Iota;
+            </span>
             <i class="pi pi-users offer-category-icon"></i>
             <span [class]="'offer-badge'">{{ offer.vacancies }} vacantes</span>
         </div>
@@ -10,11 +15,15 @@
         <span class="offer-category">{{ offer.location.region }}, {{ offer.location.subregion }}</span>
     </div>
     <div class="offer-list-action">
-        <p-button *ngIf="displayButtonApply" icon="pi pi-check" label="Aplicar" styleClass="p-col-12"
-                  (click)="sendIdOffer(offer.id);" [style]="{'width': '100%'}"></p-button>
-        <p-button *ngIf="!displayButtonApply" icon="pi pi-info-circle" label="Aplicar" styleClass="p-col-12"
-                  (click)="redirectToLogin();" [style]="{'width': '100%'}"></p-button>
-        <p-button icon="pi pi-eye" label="Ver más" styleClass="p-button-secondary p-col-12"
-                  (click)="moreInformation(offer)" [style]="{'width': '100%'}"></p-button>
+        <!-- buttons with user logged -->
+        <p-button *ngIf="displayButtonApply" icon="pi pi-check" label="Aplicar"
+                  styleClass="p-col-12" (click)="sendIdOffer(offer.id);"></p-button>
+        <p-button *ngIf="displayButtonApply" icon="pi pi-eye" label="Ver más" styleClass="p-button-secondary p-col-12"
+                  (click)="moreInformation(offer)"></p-button>
+        <!-- buttons with user logout -->
+        <p-button *ngIf="!displayButtonApply" icon="pi pi-info-circle" label="Aplicar"
+                  styleClass="p-col-12" (click)="redirectToLogin();"></p-button>
+        <p-button *ngIf="!displayButtonApply" icon="pi pi-info-circle" label="Ver más" styleClass="p-button-secondary p-col-12"
+                  (click)="redirectToLogin();"></p-button>
     </div>
 </div>

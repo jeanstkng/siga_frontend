@@ -33,6 +33,7 @@ import {OverlayPanelModule} from 'primeng/overlaypanel';
 import {CardModule} from 'primeng/card';
 import {RippleModule} from 'primeng/ripple';
 import {SplitButtonModule} from 'primeng/splitbutton';
+import {MessageModule} from 'primeng/message';
 
 // My Components
 import {SharedModule} from '../../shared/shared.module';
@@ -85,7 +86,8 @@ import {FilterComponent} from './web-professional/filter/filter.component';
         DataViewModule,
         TabMenuModule,
         DividerModule,
-        SplitButtonModule
+        SplitButtonModule,
+        MessageModule
     ],
     declarations: [
         LandingPageComponent,

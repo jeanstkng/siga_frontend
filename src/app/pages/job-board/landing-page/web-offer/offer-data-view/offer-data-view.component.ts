@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 // services
 import {NgxSpinnerService} from 'ngx-spinner';
@@ -21,6 +21,7 @@ import {Paginator} from '../../../../../models/setting/paginator';
 export class OfferDataViewComponent implements OnInit {
 
     @Input() offers: Offer[];
+    @Output() argsFilters = new EventEmitter<string>();
     auth: User;
     paginator: Paginator;
     moreInformation: Offer;
@@ -95,5 +96,11 @@ export class OfferDataViewComponent implements OnInit {
     removeOffer(idOffer) {
         const offer = Number(idOffer);
         this.offers = this.offers.filter(each => each.id !== offer);
+    }
+
+    sendArgs(args) {
+        if (!(args === '')) {
+            this.argsFilters.emit(args);
+        }
     }
 }
