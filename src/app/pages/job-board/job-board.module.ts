@@ -34,6 +34,9 @@ import {CardModule} from 'primeng/card';
 import {SharedModule} from '../shared/shared.module';
 import {JobBoardComponent} from './job-board.component';
 import {RippleModule} from 'primeng/ripple';
+import { CategoryFormComponent } from './category/category-form/category-form.component';
+import { CategoryListComponent } from './category/category-list/category-list.component';
+import { CategoryComponent } from './category/category.component';
 
 @NgModule({
     imports: [
@@ -70,6 +73,9 @@ import {RippleModule} from 'primeng/ripple';
     ],
     declarations: [
         JobBoardComponent,
+        CategoryFormComponent,
+        CategoryListComponent,
+        CategoryComponent
     ],
     exports: [],
     providers: []

@@ -2,124 +2,95 @@
 <div class="p-fluid">
     <form [formGroup]="formLanguageIn" (ngSubmit)="onSubmit($event)">
        
-        <div class="p-field">
+        
+        <div class="p-field p-xl-12 p-lg-6 p-md-6 p-sm-15">
             <label for="idiom">
-                <i class="p-error">*</i> Idioma:
-                <i *ngIf="idiomField.valid" class="pi pi-check-circle icon-valid"></i>
-                <i *ngIf="idiomField.invalid && (idiomField.touched || idiomField.dirty)"
-                    class="pi pi-times-circle icon-invalid"></i>
+              <i class="p-error">*</i> Idioma:
+              <i *ngIf="idiomField.valid" class="pi pi-check-circle icon-valid"></i>
+              <i *ngIf="idiomField.invalid && (idiomField.touched || idiomField.dirty)"
+                class="pi pi-times-circle icon-invalid"></i>
             </label>
-            <p-autoComplete id="idiom" name="idiom" formControlName="idiom"
-                [suggestions]="filteredIdioms" (completeMethod)="filterIdiom($event)" field="name"
-                [dropdown]="true">
-                <ng-template let-idiom pTemplate="item">
-                    <div class="country-item">
-                        <div>{{idiom.name}}</div>
-                    </div>
-                </ng-template>
-            </p-autoComplete>
-            <div *ngIf="idiomField.invalid && (idiomField.touched || idiomField.dirty)">
-                <small *ngIf="idiomField.errors?.required" id="idiom-help-1" class="p-error">
-                    {{messageService.fieldRequired}}
-                </small>
-            </div>
-        </div>
-
-       <!-- <div class="p-field">
-            <label for="writtenLevel">
-                <i class="p-error">*</i> Nivel escrito:
-                <i *ngIf="writtenLevelField.valid" class="pi pi-check-circle icon-valid"></i>
-                <i *ngIf="writtenLevelField.invalid && (writtenLevelField.touched || writtenLevelField.dirty)"
-                    class="pi pi-times-circle icon-invalid"></i>
-            </label>
-            <p-autoComplete id="writtenLevel" name="writtenLevel" formControlName="written_level"
-                [suggestions]="filteredWrittenLevels" (completeMethod)="filterWrittenLevel($event)" field="name"
-                [dropdown]="true">
-                <ng-template let-writtenLevel pTemplate="item">
-                    <div class="country-item">
-                        <div>{{writte_level.name}}</div>
-                    </div>
-                </ng-template>
-            </p-autoComplete>
-            <div *ngIf="writtenLevelField.invalid && (writtenLevelField.touched || writtenLevelField.dirty)">
-                <small *ngIf="writtenLevelField.errors?.required" id="writtenLevel-help-1" class="p-error">
-                    {{messageService.fieldRequired}}
-                </small>
-            </div>
-        </div>-->
-        <div class="p-field">
+            <p-dropdown id="idiom" [options]="idioms" formControlName="idiom"
+                        optionLabel="name" [filter]="true" filterBy="name"
+                        placeholder="Seleccione...">
+              <ng-template pTemplate="selectedidiom">
+                <div class="country-idiom country-idiom-value"  *ngIf="idiomField.value">
+                  <div>{{idiom.name}}</div>
+                </div>
+              </ng-template>
+              <ng-template let-idiom pTemplate="idiom">
+                <div class="country-idiom">
+                  <div>{{idiom.name}}</div>
+                </div>
+              </ng-template>
+            </p-dropdown>
+          </div>
+          <div class="p-field p-xl-12 p-lg-6 p-md-6 p-sm-15">
             <label for="written_level">
-                <i class="p-error">*</i> Nivel escrito:
-                <i *ngIf="writtenLevelField.valid" class="pi pi-check-circle icon-valid"></i>
-                <i *ngIf="writtenLevelField.invalid && (writtenLevelField.touched || writtenLevelField.dirty)"
-                    class="pi pi-times-circle icon-invalid"></i>
+              <i class="p-error">*</i> Nivel escrito:
+              <i *ngIf="writtenLevelField.valid" class="pi pi-check-circle icon-valid"></i>
+              <i *ngIf="writtenLevelField.invalid && (writtenLevelField.touched || writtenLevelField.dirty)"
+                class="pi pi-times-circle icon-invalid"></i>
             </label>
-            <p-autoComplete id="written_level" formControlName="written_level"  
-                            [suggestions]="filteredWrittenLevels"
-                            (completeMethod)="filterWrittenLevel($event)" 
-                            field="name" 
-                            [dropdown]="true">
-                <ng-template let-written_level pTemplate="item">
-                    <div class="country-item">
-                        <div>{{written_level.name}}</div>
-                    </div>
-                </ng-template>
-            </p-autoComplete>
-            <div *ngIf="writtenLevelField.invalid && (writtenLevelField.touched || writtenLevelField.dirty)">
-                <small *ngIf="writtenLevelField.errors?.required" 
-                        id="written-level-help-1" 
-                        class="p-error">
-                    {{messageService.fieldRequired}}
-                </small>
-            </div>
-        </div>
-        <div class="p-field">
+            <p-dropdown id="written_level" [options]="writtenLevels" formControlName="written_level"
+                        optionLabel="name" [filter]="true" filterBy="name"
+                        placeholder="Seleccione...">
+              <ng-template pTemplate="selectedwrittenLevel">
+                <div class="country-writtenLevel country-writtenLevel-value"  *ngIf="writtenLevelField.value">
+                  <div>{{written_level.name}}</div>
+                </div>
+              </ng-template>
+              <ng-template let-written_level pTemplate="writtenLevel">
+                <div class="country-writtenLevel">
+                  <div>{{written_level.name}}</div>
+                </div>
+              </ng-template>
+            </p-dropdown>
+          </div>
+          <div class="p-field p-xl-12 p-lg-6 p-md-6 p-sm-15">
             <label for="spoken_level">
-                <i class="p-error">*</i>  Nivel hablado:
-                <i *ngIf="spokenLevelField.valid" class="pi pi-check-circle icon-valid"></i>
-                <i *ngIf="spokenLevelField.invalid && (spokenLevelField.touched || spokenLevelField.dirty)"
-                    class="pi pi-times-circle icon-invalid"></i>
+              <i class="p-error">*</i> Nivel de hablado:
+              <i *ngIf="spokenLevelField.valid" class="pi pi-check-circle icon-valid"></i>
+              <i *ngIf="spokenLevelField.invalid && (spokenLevelField.touched || spokenLevelField.dirty)"
+                class="pi pi-times-circle icon-invalid"></i>
             </label>
-            <p-autoComplete id="spoken_level" name="spokenLevel" formControlName="spoken_level"
-                [suggestions]="filteredSpokenLevels" (completeMethod)="filterSpokenLevel($event)" field="name"
-                [dropdown]="true">
-                <ng-template let-spoken_level pTemplate="item">
-                    <div class="country-item">
-                        <div>{{spoken_level.name}}</div>
-                    </div>
-                </ng-template>
-            </p-autoComplete>
-            <div *ngIf="spokenLevelField.invalid && (spokenLevelField.touched || spokenLevelField.dirty)">
-                <small *ngIf="spokenLevelField.errors?.required" id="spokenLevel-help-1" class="p-error">
-                    {{messageService.fieldRequired}}
-                </small>
-            </div>
-        </div>
-
-
-        <div class="p-field">
-            <label for="readLevel">
-                <i class="p-error">*</i>Nivel de lectura:
-                <i *ngIf="readLevelField.valid" class="pi pi-check-circle icon-valid"></i>
-                <i *ngIf="readLevelField.invalid && (readLevelField.touched || readLevelField.dirty)"
-                    class="pi pi-times-circle icon-invalid"></i>
+            <p-dropdown id="spoken_level" [options]="spokenLevels" formControlName="spoken_level"
+                        optionLabel="name" [filter]="true" filterBy="name"
+                        placeholder="Seleccione...">
+              <ng-template pTemplate="selectedspokenLevel">
+                <div class="country-spokenLevel country-spokenLevel-value"  *ngIf="spokenLevelField.value">
+                  <div>{{spoken_level.name}}</div>
+                </div>
+              </ng-template>
+              <ng-template let-spoken_level pTemplate="spokenLevel">
+                <div class="country-spokenLevel">
+                  <div>{{spoken_level.name}}</div>
+                </div>
+              </ng-template>
+            </p-dropdown>
+          </div> 
+          <div class="p-field p-xl-12 p-lg-6 p-md-6 p-sm-15">
+            <label for="read_level">
+              <i class="p-error">*</i> Nivel de lectura:
+              <i *ngIf="readLevelField.valid" class="pi pi-check-circle icon-valid"></i>
+              <i *ngIf="readLevelField.invalid && (readLevelField.touched || readLevelField.dirty)"
+                class="pi pi-times-circle icon-invalid"></i>
             </label>
-            <p-autoComplete id="readLevel" name="readLevel" formControlName="read_level"
-                [suggestions]="filteredReadLevels" (completeMethod)="filterReadLevel($event)" field="name"
-                [dropdown]="true">
-                <ng-template let-readLevel pTemplate="item">
-                    <div class="country-item">
-                        <div>{{read_Level.name}}</div>
-                    </div>
-                </ng-template>
-            </p-autoComplete>
-            <div *ngIf="readLevelField.invalid && (readLevelField.touched || readLevelField.dirty)">
-                <small *ngIf="readLevelField.errors?.required" id="readLevel-help-1" class="p-error">
-                    {{messageService.fieldRequired}}
-                </small>
-            </div>
-        </div>
-         
+            <p-dropdown id="read_level" [options]="readLevels" formControlName="read_level"
+                        optionLabel="name" [filter]="true" filterBy="name"
+                        placeholder="Seleccione...">
+              <ng-template pTemplate="selectedreadLevel">
+                <div class="country-readLevel country-readLevel-value"  *ngIf="readLevelField.value">
+                  <div>{{read_level.name}}</div>
+                </div>
+              </ng-template>
+              <ng-template let-read_level pTemplate="readLevel">
+                <div class="country-readLevel">
+                  <div>{{read_level.name}}</div>
+                </div>
+              </ng-template>
+            </p-dropdown>
+          </div>
         <div class="p-formgrid p-grid">
             <div class="p-field p-col">
                 <button type="submit" pButton pRipple label="Guardar y Salir" icon="pi pi-save"

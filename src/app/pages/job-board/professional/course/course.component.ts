@@ -1,4 +1,3 @@
-import { Professional } from './../../../../models/job-board/professional';
 import { Institution } from './../../../../models/app/institution';
 import { Component, OnInit } from '@angular/core';
 
@@ -10,8 +9,6 @@ import { HttpParams } from '@angular/common/http';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BreadcrumbService } from '../../../../shared/services/breadcrumb.service';
 import { MessageService } from '../../../shared/services/message.service';
-import { DateValidators } from "../../../shared/validators/date.validators";
-
 @Component({
     selector: 'app-course',
     templateUrl: './course.component.html',
@@ -27,7 +24,7 @@ export class CourseComponent implements OnInit {
     flagCourses: boolean;
 
     constructor(private spinnerService: NgxSpinnerService,
-        private messageService: MessageService,
+        public messageService: MessageService,
         private formBuilder: FormBuilder,
         private jobBoardHttpService: JobBoardHttpService,
         private breadcrumbService: BreadcrumbService) {
@@ -36,15 +33,15 @@ export class CourseComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.getCourses(this.paginator);
         this.buildFormCourse();
+        this.getCourses(this.paginator);
+
     }
 
     // Build form course
     buildFormCourse() {
         this.formCourse = this.formBuilder.group({
             id: [null],
-        //    professional: [null, Validators.required],
             type: [null, Validators.required],
             institution: [null, Validators.required],
             certification_type: [null, Validators.required],
@@ -60,23 +57,18 @@ export class CourseComponent implements OnInit {
     // courses of backend
     getCourses(paginator: Paginator) {
         const params = new HttpParams()
-            .append('professional_id', "1")
             .append('page', paginator.current_page.toString())
             .append('per_page', paginator.per_page.toString());
-
         this.flagCourses = true;
-        // this.spinnerService.show();
         this.jobBoardHttpService.get('courses', params).subscribe(
             response => {
-                // this.spinnerService.hide();
                 this.flagCourses = false;
                 this.courses = response['data'];
-                   console.log(this.courses)
                 this.paginator = response as Paginator;
             }, error => {
-                // this.spinnerService.hide();
                 this.flagCourses = false;
                 this.messageService.error(error);
             });
     }
 }
+

@@ -1,18 +1,14 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {Language} from '../../../../../models/job-board/language';
-import {MessageService} from '../../../../shared/services/message.service';
-import {MessageService as MessagePnService} from 'primeng/api';
-import {NgxSpinnerService} from 'ngx-spinner';
-import {JobBoardHttpService} from '../../../../../services/job-board/job-board-http.service';
-import {AppHttpService} from '../../../../../services/app/app-http.service';
-import {HttpParams} from '@angular/common/http';
-import {Catalogue} from '../../../../../models/app/catalogue';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Language } from '../../../../../models/job-board/language';
+import { MessageService } from '../../../../shared/services/message.service';
+import { MessageService as MessagePnService } from 'primeng/api';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { JobBoardHttpService } from '../../../../../services/job-board/job-board-http.service';
+import { AppHttpService } from '../../../../../services/app/app-http.service';
+import { HttpParams } from '@angular/common/http';
+import { Catalogue } from '../../../../../models/app/catalogue';
 import { SharedService } from '../../../../shared/services/shared.service';
-import { Professional } from 'src/app/models/job-board/professional';
-
-
-
 @Component({
     selector: 'app-language-form',
     templateUrl: './language-form.component.html',
@@ -22,7 +18,7 @@ import { Professional } from 'src/app/models/job-board/professional';
 export class LanguageFormComponent implements OnInit {
     @Input() formLanguageIn: FormGroup;
     @Input() languagesIn: Language[];
-    @Output()languagesOut = new EventEmitter<Language[]>();
+    @Output() languagesOut = new EventEmitter<Language[]>();
     @Output() displayOut = new EventEmitter<boolean>();
     filteredIdioms: any[];
     idioms: Catalogue[];
@@ -33,14 +29,13 @@ export class LanguageFormComponent implements OnInit {
     filteredReadLevels: any[];
     readLevels: Catalogue[];
 
-
     constructor(private formBuilder: FormBuilder,
-                private messageService: MessageService,
-                private messagePnService: MessagePnService,
-                private spinnerService: NgxSpinnerService,
-                private appHttpService: AppHttpService,
-                private sharedService: SharedService,
-                private jobBoardHttpService: JobBoardHttpService) {
+        public messageService: MessageService,
+        private messagePnService: MessagePnService,
+        private spinnerService: NgxSpinnerService,
+        private appHttpService: AppHttpService,
+        private sharedService: SharedService,
+        private jobBoardHttpService: JobBoardHttpService) {
     }
 
     ngOnInit(): void {
@@ -48,7 +43,7 @@ export class LanguageFormComponent implements OnInit {
         this.getWrittenLevels();
         this.getSpokenLevels();
         this.getReadLevels();
-     
+
 
     }
 
@@ -57,10 +52,6 @@ export class LanguageFormComponent implements OnInit {
         return this.formLanguageIn.get('id');
     }
 
-    get professionalField() {
-        return this.formLanguageIn.get('professional');
-    }
-    
     get idiomField() {
         return this.formLanguageIn.get('idiom');
     }
@@ -78,8 +69,7 @@ export class LanguageFormComponent implements OnInit {
     }
 
     // Submit Form
-    onSubmit(event: Event, flag = false) {
-        event.preventDefault();
+    onSubmit(flag = false) {
         if (this.formLanguageIn.valid) {
             if (this.idField.value) {
                 this.updateLanguage(this.formLanguageIn.value);
@@ -93,17 +83,15 @@ export class LanguageFormComponent implements OnInit {
 
     // Idiom of catalogues
     getIdioms() {
-        const params = new HttpParams().append('type', 'LANGUAGE_IDIOM');
-        this.appHttpService.getCatalogues(params).subscribe(response => {
+        this.appHttpService.getCatalogues('LANGUAGE_IDIOM').subscribe(response => {
             this.idioms = response['data'];
         }, error => {
             this.messageService.error(error);
         });
     }
-        // Types of catalogues
+    // Types of catalogues
     getWrittenLevels() {
-        const params = new HttpParams().append('type', 'LANGUAGE_WRITTEN_LEVEL');
-        this.appHttpService.getCatalogues(params).subscribe(response => {
+        this.appHttpService.getCatalogues('LANGUAGE_WRITTEN_LEVEL').subscribe(response => {
             this.writtenLevels = response['data'];
         }, error => {
             this.messageService.error(error);
@@ -111,8 +99,7 @@ export class LanguageFormComponent implements OnInit {
     }
     // Types of catalogues
     getSpokenLevels() {
-        const params = new HttpParams().append('type', 'LANGUAGE_SPOKEN_LEVEL');
-        this.appHttpService.getCatalogues(params).subscribe(response => {
+        this.appHttpService.getCatalogues('LANGUAGE_SPOKEN_LEVEL').subscribe(response => {
             this.spokenLevels = response['data'];
         }, error => {
             this.messageService.error(error);
@@ -121,19 +108,19 @@ export class LanguageFormComponent implements OnInit {
 
 
 
-// Types of catalogues
-getReadLevels() {
-    const params = new HttpParams().append('type', 'LANGUAGE_READ_LEVEL');
-    this.appHttpService.getCatalogues(params).subscribe(response => {
-        this.readLevels = response['data'];
-    }, error => {
-        this.messageService.error(error);
-    });
-}
+    // Types of catalogues
+    getReadLevels() {
+        this.appHttpService.getCatalogues('LANGUAGE_READ_LEVEL').subscribe(response => {
+            this.readLevels = response['data'];
+        }, error => {
+            this.messageService.error(error);
+        });
+    }
+
     // Save in backend
     storeLanguage(language: Language, flag = false) {
         this.spinnerService.show();
-        this.jobBoardHttpService.store('languages', {language}).subscribe(response => {
+        this.jobBoardHttpService.store('languages', { language }).subscribe(response => {
             this.spinnerService.hide();
             this.messageService.success(response);
             this.saveLanguage(response['data']);
@@ -152,7 +139,7 @@ getReadLevels() {
     // Save in backend
     updateLanguage(language: Language) {
         this.spinnerService.show();
-        this.jobBoardHttpService.update('languages/' + language.id, {language})
+        this.jobBoardHttpService.update('languages/' + language.id, { language })
             .subscribe(response => {
                 this.spinnerService.hide();
                 this.messageService.success(response);
@@ -175,7 +162,7 @@ getReadLevels() {
         this.languagesOut.emit(this.languagesIn);
     }
 
-   
+
 
     // Filter idiom of languages
     filterIdiom(event) {
@@ -200,81 +187,81 @@ getReadLevels() {
     }
 
 
- // Filter written Level of languages
- filterWrittenLevel(event) {
-    const filtered: any[] = [];
-    const query = event.query;
-    for (const writtenLevel of this.writtenLevels) {
-        if (writtenLevel.name.toLowerCase().indexOf(query.toLowerCase()) === 0) {
-            filtered.push(writtenLevel);
+    // Filter written Level of languages
+    filterWrittenLevel(event) {
+        const filtered: any[] = [];
+        const query = event.query;
+        for (const writtenLevel of this.writtenLevels) {
+            if (writtenLevel.name.toLowerCase().indexOf(query.toLowerCase()) === 0) {
+                filtered.push(writtenLevel);
+            }
         }
-    }
-    if (filtered.length === 0) {
-        this.messagePnService.clear();
-        this.messagePnService.add({
-            severity: 'error',
-            summary: 'Por favor seleccione un tipo del listado',
-            detail: 'En el caso de no existir comuníquese con el administrador!',
-            life: 5000
-        });
-        this.writtenLevelField.setValue(null);
-    }
-    this.filteredWrittenLevels = filtered;
-}
-//filtro
-filterSpokenLevel(event) {
-    const filtered: any[] = [];
-    const query = event.query;
-    for (const spokenLevel of this.spokenLevels) {
-        if (spokenLevel.name.toLowerCase().indexOf(query.toLowerCase()) === 0) {
-            filtered.push(spokenLevel);
+        if (filtered.length === 0) {
+            this.messagePnService.clear();
+            this.messagePnService.add({
+                severity: 'error',
+                summary: 'Por favor seleccione un tipo del listado',
+                detail: 'En el caso de no existir comuníquese con el administrador!',
+                life: 5000
+            });
+            this.writtenLevelField.setValue(null);
         }
+        this.filteredWrittenLevels = filtered;
     }
-    if (filtered.length === 0) {
-        this.messagePnService.clear();
-        this.messagePnService.add({
-            severity: 'error',
-            summary: 'Por favor seleccione un tipo del listado',
-            detail: 'En el caso de no existir comuníquese con el administrador!',
-            life: 5000
-        });
-        this.spokenLevelField.setValue(null);
-    }
-    this.filteredSpokenLevels = filtered;
-}
- 
-// Filter type of skills
-filterReadLevel(event) {
-    const filtered: any[] = [];
-    const query = event.query;
-    for (const readLevel of this.readLevels) {
-        if (readLevel.name.toLowerCase().indexOf(query.toLowerCase()) === 0) {
-            filtered.push(readLevel);
+    //filtro
+    filterSpokenLevel(event) {
+        const filtered: any[] = [];
+        const query = event.query;
+        for (const spokenLevel of this.spokenLevels) {
+            if (spokenLevel.name.toLowerCase().indexOf(query.toLowerCase()) === 0) {
+                filtered.push(spokenLevel);
+            }
         }
+        if (filtered.length === 0) {
+            this.messagePnService.clear();
+            this.messagePnService.add({
+                severity: 'error',
+                summary: 'Por favor seleccione un tipo del listado',
+                detail: 'En el caso de no existir comuníquese con el administrador!',
+                life: 5000
+            });
+            this.spokenLevelField.setValue(null);
+        }
+        this.filteredSpokenLevels = filtered;
     }
-    if (filtered.length === 0) {
-        this.messagePnService.clear();
-        this.messagePnService.add({
-            severity: 'error',
-            summary: 'Por favor seleccione un tipo del listado',
-            detail: 'En el caso de no existir comuníquese con el administrador!',
-            life: 5000
-        });
-        this.readLevelField.setValue(null);
-    }
-    this.filteredReadLevels = filtered;
-}
-test(event) {
-    event.markAllAsTouched();
-}
 
-resetFormLanguage() {
-    this.formLanguageIn.reset();
-}
+    // Filter type of skills
+    filterReadLevel(event) {
+        const filtered: any[] = [];
+        const query = event.query;
+        for (const readLevel of this.readLevels) {
+            if (readLevel.name.toLowerCase().indexOf(query.toLowerCase()) === 0) {
+                filtered.push(readLevel);
+            }
+        }
+        if (filtered.length === 0) {
+            this.messagePnService.clear();
+            this.messagePnService.add({
+                severity: 'error',
+                summary: 'Por favor seleccione un tipo del listado',
+                detail: 'En el caso de no existir comuníquese con el administrador!',
+                life: 5000
+            });
+            this.readLevelField.setValue(null);
+        }
+        this.filteredReadLevels = filtered;
+    }
+    test(event) {
+        event.markAllAsTouched();
+    }
 
-markAllAsTouchedFormLanguage() {
-    this.formLanguageIn.markAllAsTouched();
-}
+    resetFormLanguage() {
+        this.formLanguageIn.reset();
+    }
+
+    markAllAsTouchedFormLanguage() {
+        this.formLanguageIn.markAllAsTouched();
+    }
 
 
 }

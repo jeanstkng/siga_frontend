@@ -15,7 +15,7 @@ import { File } from '../../../../../models/app/file';
     styleUrls: ['./course-list.component.scss']
 })
 export class CourseListComponent implements OnInit {
-    @Input() flagCourses: boolean;
+    @Input() flagSkeletonCourses: boolean;
     @Input() coursesIn: Course[];
     @Input() paginatorIn: Paginator;
     @Input() formCourseIn: FormGroup;
@@ -39,6 +39,9 @@ export class CourseListComponent implements OnInit {
         //this.resetPaginatorFiles();
     }
 
+    resetPaginator() {
+        this.paginatorFiles = { current_page: 1, per_page: 5 };
+    }
     resetPaginatorCourses() {
         this.paginatorIn = { current_page: 1, per_page: 5 };
     }

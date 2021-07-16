@@ -1,4 +1,3 @@
-
 <div class="p-fluid">
   <form [formGroup]="formCompanyIn" (ngSubmit)="onSubmit()">
     <div class="p-formgrid p-grid">
@@ -32,7 +31,7 @@
                   <small *ngIf="emailField.errors?.required" id="email-help-1" class="p-error">
                     {{messageService.fieldRequired}}
                   </small>
-                  <small *ngIf="emailField.errors?.email" id="email-help-1" class="p-error">
+                  <small *ngIf="emailField.errors?.email" id="email-help-2" class="p-error">
                     {{messageService.fieldEmail}}
                   </small>
                 </div>
@@ -51,30 +50,41 @@
                   <small *ngIf="phoneField.errors?.required" id="phone-help-1" class="p-error">
                     {{messageService.fieldRequired}}
                   </small>
+                  <small *ngIf="phoneField.errors?.minlength" id="phone-help-2" class="p-error">
+                    {{messageService.fieldMinLength(phoneField)}}
+                  </small>
+                  <small *ngIf="phoneField.errors?.maxlength" id="phone-help-3" class="p-error">
+                    {{messageService.fieldMaxLength(phoneField)}}
+                  </small>
                 </div>
               </div>
               <div class="p-field p-xl-6 p-lg-6 p-md-6 p-sm-12">
-                <label for="identificationType">
+                <label for="identification_type">
                   <i class="p-error">*</i> Tipo de identificación:
                   <i *ngIf="identificationField.valid" class="pi pi-check-circle icon-valid"></i>
                   <i *ngIf="identificationField.invalid && (identificationField.touched || identificationField.dirty)"
                     class="pi pi-times-circle icon-invalid"></i>
                 </label>
-                <p-autoComplete id="identificationType" formControlName="identification_type"
-                  [suggestions]="filteredidentificationTypes" (completeMethod)="filterIdentificationType($event)" field="name"
-                  [dropdown]="true">
+                <p-dropdown id="identification_type" [options]="identificationTypes"
+                  formControlName="identification_type" optionLabel="name" [filter]="true" filterBy="name"
+                  placeholder="Seleccione...">
+                  <ng-template pTemplate="selectedItem">
+                    <div class="country-item country-item-value" *ngIf="identificationTypeField.value">
+                      <div>{{identificationTypeField.value.name}}</div>
+                    </div>
+                  </ng-template>
                   <ng-template let-item pTemplate="item">
                     <div class="country-item">
                       <div>{{item.name}}</div>
                     </div>
                   </ng-template>
-                </p-autoComplete>
+                </p-dropdown>
               </div>
             </div>
           </p-card>
           <div class="p-field">
-            <app-location-address [option]="1" (formAddressOut)="formAddress=$event" (formLocationOut)="setFormLocation($event)"
-              id="address" name="address" formControlName="address">
+            <app-location-address [option]="1" (formAddressOut)="formAddress=$event"
+              (formLocationOut)="setFormLocation($event)" id="address" formControlName="address">
             </app-location-address>
           </div>
         </div>
@@ -83,13 +93,13 @@
         <p-card header="Información Empresa:">
           <div class="p-formgrid p-grid">
             <div class="p-field p-xl-6 p-lg-6 p-md-6 p-sm-12">
-              <label for="tradeName">
+              <label for="trade_name">
                 <i class="p-error">*</i>Nombre Comercial:
                 <i *ngIf="tradeNameField.valid" class="pi pi-check-circle icon-valid"></i>
                 <i *ngIf="tradeNameField.invalid && (tradeNameField.touched || tradeNameField.dirty)"
                   class="pi pi-times-circle icon-invalid"></i>
               </label>
-              <input id="tradeName" formControlName="trade_name" pInputText>
+              <input id="trade_name" formControlName="trade_name" pInputText>
               <div *ngIf="tradeNameField.errors && (tradeNameField.touched ||tradeNameField.dirty)">
                 <small *ngIf="tradeNameField.errors?.required" id="tradeName-help-1" class="p-error">
                   {{messageService.fieldRequired}}
@@ -107,6 +117,12 @@
               <div *ngIf="prefixField.errors && (prefixField.touched ||prefixField.dirty)">
                 <small *ngIf="prefixField.errors?.required" id="prefix-help-1" class="p-error">
                   {{messageService.fieldRequired}}
+                </small>
+                <small *ngIf="prefixField.errors?.minlength" id="prefix-help-2" class="p-error">
+                  {{messageService.fieldMinLength(prefixField)}}
+                </small>
+                <small *ngIf="prefixField.errors?.maxlength" id="prefix-help-3" class="p-error">
+                  {{messageService.fieldMaxLength(prefixField)}}
                 </small>
               </div>
             </div>
@@ -133,54 +149,69 @@
                 <i *ngIf="typeField.invalid && (typeField.touched || typeField.dirty)"
                   class="pi pi-times-circle icon-invalid"></i>
               </label>
-              <p-autoComplete id="type" formControlName="type" [suggestions]="filteredTypes"
-                (completeMethod)="filterTypes($event)" field="name" [dropdown]="true">
+              <p-dropdown id="type" [options]="types" formControlName="type" optionLabel="name" [filter]="true"
+                filterBy="name" placeholder="Seleccione...">
+                <ng-template pTemplate="selectedItem">
+                  <div class="country-item country-item-value" *ngIf="typeField.value">
+                    <div>{{typeField.value.name}}</div>
+                  </div>
+                </ng-template>
                 <ng-template let-item pTemplate="item">
                   <div class="country-item">
                     <div>{{item.name}}</div>
                   </div>
                 </ng-template>
-              </p-autoComplete>
+              </p-dropdown>
             </div>
           </div>
           <div class="p-formgrid p-grid">
             <div class="p-field p-xl-6 p-lg-6 p-md-6 p-sm-12">
-              <label for="personType">
+              <label for="person_type">
                 <i class="p-error">*</i> Tipo de Persona:
                 <i *ngIf="personTypeField.valid" class="pi pi-check-circle icon-valid"></i>
                 <i *ngIf="personTypeField.invalid && (personTypeField.touched || personTypeField.dirty)"
                   class="pi pi-times-circle icon-invalid"></i>
               </label>
-              <p-autoComplete id="personType" formControlName="person_type" [suggestions]="filteredpersonTypes"
-                (completeMethod)="filterPersonType($event)" field="name" [dropdown]="true">
+              <p-dropdown id="person_type" [options]="personType" formControlName="person_type" optionLabel="name"
+                [filter]="true" filterBy="name" placeholder="Seleccione...">
+                <ng-template pTemplate="selectedItem">
+                  <div class="country-item country-item-value" *ngIf="personTypeField.value">
+                    <div>{{personTypeField.value.name}}</div>
+                  </div>
+                </ng-template>
                 <ng-template let-item pTemplate="item">
                   <div class="country-item">
                     <div>{{item.name}}</div>
                   </div>
                 </ng-template>
-              </p-autoComplete>
+              </p-dropdown>
             </div>
             <div class="p-field p-xl-6 p-lg-6 p-md-6 p-sm-12">
-              <label for="activityType">
+              <label for="activity_type">
                 <i class="p-error">*</i> Tipo de Actividad:
                 <i *ngIf="activityTypesField.valid" class="pi pi-check-circle icon-valid"></i>
                 <i *ngIf="activityTypesField.invalid && (activityTypesField.touched || activityTypesField.dirty)"
                   class="pi pi-times-circle icon-invalid"></i>
               </label>
-              <p-autoComplete id="activityType" formControlName="activity_type" [suggestions]="filteredActivityTypes"
-                (completeMethod)="filterActivityType($event)" field="name" [dropdown]="true">
+              <p-dropdown id="activity_type" [options]="activityTypes" formControlName="activity_type"
+                optionLabel="name" [filter]="true" filterBy="name" placeholder="Seleccione...">
+                <ng-template pTemplate="selectedItem">
+                  <div class="country-item country-item-value" *ngIf="activityTypesField.value">
+                    <div>{{activityTypesField.value.name}}</div>
+                  </div>
+                </ng-template>
                 <ng-template let-item pTemplate="item">
                   <div class="country-item">
                     <div>{{item.name}}</div>
                   </div>
                 </ng-template>
-              </p-autoComplete>
+              </p-dropdown>
             </div>
           </div>
           <div class="p-fluid p-formgrid p-grid">
             <div class="p-field p-xl-2 p-lg-2 p-md-1 p-sm-12">
-              <label for="comercialActivities">
-                Actividades Comerciales
+              <label>
+                Actividades Comerciales:
               </label>
             </div>
             <div class="p-field p-xl-3 p-lg-3 p-md-2 p-sm-12">
@@ -190,7 +221,6 @@
           </div>
           <div formArrayName="comercial_activities">
             <div *ngFor="let comercial_activity of comercialActivitiesField.controls let i = index;">
-    
               <div class="p-fluid p-formgrid p-grid">
                 <div class="p-field p-xl-11 p-lg-11 p-md-6 p-sm-12">
                   <input [formControlName]="i" pInputText>
@@ -200,8 +230,9 @@
                     icon="pi pi-trash" class="p-button-danger p-button-rounded"></button>
                 </div>
                 <div
-                  *ngIf="comercialActivitiesField.errors && (comercialActivitiesField.touched || comercialActivitiesField.dirty)">
-                  <small *ngIf="comercialActivitiesField.errors?.required" id="comercialActivities-help-1" class="p-error">
+                  *ngIf="comercialActivitiesField.invalid && (comercialActivitiesField.touched || comercialActivitiesField.dirty)">
+                  <small *ngIf="comercialActivitiesField.controls[i].errors?.required" id="comercialActivities-help-1"
+                    class="p-error">
                     {{messageService.fieldRequired}}
                   </small>
                 </div>
@@ -211,12 +242,11 @@
         </p-card>
       </div>
     </div>
-    <div class="p-formgrid p-grid">
-      <div class="p-field">
-        <button type="submit" pButton pRipple label="Guardar y Salir" icon="pi pi-save"
-          class="p-button-success p-button-raised" style="display:inline-block;margin-left:35%;width:25%;"></button>
-      </div>
+
+    <div class="p-field p-xl-11 p-lg-11 p-md-11 p-sm-12">
+      <button type="submit" pButton pRipple label="Guardar y Salir" icon="pi pi-save"
+        class="p-button-success p-button-raised" style="display:inline-block;margin-left:40%;width:25%;"></button>
     </div>
+
   </form>
 </div>
-

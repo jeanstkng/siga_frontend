@@ -17,7 +17,7 @@ import {SharedService} from '../../services/shared.service';
 @Component({
     selector: 'app-location-address',
     templateUrl: './location-address.component.html',
-    styleUrls: ['./location-address.component.css'],
+    styleUrls: ['./location-address.component.scss'],
     providers: [
         {
             provide: NG_VALUE_ACCESSOR,
@@ -96,8 +96,7 @@ export class LocationAddressComponent implements OnInit, ControlValueAccessor {
     }
 
     getSectors() {
-        const params = new HttpParams().append('type', 'SECTOR');
-        this.appHttpService.getCatalogues(params).subscribe(response => {
+        this.appHttpService.getCatalogues('SECTOR').subscribe(response => {
             this.sectors = response['data'];
         }, error => {
             this.messageService.error(error);

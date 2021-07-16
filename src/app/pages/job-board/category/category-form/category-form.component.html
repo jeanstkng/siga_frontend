@@ -1,86 +1,95 @@
-{{formCategoryIn.value|json}} 
-<p-card>
- <div class="p-fluid">
-    <form [formGroup]="formCategoryIn" (ngSubmit)="onSubmit()">  
-        
-         <div class="p-formgrid p-grid">
-            <div class="p-field p-col">
-                <label for="parent">Padre:</label>
-                <input id="parent" name="parent" pInputText formControlName="parent" />
-                <div *ngIf="paretntField.errors && parentField.touched">
-                    <small *ngIf="parentField.hasError('required')" 
-                    id="parent-help-1" class="p-error">
-                        {{messageService.fieldRequired}}
-                    </small>
-                </div>
-            </div>
-            <div class="p-formgrid p-grid">
-                <div class="p-field p-col">
-                    <label for="children">Hijo</label>
-                    <input id="children" name="children" pInputText formControlName="icon" />
-                    <div *ngIf="childrenField.errors && childrenField.touched">
-                        <small *ngIf="childrenField.hasError('required')" 
-                        id="children-help-1" class="p-error">
-                            {{messageService.fieldRequired}}
-                        </small>
-                    </div>
-                </div>
-            </div>    
+{{formCategoryIn.value|json}}
+{{categories|json}}
 
-        
+<p-toast></p-toast>
+
+
+<div class="p-fluid">
+    <form [formGroup]="formCategoryIn" (ngSubmit)="onSubmit()" >
+        <div class="p-formgrid p-grid">
+            <div class="p-field p-col">
+                {{parentField.value|json}}
+                <label for="parent">Campo Amplio:</label>
+                
+                <p-dropdown id="parent" [options]="parentCategories" formControlName="parent" 
+                optionLabel="name"
+                    [filter]="true" filterBy="name" placeholder="Seleccione...">
+                    <ng-template pTemplate="selectedItem">
+                        <div class="country-item country-item-value" *ngIf="parentField.value">
+                            <div>{{parentField.value.name}}</div>
+                        </div>
+                    </ng-template>
+                    <ng-template let-item pTemplate="item">
+                         <div class="country-item">
+                             
+                           <div>{{item.name}}</div>
+                        </div> 
+                        
+                    </ng-template>
+                </p-dropdown>
+            </div>
         </div>
-         <div class="p-formgrid p-grid">
+
+
+        <div class="p-formgrid p-grid">
             <div class="p-field p-col">
                 <label for="code">Código:</label>
                 <input id="code" name="code" pInputText formControlName="code" />
                 <div *ngIf="codeField.errors && codeField.touched">
-                    <small *ngIf="codeField.hasError('required')" 
-                    id="code-help-1" class="p-error">
+                    <small *ngIf="codeField.hasError('required')" id="code-help-1" class="p-error">
                         {{messageService.fieldRequired}}
                     </small>
                 </div>
             </div>
         </div>
+
         <div class="p-formgrid p-grid">
             <div class="p-field p-col">
-                <label for="contactPhon">Nombre:</label>
+                <label for="name">Nombre:</label>
                 <input id="name" name="name" pInputText formControlName="name" />
                 <div *ngIf="nameField.errors && nameField.touched">
-                    <small *ngIf="nameField.hasError('required')" 
-                    id="name-help-1" class="p-error">
+                    <small *ngIf="nameField.hasError('required')" id="name-help-1" class="p-error">
                         {{messageService.fieldRequired}}
                     </small>
                 </div>
             </div>
         </div>
+
         <div class="p-formgrid p-grid">
             <div class="p-field p-col">
-                <label for="icon">Ícono</label>
+                <label for="icon">ícono:</label>
                 <input id="icon" name="icon" pInputText formControlName="icon" />
                 <div *ngIf="iconField.errors && iconField.touched">
-                    <small *ngIf="iconField.hasError('required')" 
-                    id="icon-help-1" class="p-error">
+                    <small *ngIf="iconField.hasError('required')" id="icon-help-1" class="p-error">
                         {{messageService.fieldRequired}}
                     </small>
                 </div>
+                <!-- <p-dropdown id="icon" [options]="parentCategories" formControlName="icon" optionLabel="name" [filter]="true"
+                    filterBy="icon" placeholder="Seleccione...">
+                    <ng-template pTemplate="selectedItem">
+                        <div class="country-item country-item-value" *ngIf="iconField.value">
+                            <div>{{iconField.value.icon}}</div>
+                        </div>
+                    </ng-template>
+                    <ng-template let-item pTemplate="item">
+                        <div class="country-item">
+                            <div>{{item.icon}}</div>
+                        </div>
+                    </ng-template>
+                </p-dropdown> -->
             </div>
         </div>
-        
+
+
         <div class="p-formgrid p-grid">
-            <div class="p-field p-xl-6 p-lg-6 p-md-12 p-sm-12">
-                <button pButton pRipple type="submit" id="btnSaveLeave"
-                        label="Guardar y Salir"
-                        class="p-button-success p-button-raised"
-                        icon="pi pi-save"></button>
+            <div class="p-field p-col">
+                <button type="submit" pButton pRipple label="Guardar y Salir" icon="pi pi-save"
+                    class="p-button-success p-button-raised"></button>
             </div>
-            <div *ngIf="!idField.value" class="p-field p-xl-6 p-lg-6 p-md-12 p-sm-12">
-                <button pButton pRipple type="button" id="btnSave"
-                        label="Guardar"
-                        class="p-button-raised"
-                        icon="pi pi-arrow-right"
-                        (click)="onSubmit(true)"></button>
+            <div *ngIf="!idField.value" class="p-field p-col">
+                <button type="button" pButton pRipple label="Guardar" icon="pi pi-arrow-right" class="p-button-raised"
+                    (click)="onSubmit($event,true)"></button>
             </div>
         </div>
     </form>
 </div>
-</p-card>

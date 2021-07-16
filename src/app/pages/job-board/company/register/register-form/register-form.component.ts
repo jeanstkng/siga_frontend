@@ -40,7 +40,7 @@ export class RegisterFormComponent implements OnInit {
   ngOnInit() {
     this.getIdentificationTypes(),
     this.getPersonType(),
-    this.getActivityType(),
+    this.getActivityTypes(),
     this.getTypes();
   }
    // Fields of Form
@@ -132,7 +132,7 @@ export class RegisterFormComponent implements OnInit {
     });
 } 
 
-onSubmit(flag = false) {
+onSubmit() {
     if (this.formRegisterIn.valid) {
          this.register(this.formRegisterIn.value);
         }else {
@@ -141,81 +141,37 @@ onSubmit(flag = false) {
    
     }
         // Types of catalogues
-        getTypes() {
-            const params = new HttpParams().append('type', 'COMPANY_TYPE');
-            this.appHttpService.getCatalogues(params).subscribe(response => {
-              this.types = response['data'];
-            }, error => {
-              this.messageService.error(error);
-            });
-          }
-
         getIdentificationTypes() {
-            const params = new HttpParams().append('type', 'IDENTIFICATION_TYPE');
-            this.appHttpService.getCatalogues(params).subscribe(response => {
+            this.appHttpService.getCatalogues('IDENTIFICATION_TYPE').subscribe(response => {
                 this.identificationTypes = response['data'];
             }, error => {
                 this.messageService.error(error);
             });
-        } 
+        }
+    
+        getTypes() {
+            this.appHttpService.getCatalogues('COMPANY_TYPE').subscribe(response => {
+                this.types = response['data'];
+            }, error => {
+                this.messageService.error(error);
+            });
+        }
+    
         getPersonType() {
-            const params = new HttpParams().append('type', 'COMPANY_PERSON_TYPE');
-            this.appHttpService.getCatalogues(params).subscribe(response => {
+            this.appHttpService.getCatalogues('COMPANY_PERSON_TYPE').subscribe(response => {
                 this.personType = response['data'];
             }, error => {
                 this.messageService.error(error);
             });
-        } 
-        getActivityType() {
-            const params = new HttpParams().append('type', 'COMPANY_ACTIVITY_TYPE');
-            this.appHttpService.getCatalogues(params).subscribe(response => {
+        }
+    
+        getActivityTypes() {
+            this.appHttpService.getCatalogues('COMPANY_ACTIVITY_TYPE').subscribe(response => {
                 this.activityType = response['data'];
             }, error => {
                 this.messageService.error(error);
             });
-        } 
-        // Filter type of companies
-    filterType(event) {
-        const filtered: any[] = [];
-        const query = event.query;
-        for (const type of this.types) {
-            if (type.name.toLowerCase().indexOf(query.toLowerCase()) === 0) {
-                filtered.push(type);
-            }
         }
-        this.filteredTypes = filtered;
-    }
-
-    filterIdentificationType(event) {
-        const filtered: any[] = [];
-        const query = event.query;
-        for (const type of this.identificationTypes) {
-          if (type.name.toLowerCase().indexOf(query.toLowerCase()) === 0) {
-            filtered.push(type);
-          }
-        }
-        this.filteredidentificationTypes = filtered;
-      }
-    filterPersonType(event){
-        const filtered: any[] = [];
-        const query = event.query;
-        for (const type of this.personType) {
-            if (type.name.toLowerCase().indexOf(query.toLowerCase()) === 0) {
-                filtered.push(type);
-            }
-        }
-        this.filteredpersonType = filtered;
-    }
-    filterActivityType(event){
-        const filtered: any[] = [];
-        const query = event.query;
-        for (const type of this.activityType) {
-            if (type.name.toLowerCase().indexOf(query.toLowerCase()) === 0) {
-                filtered.push(type);
-            }
-        }
-        this.filteredactivityType = filtered;
-    }
     markAllAsTouchedFormRegister() {
         this.formRegisterIn.markAllAsTouched();
         this.formLocation.markAllAsTouched();

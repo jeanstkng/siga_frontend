@@ -7,7 +7,7 @@ import { Paginator } from '../../../../models/setting/paginator';
 import { HttpParams } from '@angular/common/http';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BreadcrumbService } from '../../../../shared/services/breadcrumb.service';
-import {MessageService} from '../../../shared/services/message.service';
+import { MessageService } from '../../../shared/services/message.service';
 
 @Component({
   selector: 'app-language',
@@ -24,11 +24,11 @@ export class LanguageComponent implements OnInit {
 
   constructor(
     private spinnerService: NgxSpinnerService,
-    private messageService: MessageService,
+    public messageService: MessageService,
     private formBuilder: FormBuilder,
     private jobBoardHttpService: JobBoardHttpService) {
 
-    this.paginator = {current_page: 1, per_page: 5};
+    this.paginator = { current_page: 1, per_page: 5 };
     this.languages = [];
   }
 
@@ -44,11 +44,8 @@ export class LanguageComponent implements OnInit {
       written_level: [null, Validators.required],
       spoken_level: [null, Validators.required],
       read_level: [null, Validators.required],
-
     });
   }
-
-  
 
   // languages of backend
   getLanguages(paginator: Paginator) {
@@ -56,18 +53,18 @@ export class LanguageComponent implements OnInit {
       .append('page', paginator.current_page.toString())
       .append('per_page', paginator.per_page.toString());
 
-  this.flagLanguages = true;
-      // this.spinnerService.show();
-      this.jobBoardHttpService.get('languages', params).subscribe(
-        response => {
-            // this.spinnerService.hide();
-            this.flagLanguages = false;
-            this.languages = response['data'];
-            this.paginator = response as Paginator;
-        }, error => {
-            // this.spinnerService.hide();
-            this.flagLanguages = false;
-            this.messageService.error(error);
-        });
-}
+    this.flagLanguages = true;
+    // this.spinnerService.show();
+    this.jobBoardHttpService.get('languages', params).subscribe(
+      response => {
+        // this.spinnerService.hide();
+        this.flagLanguages = false;
+        this.languages = response['data'];
+        this.paginator = response as Paginator;
+      }, error => {
+        // this.spinnerService.hide();
+        this.flagLanguages = false;
+        this.messageService.error(error);
+      });
+  }
 }

@@ -29,7 +29,7 @@
             </ul>
         </div>
 
-        <div style="text-align: right">
+        <div style="text-align: right" *ngIf="!authService.getAuth()">
             <button pButton pRipple type="button" id="btnLogin"
                     label="Iniciar Sesión"
                     class="p-button-rounded"
@@ -71,7 +71,7 @@
     </div>
     <div id="meet-mirage" class="section">
         <div class="section-title">
-            <h1>Conteo</h1>
+            <h1>Contamos con:</h1>
             <br>
             <app-total></app-total>
         </div>
@@ -227,7 +227,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> 
     <div id="multimedia" class="section">
         <div class="section-title">
             <h1>Multimedia</h1>
