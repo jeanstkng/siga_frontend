@@ -4,6 +4,8 @@ import { AuthGuard } from 'src/app/shared/guards/auth.guard';
 import { QuestionComponent } from './question/question.component';
 import { TeacherEvalComponent } from './teacher-eval.component';
 import { TeacherListComponent } from './teacher-list/teacher-list.component';
+import { EvaluationComponent } from './evaluation/evaluation.component';
+import { TypeEvaluationComponent } from './type-evaluation/type-evaluation.component';
 
 const routes: Routes = [];
 export const TeacherEvalRouting: Routes = [
@@ -29,6 +31,18 @@ export const TeacherEvalRouting: Routes = [
           //loadChildren:()=>import('./question/question.module').then(m=>m.QuestionModule),
           //canActivate:[AuthGuard] 
       },
+      {
+        path: 'evaluation',
+        component:EvaluationComponent
+        //loadChildren:()=>import('./question/question.module').then(m=>m.QuestionModule),
+        //canActivate:[AuthGuard] 
+    },
+    {
+      path: 'type-evaluation',
+      component:TypeEvaluationComponent
+      //loadChildren:()=>import('./question/question.module').then(m=>m.QuestionModule),
+      //canActivate:[AuthGuard] 
+  },
       ]
   }
 ];

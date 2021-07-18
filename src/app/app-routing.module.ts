@@ -7,6 +7,8 @@ import {AppMainComponent} from './shared/components/main/app.main.component';
 import {AppBlankComponent} from './shared/components/blank/app.blank.component';
 import { QuestionComponent } from './pages/teacher-eval/question/question.component';
 import { TeacherEvalComponent } from './pages/teacher-eval/teacher-eval.component';
+import { EvaluationComponent } from './pages/teacher-eval/evaluation/evaluation.component';
+import { TypeEvaluationComponent } from './pages/teacher-eval/type-evaluation/type-evaluation.component';
 
 
 // Application Guards
@@ -14,6 +16,8 @@ import {AuthGuard} from './shared/guards/auth.guard';
 const routes: Routes = [
     { path: 'app-teacher-eval', component: TeacherEvalComponent },
     { path: 'app-question', component: QuestionComponent },
+    { path: 'app-evaluation', component: EvaluationComponent },
+    { path: 'app-type-evaluation', component: TypeEvaluationComponent },
   ];
 
 @NgModule({
@@ -22,7 +26,7 @@ const routes: Routes = [
             {
                 path: '', component: AppMainComponent,
                 children: [
-                    {path: '', redirectTo: '/teacher-eval', pathMatch: 'full'},
+                    {path: '', redirectTo: '/', pathMatch: 'full'},
                    
                      // ruta para mostrar el formulario
                     {
@@ -43,6 +47,21 @@ const routes: Routes = [
                         //canActivate: [AuthGuard]
                     },
                     
+
+                    // ruta evaluacion//
+                    {
+                        path: 'evaluation',
+                        loadChildren: () => import('./pages/teacher-eval/evaluation/evaluation.module').then(m => m.EvaluationModule),
+                        canActivate: [AuthGuard]
+                    },
+
+
+                    //ruta tipo de evaluacion
+                    {
+                        path: 'type-evaluation',
+                        loadChildren: () => import('./pages/teacher-eval/type-evaluation/type-evaluation.module').then(m => m.TypeEvaluationModule),
+                       canActivate: [AuthGuard]
+                    },
 
                    
                    /* {
