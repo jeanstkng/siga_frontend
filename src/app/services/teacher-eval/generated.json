@@ -1,0 +1,38 @@
+{
+  "nombreEstudiante": "Imbecil el animal",
+  "maestros": [
+    {
+      "nombreMaestro": "Prieto kun",
+      "asignatura": [
+        {
+          "nombreAsignatura": "programacion"
+        },
+        {
+          "nombreAsignatura": "matematicas"
+        }
+      ]
+    },
+    {
+      "nombreMaestro": "Prieto kun",
+      "asignatura": [
+        {
+          "nombreAsignatura": "programacion"
+        },
+        {
+          "nombreAsignatura": "matematicas"
+        }
+      ]
+    },
+    {
+      "nombreMaestro": "Prieto kun",
+      "asignatura": [
+        {
+          "nombreAsignatura": "programacion"
+        },
+        {
+          "nombreAsignatura": "matematicas"
+        }
+      ]
+    }
+  ]
+}

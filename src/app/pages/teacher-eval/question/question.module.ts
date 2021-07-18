@@ -6,6 +6,7 @@ import { QuestionComponent } from './question.component';
 import {MessageService} from 'primeng/api';
 import { DropdownModule } from 'primeng/dropdown';
 import {RadioButtonModule} from 'primeng/radiobutton';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import {RadioButtonModule} from 'primeng/radiobutton';
     CommonModule,
     RouterModule.forChild(QuestionRoutes),
     DropdownModule,
-    RadioButtonModule
+    RadioButtonModule,
+    FormsModule,
   ],
    declarations: [QuestionComponent],
     providers: [MessageService]

@@ -8,7 +8,8 @@ import { Paginator } from 'src/app/models/setting/paginator';
 import { Question } from 'src/app/models/teacher-eval/question';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TeacherEvalService } from 'src/app/services/teacher-eval/teacher-eval.service';
-import {RadioButtonModule} from 'primeng/radiobutton';
+import { RadioButtonModule } from 'primeng/radiobutton';
+import { Preguntas } from 'src/app/models/teacher-eval/preguntas';
 
 
 
@@ -19,59 +20,60 @@ import {RadioButtonModule} from 'primeng/radiobutton';
   styleUrls: ['./question.component.css']
 })
 
-export class QuestionComponent implements OnInit{
+export class QuestionComponent implements OnInit {
   formQuestion: FormGroup;
   paginator: Paginator;
   questions: Question[];
-  
+
   selectedValue: string = 'val1';
 
   constructor(public messageService: MessageService,
-    private spinnerService: NgxSpinnerService,
     private formBuilder: FormBuilder,
     private teacherEvalService: TeacherEvalService,
     private teacherEvalHttpService: TeacherEvalHttpService,
     private radioButtonModule: RadioButtonModule) {
     this.paginator = { current_page: 1, per_page: 2 };
-    this.questions=[];
+    this.questions = [];
 
   }
   city: string;
 
   selectedCategory: any = null;
 
-  categories: any[] = [{name: 'bien', key: 'A'}, {name: 'muy bien', key: 'M'}, {name: 'mal', key: 'P'}, {name: 'Research', key: 'R'}];
-  pregunta:any[];
+  evaluacion: any[] = [{ name: '1', key: this.getRandom() }, { name: '2', key: this.getRandom() }, { name: '3', key: this.getRandom() }, { name: '4', key: this.getRandom() }];
+  pregunta: any[];
 
-buildFormQuestion() {
-  this.formQuestion = this.formBuilder.group({
+  modelo: Preguntas[] = [];
+
+  buildFormQuestion() {
+    this.formQuestion = this.formBuilder.group({
       type: [null],
-      status:[null],
-      code: [null, Validators.required ],
-      order: [null, Validators.required ],
-      name: [null, Validators.required ],     
-      description: [null, Validators.required ],
-  });
-}
+      status: [null],
+      code: [null, Validators.required],
+      order: [null, Validators.required],
+      name: [null, Validators.required],
+      description: [null, Validators.required],
+    });
+  }
 
-get typeField() {
-  return this.formQuestion.get('type');
-}
-get statusField() {
-  return this.formQuestion.get('type');
-}
-get cpdeField() {
-  return this.formQuestion.get('type');
-}
-get orderField() {
-  return this.formQuestion.get('type');
-}
-get nameField() {
-  return this.formQuestion.get('type');
-}
-get descriptionField() {
-  return this.formQuestion.get('type');
-}
+  get typeField() {
+    return this.formQuestion.get('type');
+  }
+  get statusField() {
+    return this.formQuestion.get('type');
+  }
+  get cpdeField() {
+    return this.formQuestion.get('type');
+  }
+  get orderField() {
+    return this.formQuestion.get('type');
+  }
+  get nameField() {
+    return this.formQuestion.get('type');
+  }
+  get descriptionField() {
+    return this.formQuestion.get('type');
+  }
 
 
   getQuestions(paginator: Paginator) {
@@ -81,41 +83,73 @@ get descriptionField() {
 
     this.teacherEvalHttpService.get('questions').subscribe(
       response => {
-        this.questions = response ['data'];
-        this.paginator=response as Paginator;
+        this.questions = response['data'];
+        this.paginator = response as Paginator;
         this.messageService.success(response);
-       }, error => { 
+      }, error => {
         this.messageService.error(error);
-       }
-    )    
+      }
+    )
   }
- 
+
 
   ngOnInit() {
+    console.log("initttttttttttttt");
+
     this.buildFormQuestion();
     this.onTestWebService();
-    this.selectedCategory = this.categories[1];
+
+
+    this.selectedCategory = this.evaluacion[1];
   }
 
-  /*onTestWebService() {
+
+  //para traer las preguntas
+  onTestWebService() {
+
     this.teacherEvalService.getInit(1).subscribe(result => {
-        console.log(result);
-        let question: Question=result.data;
-        this.pregunta=question.name;
-        
+      this.pregunta = result.data;
+      this.getInicializarModelo();
+
     });
-    console.log("esta es una prueba");
-    }*/
-    onTestWebService() {
+  }
+
+  getRandom() {
+    return Math.random();
+  }
+
+
+  getInicializarModelo() {
+    let i:number = 0;
+    console.log(this.pregunta);
+
+    while (this.pregunta.length > i) {
+      let inicializador: Preguntas = new Preguntas();
+
+      // inicializador.valor=1;
+      this.modelo.push(inicializador);
+      i++;
+      console.log(i);
+
+    }
+    console.log(this.modelo);
+    console.log(this.modelo[0]);
+  }
+
+  getCheckSelect(){
+    console.log(this.modelo);
+    let int:number =0; 
+    for (const iterator of this.modelo) {
+      int += +iterator.valor;
       
-      this.teacherEvalService.getInit(1).subscribe(result => {
-          console.log(result);
-         
-          this.pregunta=result.data;      
-            
-      });
-      console.log("esta es una prueba");
-      }
+      
+    }
+    console.log(int);
+  }
+
+
+
+
 }
 
 

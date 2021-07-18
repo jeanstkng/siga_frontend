@@ -1,0 +1,38 @@
+{
+    "nombreEstudiante": "Estudiante Edwin",
+    "maestros": [
+        {
+            "nombreMaestro": "Prieto kun",
+            "asignatura": [
+                {
+                    "nombreAsignatura": "programacion1"
+                },
+                {
+                    "nombreAsignatura": "matematicas1"
+                }
+            ]
+        },
+        {
+            "nombreMaestro": "Prieto kun 2",
+            "asignatura": [
+                {
+                    "nombreAsignatura": "programacion2"
+                },
+                {
+                    "nombreAsignatura": "matematicas2"
+                }
+            ]
+        },
+        {
+            "nombreMaestro": "Prieto kun 3",
+            "asignatura": [
+                {
+                    "nombreAsignatura": "programacion3"
+                },
+                {
+                    "nombreAsignatura": "matematicas3"
+                }
+            ]
+        }
+    ]
+}
