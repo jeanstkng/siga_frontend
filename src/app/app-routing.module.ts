@@ -23,11 +23,18 @@ const routes: Routes = [
                 path: '', component: AppMainComponent,
                 children: [
                     {path: '', redirectTo: '/teacher-eval', pathMatch: 'full'},
-
+                   
+                     // ruta para mostrar el formulario
                     {
                         path: 'teacher-eval',
                         loadChildren: () => import('./pages/teacher-eval/question/question.module').then(m => m.QuestionModule),
-                        canActivate: [AuthGuard]
+                       // canActivate: [AuthGuard]
+                    },
+                    //ruta para mostrar la lista de docentes del estudiante
+                    {
+                        path: 'teacher-list',
+                        loadChildren: () => import('../app/pages/teacher-eval/teacher-list/teacher-list.module').then(m => m.TeacherListModule),
+                        //canActivate: [AuthGuard]
                     },
 
                     {

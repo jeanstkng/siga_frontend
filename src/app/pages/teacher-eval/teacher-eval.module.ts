@@ -2,11 +2,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-<<<<<<< HEAD
 import { TeacherEvalRouting } from './teacher-eval.routing';
 import { QuestionComponent } from './question/question.component';
 
-=======
 import { TeacherEvalRoutingModule } from './teacher-eval-routing.module';
 import { ManagementComponent } from './management/management.component';
 import {TableModule} from 'primeng/table';
@@ -17,26 +15,21 @@ import {DropdownModule} from 'primeng/dropdown';
 import {InputSwitchModule} from 'primeng/inputswitch';
 import {CheckboxModule} from 'primeng/checkbox';
 import { GeneratePDFComponent } from './generate-pdf/generate-pdf.component';
->>>>>>> origin/u_10_quinaluisa-david
+import { TeacherListComponent } from './teacher-list/teacher-list.component';
 
 
 @NgModule({
   declarations: [
-<<<<<<< HEAD
     QuestionComponent,
+    TeacherListComponent,
     
   ],
-  imports: [
-    CommonModule,
-    TeacherEvalRouting
-=======
-    ManagementComponent,
-    GeneratePDFComponent,
-  
-  ],
-  imports: [
+    imports: [
     CommonModule,
     FormsModule,
+    TeacherEvalRouting,
+    ManagementComponent,
+    GeneratePDFComponent,
     TeacherEvalRoutingModule,
     TableModule,
     ButtonModule,
@@ -45,7 +38,7 @@ import { GeneratePDFComponent } from './generate-pdf/generate-pdf.component';
     DropdownModule,
     InputSwitchModule,
     CheckboxModule
->>>>>>> origin/u_10_quinaluisa-david
+
   ]
 })
 export class TeacherEvalModule { }

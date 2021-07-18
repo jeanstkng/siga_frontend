@@ -1,0 +1,30 @@
+<div class="p-shadow-24">
+    <div style="background-color:white;" class="p-fluid p-formgrid p-grid">
+        <div class="p-field p-col">
+            <h1>EVALUACIÓN DOCENTE 2021-1</h1>
+            <P>Por favor evaluar el o los docentes y la(s) materia(s) que haya cursado durante este periodo.
+                Recuerde qie debe evaluar una vez a cada materia que haya recibido junto con el docente que la dictó.
+            </P>
+        </div>
+    </div>
+</div>
+<p></p>
+<p-table [value]="student.maestros">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Nombre De Docente</th>
+            <th>Asignatura</th>
+            <th>Accion</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-maestro>
+        <tr>
+            <td>{{maestro.nombreMaestro}}</td>
+            <td>{{maestro.asignatura[0].nombreAsignatura}}</td>
+           <td><a routerLink="/teacher-eval"  class="button"> Evaluar </a></td>          
+        </tr>
+    </ng-template>
+    
+</p-table>
+
+  

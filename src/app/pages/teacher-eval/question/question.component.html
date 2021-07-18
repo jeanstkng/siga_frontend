@@ -1,11 +1,33 @@
-<ul>
-    <li *ngFor="let question of pregunta">
-      {{ question.name }}
-     
-      <div *ngFor="let category of categories" class="p-field-checkbox">
-        <p-radioButton [inputId]="category.key" name="category" [value]="category" [(ngModel)]="selectedCategory" [disabled]="category.key === 'R'"></p-radioButton>
-        <label [for]="category.key">{{category.name}}</label>
+<div class="p-shadow-24">
+  <div style="background-color:white;" class="p-fluid p-formgrid p-grid">
+    <div class="p-field p-col">
+      <h1>EVALUACIÓN DOCENTE 2021-1</h1>
+      <P>Instrucciones: Sr. / Srta. Estudiante, lea detenidamente cada uno de los ítems y seleccione su respuesta según
+        el
+        rango de ponderación establecida en la matriz, tomando en cuenta que el rango mínimo es 1 (menor nota) y el
+        máximo
+        4 (mayor nota); recuerde que la evaluación docente es una reflexión sincera sobre las actividades de su profesor
+        desarrolladas en aula.</P>
     </div>
-    </li>
+  </div>
+</div>
 
-</ul>
+<p></p>
+<form [formGroup]="questions">
+  <div class="form-group" style="background-color:white;">
+    <ul>
+      <li *ngFor="let question of pregunta; let i = index">
+        <p></p>
+        {{ question.name }}
+        <div *ngFor="let category of evaluacion" class="p-field-checkbox">
+          <p-radioButton name="category" [value]= "category.name" [(ngModel)]="modelo[i].valor"
+            [disabled]="category.key === 'R'"></p-radioButton>
+          <label [for]="category.key">{{category.name}}</label>
+        </div>
+      </li>
+     </ul>
+     <button (click)="getCheckSelect()" pButton type="button" label="Click" >Guardar</button>
+    <a routerLink="/teacher-list" class="button"> Regresar </a>
+  </div>
+</form>
+
