@@ -15,7 +15,7 @@ export class TeacherEvalService {
   ) {
        }
    // urlvs: string = "http://siga_backend.test/v1/teacher-eval/question/show/";
-    urlvs: string = "http://siga_backend.test/v1/teacher-eval/question/index?evaluation_type_id=1&per_page=4&page=1";
+    urlvs: string = "http://127.0.0.1:8000/v1/teacher-eval/question/index?evaluation_type_id=1&per_page=4&page=1";
 
 
     getInit(param:any): Observable<any> {

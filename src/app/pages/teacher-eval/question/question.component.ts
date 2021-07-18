@@ -74,7 +74,7 @@ get descriptionField() {
 }
 
 
-  getQuestions(paginator: Paginator) {
+/*   getQuestions(paginator: Paginator) {
     const params = new HttpParams()
       .append('page', paginator.current_page.toString())
       .append('per_page', paginator.per_page.toString());
@@ -88,7 +88,7 @@ get descriptionField() {
         this.messageService.error(error);
        }
     )    
-  }
+  } */
  
 
   ngOnInit() {
