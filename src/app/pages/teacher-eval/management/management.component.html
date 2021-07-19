@@ -1,168 +1,181 @@
-<p-dialog header="Creditos Extra" [(visible)]="displayModal" [modal]="true" [style]="{width: '40vw'}"
-  [baseZIndex]="10000" [draggable]="false" >
-  <div class="p-fluid p-formgrid p-grid">
-    <div class="p-field p-col-12 p-md-12">
-      <label for="state">Docentes</label>
-      <p-dropdown inputId="state" [options]="docentes" [(ngModel)]="docente" placeholder="Select"
-        optionLabel="name"></p-dropdown>
-    </div>
-    <div class="p-field p-col-12 p-md-6">
-      <label >DIPLOMA YAVIRAC (3)</label>
-      <input id="diploYav." type="number" [(ngModel)]="diploYav" placeholder="Del 1 a 5 puntos" pInputText>
-    </div>
-    <div class="p-field p-col-12 p-md-6">
-      <label >TÍTULO DE CUARTO NIVEL (2)</label>
-      <input id="cuarto" type="number" [(ngModel)]="cuarto" placeholder="De 1 a 2 puntos" pInputText>
-    </div>
-    <div class="p-field p-col-12 p-md-6">
-      <label >MIEMBRO DE OCS (3)</label>
-      <input id="ocs" type="number" [(ngModel)]="ocs" placeholder="De 1 a 3 puntos" pInputText>
-    </div>
-    <div class="p-field p-col-12 p-md-6">
-      <label >PROCESOS GOBERNANTES (coord. academica, coord, administrativa) [5]</label>
-      <input id="proGob" type="number" [(ngModel)]="proGob" placeholder="De 1 a 5 puntos" pInputText>
-    </div>
-    <div class="p-field p-col-12 p-md-6">
-      <label >PROCESO SUSTANTIVOS (coordinadores ) [4]</label>
-      <input id="sustantivos" type="number" [(ngModel)]="sustantivos" placeholder="De 1 a 4 puntos" pInputText>
-    </div>
-    <div class="p-field p-col-12 p-md-6">
-      <label >PROCESOS DE APOYO(unidades) [3]</label>
-      <input id="apoyo" type="number" [(ngModel)]="apoyo" placeholder="De 1 a 3 puntos" pInputText>
-    </div>
-  
-    <div class="p-field  p-md-12">
-   
-      <h2 class="p-text-center" > Total de Puntos : {{rta}} </h2>
-    </div>
-    
-
-  </div>
-
-
-
-  <ng-template pTemplate="footer">
-    <p-button icon="pi pi-check" (click)="sumarPuntosExtra()" label="Total" class="p-m-2 p-button-success"></p-button>
-  </ng-template>
-</p-dialog>
-
-<!--
-<p-dialog header="Puntos de Investigacion" [(visible)]="investigacion" [modal]="true" [style]="{width: '40vw'}"
-  [baseZIndex]="10000" [draggable]="false" [resizable]="false">
-  <div class="p-fluid p-formgrid p-grid">
-    <div style="overflow-x:auto; position: relative; margin: auto; ">
-      <table >
-        <tr>
-          <th style="width: 400px;  background-color: white;">Docentes</th>
-          <th >Puntos</th>
-        </tr>
-        <tr >
-          <td style="text-align: left;">David Fernando Quinaluisa Toaquiza</td>
-          <td>
-              <p-checkbox value="5" [(ngModel)]="valor5" (click)="masCinco()"  ></p-checkbox>
-          </td>
-        </tr>
-      </table>
-    </div>
-
-  </div>
-  <ng-template pTemplate="footer">
-    <p-button icon="pi pi-check" (click)="displayModal=false" label="Ok" styleClass="p-button-text"></p-button>
-  </ng-template>
-</p-dialog>
-
--->
- 
 <div class="p-grid">
   <div class="p-col-12 p-md-6 p-lg-8">
-    <h3 class="p-text-justify p-m-4" >Matriz</h3>
+    <h3 class="p-text-justify p-m-4">Matriz</h3>
   </div>
 
   <div class="p-col-12 p-md-6 p-lg-4">
-    
-      <button class="p-m-2 p-button-success" (click)="showModalDialog()" icon="pi pi-plus" pButton type="button"
-        label="Creditos Extra"></button>
 
-      <!--<button class="p-m-2 p-button-info" (click)="showModalInvestigacion()" icon="pi pi-book" pButton type="button" label="Puntos Investigacion"></button>-->
+    <button class="p-m-2 p-button-success" (click)="credits()" icon="pi pi-plus" pButton type="button"
+      label="Creditos Extra"></button>
 
-      <button (click)="pdf()" class="p-m-2" pButton icon="pi pi-file-pdf" type="button" label="Generar PDF"  ></button>
+      <button class="p-m-2 p-button-info" (click)="investigation()" icon="pi pi-book" pButton type="button"
+      label="Investigacion"></button>
+
+    <button (click)="pdf()" class="p-m-2" pButton icon="pi pi-file-pdf" type="button" label="Generar PDF"></button>
 
 
   </div>
 </div>
 
 
+<div class="p-fluid p-formgrid p-grid">
+
+  <div class="p-col-12 p-md-6 p-lg-4">
+
+  </div>
+  <div class="p-col-12 p-md-6 p-lg-4">
+    <p-dropdown [options]="teachers" [(ngModel)]="teacher" (click)="getEvaluations(teacher.id)" placeholder="Docentes"
+      optionLabel="name" [showClear]="true"></p-dropdown>
+  </div>
+  <div class="p-col-12 p-md-6 p-lg-4">
+
+  </div>
+</div>
+<br>
 
 
-<div style="overflow-x:auto;">
 
-  <table class="table">
-    <tr>
-      <th style="width: 800px; text-align: center; background-color: white;">Docentes</th>
-
-      <th class="form">Gestion Academica</th>
-      <th class="valor">EQUIVALENCIA</th>
-      <th class="form">Heteroevaluacion</th>
-      <th class="valor">EQUIVALENCIA</th>
-      <th class="form">Cooevaluacion</th>
-      <th class="valor">EQUIVALENCIA</th>
-      <th class="form">Eva. Coordinacion</th>
-      <th class="valor">EQUIVALENCIA</th>
-      <th class="total">TOTAL Gestion DIREC. ACADE.</th>
-      <th class="form">Auto-Eva</th>
-      <th class="valor">EQUIVALENCIA</th>
-      <th class="form">Eva. Estudiantil</th>
-      <th class="valor">EQUIVALENCIA</th>
-      <th class="form">Eva. por Pares</th>
-      <th class="valor">EQUIVALENCIA</th>
-      <th class="form">Eva. Coordinación</th>
-      <th class="valor">EQUIVALENCIA</th>
-      <th class="total">TOTAL DOCENCIA</th>
-      <th class="suma">Creditos Extra</th>
-      <th class="suma">Equivalencia Investigacion</th>
-      <th class="suma">Equivalencia Docencia</th>
-      <th class="suma">Equivalencia Gestion DIREC. ACADE.</th>
-      <th class="total">NOTA FINAL</th>
-      <!--<th style="background-color: white;" >Funciones</th>-->
-    </tr>
+<div style="height: 350px; overflow: auto;" class="p-fluid p-formgrid p-grid">
+  <div class="p-col-12 p-md-6 p-lg-6">
+    <div class="p-fluid p-formgrid p-grid">
     
-    <tr *ngFor="let items of teachers"> 
-      <td class="fix-col"  > {{items.name}} </td>
-      <td></td>
-      <td>94</td>
-      <td>94</td>
-      <td>94</td>
-      <td>94</td>
-      <td>94</td>
-      <td>94</td>
-      <td>94</td>
-      <td>94</td>
-      <td>94</td>
-      <td>94</td>
-      <td>94</td>
-      <td>94</td>
-      <td>94</td>
-      <td>94</td>
-      <td>94</td>
-      <td>94</td>
-      <td>94</td>
-      <td>94</td>
-      <td> 
-      
         
-      </td>
-      <td>94</td>
-      <td>94</td>
-      <td> {{notaFinal}} </td>
+        
+            <p-card *ngFor="let item of evaluations" header="{{item.name}}"
+            [style]="{'width': '25rem', 'margin-bottom': '1em', 'color' : '#ffff', 'background-color' : '#154360', 'padding' : '5px', 'margin-left' : '15px' }">
 
-    </tr>
+            <div class="p-fluid p-formgrid p-grid ">
+              <div class="p-col-6 ">
+                <p style="text-align: center;">{{item.result | number}}</p>
+                <p style="text-align: center;">Resultado </p>
+              </div>
+              <div class="p-col-6">
+                <p style="text-align: center;">{{ item.percentage | number}}</p>
+                <p style="text-align: center;">Equivalencia</p>
+              </div>
+            </div>
+          </p-card>
+        
 
-  </table>
+    
+    </div>
 
+  </div>
+  <div class="p-col-12 p-md-12 p-lg-6">
+    <div class="p-fluid p-formgrid p-grid">
+      <div class="p-col-6">
+        <div class="p-col-12 p-md-6 p-lg-2">
+          <p-card header="Total Gestion Dir.Aca"
+            [style]="{'width': '25rem', 'padding' : '5px', 'margin-bottom': '1em', 'color' : '#ffff', 'background-color' : '#F39C12'}">
 
+            <div class="p-fluid p-formgrid p-grid ">
+              <div class="p-col-12 ">
+                <p style="text-align: center;"> {{total1 | number}} </p>
+                <p style="text-align: center;">Resultado</p>
+              </div>
+            </div>
+          </p-card>
+        </div>
+      </div>
+      <div class="p-col-6">
+        <div class="p-col-12 p-md-6 p-lg-2">
+          <p-card header="Total Docencia"
+            [style]="{'width': '25rem', 'padding' : '5px', 'margin-bottom': '1em', 'color' : '#ffff', 'background-color' : '#F39C12'}">
+
+            <div class="p-fluid p-formgrid p-grid ">
+              <div class="p-col-12 ">
+                <p style="text-align: center;"> {{total2 | number}} </p>
+                <p style="text-align: center;">Resultado</p>
+              </div>
+            </div>
+          </p-card>
+        </div>
+      </div>
+      <div class="p-col-6">
+        <div class="p-col-12 p-md-6 p-lg-2">
+          <p-card header="Creditos Extras"
+            [style]="{'width': '25rem', 'padding' : '5px', 'margin-bottom': '1em', 'color' : '#ffff', 'background-color' : '#17A589'}">
+
+            <div class="p-fluid p-formgrid p-grid ">
+              <div class="p-col-12 ">
+                <p style="text-align: center;"> {{extraCredits | number}} </p>
+                <p style="text-align: center;">Resultado</p>
+              </div>
+            </div>
+          </p-card>
+        </div>
+      </div>
+      <div class="p-col-6">
+        <div class="p-col-12 p-md-6 p-lg-2">
+          <p-card header="Equi. Investigacion"
+            [style]="{'width': '25rem', 'padding' : '5px', 'margin-bottom': '1em', 'color' : '#ffff', 'background-color' : '#17A589'}">
+
+            <div class="p-fluid p-formgrid p-grid ">
+              <div class="p-col-12 ">
+                <p style="text-align: center;"> {{investigacion * 0.5| number}} </p>
+                <p style="text-align: center;">Equivalencia</p>
+              </div>
+            </div>
+          </p-card>
+        </div>
+      </div>
+      <div class="p-col-6">
+        <div class="p-col-12 p-md-6 p-lg-2">
+          <p-card header="Equi. Docencia"
+            [style]="{'width': '25rem', 'padding' : '5px', 'margin-bottom': '1em', 'color' : '#ffff', 'background-color' : '#17A589'}">
+
+            <div class="p-fluid p-formgrid p-grid ">
+              <div class="p-col-12 ">
+                <p style="text-align: center;"> {{ totalDocencia | number}} </p>
+                <p style="text-align: center;">Equivalencia</p>
+              </div>
+            </div>
+          </p-card>
+        </div>
+      </div>
+      <div class="p-col-6">
+        <div class="p-col-12 p-md-6 p-lg-2">
+          <p-card header="Equi. Gestion D.A"
+            [style]="{'width': '25rem', 'padding' : '5px', 'margin-bottom': '1em', 'color' : '#ffff', 'background-color' : '#17A589'}">
+
+            <div class="p-fluid p-formgrid p-grid ">
+              <div class="p-col-12 ">
+                <p style="text-align: center;"> {{ totalGestion | number }} </p>
+                <p style="text-align: center;">Equivalencia</p>
+              </div>
+            </div>
+          </p-card>
+        </div>
+      </div>
+      
+      <div class="p-col-12">
+        <div class="p-col-12 p-md-12 p-lg-12">
+          <p-card header="Total Final"
+            [style]="{'width': '25rem', 'padding' : '5px', 'margin-bottom': '1em', 'color' : '#ffff', 'background-color' : '#02B818'}">
+
+            <div class="p-fluid p-formgrid p-grid ">
+              <div class="p-col-12 ">
+                <p style="text-align: center;"> {{ total1 * 0.7  + totalGestion + extraCredits + investigacion * 0.5 | number }} </p>
+                <p style="text-align: center;">Resultado</p>
+              </div>
+            </div>
+          </p-card>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+  <p-scrollTop target="parent"></p-scrollTop>
 </div>
 
 
-<div *ngFor="let items of docentes">
-    <p> {{itemns.name}} </p>
-</div>
+
+ 
+
+
+
+
+
+
+

@@ -1,0 +1,105 @@
+
+<p-dialog header="Creditos Extra" [(visible)]="displayModal" [modal]="true" [style]="{width: '40vw'}"
+  [baseZIndex]="10000" [draggable]="false" >
+  <div class="p-fluid p-formgrid p-grid">
+    <div class="p-field p-col-12 p-md-12">
+      <label for="state">Docentes</label>
+      <p-dropdown inputId="state" [options]="teachers" [(ngModel)]="teacher" placeholder="Docentes"
+        optionLabel="name"></p-dropdown>
+    </div>
+    <div class="p-field p-col-12 p-md-6">
+      <label >DIPLOMA YAVIRAC (3)</label>
+      <input id="diploYav." type="number" required [(ngModel)]="diploma_yavirac" placeholder="Del 1 a 5 puntos" pInputText>
+    </div>
+    <div class="p-field p-col-12 p-md-6">
+      <label >TÍTULO DE CUARTO NIVEL (2)</label>
+      <input id="cuarto" type="number" required [(ngModel)]="title_fourth_level" placeholder="De 1 a 2 puntos" pInputText>
+    </div>
+    <div class="p-field p-col-12 p-md-6">
+      <label >MIEMBRO DE OCS (3)</label>
+      <input id="ocs" type="number" required [(ngModel)]="OCS_member" placeholder="De 1 a 3 puntos" pInputText>
+    </div>
+    <div class="p-field p-col-12 p-md-6">
+      <label >PROCESOS GOBERNANTES (coord. academica, coord, administrativa) [5]</label>
+      <input id="proGob" type="number" required [(ngModel)]="governing_processes" placeholder="De 1 a 5 puntos" pInputText>
+    </div>
+    <div class="p-field p-col-12 p-md-6">
+      <label >PROCESO SUSTANTIVOS (coordinadores ) [4]</label>
+      <input id="sustantivos" type="number" required [(ngModel)]="process_nouns" placeholder="De 1 a 4 puntos" pInputText>
+    </div>
+    <div class="p-field p-col-12 p-md-6">
+      <label >PROCESOS DE APOYO(unidades) [3]</label>
+      <input id="apoyo" type="number"  [(ngModel)]="support_processes"  placeholder="De 1 a 3 puntos" pInputText>
+    </div>
+  
+    <div class="p-field  p-md-12">
+   
+      <h2 class="p-text-center"  [(ngModel)]="total"   > Total de Puntos : {{total}} </h2>
+    </div>
+    
+
+  </div>
+
+
+
+  <ng-template pTemplate="footer">
+    <p-button icon="pi pi-check" (click)="addCredits(teacher.id)" label="Total" class="p-m-2 p-button-success"></p-button>
+  </ng-template>
+</p-dialog>
+
+<div class="p-grid">
+  <div class="p-col-12 p-md-6 p-lg-8">
+    <h3 class="p-text-justify p-m-4" >Creditos Extra</h3>
+  </div>
+
+  <div class="p-col-12 p-md-6 p-lg-4" style="position: relative; left: auto;" >
+   
+
+      <button class="p-m-2 p-button-success" (click)="showModalDialog()" icon="pi pi-plus" pButton type="button"
+        label="Creditos Extra"></button>
+
+
+
+  </div>
+</div>
+
+<div style="height: 400px; overflow-x:auto;">
+
+  <table>
+    <tr>
+      <th style="width: 350px; text-align: center; ">Docentes</th>
+
+      <th >Diploma Yavirac</th>
+      <th >Titulo de Cuarto Nivel</th>
+      <th >Miembro de OCS</th>
+      <th >Procesos Gobernantes (coord. academica, coord, administrativa) </th>
+      <th >Proceso Sustantivos (coordinadores)</th>
+      <th >Procesos de Apoyo(unidades)</th>
+      <th >Total</th>
+      <th style="width: 150px ;" >Funciones</th>
+      
+     
+    </tr>
+  
+    <tr *ngFor="let items of extraCredits"> 
+      <td  title="{{items.name}}" > {{items.name}} </td>
+      <td title="{{items.name}}" > {{items.diploma_yavirac}} </td>
+      <td title="{{items.name}}" > {{items.title_fourth_level}} </td>
+      <td title="{{items.name}}" > {{items.OCS_member}} </td>
+      <td title="{{items.name}}" > {{items.governing_processes}} </td>
+      <td title="{{items.name}}" > {{items.process_nouns}} </td>
+      <td title="{{items.name}}" > {{items.support_processes}} </td>
+      <td title="{{items.name}}" > {{items.total}} </td>
+      <td title="{{items.name}}">
+       
+          <!--<a pButton  style="margin-left: 5px;" class="p-button-warning" icon="pi pi-user-edit"></a>-->
+          <a pButton title="eliminar" (click)="deleteCredit(items.id)" style="margin-left: 5px;"  class="p-button-danger" icon="pi pi-trash"></a>
+     
+        
+      </td>
+    </tr>
+
+  </table>
+  <p-scrollTop target="parent"></p-scrollTop> 
+</div>
+

@@ -1,0 +1,99 @@
+
+<p-dialog header="Investigacion" [(visible)]="displayModal" [modal]="true" [style]="{width: '40vw'}"
+[baseZIndex]="10000" [draggable]="false" >
+<div class="p-fluid p-formgrid p-grid">
+  <div class="p-field p-col-12 p-md-12">
+    <label for="state">Docentes</label>
+    <p-dropdown inputId="state" [options]="teachers" [(ngModel)]="teacher" placeholder="Docentes"
+      optionLabel="name"></p-dropdown>
+  </div>
+  <div class="p-field p-col-12 p-md-6">
+    <label >Investigación-Autoevaluación </label>
+    <input id="diploYav." type="number" required [(ngModel)]="inv_auto_eval" placeholder="Del 1 a 5 puntos" pInputText>
+  </div>
+  <div class="p-field p-col-12 p-md-6">
+    <label >Investigación - Pares</label>
+    <input id="cuarto" type="number" required [(ngModel)]="inv_pares" placeholder="De 1 a 2 puntos" pInputText>
+  </div>
+  <div class="p-field p-col-12 p-md-6">
+    <label >Investigación - Coodinador</label>
+    <input id="ocs" type="number" required [(ngModel)]="inv_coodinador" placeholder="De 1 a 3 puntos" pInputText>
+  </div>
+  <div class="p-field p-col-12 p-md-6">
+ 
+    <h2 class="p-text-center" style="margin-top: 5px;"   > 
+        Total de Puntos : 
+    </h2>
+    <h2 class="p-text-center" style="margin-top: 5px;" [(ngModel)]="total"   > 
+         {{total}} 
+    </h2>
+  </div>
+  
+
+</div>
+
+
+
+<ng-template pTemplate="footer">
+  <p-button icon="pi pi-check" (click)="addResearchs(teacher.id)" label="Total" class="p-m-2 p-button-success"></p-button>
+</ng-template>
+</p-dialog>
+
+<div class="p-grid">
+<div class="p-col-12 p-md-6 p-lg-8">
+  <h3 class="p-text-justify p-m-4" >Investigación</h3>
+</div>
+
+<div class="p-col-12 p-md-6 p-lg-4" style="position: relative; left: auto;" >
+ 
+
+    <button class="p-m-2 p-button-info" (click)="showModalDialog()" icon="pi pi-book" pButton type="button"
+      label="Investigación"></button>
+
+
+
+</div>
+</div>
+
+<div style="height: 400px; overflow-x:auto;">
+    
+  
+  
+<table>
+  <tr>
+    <th style="width: 350px; text-align: center; ">Docentes</th>
+
+    <th >Investigación-Autoevaluación </th>
+    <th >EQUIVALENCIA </th>
+    <th >Investigación - Pares</th>
+    <th >EQUIVALENCIA </th>
+    <th >Investigación - Coodinador</th>
+    <th >EQUIVALENCIA </th>
+    <th >Total</th>
+    <th style="width: 150px ;" >Funciones</th>
+    
+   
+  </tr>
+
+  <tr *ngFor="let items of researchs"> 
+    <td  title="{{items.name}}" > {{items.name}} </td>
+    <td title="{{items.name}}" > {{items.inv_auto_eval  | number}} </td>
+    <td title="{{items.name}}" > {{ items.inv_auto_eval * 0.2  | number}} </td>
+    <td title="{{items.name}}" > {{items.inv_coodinador  | number }} </td>
+    <td title="{{items.name}}" > {{ items.inv_coodinador * 0.5  | number }} </td>
+    <td title="{{items.name}}" > {{items.inv_pares  | number }} </td>   
+    <td title="{{items.name}}" > {{ items.inv_pares * 0.3  | number }} </td>
+    <td title="{{items.name}}" > {{items.total  | number }} </td>
+    <td title="{{items.name}}">
+     
+        <!--<a pButton  style="margin-left: 5px;" class="p-button-warning" icon="pi pi-user-edit"></a>-->
+        <a pButton title="eliminar" (click)="deleteResearch(items.id)" style="margin-left: 5px;"  class="p-button-danger" icon="pi pi-trash"></a>
+   
+      
+    </td>
+  </tr>
+
+</table>
+<p-scrollTop target="parent"></p-scrollTop> 
+</div>
+

@@ -1,1 +1,544 @@
-<p>generate-pdf works!</p>
+<div class="p-grid">
+    <div class="p-col-12 p-md-6 p-lg-2">
+        <h3 class="p-text-justify p-m-4">Generar PDF</h3>
+    </div>
+
+    <div class="p-col-12 p-md-6 p-lg-8">
+      
+    </div>
+    <div class="p-col-12 p-md-6 p-lg-2">
+        <button (click)="getPDF()" class="p-m-2" pButton icon="pi pi-file-pdf" type="button"
+            label="Generar PDF"></button>
+    </div>
+
+</div>
+<div class="p-fluid p-formgrid p-grid">
+
+    <div class="p-col-12 p-md-6 p-lg-4">
+  
+    </div>
+    <div class="p-col-12 p-md-6 p-lg-4">
+      <p-dropdown [options]="teachers" [(ngModel)]="teacher" (click)="getEvaluations(teacher.id)" placeholder="Docentes"
+        optionLabel="name" [showClear]="true"></p-dropdown>
+    </div>
+    <div class="p-col-12 p-md-6 p-lg-4">
+  
+    </div>
+ 
+  </div>
+  
+<div id="htmlData">
+
+
+<div class="p-fluid p-formgrid p-grid">
+    <!--  HEADER -->
+    <div class="p-col-12 p-md-6 p-lg-2">
+    </div>
+    <div class="p-col-12 p-md-6 p-lg-8">
+        <div class="p-fluid p-formgrid p-grid">
+            <div class="p-col-12" style="align-items: center;">
+                <img src="../../../../assets/layout/images/spinner.png" style="width: 150px; height: 150px; position: relative; margin-top: 5px; left: 42.5%;" alt="">
+                <br>
+            <br>
+            </div>
+            
+            <div class="p-col-12 ">
+                <div style="text-align: center;">
+                    <h3>
+                        INSTITUTO SUPERIOR TECNOLÓGICO
+                        DE TURISMO Y PATRIMONIO “YAVIRAC”
+
+                    </h3>
+                    <p> Dirección: García Moreno S435 y Ambato
+                        Quito – Ecuador</p>
+                </div>
+                <br>
+                <br>
+            </div>
+
+            <div class="p-col-12 ">
+                <div style="text-align: center;">
+                    <h3>
+                        Evaluación No. ISTY-UACD-2020
+
+                    </h3>
+                    <h2> EVALUACIÓN DOCENTE</h2>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="p-col-12 p-md-6 p-lg-2"> </div>
+
+</div>
+
+<div class="p-fluid p-formgrid p-grid">
+    <div class="p-col-2">
+
+    </div>
+    <div class="p-col-8">
+        <div  style="border: 1px solid;" class="p-d-flex">
+            <h4>NOMBRE : {{nameTeacher}}  </h4>
+           
+        </div>
+        <br>
+        <div style="border: 1px solid;" class="p-d-flex">
+            <h4>PERIODO ACADÉMICO : {{periodo}} </h4>
+        </div>
+        <br>
+        <div style="border: 1px solid;" class="p-d-flex">
+            <h4>FECHA : {{date}} </h4>
+        </div>
+        <br>
+
+        <div style="border: 1px solid; " class="p-d-flex">
+            <p class="p-text-justify p-m-4">
+                Con el objetivo de mejorar la calidad de los procesos de enseñanza aprendizaje, el perfeccionamiento docente y el fortalecimiento del proyecto de carrera, se ha motivado a estudiantes, docentes y autoridades a participar en el proceso de evaluación, de forma activa y responsable. Se ha estandarizado procedimientos que permitan desarrollar de manera organizada el proceso de evaluación, mismo que contempla Auto – Evaluación, Coevaluación y Heteroevaluación.
+
+                Una vez culminado dicho proceso se presentan las siguientes calificaciones:
+
+            </p>
+           
+        </div>
+        <h3 class="p-text-center p-m-4">RESUMEN DE CALIFICACIONES</h3>
+    </div>
+    <div class="p-col-2">
+
+    </div>
+</div>
+
+<div class="p-fluid p-formgrid p-grid" >
+    <div class="p-col-2">
+
+    </div>
+    <div class="p-col-8">
+        <hr>
+        <h3 class="p-text-center p-m-4">DOCENCIA </h3>
+        <div class="p-fluid p-formgrid p-grid">
+            
+                <div class="p-col-12 p-md-6 p-lg-4">
+                    <div style="border: 1px solid; text-align: center; background: #E67E22;" class="p-d-flex">
+                        <h3 style="text-align: center; position: relative; left: 25%; " class="p-text-center p-m-4">CRITERIO</h3>
+                       
+                        </div>
+                        <br>
+                        <div style="border: 1px solid; text-align: center;" class="p-d-flex">
+                            <h3 style="text-align: center; position: relative; left: 15%;">Auto-Evaluación</h3>
+                        </div>
+                        <br>
+                        <div  style="border: 1px solid; text-align: center;" class="p-d-flex">
+                            <h3 style="text-align: center; position: relative; left: 15%;">Evaluación Estudiantiln</h3>
+                    </div>
+                    <br>
+                        <div style="border: 1px solid; text-align: center;" class="p-d-flex">
+                            <h3 style="text-align: center; position: relative; left: 15%;">Evaluación por pares</h3>
+                        </div>
+                        <br>
+                        <div  style="border: 1px solid; text-align: center;" class="p-d-flex">
+                            <h3>Evaluación de Coordinación</h3>
+                    </div>
+                    
+                    
+                </div>
+                <div class="p-col-12 p-md-6 p-lg-4">
+                    <div style="border: 1px solid; background: #E67E22;" class="p-d-flex">
+                        <h3  style="text-align: center; position: relative; left: 30%;" class="p-text-center p-m-4">NOTA</h3>
+                       
+                    </div>
+                    <br>
+                        <div style="border: 1px solid; text-align: center;" class="p-d-flex">
+                            <h3 style="text-align: center; position: relative; left: 35%;"> {{autoEvaD | number}}  / 100</h3>
+                        </div>
+                        <br>
+                        <div style="border: 1px solid; text-align: center;" class="p-d-flex">
+                            <h3 style="text-align: center; position: relative; left: 35%;"> {{evaEstD | number}} / 100</h3>
+                        </div>
+                        <br>
+                        <div  style="border: 1px solid; text-align: center;" class="p-d-flex">
+                            <h3 style="text-align: center; position: relative; left: 35%;"> {{evaParesD | number}} / 100</h3>
+                    </div>
+                    <br>
+                    <div  style="border: 1px solid; text-align: center;" class="p-d-flex">
+                        <h3 style="text-align: center; position: relative; left: 35%;"> {{evaCorD | number}} / 100</h3>
+                </div>
+                </div>
+                <div class="p-col-12 p-md-6 p-lg-4">
+                    <div style="border: 1px solid; background: #E67E22;" class="p-d-flex">
+                        <h3 style="text-align: center; position: relative; left: 15%; "  class="p-text-center p-m-4">EQUIVALNECIA</h3>
+                    </div>
+                    <br>
+                    <div style="border: 1px solid; text-align: center;" class="p-d-flex">
+                        <h3 style="text-align: center; position: relative; left: 20%;">  {{equiAutoD | number}} </h3>
+                    </div>
+                    <br>
+                    <div style="border: 1px solid; text-align: center;" class="p-d-flex">
+                        <h3 style="text-align: center; position: relative; left: 20%;"> {{equiEstD | number}} </h3>
+                    </div>
+                    <br>
+                    <div  style="border: 1px solid; text-align: center;" class="p-d-flex">
+                        <h3 style="text-align: center; position: relative; left: 20%;"> {{equiParesD | number}} </h3>
+                </div>
+                <br>
+                <div  style="border: 1px solid; text-align: center;" class="p-d-flex">
+                    <h3 style="text-align: center; position: relative; left: 20%;"> {{equiCorD | number}} </h3>
+            </div>
+                </div>
+                <br>                             
+        </div>
+        <br>
+
+        <div class="p-fluid p-formgrid p-grid">
+            <div class="p-col-12 p-md-6 p-lg-8">
+                <div style="border: 1px solid; " class="p-d-flex">
+                    <h3 style="text-align: center; position: relative; left: 30%;"  >TOTAL DOCENCIA </h3>
+                </div>
+            </div>
+          
+            <div class="p-col-12 p-md-6 p-lg-2">
+                <div style="border: 1px solid; " class="p-d-flex">
+                    <h3 style="text-align: center; position: relative; left: 40%;" > {{totalDocencia | number}} </h3>
+                </div>
+            </div>
+            <div class="p-col-12 p-md-6 p-lg-2">
+                <div style="border: 1px solid; " class="p-d-flex">
+                    <h4 style="text-align: center; position: relative; left: 35%;"  > {{equiTotalDoc | number }} </h4>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="p-col-2">
+
+    </div>
+</div>
+
+<div class="p-fluid p-formgrid p-grid" >
+    <div class="p-col-2">
+
+    </div>
+    <div class="p-col-8">
+        <hr>
+        <h3 class="p-text-center p-m-4">INVESTIGACIÓN  </h3>
+        <div class="p-fluid p-formgrid p-grid">
+            
+                <div class="p-col-12 p-md-6 p-lg-4">
+                    <div style="border: 1px solid; text-align: center; background: #E67E22;" class="p-d-flex">
+                        <h3 style="text-align: center; position: relative; left: 25%; " class="p-text-center p-m-4">CRITERIO</h3>
+                       
+                        </div>
+                        <br>
+                        <div style="border: 1px solid; text-align: center;" class="p-d-flex">
+                            <h3 style="text-align: center; position: relative; left: 15%;">Auto-Evaluación</h3>
+                        </div>
+                        <br>
+                        <div style="border: 1px solid; text-align: center;" class="p-d-flex">
+                            <h3 style="text-align: center; position: relative; left: 15%;">Evaluación por pares</h3>
+                        </div>
+                        <br>
+                        <div  style="border: 1px solid; text-align: center;" class="p-d-flex">
+                            <h3>Evaluación de Coordinación</h3>
+                    </div>
+                    
+                </div>
+                <div class="p-col-12 p-md-6 p-lg-4">
+                    <div style="border: 1px solid; background: #E67E22;" class="p-d-flex">
+                        <h3  style="text-align: center; position: relative; left: 30%; " class="p-text-center p-m-4">NOTA</h3>
+                       
+                    </div>
+                    <br>
+                        <div style="border: 1px solid; text-align: center;" class="p-d-flex">
+                            <h3 style="text-align: center; position: relative; left: 45%;"> {{inv_auto_eval | number}} </h3>
+                        </div>
+                        <br>
+                        <div style="border: 1px solid; text-align: center;" class="p-d-flex">
+                            <h3 style="text-align: center; position: relative; left: 45%;"> {{inv_pares | number}} </h3>
+                        </div>
+                        <br>
+                        <div  style="border: 1px solid; text-align: center;" class="p-d-flex">
+                            <h3 style="text-align: center; position: relative; left: 45%;"> {{inv_coodinador | number}} </h3>
+                    </div>
+                </div>
+                <div class="p-col-12 p-md-6 p-lg-4">
+                    <div style="border: 1px solid; background: #E67E22;" class="p-d-flex">
+                        <h3 style="text-align: center; position: relative; left: 15%; "  class="p-text-center p-m-4">EQUIVALNECIA</h3>
+                    </div>
+                    <br>
+                    <div style="border: 1px solid; text-align: center;" class="p-d-flex">
+                        <h3 style="text-align: center; position: relative; left: 20%;"> {{  equiAuto | number}} </h3>
+                    </div>
+                    <br>
+                    <div style="border: 1px solid; text-align: center;" class="p-d-flex">
+                        <h3 style="text-align: center; position: relative; left: 20%;"> {{ equiPares | number}} </h3>
+                    </div>
+                    <br>
+                    <div  style="border: 1px solid; text-align: center;" class="p-d-flex">
+                        <h3 style="text-align: center; position: relative; left: 20%;"> {{ equiCoor | number}} </h3>
+                </div>
+                </div>
+                <br>                             
+        </div>
+        <br>
+
+        <div class="p-fluid p-formgrid p-grid">
+            <div class="p-col-12 p-md-6 p-lg-8">
+                <div style="border: 1px solid; " class="p-d-flex">
+                    <h3 style="text-align: center; position: relative; left: 30%;"  >TOTAL INVESTIGACIÓN </h3>
+                </div>
+            </div>
+          
+            <div class="p-col-12 p-md-6 p-lg-2">
+                <div style="border: 1px solid; " class="p-d-flex">
+                    <h3 style="text-align: center; position: relative; left: 50%;" > {{sumaEqui}} </h3>
+                </div>
+            </div>
+            <div class="p-col-12 p-md-6 p-lg-2">
+                <div style="border: 1px solid; " class="p-d-flex">
+                    <h3 style="text-align: center; position: relative; left: 38%;"  > {{investigacion}} </h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="p-col-2">
+
+    </div>
+</div>
+
+
+
+<div class="p-fluid p-formgrid p-grid" >
+    <div class="p-col-2">
+
+    </div>
+    <div class="p-col-8">
+        <hr>
+        <h3 class="p-text-center p-m-4">GESTIÓN Y DIRECCIÓN ACADÉMICA   </h3>
+        <div class="p-fluid p-formgrid p-grid">
+            
+                <div class="p-col-12 p-md-6 p-lg-4">
+                    <div style="border: 1px solid; text-align: center; background: #E67E22;" class="p-d-flex">
+                        <h3 style="text-align: center; position: relative; left: 25%; " class="p-text-center p-m-4">CRITERIO</h3>
+                       
+                        </div>
+                        <br>
+                        <div style="border: 1px solid; text-align: center;" class="p-d-flex">
+                            <h3 style="text-align: center; position: relative; left: 15%;">Auto-Evaluación</h3>
+                        </div>
+                        <br>
+                        <div  style="border: 1px solid; text-align: center;" class="p-d-flex">
+                            <h3 style="text-align: center; position: relative; left: 15%;" >Heteroevaluación</h3>
+                    </div>
+                    <br>
+                        <div style="border: 1px solid; text-align: center;" class="p-d-flex">
+                            <h3 style="text-align: center; position: relative; left: 15%;">Evaluación por pares</h3>
+                        </div>
+                        <br>
+                        <div  style="border: 1px solid; text-align: center;" class="p-d-flex">
+                            <h3>Evaluación de Coordinación</h3>
+                    </div>
+                    
+                    
+                </div>
+                <div class="p-col-12 p-md-6 p-lg-4">
+                    <div style="border: 1px solid; background: #E67E22;" class="p-d-flex">
+                        <h3  style="text-align: center; position: relative; left: 30%; " class="p-text-center p-m-4">NOTA</h3>
+                       
+                    </div>
+                    <br>
+                        <div style="border: 1px solid; text-align: center;" class="p-d-flex">
+                            <h3 style="text-align: center; position: relative; left: 20%;"> {{autoEvaGD | number}} / 100</h3>
+                        </div>
+                        <br>
+                        <div style="border: 1px solid; text-align: center;" class="p-d-flex">
+                            <h3 style="text-align: center; position: relative; left: 20%;"> {{evaHet | number}} / 100</h3>
+                        </div>
+                        <br>
+                        <div  style="border: 1px solid; text-align: center;" class="p-d-flex">
+                            <h3 style="text-align: center; position: relative; left: 20%;"> {{evaParesGD | number}} / 100</h3>
+                    </div>
+                    <br>
+                    <div  style="border: 1px solid; text-align: center;" class="p-d-flex">
+                        <h3 style="text-align: center; position: relative; left: 20%;"> {{evaCorGD | number}} / 100</h3>
+                </div>
+                </div>
+                <div class="p-col-12 p-md-6 p-lg-4">
+                    <div style="border: 1px solid; background: #E67E22; " class="p-d-flex">
+                        <h3 style="text-align: center; position: relative; left: 15%;"  class="p-text-center p-m-4">EQUIVALNECIA</h3>
+                    </div>
+                    <br>
+                    <div style="border: 1px solid; text-align: center;" class="p-d-flex">
+                        <h3 style="text-align: center; position: relative; left: 20%;"> {{equiautoEvaGD | number}} </h3>
+                    </div>
+                    <br>
+                    <div style="border: 1px solid; text-align: center;" class="p-d-flex">
+                        <h3 style="text-align: center; position: relative; left: 20%;"> {{equievaHet | number}} </h3>
+                    </div>
+                    <br>
+                    <div  style="border: 1px solid; text-align: center;" class="p-d-flex">
+                        <h3 style="text-align: center; position: relative; left: 20%;"> {{equievaParesGD | number}} </h3>
+                </div>
+                <br>
+                <div  style="border: 1px solid; text-align: center;" class="p-d-flex">
+                    <h3 style="text-align: center; position: relative; left: 20%;"> {{equievaCorGD | number}} </h3>
+            </div>
+                </div>
+                <br>                             
+        </div>
+        <br>
+
+        <div class="p-fluid p-formgrid p-grid">
+            <div class="p-col-12 p-md-6 p-lg-8">
+                <div style="border: 1px solid; " class="p-d-flex">
+                    <h3 style="text-align: center; position: relative; left: 10%;"  >TOTAL GESTIÓN Y DIRECCIÓN ACADÉMICA </h3>
+                </div>
+            </div>
+          
+            <div class="p-col-12 p-md-6 p-lg-2">
+                <div style="border: 1px solid; " class="p-d-flex">
+                    <h3 style="text-align: center; position: relative; left: 40%;" > {{totalGesDoc | number}} </h3>
+                </div>
+            </div>
+            <div class="p-col-12 p-md-6 p-lg-2">
+                <div style="border: 1px solid; " class="p-d-flex">
+                    <h3 style="text-align: center; position: relative; left: 35%;"  > {{equiTotaGeslDoc | number}} </h3>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="p-fluid p-formgrid p-grid">
+            <div class="p-col-12 p-md-6 p-lg-10">
+                <div style="border: 1px solid; " class="p-d-flex">
+                    <h3 style="text-align: center; position: relative; left: 30%;"  >CRÉDITOS EXTRA </h3>
+                </div>
+              
+            </div>
+            <div class="p-col-12 p-md-6 p-lg-2">
+                <div style="border: 1px solid; " class="p-d-flex">
+                    <h3 *ngIf="calificacionFinal <= 100 && 100  " style="text-align: center; position: relative; left: 35%;">   {{ extraCredits | number }}  </h3>
+                </div>
+            </div>
+         
+        </div>
+        <br>
+        <div class="p-fluid p-formgrid p-grid">
+            <div class="p-col-12 p-md-6 p-lg-10">
+                <div style="border: 1px solid; " class="p-d-flex">
+                    <h3 style="text-align: center; position: relative; left: 30%;"  >CALIFICACIÓN FINAL</h3>
+                </div>
+               
+            </div>
+            <div class="p-col-12 p-md-6 p-lg-2">
+                <div style="border: 1px solid; " class="p-d-flex">
+                    <h3 *ngIf="calificacionFinal <= 100 && 100  " style="text-align: center; position: relative; left: 35%;">   {{ calificacionFinal  | number}}  </h3>
+                </div>
+            </div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+       
+    </div>
+
+   
+    <div class="p-fluid p-formgrid p-grid">
+        <!--  HEADER -->
+        <div class="p-col-12 p-md-6 p-lg-2">
+        </div>
+        <div class="p-col-12 p-md-6 p-lg-8">
+            <div class="p-fluid p-formgrid p-grid">
+                <div class="p-col-12" style="align-items: center;">
+                    <img src="../../../../assets/layout/images/spinner.png" style="width: 150px; height: 150px; position: relative; margin-top: 10px; left: 50%;" alt="">
+                    <br>
+                <br>
+                </div>
+                <div class="p-col-12 ">
+                    <div style="align-items: center;">
+                        <h3 style="position: relative; left: 10%;">
+                            INSTITUTO SUPERIOR TECNOLÓGICO
+                            DE TURISMO Y PATRIMONIO “YAVIRAC”
+    
+                        </h3>
+                        <p style="position: relative; align-items: center;  left: 38%;"> Dirección: García Moreno S435 y Ambato
+                            Quito – Ecuador</p>
+                    </div>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                </div>
+                <div class="p-col-12 ">
+                    <div style="text-align: center;">
+                        <div style="position: relative; left: 8%;" class="p-col-12 ">
+                            <div style="text-align: center;">
+                                <p class="p-text-center p-m-4">------------------------------------------</p>
+                                <h3 class="p-text-center p-m-4">
+                                    FIRMA DEL DOCENTE: 
+                                    
+                                </h3>
+                                <h2 class="p-text-center p-m-4">                                 
+                                    {{nameTeacher}}
+                                </h2>
+                           
+                            </div>
+                            <br>
+                            <br>
+                        </div>
+            
+                        <div style="position: relative; left: 8%;" class="p-col-12 ">
+                            <div style="text-align: center;">
+                                <h4>
+                                   Realizado por :
+            
+                                </h4>
+                                <br>
+                                <br>
+                                <br>
+                                <p class="p-text-center p-m-4">-----------------------------------------</p>
+                            
+                                <h4 class="p-text-center p-m-4"> MGs. Diego Yánez</h4>
+                                <br>
+                                <br>
+        
+                                <p class="p-text-center p-m-4">-----------------------------</p>
+          
+                                <h4 class="p-text-center p-m-4"> Ing. Pablo Maldonado</h4>
+                                <br>
+                                <br>
+                                <p class="p-text-center p-m-4">-----------------------------</p>
+                                
+                                <h4 class="p-text-center p-m-4"> MSC. Santiago Pérez</h4>
+                            </div>
+            
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                </div>
+    
+                
+            </div>
+        </div>
+        <div class="p-col-12 p-md-6 p-lg-2"> </div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+    </div>
+
+
+</div>
+</div>

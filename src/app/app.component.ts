@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {PrimeNGConfig} from 'primeng/api';
 import {environment} from '../environments/environment';
 import {AuthHttpService} from './services/auth/auth-http.service';
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas'
 
 @Component({
     selector: 'app-root',
