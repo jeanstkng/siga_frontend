@@ -1,0 +1,296 @@
+<!-- <div class="card">
+  <h5>Planificación</h5>
+
+  <p-tabView>
+    <p-toolbar styleClass="p-mb-4">
+      <ng-template pTemplate="left"></ng-template>
+      <ng-template pTemplate="right">
+        <button pButton
+        pRipple 
+        label="Add" 
+        icon="pi pi-plus" 
+        class="p-button-raised p-button-success"
+        (click)="openAdd()"></button>
+      </ng-template>
+    </p-toolbar>
+    <p-table
+      #dt
+      [value]="planifications" 
+      [columns]= "cols"
+      [rows]="5"
+      [paginator]="true"
+      
+    >
+      <ng-template pTemplate="header" let-columns>
+        <tr>
+          <th *ngFor="let col of cols">
+            {{col.header}}
+          </th>
+          <th>
+            Opciones
+          </th>
+      </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-planifications let-columns="columns">
+        <tr>
+          <td *ngFor="let col of columns">
+            {{planifications[col.field]}}
+          </td>
+          <td>
+            <button
+              pButton
+              pRipple
+              icon="pi pi-pencil"
+              class="p-button-rounded p-button-success p-mr-2"
+            >
+            </button>
+            <button
+              pButton
+              pRipple
+              icon="pi pi-trash"
+              class="p-button-rounded p-button-warning"
+            >
+            </button> 
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </p-tabView>
+</div>
+-->
+<p-dialog
+  [(visible)]="showDialog"
+  [style]="{width: '500px'}"
+  header="Nueva Planificación"
+  [modal]="true"
+  styleClass="p-fluid"
+>
+  <ng-template pTemplate="content">
+    <div class="p-field">
+        <label for="date_start">Fecha de inicio</label>
+        <p-calendar 
+          id="planification.date_start"
+          [showIcon]="true"
+          [readonlyInput]="true"
+
+        >
+        </p-calendar>
+    </div>
+    <div class="p-field">
+      <label for="date_end">Fecha de finalizacion</label>
+      <p-calendar 
+        id="planification.date_end"
+        [showIcon]="true"
+        [readonlyInput]="true"
+      >
+      </p-calendar>
+    </div>
+    <div class="p-field">
+      <label for="course">Curso</label>
+      <p-autoComplete
+        id="planification.course_id"
+        [suggestions]="filteredCourses"
+        (completeMethod)="searchCourse($event)"
+        [dropdown]="true"
+        field="name" 
+      >
+      </p-autoComplete>
+    </div>
+    <div class="p-field">
+      <label for="needs">Necesidades</label>
+      <textarea
+        id="needs"
+        rows="1"
+        pInputTextarea
+        [(ngModel)]="planification.needs"
+        required
+        autoResize="autoResize"
+      >
+      </textarea>
+    </div>
+    <div class="p-field">
+      <label for="teacher_responsable_id">Responsable</label>
+      <p-autoComplete
+        id="planification.teacher_responsable_id"
+        [suggestions]="filteredUsers"
+        (completeMethod)="searchTeacher($event)"
+        [dropdown]="true"
+        field="full_name" 
+      >
+      </p-autoComplete>
+    </div>
+    <div class="p-field">
+      <label for="status">Estado</label>
+      <p-autoComplete
+        id="planification.status_id"
+        [suggestions]="filteredStatus"
+        (completeMethod)="searchStatus($event)"
+        [dropdown]="true"
+        field="name" 
+      >
+        <ng-template let-item pTemplate="item">
+          <div class="status-item" style="width:32px;display:inline-block;margin:5px 0 2px 5px">
+            <div>{{item.name}}</div>
+          </div>
+        </ng-template>
+      </p-autoComplete>
+    </div>
+</ng-template>
+
+<ng-template pTemplate="footer">
+    <button 
+      pButton
+      pRipple
+      label="Cancel"
+      icon="pi pi-times"
+      class="p-button-text"
+      (click)="close()"
+    >
+    </button>
+    <button 
+      pButton
+      pRipple
+      label="Save"
+      icon="pi pi-check"
+      class="p-button-text"
+      (click)="savePlanification()"
+    >
+    </button>
+</ng-template>
+</p-dialog>
+
+<div class="card">
+  <h5>Advanced</h5>
+  <div class="p-fluid p-formgrid p-grid">
+    <div class="p-field p-col-12 p-md-6">
+    <p-tabView>
+      <p-toolbar styleClass="p-mb-4">
+        <ng-template pTemplate="left"></ng-template>
+        <ng-template pTemplate="right">
+          <button pButton
+          pRipple 
+          label="Add" 
+          icon="pi pi-plus" 
+          class="p-button-raised p-button-success"
+          (click)="openAdd()"></button>
+        </ng-template>
+      </p-toolbar>
+      <p-table
+        #dt
+        [value]="planifications" 
+        [columns]= "cols"
+        [rows]="5"
+        [paginator]="true"
+        
+      >
+        <ng-template pTemplate="header" let-columns>
+          <tr>
+            <th *ngFor="let col of cols">
+              {{col.header}}
+            </th>
+            <th>
+              Opciones
+            </th>
+        </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-planifications let-columns="columns">
+          <tr>
+            <td *ngFor="let col of columns">
+              {{planifications[col.field]}}
+            </td>
+            <td>
+              <button
+                pButton
+                pRipple
+                icon="pi pi-pencil"
+                class="p-button-rounded p-button-success p-mr-2"
+              >
+              </button>
+              <button
+                pButton
+                pRipple
+                icon="pi pi-trash"
+                class="p-button-rounded p-button-warning"
+              >
+              </button> 
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </p-tabView>
+    </div>
+    <div class="p-field p-col-12 p-md-6">
+      <p-tabView>
+        <p-toolbar styleClass="p-mb-4">
+          <ng-template pTemplate="left"></ng-template>
+          <ng-template pTemplate="right">
+            <button pButton
+            pRipple 
+            label="Add" 
+            icon="pi pi-plus" 
+            class="p-button-raised p-button-success"
+            (click)="openAdd()"></button>
+          </ng-template>
+        </p-toolbar>
+        <p-table
+          #dt
+          [value]="planifications" 
+          [columns]= "cols"
+          [rows]="5"
+          [paginator]="true"
+          
+        >
+          <ng-template pTemplate="header" let-columns>
+            <tr>
+              <th *ngFor="let col of cols">
+                {{col.header}}
+              </th>
+              <th>
+                Opciones
+              </th>
+          </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-planifications let-columns="columns">
+            <tr>
+              <td *ngFor="let col of columns">
+                {{planifications[col.field]}}
+              </td>
+              <td>
+                <button
+                  pButton
+                  pRipple
+                  icon="pi pi-pencil"
+                  class="p-button-rounded p-button-success p-mr-2"
+                >
+                </button>
+                <button
+                  pButton
+                  pRipple
+                  icon="pi pi-trash"
+                  class="p-button-rounded p-button-warning"
+                >
+                </button> 
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </p-tabView>
+    </div>
+    <div class="p-field p-col-12">
+      <label for="address">Address</label>
+      <textarea id="address" type="text" rows="4" pInputTextarea></textarea>
+    </div>
+    <div class="p-field p-col-12 p-md-6">
+      <label for="city">City</label>
+      <input id="city" type="text" pInputText />
+    </div>
+    <div class="p-field p-col-12 p-md-3">
+      <label for="state">State</label>
+      <input id="zip" type="text" pInputText />
+    </div>
+    <div class="p-field p-col-12 p-md-3">
+      <label for="zip">Zip</label>
+      <input id="zip" type="text" pInputText />
+    </div>
+  </div>
+</div>

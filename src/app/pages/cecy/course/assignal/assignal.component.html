@@ -1,0 +1,40 @@
+
+
+
+<p-dialog header="Asiganación de docente" [(visible)]="display" [modal]="true" [style]="{width: '70vw'}"  [contentStyle]="{minHeight: '200px'}"  [baseZIndex]="10000"
+    [draggable]="false" [resizable]="false">
+    <form [formGroup]='formPlanification'>
+     
+      <p-dropdown [options]="users" formControlName="responsable"  placeholder="Seleccione un tutor" [virtualScroll]="true" [style]="{'width':'100%'}" optionLabel="full_name"></p-dropdown>
+
+    
+  </form>
+        <ng-template pTemplate="footer">
+        <p-button icon="pi pi-check" (click)="CerrarModal()" label="Ok" styleClass="p-button-text"></p-button>
+        </ng-template>
+</p-dialog>
+
+<p-paginator [rows]="paginator.per_page" [totalRecords]="paginator.total" (onPageChange)="pageChange($event)"></p-paginator>
+<p-table  [value]="planifications"  [paginator]="false"
+[rowHover]="true" [responsive]="true" dataKey="id" styleClass="p-datatable-customers"
+currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
+<ng-template pTemplate="header">
+    <tr>
+      <th>Cursos</th>
+      <th>Tutor Asignado</th>
+    </tr>
+    
+</ng-template>
+<ng-template pTemplate="body" let-plani>
+    <tr>
+      <td>{{plani.course.name}}</td>
+      <td>{{plani.user.full_name}}</td>
+
+
+      <td> 
+        <p-button label="Asignar Docente" (click)="showDialog(plani.id)" ></p-button>
+      </td>
+    </tr>
+</ng-template>
+
+</p-table>

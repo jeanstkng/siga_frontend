@@ -1,0 +1,48 @@
+{{formCourseIn.value|json}}
+<div class="p-fluid">
+  <form [formGroup]="formCourseIn" (ngSubmit)="onSubmit($event)">
+    <div class="p-formgrid p-grid">
+      <div class="p-field p-col">
+        <label for="name">Nombre:</label>
+        <input id="name" name="name" pInputText formControlName="name" disabled />
+        <div *ngIf="nameField.errors && nameField.touched">
+          <small *ngIf="nameField.hasError('required')" id="name-help-1" class="p-error">
+            campo requerido
+          </small>
+        </div>
+      </div>
+    </div>
+    <div class="p-formgrid p-grid">
+      <div class="p-field p-col">
+        <label for="status">Estado:</label>
+        
+        
+
+        <p-autoComplete id="identificationType" formControlName="status"
+                  [suggestions]="filteredStatus" (completeMethod)="filterStatus($event)" field="name"
+                  [dropdown]="true">
+                  <ng-template let-item pTemplate="item">
+                    <div class="country-item">
+                      <div>{{item.name}}</div>
+                    </div>
+                  </ng-template>
+                </p-autoComplete>
+        <div *ngIf="statusField.errors && statusField.touched">
+          <small *ngIf="statusField.hasError('required')" id="status-help-1" class="p-error">
+            campo requerido
+          </small>
+        </div>
+      </div>
+    </div>
+    <div class="p-formgrid p-grid">
+      <div class="p-field p-col">
+        <button type="submit" pButton pRipple label="Guardar y Salir" icon="pi pi-save"
+          class="p-button-success p-button-raised"></button>
+      </div>
+      <div *ngIf="!idField.value" class="p-field p-col">
+        <button type="button" pButton pRipple label="Guardar" icon="pi pi-arrow-right" class="p-button-raised"
+          (click)="onSubmit($event,true)"></button>
+      </div>
+    </div>
+  </form>
+</div>
