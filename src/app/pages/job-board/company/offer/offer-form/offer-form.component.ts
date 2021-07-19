@@ -218,6 +218,7 @@ export class OfferFormComponent implements OnInit {
             this.spinnerService.hide();
             this.messageService.error(error);
         });
+        this.offersOut.emit(this.offersIn);
     }
 
     // Save in backend

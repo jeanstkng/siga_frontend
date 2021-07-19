@@ -30,7 +30,7 @@ export class OfferComponent implements OnInit {
         //     {label: 'Empresa', routerLink: ['/job-board/company']},
         //     {label: 'Oferta'}
         // ]);
-        this.paginator = {current_page: 1, per_page: 2};
+        this.paginator = {current_page: 1, per_page: 10};
         this.offers = [];
     }
 
