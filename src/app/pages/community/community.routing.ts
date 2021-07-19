@@ -11,31 +11,24 @@ import { CommunityComponent } from './community.component';
 export const CommunityRouting: Routes = [
     {
         path: '',
+        //component: CommunityComponent,
         children: [
 
-            {  
-                path: '',
-                component: CommunityComponent,
-                canActivate: [AuthGuard]
-            
-                
-                
-              },
-            
-           /* {
+
+            {
                 path: 'assignment',
                 loadChildren: () => import('./assignment/assignment.module').then(m => m.AssignmentModule),
                 
-              ///  canActivate: [AuthGuard] 
+               
 
             },
             {
                 path: 'portfolio',
-                //loadChildren: () => import('./portfolio/portfolio.module').then(m => m.PortfolioModule),
+                loadChildren: () => import('./portfolio/portfolio.module').then(m => m.PortfolioModule),
                 
-                canActivate: [AuthGuard] 
+                //canActivate: [AuthGuard] 
 
-            },*/
+            },
             
         ]
     }

@@ -7,6 +7,7 @@ import { MessageModule } from 'primeng/message';
 import { InputTextModule } from 'primeng/inputtext';
 import { RouterModule } from '@angular/router';
 import { AssignmentRouting } from './assignment.routing';
+import {CalendarModule} from 'primeng/calendar';
 
 
 @NgModule({
@@ -18,6 +19,8 @@ import { AssignmentRouting } from './assignment.routing';
      InputTextModule,
      ButtonModule,
      MessageModule,
+     CalendarModule,
+     
   ],
   declarations: [AssignmentComponent]
 })

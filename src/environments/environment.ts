@@ -3,7 +3,7 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const URL_API = 'http://127.0.0.1:8000/v1/';
-export const URL = 'http://127.0.0.1:8000/';
+export const URL = 'http://127.0.0.1:8000/test/';
 export const WEB = 'http://127.0.0.1:8000/';
 
 export const environment = {

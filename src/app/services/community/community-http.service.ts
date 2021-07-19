@@ -29,7 +29,7 @@ export class CommunityHttpService {
         return this.httpClient.get(url, {params});
     }
 
-    post(url: string, data: any, params = new HttpParams()) {
+    store(url: string, data: any, params = new HttpParams()) {
         url = environment.API_URL_COMMUNITY + url;
         return this.httpClient.post(url, data, {params});
     }
