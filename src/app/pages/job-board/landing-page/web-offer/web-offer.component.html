@@ -16,9 +16,23 @@
     </div>
     <div class="p-col-12 p-sm-12 p-md-6 p-lg-7 p-xl-8">
         <div class="card p-mt-0 p-shadow-2">
-            <p-paginator [rows]="paginator.per_page"
-                         [totalRecords]="paginator.total"
-                         (onPageChange)="pageChange($event)"></p-paginator>
+            <div class="p-grid p-ai-center vertical-container">
+                <label *ngIf="displayXButton" class="p-col-12 p-sm-12 p-md-12 p-xl-12">
+                    Puedes filtrar por información adicional, ciudad, posición y categoría.</label>
+                <div class="p-col-12 p-sm-12 p-md-12 p-xl-4">
+                    <span class="p-input-icon-right">
+                        <input #search type="text" pInputText placeholder="Buscar"
+                               [(ngModel)]="generalSearch"
+                               (keyup)="clearInputSearch(true)" (keyup.enter)="generalFilter(search.value)"/>
+                        <i class="pi pi-times" *ngIf="displayXButton" (click)="clearInputSearch(false)"></i>
+                    </span>
+                </div>
+                <div class="p-col-12 p-sm-12 p-md-12 p-xl-8">
+                    <p-paginator [rows]="paginator.per_page"
+                                 [totalRecords]="paginator.total"
+                                 (onPageChange)="pageChange($event)"></p-paginator>
+                </div>
+            </div>
             <app-offer-data-view [offers]="offers"
                                  (argsFilters)="generalFilter($event)"></app-offer-data-view>
         </div>

@@ -42,6 +42,8 @@ export class WebOfferComponent implements OnInit {
     specificCategories: any[];
     filteredWideCategory: any[];
     filteredSpecificCategory: any[];
+    displayXButton = false;
+    generalSearch: string;
 
     constructor(private spinnerService: NgxSpinnerService,
                 private messageService: MessageService,
@@ -311,9 +313,16 @@ export class WebOfferComponent implements OnInit {
         this.filteredSpecificCategory = filtered;
     }
 
-    // getSpecificField(parent) {
-    //     console.log(parent.value.id);
-    // }
+    clearInputSearch(value) {
+        if (value === false) {
+            this.generalSearch = null;
+            this.displayXButton = value;
+            this.cleanSelectedCategories();
+        }
+        if (value === true){
+            this.displayXButton = value;
+        }
+    }
 
     get wideField() {
         return this.formMoreFilters.get('wideField');
