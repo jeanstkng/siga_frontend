@@ -81,17 +81,16 @@
 </div>
 
 <p-dialog [(visible)]="dialogViewPermissions"
-      [style]="{width: '60%'}"
-      header="{{roleName}}"
-      [modal]="true"
-      styleClass="p-fluid"
-      (onHide)="dialogViewRoles=false"
-      position="center">
-<app-permission
-[permissionsIn]="permissionsIn"
-[permissionsRole]="permissionsRole"
-[roleName]="roleName"
-[roleId]="roleId"
-(displayOut)="dialogViewPermissions=$event">
-</app-permission>
+        [style]="{width: '60%'}"
+        hader="{{roleName}}"
+        [modal]="true"
+        styleClass="p-fluid"
+        (onHide)="dialogViewRoles=false"
+        position="center">
+    <app-permission [permissionsIn]="permissionsIn"
+            [permissionsRole]="permissionsRole"
+            [roleName]="roleName"
+            [roleId]="roleId"
+            (displayOut)="dialogViewPermissions=$event">
+    </app-permission>
 </p-dialog>

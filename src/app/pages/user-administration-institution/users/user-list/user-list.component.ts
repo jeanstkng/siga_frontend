@@ -72,7 +72,7 @@ export class UserListComponent implements OnInit {
   searchUsers(event, search) {
     if (event.type === 'click' || event.keyCode === 13 || search.length === 0) {
       const params = search.length > 0 ? new HttpParams().append('search', search)
-        .append('institution', this.institutionIn['id']) : null;
+        .append('institution_view', this.institutionIn['id']) : null;
       this.spinnerService.show();
       this.userAdministrationService.get('user-admins-institution', params).subscribe(response => {
         this.usersIn = response['data'],
@@ -142,7 +142,7 @@ export class UserListComponent implements OnInit {
 
   getRolesUser() {
     let params = new HttpParams()
-      .append('institution', this.institutionIn['id'])
+      .append('institution_view', this.institutionIn['id'])
       .append('id', this.selectedUser.id.toString());
     this.userName = this.selectedUser.partial_name;
     this.userId = this.selectedUser.id.toString();

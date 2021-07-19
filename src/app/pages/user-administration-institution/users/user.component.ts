@@ -45,7 +45,7 @@ export class UserComponent implements OnInit {
 
         this.breadcrumbService.setItems([
             { label: 'Dashboard', routerLink: ['/dashboard'] },
-            { label: 'user administration' }
+            { label: 'user administration institution' }
         ]);
         this.paginatorUser = { current_page: 1, per_page: 5 };
         this.paginatorRole = { current_page: 1, per_page: 5 };
@@ -85,7 +85,7 @@ export class UserComponent implements OnInit {
 
     getUsers(paginator: Paginator) {
         const params = new HttpParams()
-            .append('institution', this.institutionIn['id'])
+            .append('institution_view', this.institutionIn['id'])
             .append('page', paginator.current_page.toString())
             .append('per_page', paginator.per_page.toString());
 
@@ -103,7 +103,7 @@ export class UserComponent implements OnInit {
 
     getRolesP(paginator: Paginator) {
         const params = new HttpParams()
-            .append('institution', this.institutionIn['id'])
+            .append('institution_view', this.institutionIn['id'])
             .append('page', paginator.current_page.toString())
             .append('per_page', paginator.per_page.toString());
 
@@ -120,7 +120,7 @@ export class UserComponent implements OnInit {
     }
 
     getRoles() {
-        const params = new HttpParams().append('institution', this.institutionIn['id']);
+        const params = new HttpParams().append('institution_view', this.institutionIn['id']);
         this.userAdministrationService.get('user-admin-institution/roles', params).subscribe(
             response => {
                 this.roles = response['data'];
