@@ -1,0 +1,286 @@
+<p-toast></p-toast>
+<p-steps [model]="items" [(activeIndex)]="activeIndexitems" [readonly]="false">
+</p-steps>
+<form [formGroup]="form" novalidate >
+    <div class="p-col-12 p-lg-12" *ngIf="activeIndexitems==0">
+        <div class="p-col-12 p-lg-12">
+            <div class="p-grid ui-fluid">
+                <div 
+                *ngIf="display_ruc"
+                class="p-col-12 p-md-4">
+                    <label for="provincia">Ruc</label>
+                </div>
+                <div 
+                *ngIf="display_ruc"
+                class="p-col-12 p-md-4">
+                    <label for="nombreInstitucion">Nombre completo organización/institución:</label>
+                </div> 
+                <div class="p-col-12 p-md-4"
+                *ngIf="display_ruc"
+                >
+                    <label for="canton">Localización:</label>
+                </div>
+                <div class="p-col-2 p-sm-4">
+                    <div class="p-inputgroup">
+                        <input formControlName="ruc" type="text" pInputText
+                        placeholder="Ruc">
+                        <button type="submit" 
+                        pButton pRipple 
+                        icon="pi pi-search" 
+                        styleClass="p-button-warn"
+                        (click)="verificRuc()"
+                        ></button>
+                    </div>    
+                </div>
+                <div class="p-col-2 p-sm-4"
+                *ngIf="display_ruc"
+                >
+                    <input formControlName="nameInstitute" type="text" pInputText
+                        placeholder="Nombre completo organización/institución">
+                </div>
+                <div 
+                *ngIf="display_ruc"
+                class="p-col-2 p-sm-4">
+                    <p-cascadeSelect formControlName="location" 
+                    [options]="countries" 
+                     optionLabel="name" 
+                     optionGroupLabel="name" 
+                    [optionGroupChildren]="['children','children']" 
+                    [style]="{'minWidth': '14rem'}">      
+                    </p-cascadeSelect>
+                </div>
+                <div 
+                *ngIf="display_ruc"
+                class="p-col-12 p-md-4">
+                    <label for="parroquia">Parroquia:</label>
+                </div>
+                <div 
+                *ngIf="display_ruc"
+                class="p-col-12 p-md-4">
+                    <label for="ubicacion">Lugar de ubicación:</label>
+                </div>
+                <div 
+                *ngIf="display_ruc"
+                class="p-col-12 p-md-4">
+                    <label for="beneficiariosDirectos">Beneficiarios directos:</label>
+                </div>
+                <div 
+                *ngIf="display_ruc"
+                class="p-col-2 p-sm-4">
+                   <input formControlName="parroquia" 
+                    type="text" 
+                    pInputText placeholder="Parroquia">
+                </div>
+                <div 
+                *ngIf="display_ruc"
+                class="p-col-2 p-sm-4">
+                    <input formControlName="address" 
+                    type="text" 
+                    pInputText placeholder="Lugar de ubicación">
+                </div>
+                <div 
+                *ngIf="display_ruc"
+                class="p-col-2 p-sm-4">
+                    <input formControlName="direct_beneficiaries" 
+                    type="text" 
+                    pInputText
+                    placeholder="Ej: nombre de la entidad beneficiaria">
+                </div>
+                <!-- <div class="p-col-12 p-md-4">
+                    <label for="beneficiariosIndirectos">Beneficiarios indirectos:</label>
+                </div> -->
+                
+                <label 
+                *ngIf="display_ruc"
+                for="beneficiariosIndirectos">Beneficiarios indirectos:</label> 
+                <br>
+                <div *ngIf="display_ruc"
+                class="p-col-12 ">
+                    <input 
+                        formControlName="indirect_beneficiaries" 
+                        type="text" 
+                        pInputText placeholder=""
+                    >
+                </div>
+            </div>
+        </div>
+        <button  
+            *ngIf="!botton_display"  
+            pButton 
+            pRipple 
+            [disabled]="form.invalid"
+            type="submit" 
+            label="Guardar" 
+            class=" p-button-outlined"
+            (click)="create()"
+        >
+    </button>
+    <button 
+            *ngIf="botton_display"
+            pButton 
+            pRipple 
+            [disabled]="form.invalid"
+            type="submit" 
+            label="Actualizar" 
+            class=" p-button-outlined p-button-success"
+            (click)="update()"
+        >
+    </button>
+        
+    </div>
+    <div class="p-col-12 p-lg-12" *ngIf="activeIndexitems==1" >
+        <div class="p-col-12 p-lg-12">
+                
+                <div class="p-lg-6"
+                >                  
+                <button 
+                    pButton type="text" 
+                    label="Comenzar" 
+                    icon="pi pi-question-circle"
+                    (click)="display_holder=true">
+                </button>
+                </div>
+            </div>
+        </div>
+    <!-- *ngIf="form.value.id_project=='' && this.url.length == 2" -->
+    
+    
+</form>
+<p-dialog header="Lista de los participantes lado institucion beneficaria" 
+[(visible)]="display_holder" modal="true"
+           showEffect="fade" [style]="{width: '100%'}">
+    <ng-template pTemplate="content">
+        <p-table [value]="stakeHolders">
+            <ng-template pTemplate="caption">
+                <div class="p-d-flex p-ai-center p-jc-between">
+                    <button pButton pRipple 
+                        type="button" 
+                        icon="pi pi-plus" 
+                        class="p-button-rounded p-button-help"
+                        (click)="updateHolder('create')"
+                    ></button>
+                </div>
+            </ng-template>
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>Nombre y Apellido </th>
+                    <th>Cedula</th>
+                    <th>Cargo dentro de la Institucion</th>
+                    <th>Funcion del Proyecto</th>
+                    <th>Opciones</th>
+                </tr>
+            </ng-template> 
+            <ng-template pTemplate="body" let-stakeHolders>   
+                <tr >
+                    <td>{{stakeHolders.name}} {{stakeHolders.lastname}}</td>
+                    <td>{{stakeHolders.identification}}</td>
+                    <td>{{stakeHolders.position}}</td>
+                    <td>{{stakeHolders.type.name}}</td>
+                    <td>
+                        <button 
+                            pButton 
+                            pRipple type="submit" 
+                            icon="pi pi-pencil" 
+                            class="p-button-rounded p-button-warning"
+                            (click)="updateHolder(stakeHolders)"
+                        ></button>
+                        <button pButton pRipple 
+                            type="button" 
+                            icon="pi pi-times" 
+                            class="p-button-rounded p-button-danger"
+                            (click)="deleteHolder(stakeHolders)"
+                        ></button>
+                    </td>
+                </tr>
+            </ng-template>                
+          </p-table>
+    </ng-template >  
+    <ng-template pTemplate="footer">
+        <button type="submit" 
+            pButton 
+            pRipple 
+            label="Terminar" 
+            icon="pi pi-check" 
+        class="p-button-text" 
+        (click)="display_holder=false"></button>
+    </ng-template >  
+    
+</p-dialog>
+<p-dialog header="Participante lado institucion beneficaria" 
+[(visible)]="display_cu" modal="true"
+           showEffect="fade" [style]="{width: '50%'}">
+    <form  [formGroup]="holder">
+        <div class="p-grid ui-fluid">
+            <div class="p-lg-6">
+                <div class="p-col-12">
+                    <label for="nombreCoorInstBen">Nombres participante de la institución
+                        beneficiaria:</label>
+                </div>
+                <div class="p-col-10">
+                    <input formControlName="name" type="text" pInputText
+                        placeholder="Nombres participante de la institución">
+                </div>
+                <div class="p-col-12">
+                    <label for="nombreCoorInstBen">Apellidos participante de institución
+                        beneficiaria:</label>
+                </div>
+                <div class="p-col-10">
+                    <input formControlName="lastname" type="text" pInputText
+                        placeholder="Apellidos participante de institución">
+                </div>
+                <div class="p-col-12">
+                    <label for="nombreCoorInstBen">Cédula del participante  de institución
+                        beneficiaria:</label>
+                </div>
+                <div class="p-col-10">
+                    <input formControlName="identification" type="text" pInputText
+                        placeholder="Cédula del participante  de institución">
+                </div>
+                <div class="p-col-12">
+                    
+                </div>
+                <div class="p-col-10">
+                    <input formControlName="position" type="text" pInputText
+                        placeholder="Cargo o funcion de la institución beneficiaria">
+                </div>
+                <div class="p-col-12">
+                    <label for="funcionCoorComu">Función que cumple en el proyecto de vinculación con la
+                        comunidad:</label>
+                </div>
+                <div class="p-col-10">
+                    <p-dropdown 
+                    [options]="funtion" 
+                    [(ngModel)]="funtionSelect"
+                    formControlName="type"
+                    placeholder="Selecione la nueva funcion" 
+                    optionLabel="name" [showClear]="true">
+
+                    </p-dropdown>
+                </div>
+                <div class="p-col-12 p-md-3">
+                    <button 
+                        pButton 
+                        *ngIf="!display_b"
+                        type="submit" 
+                        [disabled]="holder.invalid"
+                        (click)="createHolder()"
+                        label="Crear"
+                    >
+                    
+                    </button>
+                    <button 
+                    pButton 
+                    pRipple 
+                    *ngIf="display_b"
+                    type="submit" 
+                    [disabled]="holder.invalid"
+                    label="Actualizar" 
+                    class=" p-button-outlined p-button-success"
+                    (click)="updateHolders()"
+                    ></button>
+                </div>
+
+            </div>
+        </div>
+    </form>
+</p-dialog>

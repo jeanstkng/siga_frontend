@@ -1,0 +1,265 @@
+<p-toast></p-toast>
+<div class="p-grid ui-fluid">
+    <p-accordion>
+        <p-accordionTab header="Docentes">
+            <p-table [value]="participating_teacher">
+                <ng-template pTemplate="caption">
+                    <div class="p-d-flex p-ai-center p-jc-between">
+                        <button pButton pRipple 
+                            type="button" 
+                            icon="pi pi-plus" 
+                            class="p-button-rounded p-button-help"
+                            (click)="updateParticipants('create',true)"
+                        ></button>
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>Nombre de Profesor</th>
+                        <th>Función</th>
+                        <th>Horas de Trabajo</th>
+                        <th>Opciones</th>
+                    </tr>
+                </ng-template> 
+                <ng-template pTemplate="body" let-participat>   
+                    <tr >
+                        <td>{{participat.user.first_name}} {{participat.user.first_lastname}}</td>
+                        <td>{{participat.function.name}}</td>
+                        <td>{{participat.working_hours}}</td>
+                        <td>
+                            <button 
+                                pButton 
+                                pRipple type="submit" 
+                                icon="pi pi-pencil" 
+                                class="p-button-rounded p-button-warning"
+                                (click)="updateParticipants(participat,true)"
+                            ></button>
+                            <button pButton pRipple 
+                                type="button" 
+                                icon="pi pi-times" 
+                                class="p-button-rounded p-button-danger"
+                                (click)="deleteParticipants(participat)"
+                            ></button>
+                        </td>
+                    </tr>
+                </ng-template>                
+              </p-table>
+        </p-accordionTab>
+        <p-accordionTab header="Estudiantes">
+            <p-table [value]="participating_student">
+                <ng-template pTemplate="caption">
+                    <div class="p-d-flex p-ai-center p-jc-between">
+                        <button pButton pRipple 
+                            type="button" 
+                            icon="pi pi-plus" 
+                            class="p-button-rounded p-button-help"
+                            (click)="updateParticipants('create',false)"
+                        ></button>
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>Nombre de Estudiantes</th>
+                        <th>Función del estudiante en la Empresa</th>
+                        <th>Horas de Trabajo</th>
+                        <th>Opciones</th>
+                    </tr>
+                </ng-template> 
+                <ng-template pTemplate="body" let-participat>   
+                    <tr >
+                        <td>{{participat.user.first_name}} {{participat.user.first_lastname}} </td>
+                        <td>{{participat.position}}</td>
+                        <td>{{participat.working_hours}}</td>
+                        <td>
+                            <button 
+                                pButton 
+                                pRipple type="submit" 
+                                icon="pi pi-pencil" 
+                                class="p-button-rounded p-button-warning"
+                                (click)="updateParticipants(participat,false)"
+                            ></button>
+                            <button pButton pRipple 
+                                type="button" 
+                                icon="pi pi-times" 
+                                class="p-button-rounded p-button-danger"
+                                (click)="deleteParticipants(participat)"
+                            ></button>
+                        </td>
+                    </tr>
+                </ng-template>                
+              </p-table>
+        </p-accordionTab>
+        <p-accordionTab header="Autoridades" *ngIf="display_rol">
+            <p-table [value]="authority">
+                <ng-template pTemplate="caption">
+                    <div class="p-d-flex p-ai-center p-jc-between">
+                        <button pButton pRipple 
+                            type="button" 
+                            icon="pi pi-plus" 
+                            class="p-button-rounded p-button-help"
+                            (click)="updateAuthorities('create')"
+                        ></button>
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>Nombre de autoridad</th>
+                        <th>Cargo que desempeña</th>
+                        <th>Opciones</th>
+                    </tr>
+                </ng-template> 
+                <ng-template pTemplate="body" let-participat>   
+                    <tr >
+                        <td>{{participat.user.first_name}} {{participat.user.first_lastname}} </td>
+                        <td>{{participat.type.name}}</td>
+                        <td>
+                            <button 
+                                pButton 
+                                pRipple type="submit" 
+                                icon="pi pi-pencil" 
+                                class="p-button-rounded p-button-warning"
+                                (click)="updateAuthorities(participat)"
+                            ></button>
+                            <button pButton pRipple 
+                                type="button" 
+                                icon="pi pi-times" 
+                                class="p-button-rounded p-button-danger"
+                                (click)="delete(participat)"
+                            ></button>
+                        </td>
+                    </tr>
+                </ng-template>                
+              </p-table>
+        </p-accordionTab>
+    </p-accordion>
+</div>
+<p-dialog header="Participante lado institucion beneficaria" 
+[(visible)]="display" modal="true"
+           showEffect="fade" [style]="{width: '50%'}">
+    <form  [formGroup]="participant">
+        <label for="Profesor" *ngIf="display_di">Email del profesor</label>
+        <label for="Estudiante" *ngIf="!display_di">Email del estudiante</label>
+        <div>
+        <p-autoComplete 
+            formControlName="user" 
+            [suggestions]="userlist"
+            field="email"
+            (completeMethod)="search($event)"
+            size="30"
+        >
+        </p-autoComplete>
+        </div>
+        <br>
+        <div>
+        <label for="Tipo de participacion">Tipo de participacion: </label>
+        </div>
+        <div *ngIf="display_di">  
+            <p-dropdown 
+            formControlName="function"
+            [options]="type"  
+            optionLabel="name"
+            size="30"    
+            >
+            </p-dropdown>
+        </div>  
+        <div *ngIf="!display_di">
+            <textarea 
+            pInputTextarea
+            formControlName="position"
+            size="30"
+            >
+        </textarea>
+        </div>
+        <div >
+            <label for="Horas de trabajo">Horas de trabajo</label>
+            <br>
+            <input 
+            type="text" 
+            pInputText 
+            formControlName="working_hours"
+            size="30"
+            />
+        </div>
+        <br>
+        
+        <p-footer>
+        <button 
+            pButton 
+            pRipple 
+            *ngIf="!display_cu"
+            [disabled]="participant.invalid"
+            type="submit" 
+            label="Crear" 
+            class=" p-button-outlined p-button-success"
+            (click)="createParticipant()"
+        >
+        </button>
+        <button 
+            pButton 
+            pRipple 
+            *ngIf="display_cu"
+            type="submit" 
+            label="Actualizar" 
+            class=" p-button-outlined p-button-success"
+            (click)="updateParticipant()"
+        >
+        </button>
+        </p-footer>
+    </form>
+</p-dialog>
+
+
+<p-dialog header="Autoridades de la Institucion" 
+[(visible)]="display_A" modal="true"
+           showEffect="fade" [style]="{width: '50%'}">
+   <form  [formGroup]="authorities">  
+    <div class="p-grid ui-fluid">
+            <div class="p-lg-6"> 
+                <div class="p-lg-12" >
+                    <label for="Tipo de participacion">
+                    Cargo de la Autoridad</label>
+                    <p-dropdown 
+                    formControlName="type"
+                    [options]="type1"  
+                    optionLabel="name"
+                    placeholder="Cargo" 
+                    [showClear]="true"
+                    >
+                    </p-dropdown>
+                </div>
+                <div class="p-col-6" >
+                <label for="Profesor">Ingresa correo institucional</label>
+                <p-autoComplete 
+                    formControlName="user" 
+                    [suggestions]="userlist"
+                    field="email"
+                    (completeMethod)="search($event)">
+                </p-autoComplete>
+                </div>
+                
+            </div>
+        </div>
+        <button 
+            pButton 
+            pRipple 
+            *ngIf="!display_aCu"
+            [disabled]="authorities.invalid"
+            type="submit" 
+            label="Crear" 
+            class=" p-button-outlined p-button-success"
+            (click)="create()"
+        >
+        </button>
+        <button 
+            pButton 
+            pRipple 
+            [disabled]="authorities.invalid"
+            *ngIf="display_aCu"
+            type="submit" 
+            label="Actualizar" 
+            class=" p-button-outlined p-button-success"
+            (click)="update()"
+        >
+        </button>
+   </form>
+</p-dialog> 
