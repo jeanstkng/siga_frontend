@@ -10,15 +10,16 @@ import {AuthGuard} from './shared/guards/auth.guard';
 
 @NgModule({
     imports: [
+
         RouterModule.forRoot([
             {
                 path: '', component: AppMainComponent,
                 children: [
-                    {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
-                    {
-                        path: 'dashboard',
-                        loadChildren: () => import('./pages/dashboard/dashboard.module').then(m => m.DashboardModule),
-                        canActivate: [AuthGuard]
+                    {path: '', redirectTo: '/community', pathMatch: 'full'},
+                   {
+                        path: 'community',
+                        loadChildren: () => import('./pages/community/community.module').then(m => m.CommunityModule),
+                       // canActivate: [AuthGuard]
                     },
                     // {
                     //     path: 'user',
@@ -29,14 +30,19 @@ import {AuthGuard} from './shared/guards/auth.guard';
                         path: 'community',
                         loadChildren: () => import('./pages/community/community.module').then(m => m.CommunityModule),
                         // canActivate: [AuthGuard]
-                    }
+                    },
+                    {
+                        path: 'dashboard',
+                        loadChildren: () => import('./pages/dashboard/dashboard.module').then(m => m.DashboardModule),
+                        canActivate: [AuthGuard]
+                    },
                 ]
             },
-            {
+          /* {
                 path: 'auth',
                 component: AppBlankComponent,
                 loadChildren: () => import('./pages/auth/auth.module').then(m => m.AuthModule)
-            },
+            },*/
             {path: '**', redirectTo: '/auth/not-found'},
         ], {scrollPositionRestoration: 'enabled'})
     ],
