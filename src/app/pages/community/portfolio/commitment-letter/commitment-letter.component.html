@@ -1,0 +1,124 @@
+<div>
+  <h3>Carta Compromiso Vinculación</h3>
+</div>
+
+<div class="p-fluid">
+  <form [formGroup]="formCommitmentLetter" (ngSubmit)="onSubmit()">
+    <!--Campos editables de fk user -->
+    <div formGroupName="user">
+      <div class="p-field p-xl-6 p-lg-6 p-md-6 p-sm-12">
+        <label for="identification">
+          <i class="p-error">*</i>Identificación:
+          <i *ngIf="identification.valid" class="pi pi-check-circle icon-valid"></i>
+          <i *ngIf="identification.invalid && (identification.touched || identification.dirty)"
+            class="pi pi-times-circle icon-invalid"></i>
+        </label>
+        <input id="identification" formControlName="identification" pInputText>
+        <div *ngIf="identification.errors && (identification.touched || identification.dirty)">
+          <small *ngIf="identification.errors?.required" id="identification-help-1" class="p-error">
+            {{messageService.fieldRequired}}
+          </small>
+        </div>
+      </div>
+      <div class="p-formgrid p-grid">
+        <div class="p-field p-xl-6 p-lg-6 p-md-6 p-sm-12">
+          <label for="first_name">
+            <i class="p-error">*</i>Primer Nombre:
+            <i *ngIf="firstName.valid" class="pi pi-check-circle icon-valid"></i>
+            <i *ngIf="firstName.invalid && (firstName.touched || firstName.dirty)"
+              class="pi pi-times-circle icon-invalid"></i>
+          </label>
+          <input id="first_name" formControlName="first_name" pInputText>
+          <div *ngIf="firstName.errors && (firstName.touched || firstName.dirty)">
+            <small *ngIf="firstName.errors?.required" id="user-help-1" class="p-error">
+              {{messageService.fieldRequired}}
+            </small>
+          </div>
+        </div>
+        <div class="p-field p-xl-6 p-lg-6 p-md-6 p-sm-12">
+          <label for="second_name">
+            <i class="p-error">*</i>Segundo Nombre:
+            <i *ngIf="secondName.valid" class="pi pi-check-circle icon-valid"></i>
+            <i *ngIf="secondName.invalid && (secondName.touched || secondName.dirty)"
+              class="pi pi-times-circle icon-invalid"></i>
+          </label>
+          <input id="second_name" formControlName="second_name" pInputText>
+          <div *ngIf="secondName.errors && (secondName.touched || secondName.dirty)">
+            <small *ngIf="secondName.errors?.required" id="user-help-1" class="p-error">
+              {{messageService.fieldRequired}}
+            </small>
+          </div>
+        </div>
+      </div>
+      <div class="p-formgrid p-grid">
+        <div class="p-field p-xl-6 p-lg-6 p-md-6 p-sm-12">
+          <label for="first_lastname">
+            <i class="p-error">*</i>Primer Apellido:
+            <i *ngIf="firstLastname.valid" class="pi pi-check-circle icon-valid"></i>
+            <i *ngIf="firstLastname.invalid && (firstLastname.touched || firstLastname.dirty)"
+              class="pi pi-times-circle icon-invalid"></i>
+          </label>
+          <input id="first_lastname" formControlName="first_lastname" pInputText>
+          <div *ngIf="firstLastname.errors && (firstLastname.touched || firstLastname.dirty)">
+            <small *ngIf="firstLastname.errors?.required" id="user-help-1" class="p-error">
+              {{messageService.fieldRequired}}
+            </small>
+          </div>
+        </div>
+        <div class="p-field p-xl-6 p-lg-6 p-md-6 p-sm-12">
+          <label for="second_lastname">
+            <i class="p-error">*</i>Segundo Apellido:
+            <i *ngIf="secondLastname.valid" class="pi pi-check-circle icon-valid"></i>
+            <i *ngIf="secondLastname.invalid && (secondLastname.touched || secondLastname.dirty)"
+              class="pi pi-times-circle icon-invalid"></i>
+          </label>
+          <input id="second_lastname" formControlName="second_lastname" pInputText>
+          <div *ngIf="secondLastname.errors && (secondLastname.touched || secondLastname.dirty)">
+            <small *ngIf="secondLastname.errors?.required" id="user-help-1" class="p-error">
+              {{messageService.fieldRequired}}
+            </small>
+          </div>
+        </div>
+      </div>
+
+     
+    </div>
+    <!--campos propios  de la tabla
+    <div class="p-formgrid p-grid">
+      <div class="p-field p-xl-4 p-lg-4 p-md-4 p-sm-12">
+        <label for="level">
+          <i class="p-error">*</i>Nivel :
+          <i *ngIf="level.valid" class="pi pi-check-circle icon-valid"></i>
+          <i *ngIf="level.invalid && (level.touched || level.dirty)" class="pi pi-times-circle icon-invalid"></i>
+        </label>
+        <input pInputText id='level' formControlName='level'>
+        <div *ngIf="level.errors && (level.touched || level.dirty)">
+          <small *ngIf="level.errors?.required" id="level-help-1" class="p-error">
+            {{messageService.fieldRequired}}
+          </small>
+        </div>
+      </div>-->
+
+      <!--combo de carreras fk carrera-->
+      <div formGroupName="career">
+        <div class="p-field p-col-12 p-md-4">
+          <span class="p-float-label">
+            <p-dropdown inputId="dropdown" [autoDisplayFirst]="false" [options]="cities" [(ngModel)]="value8"
+              optionLabel="name"></p-dropdown>
+            <label for="dropdown">Carrera:</label>
+          </span>
+        </div>
+      </div>
+
+    <div class="p-formgrid p-grid">
+      <div class="p-field p-xl-4 p-lg-4 p-md-4 p-sm-12">
+        <button id="enviarCommitmentLetter" name="enviarCommitmentLetter" type="submit" pButton label="Enviar"
+          class="p-button-success" (click)="storeAssignment()"></button>
+      </div>
+      <div class="p-field p-xl-4 p-lg-4 p-md-4 p-sm-12">
+        <button id="cancelarCommitmentLetter" name="cancelarCommitmentLetter" type="button" pButton label="Cancelar"
+          [routerLink]="['/portfolio']"></button>
+      </div>
+    </div>
+  </form>
+</div>
