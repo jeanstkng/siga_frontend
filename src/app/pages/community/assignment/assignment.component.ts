@@ -161,7 +161,10 @@ export class AssignmentComponent implements OnInit {
       });
   }
 
-  // campos editables de fk portfolio
+
+
+
+  // campos editables de fk
   get firstName() {
     return this.formAssignment['controls']['user'].get('first_name');
   }
