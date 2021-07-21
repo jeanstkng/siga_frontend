@@ -8,6 +8,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { RouterModule } from '@angular/router';
 import { AssignmentRouting } from './assignment.routing';
 import {CalendarModule} from 'primeng/calendar';
+import { AutoCompleteModule } from 'primeng/autocomplete';
 
 
 @NgModule({
@@ -20,7 +21,7 @@ import {CalendarModule} from 'primeng/calendar';
      ButtonModule,
      MessageModule,
      CalendarModule,
-     
+     AutoCompleteModule
   ],
   declarations: [AssignmentComponent]
 })

@@ -8,6 +8,9 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { MessageService } from 'src/app/services/app/message.service';
 import { HttpParams } from '@angular/common/http';
 import { Career } from 'src/app/models/app/career';
+import { CommunityService } from '../../../services/community/community.service';
+import { SelectItem } from 'primeng/api';
+import { AuthService } from '../../../services/auth/auth.service';
 
 
 
@@ -19,15 +22,21 @@ import { Career } from 'src/app/models/app/career';
 export class AssignmentComponent implements OnInit {
 
   paginator: Paginator;
-  assignments: Assignment[];
+  assignment: Assignment;
   formAssignment: FormGroup;
   user: User;
   career: Career;
+  careers: any[] = [];
+  actCareers: any[];
+  filteredCareers: SelectItem[];
+  actUser: User;
 
   constructor(private communityHttpService: CommunityHttpService,
-    private spinnerService: NgxSpinnerService,
-    public messageService: MessageService,
-    private formBuilder: FormBuilder) {
+              private spinnerService: NgxSpinnerService,
+              public messageService: MessageService,
+              private formBuilder: FormBuilder,
+              private communityService: CommunityService,
+              private authService: AuthService) {
 
     this.paginator = { current_page: 1, per_page: 2 };
   }
@@ -35,10 +44,17 @@ export class AssignmentComponent implements OnInit {
   ngOnInit(): void {
 
     this.getAssignment(this.paginator);
+    this.findCareers();
 
     this.buildFormAssignment();
-
+    this.initializeUser();
   }
+
+  private initializeUser() {
+    this.actUser = this.authService.getAuth();
+    this.formAssignment.patchValue({user: this.actUser});
+  }
+
   // Formulario solicitud asignacion vinculacion
   buildFormAssignment() {
     this.formAssignment = this.formBuilder.group({
@@ -52,15 +68,12 @@ export class AssignmentComponent implements OnInit {
         email: [null, [Validators.required, Validators.email]],
       }),
       career: this.formBuilder.group({
-
-        name: [null, [Validators.required]],
-
+        career: [null, [Validators.required]],
       }),
-
       date_request: [null, [Validators.required]],
       level: [null, [Validators.required]],
     });
-    console.log(this.formAssignment['controls']['user']);
+    console.log(this.formAssignment);
   }
 
   onSubmit() {
@@ -74,25 +87,47 @@ export class AssignmentComponent implements OnInit {
 
     // crear registro
     if (this.formAssignment.valid) {
-     // this.storeAssignment(this.formAssignment.value);
+      // this.storeAssignment(this.formAssignment.value);
     } else {
       this.formAssignment.markAllAsTouched();
 
     } /**/
 
   }
-  // 
+
+  private findCareers(): void {
+    this.communityService.get('careers').subscribe(
+      response => {
+        this.careers = response['data'];
+      },
+      error => {
+        console.log(error);
+      });
+  }
+
+  findCareer(event: any) {
+    this.actCareers = [];
+    const query = event.query;
+    this.careers.forEach(item => {
+      if (item.name.toLowerCase().indexOf(query.toLowerCase()) === 0) {
+        this.actCareers.push(item);
+      }
+    });
+    this.filteredCareers = this.actCareers;
+  }
 
   getAssignment(paginator: Paginator) {
+    const userId = this.authService.getAuth().id;
     this.spinnerService.show();
     const params = new HttpParams()
       .append('page', paginator.current_page.toString())
       .append('per_page', paginator.per_page.toString());
-    this.communityHttpService.get('assignment', params).subscribe(
+    this.communityHttpService.get(`assignments/get-assignment?user_id=${userId}`, params).subscribe(
       response => {
         this.spinnerService.hide();
-        this.formAssignment.patchValue(response['data']);
-        this.assignments = response['data'];
+        const formVal = this.handleFormVal(response['data']);
+        this.formAssignment.patchValue(formVal);
+        this.assignment = response['data'];
         this.paginator = response as Paginator;
       }, error => {
         this.spinnerService.hide();
@@ -100,22 +135,31 @@ export class AssignmentComponent implements OnInit {
       });
 
   }
-  storeAssignment() {  // revisar metodo de guardar y el boton 
-    const params = new HttpParams()
-    this.communityHttpService.store('assignment', params).subscribe(
+
+  private handleFormVal(formData: any): any {
+    const handledObject = {};
+    handledObject['date_request'] = new Date(formData.date_request);
+    handledObject['level'] = formData.level;
+    handledObject['career'] = {career: undefined};
+    handledObject['career']['career'] = formData.career;
+    handledObject['user'] = formData.user;
+    return handledObject;
+  }
+
+  storeAssignment() {  // revisar metodo de guardar y el boton
+    this.formAssignment.value.user.id = this.authService.getAuth().id;
+    const params = new HttpParams();
+    this.communityHttpService.store('assignment', this.formAssignment.value, params).subscribe(
       response => {
         this.spinnerService.hide();
         this.formAssignment.patchValue(response['data']);
-        this.assignments = response['data'];
+        this.assignment = response['data'];
         this.paginator = response as Paginator;
       }, error => {
         this.spinnerService.hide();
         this.messageService.error(error);
       });
   }
-
-
-
 
   // campos editables de fk portfolio
   get firstName() {
@@ -141,14 +185,15 @@ export class AssignmentComponent implements OnInit {
   }
   // campos editables de fk career
   get name() {
-    return this.formAssignment['controls']['career'].get('name');
+    return this.formAssignment['controls']['career'].get('career');
   }
 
   // campos propios de la tabla.
 
   get dateRequest() {
-    return this.formAssignment.get('data_request');
+    return this.formAssignment.get('date_request');
   }
+
   get level() {
     return this.formAssignment.get('level');
   }

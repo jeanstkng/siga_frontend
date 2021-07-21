@@ -54,5 +54,8 @@ export class CommunityHttpService {
         return this.httpClient.get(url, {params});
     }
 
-   
+    postReceivePdf(url: string, data: any, headers: HttpHeaders) {
+        url = environment.API_URL_COMMUNITY + url;
+        return this.httpClient.post(url, data, {headers, responseType: 'blob'});
+    }
 }

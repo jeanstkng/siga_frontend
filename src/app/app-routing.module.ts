@@ -15,7 +15,7 @@ import {AuthGuard} from './shared/guards/auth.guard';
             {
                 path: '', component: AppMainComponent,
                 children: [
-                    {path: '', redirectTo: '/community', pathMatch: 'full'},
+                    // {path: '', redirectTo: '/community', pathMatch: 'full'},
                    {
                         path: 'community',
                         loadChildren: () => import('./pages/community/community.module').then(m => m.CommunityModule),
@@ -27,22 +27,17 @@ import {AuthGuard} from './shared/guards/auth.guard';
                     //     canActivate: [AuthGuard]
                     // },
                     {
-                        path: 'community',
-                        loadChildren: () => import('./pages/community/community.module').then(m => m.CommunityModule),
-                        // canActivate: [AuthGuard]
-                    },
-                    {
                         path: 'dashboard',
                         loadChildren: () => import('./pages/dashboard/dashboard.module').then(m => m.DashboardModule),
                         canActivate: [AuthGuard]
                     },
                 ]
             },
-          /* {
+            {
                 path: 'auth',
                 component: AppBlankComponent,
                 loadChildren: () => import('./pages/auth/auth.module').then(m => m.AuthModule)
-            },*/
+            },
             {path: '**', redirectTo: '/auth/not-found'},
         ], {scrollPositionRestoration: 'enabled'})
     ],

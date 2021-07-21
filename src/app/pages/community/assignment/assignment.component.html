@@ -13,7 +13,7 @@
           <i *ngIf="identification.invalid && (identification.touched || identification.dirty)"
             class="pi pi-times-circle icon-invalid"></i>
         </label>
-        <input id="identification" formControlName="identification" pInputText>
+        <input disabled id="identification" formControlName="identification" pInputText [ngModel]="identification.value">
         <div *ngIf="identification.errors && (identification.touched || identification.dirty)">
           <small *ngIf="identification.errors?.required" id="identification-help-1" class="p-error">
             {{messageService.fieldRequired}}
@@ -28,7 +28,7 @@
             <i *ngIf="firstName.invalid && (firstName.touched || firstName.dirty)"
               class="pi pi-times-circle icon-invalid"></i>
           </label>
-          <input id="first_name" formControlName="first_name" pInputText>
+          <input disabled id="first_name" formControlName="first_name" pInputText [ngModel]="firstName.value">
           <div *ngIf="firstName.errors && (firstName.touched || firstName.dirty)">
             <small *ngIf="firstName.errors?.required" id="user-help-1" class="p-error">
               {{messageService.fieldRequired}}
@@ -42,7 +42,7 @@
             <i *ngIf="secondName.invalid && (secondName.touched || secondName.dirty)"
               class="pi pi-times-circle icon-invalid"></i>
           </label>
-          <input id="second_name" formControlName="second_name" pInputText>
+          <input disabled id="second_name" formControlName="second_name" pInputText>
           <div *ngIf="secondName.errors && (secondName.touched || secondName.dirty)">
             <small *ngIf="secondName.errors?.required" id="user-help-1" class="p-error">
               {{messageService.fieldRequired}}
@@ -58,7 +58,7 @@
             <i *ngIf="firstLastname.invalid && (firstLastname.touched || firstLastname.dirty)"
               class="pi pi-times-circle icon-invalid"></i>
           </label>
-          <input id="first_lastname" formControlName="first_lastname" pInputText>
+          <input disabled id="first_lastname" formControlName="first_lastname" pInputText>
           <div *ngIf="firstLastname.errors && (firstLastname.touched || firstLastname.dirty)">
             <small *ngIf="firstLastname.errors?.required" id="user-help-1" class="p-error">
               {{messageService.fieldRequired}}
@@ -72,7 +72,7 @@
             <i *ngIf="secondLastname.invalid && (secondLastname.touched || secondLastname.dirty)"
               class="pi pi-times-circle icon-invalid"></i>
           </label>
-          <input id="second_lastname" formControlName="second_lastname" pInputText>
+          <input disabled id="second_lastname" formControlName="second_lastname" pInputText>
           <div *ngIf="secondLastname.errors && (secondLastname.touched || secondLastname.dirty)">
             <small *ngIf="secondLastname.errors?.required" id="user-help-1" class="p-error">
               {{messageService.fieldRequired}}
@@ -87,7 +87,7 @@
           <i *ngIf="email.valid" class="pi pi-check-circle icon-valid"></i>
           <i *ngIf="email.invalid && (email.touched || email.dirty)" class="pi pi-times-circle icon-invalid"></i>
         </label>
-        <input id="email" formControlName="email" pInputText>
+        <input disabled id="email" formControlName="email" pInputText>
         <div *ngIf="email.errors && (email.touched || email.dirty)">
           <small *ngIf="email.errors?.required" id="email-help-1" class="p-error">
             {{messageService.fieldRequired}}
@@ -103,7 +103,7 @@
           <i *ngIf="phone.valid" class="pi pi-check-circle icon-valid"></i>
           <i *ngIf="phone.invalid && (phone.touched || phone.dirty)" class="pi pi-times-circle icon-invalid"></i>
         </label>
-        <input id="phone" formControlName="phone" pInputText>
+        <input disabled id="phone" formControlName="phone" pInputText [ngModel]="phone.value"> 
         <div *ngIf="phone.errors && (phone.touched || phone.dirty)">
           <small *ngIf="phone.errors?.required" id="phone-help-1" class="p-error">
             {{messageService.fieldRequired}}
@@ -119,7 +119,7 @@
           <i *ngIf="level.valid" class="pi pi-check-circle icon-valid"></i>
           <i *ngIf="level.invalid && (level.touched || level.dirty)" class="pi pi-times-circle icon-invalid"></i>
         </label>
-        <input pInputText id='level' formControlName='level'>
+        <input pInputText id='level' formControlName='level' [ngModel]="level.value">
         <div *ngIf="level.errors && (level.touched || level.dirty)">
           <small *ngIf="level.errors?.required" id="level-help-1" class="p-error">
             {{messageService.fieldRequired}}
@@ -128,14 +128,22 @@
       </div>
 
       <!--combo de carreras fk carrera-->
+      <div class="p-field p-xl-4 p-lg-4 p-md-4 p-sm-12">
       <div formGroupName="career">
-        <div class="p-field p-col-12 p-md-4">
+        <label for="dropdown">Carrera:</label>
           <span class="p-float-label">
-            <p-dropdown inputId="dropdown" [autoDisplayFirst]="false" [options]="cities" [(ngModel)]="value8"
-              optionLabel="name"></p-dropdown>
-            <label for="dropdown">Carrera:</label>
+            <p-autoComplete formControlName="career" name="carrera" [suggestions]="filteredCareers" inputId="dropdown"
+              (completeMethod)="findCareer($event)" field="name" [minLength]="1" [dropdown]="true" [ngModel]="name.value">
+              <ng-template let-career pTemplate="actCareers">
+                <div class="ui-helper-clearfix">
+                  <div style="font-size: 18px; margin: 10px 10px 0 0">
+                    {{ career.name }} <strong>- {{ career.modality?.name }}</strong>
+                  </div>
+                </div>
+              </ng-template>
+            </p-autoComplete>
           </span>
-        </div>
+      </div>
       </div>
 
 
@@ -144,7 +152,7 @@
         <label for="date_request">
           <i class="p-error">*</i> Fecha Solicitud :
         </label>
-        <p-calendar formControlName="date_request" [showIcon]="true" inputId="date_request"></p-calendar>
+        <p-calendar formControlName="date_request" [showIcon]="true" [ngModel]="dateRequest.value" inputId="date_request"></p-calendar>
       </div>
     </div>
 

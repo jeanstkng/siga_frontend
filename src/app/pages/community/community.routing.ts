@@ -6,6 +6,8 @@ import { ProjectsComponent } from './projects/projects-list.component';
 
 // community/projects
 // community/forms
+// community/portfolio
+// community/assignment
 
 // My Components
 

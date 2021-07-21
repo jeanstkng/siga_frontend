@@ -1,4 +1,232 @@
-<p>
-  portfolio works!
-</p>
 <h3>Portafolio Vinculación</h3>
+
+<p-tabView>
+  <p-tabPanel header="Carta Compromiso">
+     
+    <div class="p-grid ui-fluid">
+      <form [formGroup]="firstDocForm" novalidate class="p-grid">
+        <div class="p-fluid p-formgrid p-grid">
+          <div class="p-field p-col-12 p-md-6">
+            <label for="nombre"><strong> Nombre </strong></label>
+            <input
+              formControlName="name"
+              type="text"
+              name="nombre"
+              pInputText
+              placeholder="José Peréz"
+            />
+          </div>
+          <div class="p-field p-col-12 p-md-6">
+            <label for="cedula"><strong> Cédula </strong></label>
+            <input
+              formControlName="ci"
+              type="text"
+              pInputText
+              name="cedula"
+              placeholder="1750583583"
+            />
+          </div>
+          <div class="p-field p-col-12">
+            <label for="nivel"><strong>Nivel</strong> </label>
+            <input
+              formControlName="level"
+              type="text"
+              pInputText
+              name="nivel"
+              placeholder="Segundo"
+            />
+          </div>
+          <div class="p-field p-col-12 p-md-3">
+            <label for="entidad"> <strong>Nombre de la Entidad</strong> </label>
+            <input
+              formControlName="entity"
+              type="text"
+              pInputText
+              name="entidad"
+              placeholder="FONAP"
+            />
+          </div>
+          <div class="p-field p-col-12 p-md-6">
+            <label for="carrera"><strong>Carrera:</strong></label>
+            <p-autoComplete
+              name="carrera"
+              formControlName="career"
+              [suggestions]="filteredCareers"
+              (completeMethod)="findCareer($event)"
+              field="name"
+              [minLength]="1"
+              [dropdown]="true"
+            >
+              <ng-template let-career pTemplate="actCareers">
+                <div class="ui-helper-clearfix">
+                  <div style="font-size: 18px; margin: 10px 10px 0 0">
+                    {{ career.name }} <strong>- {{ career.modality?.name }}</strong>
+                  </div>
+                </div>
+              </ng-template>
+            </p-autoComplete>
+          </div>
+          <div class="p-field p-col-4">
+            <label for="instituto"><strong>Instituto</strong> </label>
+            <input
+              disabled
+              [ngModel]="institute.name"
+              formControlName="institution"
+              type="text"
+              pInputText
+              id="instituto"
+              placeholder="Bénito Juarez"
+            />
+          </div>
+        </div>
+  
+        <br />
+        <div class="p-col-12">
+          <button
+            pButton
+            pRipple
+            type="submit"
+            label="Enviar"
+            class="p-button-outlined"
+            (click)="getFirstDoc()"
+            [disabled]="firstDocForm.invalid"
+          ></button>
+        </div>
+      </form>
+    </div>
+
+  </p-tabPanel>
+
+
+
+  <p-tabPanel header="Informe de Inicio">
+    <div class="p-grid ui-fluid">
+      <form [formGroup]="secondDocForm" novalidate class="p-grid">
+        <div class="p-fluid p-formgrid p-grid">
+          <div class="p-field p-col-12 p-md-6">
+            <label for="receptor"><strong> Receptor </strong></label>
+            <input
+              formControlName="receiver"
+              type="text"
+              name="receptor"
+              pInputText
+              placeholder="Nombre de a quién va dirigido"
+            />
+          </div>
+          <div class="p-field p-col-12 p-md-6">
+            <label for="emisor"><strong> Emisor </strong></label>
+            <input
+              formControlName="sender"
+              type="text"
+              pInputText
+              name="emisor"
+              placeholder="Nombre de quién envía"
+            />
+          </div>
+          <div class="p-field p-col-6">
+            <label for="proyecto"><strong>Proyecto</strong> </label>
+            <p-autoComplete
+              name="proyecto"
+              formControlName="project"
+              [suggestions]="filteredProjects"
+              (completeMethod)="findProject($event)"
+              field="title"
+              [minLength]="1"
+              [dropdown]="true"
+            >
+              <ng-template let-project pTemplate="actProjects">
+                <div class="ui-helper-clearfix">
+                  <div style="font-size: 18px; margin: 10px 10px 0 0">
+                    {{ project.title }}
+                  </div>
+                </div>
+              </ng-template>
+            </p-autoComplete>
+          </div>
+          <div class="p-field p-col-12 p-md-3">
+            <label for="nombres"> <strong>Nombres</strong> </label>
+            <input
+              formControlName="name"
+              type="text"
+              pInputText
+              name="nombres"
+              placeholder="Lorena Chulde"
+            />
+          </div>
+          <div class="p-field p-col-12 p-md-3">
+            <label for="fecha_inicio"> <strong>Fecha Inicio</strong> </label>
+            <p-calendar
+              formControlName="start_date"
+              [showIcon]="true"
+              placeholder="Fecha inicio"
+            ></p-calendar>
+          </div>
+          <div class="p-field p-col-12 p-md-3">
+            <label for="cedula"> <strong>Cédula</strong> </label>
+            <input
+              formControlName="ci"
+              type="text"
+              pInputText
+              name="cedula"
+              placeholder="1789266589"
+            />
+          </div>
+          <div class="p-field p-col-12 p-md-6">
+            <label for="carrera"><strong>Carrera:</strong></label>
+            <p-autoComplete
+              name="carrera"
+              formControlName="career"
+              [suggestions]="filteredCareers"
+              (completeMethod)="findCareer($event)"
+              field="name"
+              [minLength]="1"
+              [dropdown]="true"
+            >
+              <ng-template let-career pTemplate="actCareers">
+                <div class="ui-helper-clearfix">
+                  <div style="font-size: 18px; margin: 10px 10px 0 0">
+                    {{ career.name }} <strong>- {{ career.modality?.name }}</strong>
+                  </div>
+                </div>
+              </ng-template>
+            </p-autoComplete>
+          </div>
+          <div class="p-field p-col-6">
+            <label for="descripcion"><strong>Explicación de Inicio</strong> </label>
+            <textarea
+              id="descripcion"
+              type="text"
+              rows="3"
+              pInputTextarea
+              formControlName="description"
+            ></textarea>
+          </div>
+          <div class="p-field p-col-6">
+            <label for="instituto"><strong>Imagen de Evidencia</strong> </label>
+
+
+            <p-fileUpload accept="image/*" customUpload="true" (uploadHandler)="handleImageUpload($event, fileUpload)" #fileUpload
+              maxFileSize="1000000" fileLimit="1" chooseLabel="Elige" uploadLabel="Subir y descargar pdf" cancelLabel="Cancelar">
+                <ng-template pTemplate="content" let-files>
+                    <div>Subir imagen y descargar PDF.</div>
+                </ng-template>
+        </p-fileUpload>
+          </div>
+        </div>
+  
+        <br />
+        <!-- <div class="p-col-12">
+          <button
+            pButton
+            pRipple
+            type="submit"
+            label="Enviar"
+            class="p-button-outlined"
+            (click)="getSecondDoc()"
+            [disabled]="secondDocForm.invalid"
+          ></button>
+        </div> -->
+      </form>
+    </div>
+  </p-tabPanel>
+</p-tabView>
