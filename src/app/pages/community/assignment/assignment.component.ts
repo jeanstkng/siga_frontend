@@ -101,7 +101,7 @@ export class AssignmentComponent implements OnInit {
         this.careers = response['data'];
       },
       error => {
-        console.log(error);
+        this.messageService.error(error);
       });
   }
 
@@ -152,6 +152,7 @@ export class AssignmentComponent implements OnInit {
     this.communityHttpService.store('assignment', this.formAssignment.value, params).subscribe(
       response => {
         this.spinnerService.hide();
+        this.messageService.success(response);
         this.formAssignment.patchValue(response['data']);
         this.assignment = response['data'];
         this.paginator = response as Paginator;
